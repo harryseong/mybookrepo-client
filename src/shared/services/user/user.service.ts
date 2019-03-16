@@ -4,7 +4,7 @@ import {HttpClient, HttpHeaders} from '@angular/common/http';
 import {JwtHelperService} from '@auth0/angular-jwt';
 import * as crypto from 'crypto-js';
 import {Router} from '@angular/router';
-import {AuthApiService} from '../api/auth-api/auth-api.service';
+import {AuthApiService} from '../api/auth/auth-api.service';
 import {UserDTO} from '../../dto/dto.module';
 
 @Injectable({

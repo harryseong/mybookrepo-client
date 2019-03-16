@@ -1,1 +1,12 @@
-/* You can add global styles to this file, and also import other style files */
+@import url('https://fonts.googleapis.com/css?family=Montserrat:300,400,500,600,700');
+
+$font-family: 'Montserrat', sans-serif;
+
+html {
+
+}
+
+body {
+  font-family: $font-family;
+  margin: 0;
+}
