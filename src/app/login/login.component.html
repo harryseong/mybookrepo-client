@@ -1,0 +1,42 @@
+<div class="login-content">
+
+  <div fxLayout="row" fxLayoutAlign="end start">
+    <button mat-icon-button routerLinkActive="true" routerLink="">
+      <i class="fas fa-times"></i>
+    </button>
+  </div>
+
+  <div fxLayout="row" fxLayoutAlign="center center">
+    <div class="login-card" fxLayout="column" fxLayoutGap="0.5em" fxFlex="25" fxFlex.sm="40" fxFlex.xs="90">
+      <div class="page-title">Log In</div>
+      <form [formGroup]="loginForm" fxLayout="column" fxLayoutGap="1em">
+        <div fxLayout="column" fxLayout.xs="column" fxLayoutGap="0.7em">
+          
+          <mat-form-field>
+            <mat-label>Email</mat-label>
+            <input type="email" matInput formControlName="email" required (keyup.enter)="login()" [errorStateMatcher]="matcher">
+            <mat-error *ngIf="loginForm.get('email').hasError('required')">
+              Email is required.
+            </mat-error>
+            <mat-error *ngIf="loginForm.get('email').hasError('email')">
+              Enter a valid email address.
+            </mat-error>
+          </mat-form-field>
+        
+          <mat-form-field>
+            <mat-label>Password</mat-label>
+            <input type="password" matInput formControlName="password" required (keyup.enter)="login()" [errorStateMatcher]="matcher">
+            <mat-error *ngIf="loginForm.get('password').hasError('required')">
+              Password is required.
+            </mat-error>
+          </mat-form-field>
+          
+        </div>
+
+        <button mat-stroked-button type="button" fxFlex="100" class="create-account-btn" [disabled]="!loginForm.valid" (keyup.enter)="login()" (click)="login()">LOGIN</button>
+
+      </form>
+    </div>
+  </div>
+
+</div>

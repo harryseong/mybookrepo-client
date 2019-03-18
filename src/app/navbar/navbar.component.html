@@ -1,18 +1,18 @@
 <nav class="mat-elevation-z1">
   <mat-toolbar class="nav-toolbar">
     <mat-toolbar-row fxLayout="row" fxLayoutGap="0.5em">
-      <button mat-button class="logo-btn">MyBookRepo.com</button>
+      <button mat-button class="logo-btn" routerLinkActive="true" routerLink="">MyBookRepo.com</button>
       <span class="spacer"></span>
       <button mat-button fxHide.xs>ABOUT</button>
       <button mat-button fxHide.xs>EXPLORE</button>
-      <button mat-stroked-button fxHide.xs>LOG IN</button>
+      <button mat-stroked-button fxHide.xs routerLinkActive="true" routerLink="login">LOG IN</button>
     </mat-toolbar-row>
     <mat-toolbar-row fxHide.gt-xs>
       <span class="spacer"></span>
       <div fxLayout="row" fxLayoutGap="0.5em" fxLayoutAlign="end">
         <button mat-button>ABOUT</button>
         <button mat-button>EXPLORE</button>
-        <button mat-stroked-button>LOG IN</button>
+        <button mat-stroked-button routerLinkActive="true" routerLink="login">LOG IN</button>
       </div>
     </mat-toolbar-row>
   </mat-toolbar>
