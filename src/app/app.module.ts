@@ -18,6 +18,8 @@ import { FooterComponent } from './footer/footer.component';
 import { LoginComponent } from './login/login.component';
 import { SignupComponent } from './signup/signup.component';
 import {ReactiveFormsModule} from '@angular/forms';
+import { ExploreComponent } from './explore/explore.component';
+import { BookSearchComponent } from './book-search/book-search.component';
 
 @NgModule({
   declarations: [
@@ -26,7 +28,9 @@ import {ReactiveFormsModule} from '@angular/forms';
     HomeComponent,
     FooterComponent,
     LoginComponent,
-    SignupComponent
+    SignupComponent,
+    ExploreComponent,
+    BookSearchComponent
   ],
   imports: [
     AppRoutingModule,

@@ -1,4 +1,4 @@
-$bg-color: #f5dd00;
+$theme-color: #f5dd00;
 
 nav {
   width: 100%;
@@ -7,7 +7,7 @@ nav {
   top: 0;
 
   mat-toolbar {
-    background-color: $bg-color;
+    background-color: $theme-color;
 
     button.logo-btn {
       font-size: 1em;

@@ -1,14 +1,14 @@
 @import url('https://fonts.googleapis.com/css?family=Montserrat:300,400,500,600,700');
 
 $font-family: 'Montserrat', sans-serif;
-$bg-color: #f5dd00;
+$theme-color: #f5dd00;
 
 html, body {
   height: 100%;
 }
 
 body {
-  background-color: $bg-color;
+  background-color: $theme-color;
   font-family: $font-family;
   margin: 0;
 }

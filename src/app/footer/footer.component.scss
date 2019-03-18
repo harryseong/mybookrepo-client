@@ -1,6 +1,6 @@
-$bg-color: #f5dd00;
+$theme-color: #f5dd00;
 
-footer {
+.footer {
   height: auto;
   min-width: 30%;
   max-width: 100%;
@@ -9,7 +9,7 @@ footer {
   bottom: 0;
   font-size: 1em;
   font-weight: 300;
-  background-color: $bg-color;
+  background-color: $theme-color;
 
   a {
     color: rgba(0, 0, 0, 0.9);
@@ -24,6 +24,6 @@ footer {
   }
 }
 
-footer.xs {
+.footer.xs {
   padding: 1em 0.5em;
 }

@@ -1,6 +1,7 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, HostListener, OnInit} from '@angular/core';
 import {FormControl, FormGroup, Validators} from '@angular/forms';
 import {SubscribeErrorStateMatcher} from '../../shared/SubscriberErrorStateMatcher.module';
+import {Router} from '@angular/router';
 
 @Component({
   selector: 'app-signup',
@@ -17,8 +18,14 @@ export class SignupComponent implements OnInit {
     passwordConfirm: new FormControl('', [Validators.required]),
   });
 
-  constructor() { }
+  constructor(private router: Router) { }
 
-  ngOnInit() {
+  ngOnInit() {}
+
+  @HostListener('window:keyup', ['$event'])
+  keyEvent(event: KeyboardEvent) {
+    if (event.key === 'Escape') {
+      this.router.navigate(['']);
+    }
   }
 }
