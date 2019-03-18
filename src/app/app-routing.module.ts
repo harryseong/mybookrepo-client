@@ -4,12 +4,24 @@ import {HomeComponent} from './home/home.component';
 import {LoginComponent} from './login/login.component';
 import {SignupComponent} from './signup/signup.component';
 import {ExploreComponent} from './explore/explore.component';
+import {ExploreSearchComponent} from './explore/explore-search/explore-search.component';
+import {ExploreViewByYearsComponent} from './explore/explore-view-by-years/explore-view-by-years.component';
+import {ExploreMyLibraryComponent} from './explore/explore-my-library/explore-my-library.component';
+import {ExploreProfileComponent} from './explore/explore-profile/explore-profile.component';
 
 const routes: Routes = [
   {path: '', component: HomeComponent},
   {path: 'login', component: LoginComponent},
   {path: 'signup', component: SignupComponent},
-  {path: 'explore', component: ExploreComponent},
+  {path: 'explore', component: ExploreComponent,
+    children: [
+      {path: '', component: ExploreMyLibraryComponent},
+      {path: 'profile', component: ExploreProfileComponent},
+      {path: 'my-library', component: ExploreMyLibraryComponent},
+      {path: 'search', component: ExploreSearchComponent},
+      {path: 'view-by-years', component: ExploreViewByYearsComponent},
+    ]
+  }
 ];
 
 @NgModule({

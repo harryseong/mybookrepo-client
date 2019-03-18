@@ -1,0 +1,19 @@
+<div class="explore-search-content" fxLayout="row" fxLayoutAlign="center">
+
+  <form (submit)="searchBooks()" [formGroup]="searchBookForm" fxLayout="row"
+        fxLayoutGap="0.2em" fxLayoutGap.xs="0.5em" fxFlex="100" fxLayoutAlign="center center">
+    <mat-form-field class="search-form-field">
+      <mat-label>
+        Search by ISBN, Title, Author
+      </mat-label>
+      <input type="text" matInput formControlName="searchField" class="search-field">
+    </mat-form-field>
+
+    <div fxLayoutAlign="end end" class="search-btn-div">
+      <button mat-stroked-button class="search-btn">
+        <span><i class="fas fa-search"></i>&nbsp;SEARCH</span>
+      </button>
+    </div>
+  </form>
+
+</div>

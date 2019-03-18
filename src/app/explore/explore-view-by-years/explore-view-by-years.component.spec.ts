@@ -1,20 +1,20 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { BookSearchComponent } from './book-search.component';
+import { ExploreViewByYearsComponent } from './explore-view-by-years.component';
 
-describe('BookSearchComponent', () => {
-  let component: BookSearchComponent;
-  let fixture: ComponentFixture<BookSearchComponent>;
+describe('ExploreViewByYearsComponent', () => {
+  let component: ExploreViewByYearsComponent;
+  let fixture: ComponentFixture<ExploreViewByYearsComponent>;
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ BookSearchComponent ]
+      declarations: [ ExploreViewByYearsComponent ]
     })
     .compileComponents();
   }));
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(BookSearchComponent);
+    fixture = TestBed.createComponent(ExploreViewByYearsComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });
