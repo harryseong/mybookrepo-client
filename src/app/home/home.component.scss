@@ -1,0 +1,48 @@
+$bg-color: #f5dd00;
+
+.content {
+  margin-top: 64px;
+}
+
+.content.xs {
+  margin-top: 112px;
+}
+
+.home-header {
+  padding: 1em 2em;
+  background-color: $bg-color;
+  text-align: center;
+  min-height: 8em;
+}
+
+.home-content {
+  height: 30em;
+  //background-image: url("~src/assets/images/blur-blurred-book-bg.jpg");
+  background-image: url("~src/assets/images/book-stack-bg.jpg");
+  background-position: center; /* Center the image */
+  background-repeat: no-repeat; /* Do not repeat the image */
+  background-size: cover; /* Resize the background image to cover the entire container */
+}
+
+.page-title {
+  font-size: 2em;
+  font-weight: 600;
+}
+
+.page-subtitle {
+  font-style: italic;
+}
+
+.sign-up-btn {
+  margin: 0.5em 0;
+  padding: 0 1em;
+  font-size: 1.2em;
+  font-weight: 600;
+}
+
+.feature-summary {
+  width: 58%;
+  padding: 1em;
+  font-size: 1.4em;
+  font-weight: 500;
+}

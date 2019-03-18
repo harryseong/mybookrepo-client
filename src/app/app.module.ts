@@ -14,12 +14,14 @@ import {UserService} from '../shared/services/user/user.service';
 import {HomeComponent} from './home/home.component';
 import {NavbarComponent} from './navbar/navbar.component';
 import {FlexLayoutModule} from '@angular/flex-layout';
+import { FooterComponent } from './footer/footer.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     NavbarComponent,
-    HomeComponent
+    HomeComponent,
+    FooterComponent
   ],
   imports: [
     AppRoutingModule,

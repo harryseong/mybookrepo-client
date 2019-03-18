@@ -1,3 +1,22 @@
-<p>
-  home works!
-</p>
+<app-navbar></app-navbar>
+
+<div class="content" ngClass.xs="xs">
+  <div class="home-header" fxLayout="column" fxLayoutGap="0.5em">
+    <div>
+      <div class="page-title">My Book Repository</div>
+      <div class="page-subtitle">Keeping track of your books made simple</div>
+    </div>
+
+    <div fxLayout="row" fxLayoutAlign="center">
+      <button mat-stroked-button class="sign-up-btn" fxFlex.xs="100">SIGN UP</button>
+    </div>
+  </div>
+
+  <div class="home-content">
+    <div class="feature-summary" fxLayout="column" fxLayoutGap="0.5em" fxLayoutGap.xs="1em">
+      <div><i class="fas fa-database fa-fw"></i> Keep a virtual database of your library</div>
+      <div><i class="fas fa-tasks fa-fw"></i> Track which books you've read</div>
+      <div><i class="far fa-calendar-alt fa-fw"></i> Plan which books to read for the year</div>
+    </div>
+  </div>
+</div>

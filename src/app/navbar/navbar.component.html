@@ -1,8 +1,19 @@
-<mat-toolbar fxLayout="column">
-  <mat-toolbar-row>
-    <span>First Row</span>
-  </mat-toolbar-row>
-  <mat-toolbar-row fxHide.xs>
-    <span>Second Row</span>
-  </mat-toolbar-row>
-</mat-toolbar>
+<nav class="mat-elevation-z1">
+  <mat-toolbar class="nav-toolbar">
+    <mat-toolbar-row fxLayout="row" fxLayoutGap="0.5em">
+      <button mat-button class="logo-btn">MyBookRepo.com</button>
+      <span class="spacer"></span>
+      <button mat-button fxHide.xs>ABOUT</button>
+      <button mat-button fxHide.xs>EXPLORE</button>
+      <button mat-stroked-button fxHide.xs>LOG IN</button>
+    </mat-toolbar-row>
+    <mat-toolbar-row fxHide.gt-xs>
+      <span class="spacer"></span>
+      <div fxLayout="row" fxLayoutGap="0.5em" fxLayoutAlign="end">
+        <button mat-button>ABOUT</button>
+        <button mat-button>EXPLORE</button>
+        <button mat-stroked-button>LOG IN</button>
+      </div>
+    </mat-toolbar-row>
+  </mat-toolbar>
+</nav>

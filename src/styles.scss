@@ -2,11 +2,18 @@
 
 $font-family: 'Montserrat', sans-serif;
 
-html {
-
-}
-
 body {
   font-family: $font-family;
   margin: 0;
+}
+
+.spacer {
+  flex: 1 1 auto;
+}
+
+nav {
+  width: 100%;
+  position: fixed;
+  z-index: 100;
+  top: 0;
 }
