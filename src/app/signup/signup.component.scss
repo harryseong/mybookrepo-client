@@ -1,5 +1,14 @@
 .signup-content {
 
+  .signup-card-div {
+    height: 75vh;
+    min-height: 24em;
+  }
+
+  .signup-card-div.xs {
+    min-height: 30em;
+  }
+
   .page-title {
     font-size: 1.2em;
     font-weight: 600;

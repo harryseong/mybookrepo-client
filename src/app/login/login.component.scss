@@ -1,5 +1,15 @@
 .login-content {
 
+  .login-card-div {
+    height: 75vh;
+    min-height: 15em;
+  }
+
+  .login-card-div.xs {
+    height: 75vh;
+    min-height: 15em;
+  }
+
   .page-title {
     font-size: 1.2em;
     font-weight: 600;
