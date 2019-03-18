@@ -1,48 +1,78 @@
 $bg-color: #f5dd00;
 
-.content {
-  margin-top: 64px;
-}
-
-.content.xs {
-  margin-top: 112px;
-}
-
-.home-header {
-  padding: 1em 2em;
-  background-color: $bg-color;
-  text-align: center;
-  min-height: 8em;
-}
-
 .home-content {
-  height: 30em;
-  //background-image: url("~src/assets/images/blur-blurred-book-bg.jpg");
-  background-image: url("~src/assets/images/book-stack-bg.jpg");
-  background-position: center; /* Center the image */
-  background-repeat: no-repeat; /* Do not repeat the image */
-  background-size: cover; /* Resize the background image to cover the entire container */
+  background-color: $bg-color;
+  margin-top: 64px;
+
+  .home-header {
+    padding: 1em 2em;
+    background-color: $bg-color;
+    text-align: center;
+    min-height: 8em;
+
+    .page-title {
+      font-size: 2em;
+      font-weight: 600;
+    }
+
+    .page-subtitle {
+      font-style: italic;
+    }
+
+    .sign-up-btn {
+      margin: 0.5em 0;
+      padding: 0 1em;
+      font-size: 1.2em;
+      font-weight: 600;
+    }
+  }
+
+  .feature-summary-bg {
+    height: 19em;
+    background-image: url("~src/assets/images/black-and-white-bookcase-books-bg.jpg");
+    background-position: center; /* Center the image */
+    background-repeat: no-repeat; /* Do not repeat the image */
+    background-size: cover; /* Resize the background image to cover the entire container */
+
+    .feature-summary-text {
+      background-color: rgba(0, 0, 0, 0.3);
+      height: 100%;
+      width: 100%;
+      padding: 1em;
+      color: $bg-color;
+      font-size: 1.6em;
+      font-weight: 500;
+
+      .feature-icon-border {
+        height: 1.8em;
+        width: 1.8em;
+        border: solid 1.7pt $bg-color;
+        border-radius: 50%;
+      }
+    }
+  }
 }
 
-.page-title {
-  font-size: 2em;
-  font-weight: 600;
-}
+.home-content.xs {
+  margin-top: 112px;
 
-.page-subtitle {
-  font-style: italic;
-}
+  .home-header {
+    .page-title {
+      font-size: 1.5em;
+    }
+    .page-subtitle {
+      font-size: 0.8em;
+    }
+    .sign-up-btn {
+      font-size: 1em;
+    }
+  }
 
-.sign-up-btn {
-  margin: 0.5em 0;
-  padding: 0 1em;
-  font-size: 1.2em;
-  font-weight: 600;
-}
+  .feature-summary-bg {
+    height: 12em;
 
-.feature-summary {
-  width: 58%;
-  padding: 1em;
-  font-size: 1.4em;
-  font-weight: 500;
+    .feature-summary-text {
+      font-size: 1em;
+    }
+  }
 }

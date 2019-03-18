@@ -1,19 +1,33 @@
 @import url('https://fonts.googleapis.com/css?family=Montserrat:300,400,500,600,700');
 
 $font-family: 'Montserrat', sans-serif;
+$bg-color: #f5dd00;
+
+html, body {
+  height: 100%;
+}
 
 body {
+  background-color: $bg-color;
   font-family: $font-family;
   margin: 0;
 }
 
-.spacer {
-  flex: 1 1 auto;
+app-root {
+  display: flex;
+  min-height: 100vh;
+  flex-direction: column;
+
+  .container {
+    flex: 1 0 auto;
+  }
+
+  .footer {
+    flex-shrink: 0;
+  }
+
 }
 
-nav {
-  width: 100%;
-  position: fixed;
-  z-index: 100;
-  top: 0;
+.spacer {
+  flex: 1 1 auto;
 }
