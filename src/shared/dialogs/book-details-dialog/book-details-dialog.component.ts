@@ -4,6 +4,7 @@ import {MAT_DIALOG_DATA, MatDialogRef} from '@angular/material';
 import {UserService} from '../../services/user/user.service';
 import {Router} from '@angular/router';
 import {ResourcesApiService} from '../../services/api/resources/resources-api.service';
+import {SnackBarService} from '../../services/snackBar/snack-bar.service';
 
 @Component({
   selector: 'app-book-details-dialog',
@@ -14,7 +15,7 @@ export class BookDetailsDialogComponent {
 
   constructor(public dialogRef: MatDialogRef<BookDetailsDialogComponent>,
               private resourcesApiService: ResourcesApiService,
-              private router: Router, public userService: UserService,
+              private router: Router, public userService: UserService, private snackBarService: SnackBarService,
               @Inject(MAT_DIALOG_DATA) public data: any) {
   }
 
@@ -54,6 +55,8 @@ export class BookDetailsDialogComponent {
       books.push(bookDTO);
       localStorage.setItem('books', JSON.stringify(books));
     }
+    this.snackBarService.openSnackBar('"' + bookDTO.title + '" was added to the library.', 'OK');
+    this.closeDialog();
   }
 
   exploreRemoveBook(bookDTO: BookDTO) {

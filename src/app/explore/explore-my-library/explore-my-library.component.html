@@ -1,3 +1,10 @@
-<p>
-  explore-my-library works!
-</p>
+<div class="explore-my-library-content">
+  <div *ngIf="bookDTOArray.length == 0">
+    No books in library.
+  </div>
+
+  <div fxLayout="row wrap" fxLayoutAlign="center" *ngIf="!isLoading && bookDTOArray.length > 0" [@bookCardAnimations] class="view-books-div">
+    <app-book-card *ngFor="let bookDTO of bookDTOArray" [bookDTO]="bookDTO" (click)="openDialog(bookDTO)"></app-book-card>
+  </div>
+
+</div>
