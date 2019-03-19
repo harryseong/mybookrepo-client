@@ -23,6 +23,10 @@ import { ExploreSearchComponent } from './explore/explore-search/explore-search.
 import { ExploreMyLibraryComponent } from './explore/explore-my-library/explore-my-library.component';
 import { ExploreViewByYearsComponent } from './explore/explore-view-by-years/explore-view-by-years.component';
 import { ExploreProfileComponent } from './explore/explore-profile/explore-profile.component';
+import {SnackBarService} from '../shared/services/snackBar/snack-bar.service';
+import {HttpClientModule} from '@angular/common/http';
+import { BookDetailsDialogComponent } from '../shared/dialogs/book-details-dialog/book-details-dialog.component';
+import {DialogService} from '../shared/services/dialog/dialog.service';
 
 @NgModule({
   declarations: [
@@ -36,24 +40,31 @@ import { ExploreProfileComponent } from './explore/explore-profile/explore-profi
     ExploreSearchComponent,
     ExploreMyLibraryComponent,
     ExploreViewByYearsComponent,
-    ExploreProfileComponent
+    ExploreProfileComponent,
+    BookDetailsDialogComponent
   ],
   imports: [
     AppRoutingModule,
     BrowserModule,
     BrowserAnimationsModule,
     FlexLayoutModule,
+    HttpClientModule,
     MaterialModule,
     ReactiveFormsModule,
     ServiceWorkerModule.register('ngsw-worker.js', { enabled: environment.production })
+  ],
+  entryComponents: [
+    BookDetailsDialogComponent,
   ],
   exports: [
     MaterialModule,
   ],
   providers: [
     AuthApiService,
+    DialogService,
     GoogleBooksApiService,
     ResourcesApiService,
+    SnackBarService,
     UserService
   ],
   bootstrap: [AppComponent]

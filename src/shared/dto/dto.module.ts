@@ -124,6 +124,7 @@ export class CategoryDTO {
 }
 
 export class UserDTO {
+  private _id?: number;
   private _firstName: string;
   private _lastName: string;
   private _email: string;
@@ -139,6 +140,14 @@ export class UserDTO {
     this._password = password;
   }
 
+
+  get id(): number {
+    return this._id;
+  }
+
+  set id(value: number) {
+    this._id = value;
+  }
 
   get firstName(): string {
     return this._firstName;
