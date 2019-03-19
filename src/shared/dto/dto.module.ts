@@ -11,35 +11,140 @@ export class AuthorDTO {
 }
 
 export class BookDTO {
-  private id?: number;
-  private title: string;
-  private publisher: string;
-  private publishedDate: number;
-  private description: string;
-  private pageCount: number;
-  private coverImageURL: string;
-  private printType: string;
-  private isbn10: string;
-  private isbn13: string;
-  private otherIdType: string;
-  private authors: AuthorDTO[];
-  private categories: CategoryDTO[];
+  private _id?: string;
+  private _title: string;
+  private _publisher: string;
+  private _publishedDate: number;
+  private _description: string;
+  private _pageCount: number;
+  private _coverImageURL: string;
+  private _printType: string;
+  private _isbn10: string;
+  private _isbn13: string;
+  private _otherIdType: string;
+  private _authors: AuthorDTO[];
+  private _categories: CategoryDTO[];
 
   constructor(data: any) {
-    this.title = data.title !== undefined ? data.title : null;
-    this.publisher = data.publisher !== undefined ? data.publisher : null;
-    this.publishedDate = data.publishedDate !== undefined ? BookDTO.formatPublishedDate(data.publishedDate) : null;
-    this.description = data.description !== undefined ? data.description : null;
-    this.pageCount = data.pageCount !== undefined ? data.pageCount : null;
-    this.coverImageURL = data.imageLinks !== undefined ? data.imageLinks.thumbnail : null;
-    this.printType = data.printType !== undefined ? data.printType : null;
+    this._title = data.title !== undefined ? data.title : null;
+    this._publisher = data._publisher !== undefined ? data._publisher : null;
+    this._publishedDate = data._publishedDate !== undefined ? BookDTO.formatPublishedDate(data._publishedDate) : null;
+    this._description = data.description !== undefined ? data.description : null;
+    this._pageCount = data._pageCount !== undefined ? data._pageCount : null;
+    this._coverImageURL = data.imageLinks !== undefined ? data.imageLinks.thumbnail : null;
+    this._printType = data._printType !== undefined ? data._printType : null;
     if (data.industryIdentifiers !== undefined) {
-      this.isbn10 = this.formatIdentifier(data.industryIdentifiers, 'isbn10');
-      this.isbn13 = this.formatIdentifier(data.industryIdentifiers, 'isbn13');
-      this.otherIdType = this.formatIdentifier(data.industryIdentifiers, 'other');
+      this._isbn10 = this.formatIdentifier(data.industryIdentifiers, '_isbn10');
+      this._isbn13 = this.formatIdentifier(data.industryIdentifiers, '_isbn13');
+      this._otherIdType = this.formatIdentifier(data.industryIdentifiers, 'other');
     }
-    this.authors = data.authors !== undefined ? this.addAuthors(data.authors) : null;
-    this.categories = data.categories !== undefined ? this.addCategories(data.categories) : null;
+    this._authors = data._authors !== undefined ? this.addAuthors(data._authors) : null;
+    this._categories = data._categories !== undefined ? this.addCategories(data._categories) : null;
+  }
+
+
+  get id(): string {
+    return this._id;
+  }
+
+  set id(value: string) {
+    this._id = value;
+  }
+
+  get title(): string {
+    return this._title;
+  }
+
+  set title(value: string) {
+    this._title = value;
+  }
+
+  get publisher(): string {
+    return this._publisher;
+  }
+
+  set publisher(value: string) {
+    this._publisher = value;
+  }
+
+  get publishedDate(): number {
+    return this._publishedDate;
+  }
+
+  set publishedDate(value: number) {
+    this._publishedDate = value;
+  }
+
+  get description(): string {
+    return this._description;
+  }
+
+  set description(value: string) {
+    this._description = value;
+  }
+
+  get pageCount(): number {
+    return this._pageCount;
+  }
+
+  set pageCount(value: number) {
+    this._pageCount = value;
+  }
+
+  get coverImageURL(): string {
+    return this._coverImageURL;
+  }
+
+  set coverImageURL(value: string) {
+    this._coverImageURL = value;
+  }
+
+  get printType(): string {
+    return this._printType;
+  }
+
+  set printType(value: string) {
+    this._printType = value;
+  }
+
+  get isbn10(): string {
+    return this._isbn10;
+  }
+
+  set isbn10(value: string) {
+    this._isbn10 = value;
+  }
+
+  get isbn13(): string {
+    return this._isbn13;
+  }
+
+  set isbn13(value: string) {
+    this._isbn13 = value;
+  }
+
+  get otherIdType(): string {
+    return this._otherIdType;
+  }
+
+  set otherIdType(value: string) {
+    this._otherIdType = value;
+  }
+
+  get authors(): AuthorDTO[] {
+    return this._authors;
+  }
+
+  set authors(value: AuthorDTO[]) {
+    this._authors = value;
+  }
+
+  get categories(): CategoryDTO[] {
+    return this._categories;
+  }
+
+  set categories(value: CategoryDTO[]) {
+    this._categories = value;
   }
 
   static formatPublishedDate(publishedDate): number {
@@ -50,11 +155,11 @@ export class BookDTO {
   formatIdentifier(industryIdentifiers, idType: string): string {
     let identifier = null;
     industryIdentifiers.map(industryIdentifier => {
-      if (industryIdentifier.type === 'ISBN_13' && idType === 'isbn13') {
+      if (industryIdentifier.type === 'ISBN_13' && idType === '_isbn13') {
         identifier = industryIdentifier.identifier;
         console.log('ISBN 13 number found: ' + identifier);
       }
-      if (industryIdentifier.type === 'ISBN_10' && idType === 'isbn10') {
+      if (industryIdentifier.type === 'ISBN_10' && idType === '_isbn10') {
         identifier = industryIdentifier.identifier;
         console.log('ISBN 10 number found: ' + identifier);
       }
@@ -124,7 +229,7 @@ export class CategoryDTO {
 }
 
 export class UserDTO {
-  private _id?: number;
+  private _id?: string;
   private _firstName: string;
   private _lastName: string;
   private _email: string;
@@ -140,12 +245,11 @@ export class UserDTO {
     this._password = password;
   }
 
-
-  get id(): number {
+  get id(): string {
     return this._id;
   }
 
-  set id(value: number) {
+  set id(value: string) {
     this._id = value;
   }
 

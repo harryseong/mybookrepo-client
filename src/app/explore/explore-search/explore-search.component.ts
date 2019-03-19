@@ -128,16 +128,7 @@ export class ExploreSearchComponent implements OnInit, OnDestroy {
     this.searchBookForm.clearValidators();
   }
 
-
   openDialog(bookDTO: BookDTO) {
-    this.dialogService.openBookDetailsDialog(bookDTO, 'NEW');
-  }
-
-  public abbreviateTitle = (title: string) => {
-    return title.length > 60 ? title.substr(0, 60).trim() + '.....' : title;
-  }
-
-  public abbreviateDescription = (description: string) => {
-    return description.length > 180 ? description.substr(0, 180).trim() + '.....' : description;
+    this.dialogService.openBookDetailsDialog(bookDTO, 'EXPLORE_NEW');
   }
 }

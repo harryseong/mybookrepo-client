@@ -32,16 +32,40 @@ export class BookDetailsDialogComponent {
     });
   }
 
-  removeBook(book) {
-    this.resourcesApiService.removeBookFromLibrary(book.id, this.userService.userDTO.id).subscribe(
+  removeBook(bookDTO: BookDTO) {
+    this.resourcesApiService.removeBookFromLibrary(bookDTO.id, this.userService.userDTO.id).subscribe(
       rsp => {
         console.log(rsp);
-        this.resourcesApiService.bookRemovedFromLibrary(book);
+        this.resourcesApiService.bookRemovedFromLibrary(bookDTO);
         this.router.navigate(['/library/books']);
         this.closeDialog();
       },
       err => console.error(err)
     );
+  }
+
+  exploreAddBook(bookDTO: BookDTO) {
+    let books: BookDTO[] = JSON.parse(localStorage.getItem('books'));
+    if (books === null) {
+      books = [];
+      books.push(bookDTO);
+      localStorage.setItem('books', JSON.stringify(books));
+    } else {
+      books.push(bookDTO);
+      localStorage.setItem('books', JSON.stringify(books));
+    }
+  }
+
+  exploreRemoveBook(bookDTO: BookDTO) {
+    let books: BookDTO[] = JSON.parse(localStorage.getItem('books'));
+    if (books === null) {
+      books = [];
+      books.push(bookDTO);
+      localStorage.setItem('books', JSON.stringify(books));
+    } else {
+      books.push(bookDTO);
+      localStorage.setItem('books', JSON.stringify(books));
+    }
   }
 
   abbreviateDescription = (description: string) => {

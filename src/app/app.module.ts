@@ -27,6 +27,7 @@ import {SnackBarService} from '../shared/services/snackBar/snack-bar.service';
 import {HttpClientModule} from '@angular/common/http';
 import { BookDetailsDialogComponent } from '../shared/dialogs/book-details-dialog/book-details-dialog.component';
 import {DialogService} from '../shared/services/dialog/dialog.service';
+import { BookCardComponent } from '../shared/book-card/book-card.component';
 
 @NgModule({
   declarations: [
@@ -41,7 +42,8 @@ import {DialogService} from '../shared/services/dialog/dialog.service';
     ExploreMyLibraryComponent,
     ExploreViewByYearsComponent,
     ExploreProfileComponent,
-    BookDetailsDialogComponent
+    BookDetailsDialogComponent,
+    BookCardComponent
   ],
   imports: [
     AppRoutingModule,

@@ -54,8 +54,15 @@
     <span><i class="fas fa-times-circle fa-fw"></i>&nbsp;CLOSE</span>
   </button>
   <button mat-stroked-button *ngIf="data.type=='VIEW'" (click)="removeBook(data.book)" class="remove-btn">
-    <span><i class="fas fa-minus-circle fa-fw"></i>&nbsp;REMOVE</span></button>
+    <span><i class="fas fa-minus-circle fa-fw"></i>&nbsp;REMOVE</span>
+  </button>
   <button mat-stroked-button *ngIf="data.type=='NEW'" (click)="addBook(data.book)" class="add-btn">
+    <span><i class="fas fa-plus-circle fa-fw"></i>&nbsp;ADD</span>
+  </button>
+  <button mat-stroked-button *ngIf="data.type=='EXPLORE_VIEW'" (click)="exploreRemoveBook(data.book)" class="remove-btn">
+    <span><i class="fas fa-minus-circle fa-fw"></i>&nbsp;REMOVE</span>
+  </button>
+  <button mat-stroked-button *ngIf="data.type=='EXPLORE_NEW'" (click)="exploreAddBook(data.book)" class="add-btn">
     <span><i class="fas fa-plus-circle fa-fw"></i>&nbsp;ADD</span>
   </button>
 </div>
