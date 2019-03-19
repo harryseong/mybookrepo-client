@@ -24,8 +24,19 @@ app-root {
 
   .footer {
     flex-shrink: 0;
-  }
 
+    a {
+      color: rgba(0, 0, 0, 0.9);
+      text-decoration: underline;
+      transition: 0.3s;
+    }
+
+    a:hover, a:visited {
+      color: #000000;
+      text-decoration: underline;
+      transition: 0.3s;
+    }
+  }
 }
 
 .spacer {

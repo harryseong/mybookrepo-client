@@ -7,13 +7,10 @@
       <button mat-button fxHide.xs routerLinkActive="true" routerLink="/explore">EXPLORE</button>
       <button mat-stroked-button fxHide.xs routerLinkActive="true" routerLink="/login">LOG IN</button>
     </mat-toolbar-row>
-    <mat-toolbar-row fxHide.gt-xs>
-      <span class="spacer"></span>
-      <div fxLayout="row" fxLayoutGap="0.5em" fxLayoutAlign="end">
-        <button mat-button>ABOUT</button>
-        <button mat-button routerLinkActive="true" routerLink="/explore">EXPLORE</button>
-        <button mat-stroked-button routerLinkActive="true" routerLink="/login">LOG IN</button>
-      </div>
+    <mat-toolbar-row fxHide.gt-xs fxLayout="row" fxLayoutGap="0.5em" fxLayoutAlign="center">
+      <div><button mat-button>ABOUT</button></div>
+      <div><button mat-button routerLinkActive="true" routerLink="/explore">EXPLORE</button></div>
+      <div><button mat-stroked-button routerLinkActive="true" routerLink="/login">LOG IN</button></div>
     </mat-toolbar-row>
   </mat-toolbar>
 </nav>

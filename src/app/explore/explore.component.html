@@ -1,15 +1,16 @@
 <app-navbar></app-navbar>
 
-<mat-sidenav-container class="explore-content" ngClass.xs="xs">
-  <mat-sidenav class="left-sidenav" opened mode="side">
+<mat-drawer-container class="explore-content" ngClass.xs="xs">
+  <mat-drawer class="left-sidenav" opened mode="side">
     <mat-nav-list>
 
       <mat-list-item>
-        <a matLine routerLinkActive="true" routerLink="/explore/profile" fxLayout="row" fxLayoutGap="0.4em" fxLayoutAlign="start center">
-          <div class="sample-user-img-border" fxLayout="row" fxLayoutAlign="center center">
+        <a matLine routerLinkActive="true" routerLink="/explore/profile" fxLayout="row" fxLayoutGap="0.4em"
+           fxLayoutAlign="start center" fxLayoutAlign.xs="center">
+          <div class="sample-user-img-border" fxLayout="row" fxLayoutAlign="center">
             <img src="/assets/images/sample-user.jpg" alt="sample-user" class="sample-user-img">
           </div>
-          <span>John Doe</span>
+          <span fxHide.xs>John Doe</span>
         </a>
 
       </mat-list-item>
@@ -17,30 +18,30 @@
       <mat-divider></mat-divider>
 
       <mat-list-item>
-        <a matLine routerLinkActive="true" routerLink="/explore/my-library"><i class="fas fa-list fa-fw"></i>&nbsp;My Library</a>
-        <button mat-icon-button (click)="showInfo(link)">
-          <span><i class="fas fa-info"></i></span>
-        </button>
+        <a matLine routerLinkActive="true" routerLink="/explore/my-library" fxLayout="row" fxLayoutAlign.xs="center">
+          <i class="fas fa-list fa-fw"></i>
+          <span fxHide.xs>&nbsp;My Library</span>
+        </a>
       </mat-list-item>
 
       <mat-list-item>
-        <a matLine routerLinkActive="true" routerLink="/explore/search"><i class="fas fa-search fa-fw"></i>&nbsp;Search</a>
-        <button mat-icon-button (click)="showInfo(link)">
-          <span><i class="fas fa-info"></i></span>
-        </button>
+        <a matLine routerLinkActive="true" routerLink="/explore/search" fxLayout="row" fxLayoutAlign.xs="center">
+          <i class="fas fa-search fa-fw"></i>
+          <span fxHide.xs>&nbsp;Search</span>
+        </a>
       </mat-list-item>
 
       <mat-list-item>
-        <a matLine routerLinkActive="true" routerLink="/explore/view-by-years"><i class="far fa-calendar-alt fa-fw"></i>&nbsp;View by Years</a>
-        <button mat-icon-button (click)="showInfo(link)">
-          <span><i class="fas fa-info"></i></span>
-        </button>
+        <a matLine routerLinkActive="true" routerLink="/explore/view-by-years" fxLayout="row" fxLayoutAlign.xs="center">
+          <i class="far fa-calendar-alt fa-fw"></i>
+          <span fxHide.xs>&nbsp;View by Years</span>
+        </a>
       </mat-list-item>
 
     </mat-nav-list>
-  </mat-sidenav>
+  </mat-drawer>
 
   <div class="main-content">
     <router-outlet></router-outlet>
   </div>
-</mat-sidenav-container>
+</mat-drawer-container>
