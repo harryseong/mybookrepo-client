@@ -1,7 +1,9 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, OnDestroy, OnInit} from '@angular/core';
 import {BookDTO} from '../../../shared/dto/dto.module';
 import {animate, query, sequence, stagger, style, transition, trigger} from '@angular/animations';
 import {DialogService} from '../../../shared/services/dialog/dialog.service';
+import {Subscription} from 'rxjs';
+import {ResourcesApiService} from '../../../shared/services/api/resources/resources-api.service';
 
 @Component({
   selector: 'app-explore-my-library',
@@ -22,14 +24,23 @@ import {DialogService} from '../../../shared/services/dialog/dialog.service';
     ])
   ]
 })
-export class ExploreMyLibraryComponent implements OnInit {
+export class ExploreMyLibraryComponent implements OnInit, OnDestroy {
   bookDTOArray: BookDTO[] = [];
   isLoading = true;
+  bookRemoved$: Subscription;
 
-  constructor(private dialogService: DialogService) { }
+  constructor(private dialogService: DialogService, private resourcesApiService: ResourcesApiService) { }
 
   ngOnInit() {
     this.getBooks();
+    this.bookRemoved$ = this.resourcesApiService.$bookRemovedEvent.subscribe(() => {
+      this.bookDTOArray = [];
+      this.getBooks();
+    });
+  }
+
+  ngOnDestroy() {
+    this.bookRemoved$.unsubscribe();
   }
 
   getBooks() {

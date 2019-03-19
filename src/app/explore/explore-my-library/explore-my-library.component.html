@@ -1,6 +1,12 @@
 <div class="explore-my-library-content">
-  <div *ngIf="bookDTOArray.length == 0">
-    No books in library.
+  <div *ngIf="bookDTOArray.length == 0" fxLayout="row" fxLayoutAlign="center">
+
+    <div>
+      <button mat-stroked-button routerLinkActive="true" routerLink="/explore/search">
+        <span><i class="fas fa-plus"></i>&nbsp;ADD FIRST BOOK</span>
+      </button>
+    </div>
+
   </div>
 
   <div fxLayout="row wrap" fxLayoutAlign="center" *ngIf="!isLoading && bookDTOArray.length > 0" [@bookCardAnimations] class="view-books-div">

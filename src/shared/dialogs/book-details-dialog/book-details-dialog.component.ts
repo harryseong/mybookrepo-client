@@ -56,19 +56,18 @@ export class BookDetailsDialogComponent {
       localStorage.setItem('books', JSON.stringify(books));
     }
     this.snackBarService.openSnackBar('"' + bookDTO.title + '" was added to the library.', 'OK');
+    this.resourcesApiService.$bookAddedEvent.next();
     this.closeDialog();
   }
 
   exploreRemoveBook(bookDTO: BookDTO) {
-    let books: BookDTO[] = JSON.parse(localStorage.getItem('books'));
-    if (books === null) {
-      books = [];
-      books.push(bookDTO);
-      localStorage.setItem('books', JSON.stringify(books));
-    } else {
-      books.push(bookDTO);
-      localStorage.setItem('books', JSON.stringify(books));
-    }
+    const books: BookDTO[] = JSON.parse(localStorage.getItem('books'));
+    const bookIndex = books.findIndex(x => x.title === bookDTO.title);
+    books.splice(bookIndex, 1);
+    localStorage.setItem('books', JSON.stringify(books));
+    this.snackBarService.openSnackBar('"' + bookDTO._title + '" was removed from the library.', 'OK');
+    this.resourcesApiService.$bookRemovedEvent.next();
+    this.closeDialog();
   }
 
   abbreviateDescription = (description: string) => {
