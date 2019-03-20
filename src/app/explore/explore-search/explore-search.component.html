@@ -20,6 +20,6 @@
 
 </div>
 
-<div fxLayout="row wrap" fxLayoutAlign="center" *ngIf="!isLoading" [@bookCardAnimations] class="search-results-div">
-  <app-book-card *ngFor="let bookDTO of bookDTOArray" [bookDTO]="bookDTO" (click)="openDialog(bookDTO)"></app-book-card>
+<div fxLayout="row wrap" fxLayout.xs="column" fxLayoutAlign="center" *ngIf="!isLoading" [@bookCardAnimations] class="search-results-div">
+  <app-book-card fxLayout.xs="row" *ngFor="let bookDTO of bookDTOArray" [bookDTO]="bookDTO" (click)="openDialog(bookDTO)"></app-book-card>
 </div>
