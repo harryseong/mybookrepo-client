@@ -8,31 +8,11 @@ $theme-secondary: #373737;
     background-color: $theme-secondary;
     color: $theme-color;
 
-    mat-list-item {
-      color: $theme-color;
-    }
-
-    .sample-user-img-border {
-      border: 1pt solid $theme-color;
-      border-radius: 50%;
-      padding: 0.1em;
-
-      .sample-user-img {
-        height: 2em;
-        width: 2em;
-        background-color: $theme-secondary;
-        border-radius: 50%;
+    mat-action-list {
+      .action-list-btn {
+        color: $theme-color;
       }
     }
-
-  }
-
-  .right-sidenav {
-    padding: 1em;
-    width: 10%;
-    max-width: 10%;
-    background-color: $theme-secondary;
-    color: white;
   }
 
   .main-content {
@@ -42,4 +22,30 @@ $theme-secondary: #373737;
 
 .explore-content.xs {
   margin-top: 112px;
+
+  .action-list-btn {
+    background-color: $theme-secondary;
+    color: $theme-color;
+    border-radius: 0;
+    padding: 0.5em;
+  }
+
+  .mobile-nav {
+    width: 100%;
+    position: absolute;
+    bottom: 0;
+  }
+}
+
+.sample-user-img-border {
+  border: 1pt solid $theme-color;
+  border-radius: 50%;
+  padding: 0.1em;
+
+  .sample-user-img {
+    height: 2em;
+    width: 2em;
+    background-color: $theme-secondary;
+    border-radius: 50%;
+  }
 }

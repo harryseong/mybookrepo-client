@@ -15,10 +15,10 @@ export class BookCardComponent implements OnInit {
   ngOnInit() {}
 
   public abbreviateTitle = (title: string) => {
-    return title.length > 60 ? title.substr(0, 60).trim() + '.....' : title;
+    return title.length > 40 ? title.substr(0, 40).trim() + '.....' : title;
   }
 
   public abbreviateDescription = (description: string) => {
-    return description.length > 180 ? description.substr(0, 180).trim() + '.....' : description;
+    return description.length > 150 ? description.substr(0, 150).trim() + '.....' : description;
   }
 }

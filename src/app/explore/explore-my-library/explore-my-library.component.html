@@ -17,8 +17,8 @@
 
   </div>
 
-  <div fxLayout="row wrap" fxLayoutAlign="center" *ngIf="!isLoading && bookDTOArray.length > 0" [@bookCardAnimations] class="view-books-div">
-    <app-book-card fxFlex.xs="100" *ngFor="let bookDTO of bookDTOArray" [bookDTO]="bookDTO" (click)="openDialog(bookDTO)"></app-book-card>
+  <div fxLayout="row wrap" fxLayout.xs="column" fxLayoutAlign="center" *ngIf="!isLoading && bookDTOArray.length > 0" [@bookCardAnimations] class="view-books-div">
+    <app-book-card fxLayout="row" *ngFor="let bookDTO of bookDTOArray" [bookDTO]="bookDTO" (click)="openDialog(bookDTO)"></app-book-card>
   </div>
 
 </div>
