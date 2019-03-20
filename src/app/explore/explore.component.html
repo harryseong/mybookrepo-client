@@ -37,34 +37,34 @@
 
   <div class="main-content">
     <router-outlet></router-outlet>
-
-    <div fxHide.gt-xs fxLayout="row" class="mobile-nav">
-      <button mat-button routerLinkActive="true" routerLink="/explore/profile" class="action-list-btn" fxFlex="25">
-        <div fxLayout="row" fxLayoutGap="0.4em" fxLayoutAlign="start center" fxLayoutAlign.xs="center">
-          <div class="sample-user-img-border" fxLayout="row" fxLayoutAlign="center">
-            <img src="/assets/images/sample-user.jpg" alt="sample-user" class="sample-user-img">
-          </div>
-          <span fxHide.xs>John Doe</span>
-        </div>
-      </button>
-      <button mat-button routerLinkActive="true" routerLink="/explore/my-library" class="action-list-btn" fxFlex="25">
-        <div fxLayout="row" fxLayoutAlign.xs="center">
-          <i class="fas fa-list fa-fw"></i>
-          <span fxHide.xs>&nbsp;My Library</span>
-        </div>
-      </button>
-      <button mat-button routerLinkActive="true" routerLink="/explore/search" class="action-list-btn" fxFlex="25">
-        <div fxLayout="row" fxLayoutAlign.xs="center">
-          <i class="fas fa-search fa-fw"></i>
-          <span fxHide.xs>&nbsp;Search</span>
-        </div>
-      </button>
-      <button mat-button routerLinkActive="true" routerLink="/explore/view-by-years" class="action-list-btn" fxFlex="25">
-        <div fxLayout="row" fxLayoutAlign.xs="center">
-          <i class="far fa-calendar-alt fa-fw"></i>
-          <span fxHide.xs>&nbsp;View by Years</span>
-        </div>
-      </button>
-    </div>
   </div>
 </mat-drawer-container>
+
+<div fxHide.gt-xs fxLayout="row" class="mobile-nav">
+  <button mat-button routerLinkActive="true" routerLink="/explore/profile" class="action-list-btn" fxFlex="25">
+    <div fxLayout="row" fxLayoutGap="0.4em" fxLayoutAlign="start center" fxLayoutAlign.xs="center">
+      <div class="sample-user-img-border" fxLayout="row" fxLayoutAlign="center">
+        <img src="/assets/images/sample-user.jpg" alt="sample-user" class="sample-user-img">
+      </div>
+      <span fxHide.xs>John Doe</span>
+    </div>
+  </button>
+  <button mat-button routerLinkActive="true" routerLink="/explore/my-library" class="action-list-btn" fxFlex="25">
+    <div fxLayout="row" fxLayoutAlign.xs="center">
+      <i class="fas fa-list fa-fw"></i>
+      <span fxHide.xs>&nbsp;My Library</span>
+    </div>
+  </button>
+  <button mat-button routerLinkActive="true" routerLink="/explore/search" class="action-list-btn" fxFlex="25">
+    <div fxLayout="row" fxLayoutAlign.xs="center">
+      <i class="fas fa-search fa-fw"></i>
+      <span fxHide.xs>&nbsp;Search</span>
+    </div>
+  </button>
+  <button mat-button routerLinkActive="true" routerLink="/explore/view-by-years" class="action-list-btn" fxFlex="25">
+    <div fxLayout="row" fxLayoutAlign.xs="center">
+      <i class="far fa-calendar-alt fa-fw"></i>
+      <span fxHide.xs>&nbsp;View by Years</span>
+    </div>
+  </button>
+</div>
