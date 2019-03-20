@@ -49,20 +49,20 @@
   </div>
 </div>
 
-<div mat-dialog-actions fxLayoutAlign="end" fxLayoutGap="0.5em">
-  <button mat-stroked-button (click)="closeDialog()">
+<div mat-dialog-actions fxLayout="row" fxLayoutAlign="end" fxLayoutAlign.xs="center" fxLayoutGap="0.5em" fxLayoutGap.xs="2%">
+  <button mat-stroked-button (click)="closeDialog()" class="close-btn" fxFlex.xs="49%" ngClass.xs="xs">
     <span><i class="fas fa-times-circle fa-fw"></i>&nbsp;CLOSE</span>
   </button>
-  <button mat-stroked-button *ngIf="data.type=='VIEW'" (click)="removeBook(data.book)" class="remove-btn">
+  <button mat-stroked-button *ngIf="data.type=='VIEW'" (click)="removeBook(data.book)" class="remove-btn" fxFlex.xs="49%" ngClass.xs="xs">
     <span><i class="fas fa-minus-circle fa-fw"></i>&nbsp;REMOVE</span>
   </button>
-  <button mat-stroked-button *ngIf="data.type=='NEW'" (click)="addBook(data.book)" class="add-btn">
+  <button mat-stroked-button *ngIf="data.type=='NEW'" (click)="addBook(data.book)" class="add-btn" fxFlex.xs="49%" ngClass.xs="xs">
     <span><i class="fas fa-plus-circle fa-fw"></i>&nbsp;ADD</span>
   </button>
-  <button mat-stroked-button *ngIf="data.type=='EXPLORE_VIEW'" (click)="exploreRemoveBook(data.book)" class="remove-btn">
+  <button mat-stroked-button *ngIf="data.type=='EXPLORE_VIEW'" (click)="exploreRemoveBook(data.book)" class="remove-btn" fxFlex.xs="49%" ngClass.xs="xs">
     <span><i class="fas fa-minus-circle fa-fw"></i>&nbsp;REMOVE</span>
   </button>
-  <button mat-stroked-button *ngIf="data.type=='EXPLORE_NEW'" (click)="exploreAddBook(data.book)" class="add-btn">
+  <button mat-stroked-button *ngIf="data.type=='EXPLORE_NEW'" (click)="exploreAddBook(data.book)" class="add-btn" fxFlex.xs="49%" ngClass.xs="xs">
     <span><i class="fas fa-plus-circle fa-fw"></i>&nbsp;ADD</span>
   </button>
 </div>
