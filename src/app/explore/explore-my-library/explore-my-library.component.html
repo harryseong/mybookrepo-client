@@ -1,4 +1,12 @@
-<div class="explore-my-library-content">
+<div class="explore-my-library-content" fxLayout="column" fxLayoutGap="1em">
+
+  <div fxLayout="row" fxLayoutAlign="center">
+    <div class="warning" fxFlex="60" fxFlex.sm="100" fxFlex.xs="100">
+      <div class="warning-header"><i class="fas fa-exclamation-triangle"></i> Keep in mind...</div>
+      <div class="warning-text">The books you save in this library are temporary and will disappear when you clear your browser's cookies.</div>
+    </div>
+  </div>
+
   <div *ngIf="bookDTOArray.length == 0" fxLayout="row" fxLayoutAlign="center">
 
     <div>

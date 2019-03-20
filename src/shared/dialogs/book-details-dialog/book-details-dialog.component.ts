@@ -65,7 +65,7 @@ export class BookDetailsDialogComponent {
     const bookIndex = books.findIndex(x => x.title === bookDTO.title);
     books.splice(bookIndex, 1);
     localStorage.setItem('books', JSON.stringify(books));
-    this.snackBarService.openSnackBar('"' + bookDTO._title + '" was removed from the library.', 'OK');
+    this.snackBarService.openSnackBar('"' + bookDTO.title + '" was removed from the library.', 'OK');
     this.resourcesApiService.$bookRemovedEvent.next();
     this.closeDialog();
   }
