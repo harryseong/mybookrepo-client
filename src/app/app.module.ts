@@ -28,6 +28,7 @@ import {HttpClientModule} from '@angular/common/http';
 import { BookDetailsDialogComponent } from '../shared/dialogs/book-details-dialog/book-details-dialog.component';
 import {DialogService} from '../shared/services/dialog/dialog.service';
 import { BookCardComponent } from '../shared/book-card/book-card.component';
+import { AboutComponent } from './about/about.component';
 
 @NgModule({
   declarations: [
@@ -43,7 +44,8 @@ import { BookCardComponent } from '../shared/book-card/book-card.component';
     ExploreViewByYearsComponent,
     ExploreProfileComponent,
     BookDetailsDialogComponent,
-    BookCardComponent
+    BookCardComponent,
+    AboutComponent
   ],
   imports: [
     AppRoutingModule,

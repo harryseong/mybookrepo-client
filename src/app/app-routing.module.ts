@@ -8,11 +8,13 @@ import {ExploreSearchComponent} from './explore/explore-search/explore-search.co
 import {ExploreViewByYearsComponent} from './explore/explore-view-by-years/explore-view-by-years.component';
 import {ExploreMyLibraryComponent} from './explore/explore-my-library/explore-my-library.component';
 import {ExploreProfileComponent} from './explore/explore-profile/explore-profile.component';
+import {AboutComponent} from './about/about.component';
 
 const routes: Routes = [
   {path: '', component: HomeComponent},
   {path: 'login', component: LoginComponent},
   {path: 'signup', component: SignupComponent},
+  {path: 'about', component: AboutComponent},
   {path: 'explore', component: ExploreComponent,
     children: [
       {path: '', component: ExploreMyLibraryComponent},
