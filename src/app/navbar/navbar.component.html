@@ -5,12 +5,14 @@
       <span class="spacer"></span>
       <button mat-button fxHide.xs routerLinkActive="true" routerLink="/about">ABOUT</button>
       <button mat-button fxHide.xs routerLinkActive="true" routerLink="/explore">EXPLORE</button>
-      <button mat-stroked-button fxHide.xs routerLinkActive="true" routerLink="/login">LOG IN</button>
+      <button mat-stroked-button fxHide.xs *ngIf="userService.accessToken==null" routerLinkActive="true" routerLink="/login">LOG IN</button>
+      <button mat-stroked-button fxHide.xs *ngIf="userService.accessToken!=null" (click)="logout()">LOG OUT</button>
     </mat-toolbar-row>
     <mat-toolbar-row fxHide.gt-xs fxLayout="row" fxLayoutGap="0.5em" fxLayoutAlign="center">
       <div><button mat-button routerLinkActive="true" routerLink="/about">ABOUT</button></div>
       <div><button mat-button routerLinkActive="true" routerLink="/explore">EXPLORE</button></div>
-      <div><button mat-stroked-button routerLinkActive="true" routerLink="/login">LOG IN</button></div>
+      <div><button mat-stroked-button *ngIf="userService.accessToken==null" routerLinkActive="true" routerLink="/login">LOG IN</button></div>
+      <div><button mat-stroked-button *ngIf="userService.accessToken!=null" (click)="logout()">LOG OUT</button></div>
     </mat-toolbar-row>
   </mat-toolbar>
 </nav>

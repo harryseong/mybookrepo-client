@@ -42,11 +42,7 @@ export class ExploreSearchComponent implements OnInit, OnDestroy {
   constructor(private snackBarService: SnackBarService, private googleBooksApiService: GoogleBooksApiService,
               private resourcesApiService: ResourcesApiService, private dialogService: DialogService) { }
 
-  ngOnInit() {
-    this.bookAddedToLibrary$ = this.resourcesApiService.$bookAddedEvent.subscribe(bookDTO => {
-      this.snackBarService.openSnackBar('"' + bookDTO.title + '" added to library.', 'OK');
-    });
-  }
+  ngOnInit() {}
 
   ngOnDestroy(): void {
     if (this.searchBooks$ != null) {

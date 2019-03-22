@@ -40,7 +40,7 @@ export class UserService {
         this.isAdmin = decodedToken.authorities.some(el => el === 'admin');
         this.username = decodedToken.user_name;
         this.gravatarProfileImg = 'https://www.gravatar.com/avatar/' + crypto.MD5(this.username).toString();
-        this.getUserByEmail(this.username).subscribe(
+        this.getUserByUsername(this.username).subscribe(
           (userDTO: UserDTO) => {
             this.userDTO = userDTO;
             this.userDisplayName = userDTO.firstName + ' ' + userDTO.lastName;
@@ -49,7 +49,7 @@ export class UserService {
         );
         // Save access token to local storage until logout.
         localStorage.setItem(environment.jwt.name, this.accessToken);
-        this.router.navigate(['library']);
+        this.router.navigate(['user']);
       }
     );
   }
@@ -83,5 +83,9 @@ export class UserService {
 
   getUserByEmail(email: string) {
     return this.http.get(environment.api.resources_url + '/user/email/' + email);
+  }
+
+  getUserByUsername(username: string) {
+    return this.http.get(environment.api.resources_url + '/user/username/' + username);
   }
 }

@@ -12,6 +12,33 @@
       <form [formGroup]="signupForm" fxLayout="column" fxLayoutGap="1em">
         <div fxLayout="row wrap" fxLayout.xs="column" fxLayoutGap="1em">
           <mat-form-field>
+            <mat-label>Username</mat-label>
+            <input type="text" matInput formControlName="username" maxlength="15" required (keyup)="checkUsernameInDB()" (keyup.enter)="signup()" [errorStateMatcher]="matcher">
+            <mat-error *ngIf="signupForm.get('username').hasError('required')">
+              Username is required.
+            </mat-error>
+            <mat-error *ngIf="signupForm.get('username').hasError('usernameNotAvailable')">
+              This username has been taken.
+            </mat-error>
+          </mat-form-field>
+
+          <mat-form-field>
+            <mat-label>Email</mat-label>
+            <input type="email" matInput formControlName="email" required (keyup)="checkEmailInDB()" (keyup.enter)="signup()" [errorStateMatcher]="matcher">
+            <mat-error *ngIf="signupForm.get('email').hasError('required')">
+              Email is required.
+            </mat-error>
+            <mat-error *ngIf="signupForm.get('email').hasError('email')">
+              Enter a valid email address.
+            </mat-error>
+            <mat-error *ngIf="signupForm.get('email').hasError('emailNotAvailable')">
+              This email is already associated with an account.
+            </mat-error>
+          </mat-form-field>
+        </div>
+
+        <div fxLayout="row wrap" fxLayout.xs="column" fxLayoutGap="1em">
+          <mat-form-field>
             <mat-label>First Name</mat-label>
             <input type="text" matInput formControlName="firstName" required (keyup.enter)="signup()" [errorStateMatcher]="matcher">
             <mat-error *ngIf="signupForm.get('firstName').hasError('required')">
@@ -26,20 +53,6 @@
               Last name is required.
             </mat-error>
           </mat-form-field>
-
-          <mat-form-field>
-            <mat-label>Email</mat-label>
-            <input type="email" matInput formControlName="email" required (keyup)="checkUserInDB()" (keyup.enter)="signup()" [errorStateMatcher]="matcher">
-            <mat-error *ngIf="signupForm.get('email').hasError('required')">
-              Email is required.
-            </mat-error>
-            <mat-error *ngIf="signupForm.get('email').hasError('email')">
-              Enter a valid email address.
-            </mat-error>
-            <mat-error *ngIf="signupForm.get('email').hasError('accountAlreadyExists')">
-              This account already exists.
-            </mat-error>
-          </mat-form-field>
         </div>
 
         <div fxLayout="column" fxLayoutGap="1em">
@@ -48,9 +61,6 @@
             <input type="password" matInput formControlName="password" required (keyup)="verifyPassword()" (keyup.enter)="signup()" [errorStateMatcher]="matcher">
             <mat-error *ngIf="signupForm.get('password').hasError('required')">
               Password is required.
-            </mat-error>
-            <mat-error *ngIf="signupForm.get('password').hasError('pattern')">
-              Password must
             </mat-error>
             <mat-error *ngIf="signupForm.get('password').hasError('passwordsDoNotMatch')">
               Passwords do not match.

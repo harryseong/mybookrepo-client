@@ -2,28 +2,28 @@
 
   <div fxLayout="row" fxLayout.xs="column" fxLayoutGap="1em" fxLayoutGap.xs="0.5em" class="book-header">
     <div fxLayoutAlign="center start">
-      <img [src]="data.book._coverImageURL" alt="" class="book-cover-thumbnail" *ngIf="data.book._coverImageURL!=null">
-      <div class="book-cover-thumbnail-blank" *ngIf="data.book._coverImageURL==null" fxLayoutAlign="center center">
+      <img [src]="data.book.coverImageURL" alt="" class="book-cover-thumbnail" *ngIf="data.book.coverImageURL!=null">
+      <div class="book-cover-thumbnail-blank" *ngIf="data.book.coverImageURL==null" fxLayoutAlign="center center">
         No Book Cover
       </div>
     </div>
 
     <div fxLayout="column" fxLayoutGap="0.5em" fxLayoutAlign="start start">
       <div>
-        <div class="book-title">{{data.book._title}}</div>
-        <div class="book-author" *ngIf="data.book._authors!=undefined && data.book._authors!=null">
-          <span *ngFor="let author of data.book._authors; let last = last;">
+        <div class="book-title">{{data.book.title}}</div>
+        <div class="book-author" *ngIf="data.book.authors!=undefined && data.book.authors!=null">
+          <span *ngFor="let author of data.book.authors; let last = last;">
             <span *ngIf="author!=undefined && author!=null">
-              <span *ngIf="author._firstName!=undefined">{{author._firstName}}&nbsp;</span>
-              <span *ngIf="author._middleName!=undefined">{{author._middleName}}&nbsp;</span>
-              <span *ngIf="author._lastName!=undefined">{{author._lastName}}</span>
+              <span *ngIf="author.firstName!=undefined">{{author.firstName}}&nbsp;</span>
+              <span *ngIf="author.middleName!=undefined">{{author.middleName}}&nbsp;</span>
+              <span *ngIf="author.lastName!=undefined">{{author.lastName}}</span>
               <span *ngIf="!last">, </span>
             </span>
           </span>
         </div>
       </div>
       <div class="book-description">
-        {{data.book._description!=null ? data.book._description : 'No description provided.'}}
+        {{data.book.description!=null ? data.book.description : 'No description provided.'}}
       </div>
     </div>
   </div>
@@ -31,21 +31,21 @@
   <mat-divider></mat-divider>
 
   <div class="book-details" fxLayout="column">
-    <div *ngIf="data.book._categories!=null">
+    <div *ngIf="data.book.categories!=null">
       <span class="bold">Genre:</span>&nbsp;
-      <span *ngFor="let category of data.book._categories; let last = last;">
+      <span *ngFor="let category of data.book.categories; let last = last;">
         <span *ngIf="category!=undefined && category!=null">
           <span *ngIf="category.name!=undefined">{{category.name}}</span>
           <span *ngIf="!last">, </span>
         </span>
       </span>
     </div>
-    <div *ngIf="data.book._publisher!=null"><span class="bold">Publisher:</span> {{data.book._publisher}}</div>
-    <div *ngIf="data.book._publishedDate!=null"><span class="bold">Published:</span> {{data.book._publishedDate}}</div>
-    <div *ngIf="data.book._pageCount!=null"><span class="bold">Pages:</span> {{data.book._pageCount}}</div>
-    <div *ngIf="data.book._isbn10!=null"><span class="bold">ISBN 10:</span> {{data.book._isbn10}}</div>
-    <div *ngIf="data.book._isbn13!=null"><span class="bold">ISBN 13:</span> {{data.book._isbn13}}</div>
-    <div *ngIf="data.book._otherIdType!=null"><span class="bold">Other ID Type:</span> {{data.book._otherIdType}}</div>
+    <div *ngIf="data.book.publisher!=null"><span class="bold">Publisher:</span> {{data.book.publisher}}</div>
+    <div *ngIf="data.book.publishedDate!=null"><span class="bold">Published:</span> {{data.book.publishedDate}}</div>
+    <div *ngIf="data.book.pageCount!=null"><span class="bold">Pages:</span> {{data.book.pageCount}}</div>
+    <div *ngIf="data.book.isbn10!=null"><span class="bold">ISBN 10:</span> {{data.book.isbn10}}</div>
+    <div *ngIf="data.book.isbn13!=null"><span class="bold">ISBN 13:</span> {{data.book.isbn13}}</div>
+    <div *ngIf="data.book.otherIdType!=null"><span class="bold">Other ID Type:</span> {{data.book.otherIdType}}</div>
   </div>
 </div>
 

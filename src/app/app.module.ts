@@ -29,6 +29,9 @@ import { BookDetailsDialogComponent } from '../shared/dialogs/book-details-dialo
 import {DialogService} from '../shared/services/dialog/dialog.service';
 import { BookCardComponent } from '../shared/book-card/book-card.component';
 import { AboutComponent } from './about/about.component';
+import { UserHomeComponent } from './user-home/user-home.component';
+import { UserProfileComponent } from './user-home/user-profile/user-profile.component';
+import { UserLibraryComponent } from './user-home/user-library/user-library.component';
 
 @NgModule({
   declarations: [
@@ -45,7 +48,10 @@ import { AboutComponent } from './about/about.component';
     ExploreProfileComponent,
     BookDetailsDialogComponent,
     BookCardComponent,
-    AboutComponent
+    AboutComponent,
+    UserHomeComponent,
+    UserProfileComponent,
+    UserLibraryComponent
   ],
   imports: [
     AppRoutingModule,

@@ -13,13 +13,10 @@
         <div fxLayout="column" fxLayout.xs="column" fxLayoutGap="0.7em">
           
           <mat-form-field>
-            <mat-label>Email</mat-label>
-            <input type="email" matInput formControlName="email" required (keyup.enter)="login()" [errorStateMatcher]="matcher">
-            <mat-error *ngIf="loginForm.get('email').hasError('required')">
-              Email is required.
-            </mat-error>
-            <mat-error *ngIf="loginForm.get('email').hasError('email')">
-              Enter a valid email address.
+            <mat-label>Username</mat-label>
+            <input type="text" matInput formControlName="username" required (keyup.enter)="login()" [errorStateMatcher]="matcher">
+            <mat-error *ngIf="loginForm.get('username').hasError('required')">
+              Username is required.
             </mat-error>
           </mat-form-field>
         
