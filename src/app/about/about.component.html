@@ -1,15 +1,22 @@
-<app-navbar></app-navbar>
+<div class="container">
+  <app-navbar></app-navbar>
 
-<div class="about-content" fxLayout="column" fxLayoutGap="1em" ngClass.xs="xs">
-  <div class="page-header">About</div>
+  <div class="content" ngClass.xs="xs" fxLayout="row" fxLayoutAlign="center">
 
-  <div>
-    The development of this app started in February 2019 when I wanted a free, easy way of keeping track of
-    the books in my home. App development is a hobby of mine, so this project gave me something to work on when I was bored.
-    It also serves as a proof-of-concept app where I can freely test new ideas.
+    <div fxLayout="column" fxLayoutGap="1em" fxLayoutGap.xs="0.5em" fxFlex="40" fxFlex.sm="60" fxFlex.xs="90">
+      <div class="page-header">About</div>
+
+      <div>
+        The development of this app started in February 2019 when I wanted a free, easy way of keeping track of
+        the books in my home. App development is a hobby of mine, so this project gave me something to work on when I was bored.
+        It also serves as a proof-of-concept app where I can freely test new ideas.
+      </div>
+
+      <div>
+        I hope this app can eventually be enjoyed my many bibliophiles out there.
+      </div>
+    </div>
   </div>
 
-  <div>
-    I hope this app can eventually be enjoyed my many bibliophiles out there.
-  </div>
+  <app-footer></app-footer>
 </div>

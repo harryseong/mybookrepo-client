@@ -3,16 +3,17 @@
     <mat-toolbar-row fxLayout="row" fxLayoutGap="0.5em">
       <button mat-button class="logo-btn" routerLinkActive="true" routerLink="/">MyBookRepo.com</button>
       <span class="spacer"></span>
-      <button mat-button fxHide.xs routerLinkActive="true" routerLink="/about">ABOUT</button>
-      <button mat-button fxHide.xs routerLinkActive="true" routerLink="/explore">EXPLORE</button>
-      <button mat-stroked-button fxHide.xs *ngIf="userService.accessToken==null" routerLinkActive="true" routerLink="/login">LOG IN</button>
-      <button mat-stroked-button fxHide.xs *ngIf="userService.accessToken!=null" (click)="logout()">LOG OUT</button>
+      <ng-container *ngIf="userService.accessToken==null">
+        <button mat-button routerLinkActive="true" routerLink="/about" fxHide.xs>ABOUT</button>
+        <button mat-button routerLinkActive="true" routerLink="/explore" fxHide.xs>EXPLORE</button>
+        <button mat-stroked-button routerLinkActive="true" routerLink="/login" fxHide.xs>LOG IN</button>
+      </ng-container>
+      <button mat-stroked-button *ngIf="userService.accessToken!=null" (click)="logout()">LOG OUT</button>
     </mat-toolbar-row>
-    <mat-toolbar-row fxHide.gt-xs fxLayout="row" fxLayoutGap="0.5em" fxLayoutAlign="center">
+    <mat-toolbar-row fxHide.gt-xs fxLayout="row" fxLayoutGap="0.5em" fxLayoutAlign="center" *ngIf="userService.accessToken==null">
       <div><button mat-button routerLinkActive="true" routerLink="/about">ABOUT</button></div>
       <div><button mat-button routerLinkActive="true" routerLink="/explore">EXPLORE</button></div>
-      <div><button mat-stroked-button *ngIf="userService.accessToken==null" routerLinkActive="true" routerLink="/login">LOG IN</button></div>
-      <div><button mat-stroked-button *ngIf="userService.accessToken!=null" (click)="logout()">LOG OUT</button></div>
+      <div><button mat-stroked-button routerLinkActive="true" routerLink="/login">LOG IN</button></div>
     </mat-toolbar-row>
   </mat-toolbar>
 </nav>

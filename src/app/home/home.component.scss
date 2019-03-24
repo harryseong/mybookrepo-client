@@ -1,6 +1,13 @@
 $theme-color: #f5dd00;
 
-.home-content {
+app-navbar {
+  width: 100%;
+  position: fixed;
+  z-index: 100;
+  top: 0;
+}
+
+.content {
   background-color: $theme-color;
   margin-top: 64px;
 
@@ -53,7 +60,7 @@ $theme-color: #f5dd00;
   }
 }
 
-.home-content.xs {
+.content.xs {
   margin-top: 112px;
 
   .home-header {

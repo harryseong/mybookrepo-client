@@ -1,41 +1,47 @@
 <app-navbar></app-navbar>
 
-<div class="home-content" ngClass.xs="xs">
-  <div class="home-header" fxLayout="column" fxLayoutGap="0.5em">
-    <div>
-      <div class="page-title">My Book Repository</div>
-      <div class="page-subtitle">Keeping track of your books made simple</div>
+<div class="container" ngClass.xs="xs">
+
+  <div class="content" ngClass.xs="xs">
+    <div class="home-header" fxLayout="column" fxLayoutGap="0.5em">
+      <div>
+        <div class="page-title">My Book Repository</div>
+        <div class="page-subtitle">Keeping track of your books made simple</div>
+      </div>
+
+      <div fxLayout="row" fxLayoutAlign="center">
+        <button mat-stroked-button class="sign-up-btn" fxFlex.xs="100" routerLinkActive="true" routerLink="signup">SIGN UP</button>
+      </div>
     </div>
 
-    <div fxLayout="row" fxLayoutAlign="center">
-      <button mat-stroked-button class="sign-up-btn" fxFlex.xs="100" routerLinkActive="true" routerLink="signup">SIGN UP</button>
+    <div class="feature-summary-bg" [@featureSummaryAnimations]>
+      <div class="feature-summary-text" fxLayout="column" fxLayoutGap="0.8em" fxLayoutGap.xs="1em" fxLayoutAlign="center start">
+
+        <div class="feature" fxLayout="row" fxLayoutGap="0.25em" fxLayoutAlign="start center">
+          <div class="feature-icon-border" fxLayout="row" fxLayoutAlign="center center">
+            <i class="fas fa-database feature-icon"></i>
+          </div>
+          <span>Manage a database of your library</span>
+        </div>
+
+        <div class="feature" fxLayout="row" fxLayoutGap="0.25em" fxLayoutAlign="start center">
+          <div class="feature-icon-border" fxLayout="row" fxLayoutAlign="center center">
+            <i class="fas fa-tasks feature-icon"></i>
+          </div>
+          <span>Track which books you've read</span>
+        </div>
+
+        <div class="feature" fxLayout="row" fxLayoutGap="0.25em" fxLayoutAlign="start center">
+          <div class="feature-icon-border" fxLayout="row" fxLayoutAlign="center center">
+            <i class="fas fa-calendar-alt feature-icon"></i>
+          </div>
+          <span>Plan which books to read for the year</span>
+        </div>
+
+      </div>
     </div>
   </div>
 
-  <div class="feature-summary-bg" [@featureSummaryAnimations]>
-    <div class="feature-summary-text" fxLayout="column" fxLayoutGap="0.8em" fxLayoutGap.xs="1em" fxLayoutAlign="center start">
-
-      <div class="feature" fxLayout="row" fxLayoutGap="0.25em" fxLayoutAlign="start center">
-        <div class="feature-icon-border" fxLayout="row" fxLayoutAlign="center center">
-          <i class="fas fa-database feature-icon"></i>
-        </div>
-        <span>Manage a database of your library</span>
-      </div>
-
-      <div class="feature" fxLayout="row" fxLayoutGap="0.25em" fxLayoutAlign="start center">
-        <div class="feature-icon-border" fxLayout="row" fxLayoutAlign="center center">
-          <i class="fas fa-tasks feature-icon"></i>
-        </div>
-        <span>Track which books you've read</span>
-      </div>
-
-      <div class="feature" fxLayout="row" fxLayoutGap="0.25em" fxLayoutAlign="start center">
-        <div class="feature-icon-border" fxLayout="row" fxLayoutAlign="center center">
-          <i class="fas fa-calendar-alt feature-icon"></i>
-        </div>
-        <span>Plan which books to read for the year</span>
-      </div>
-
-    </div>
-  </div>
+  <app-footer></app-footer>
 </div>
+

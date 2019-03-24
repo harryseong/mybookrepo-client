@@ -1,12 +1,12 @@
-.signup-content {
+.content {
 
   .signup-card-div {
     height: 75vh;
-    min-height: 24em;
+    min-height: 25em;
+    padding-bottom: 1em;
   }
 
   .signup-card-div.xs {
     height: auto;
-    min-height: 30em;
   }
 }

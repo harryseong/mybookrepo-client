@@ -31,7 +31,7 @@ export class ResourcesApiService {
 
   getAllBooks(userId: string): Observable<any> {
     const headers = new HttpHeaders({
-      Authorization: 'Bearer ' + localStorage.getItem(environment.jwt.name)
+      Authorization: 'Bearer ' + localStorage.getItem(environment.jwt.local_storage_key)
     });
     const params = new HttpParams().set('userId', userId);
     return this.http.get(environment.api.resources_url + '/library/books', {params, headers});
@@ -45,7 +45,7 @@ export class ResourcesApiService {
   addBookToLibrary(bookDTO: BookDTO, userId: string) {
     const headers = new HttpHeaders({
       'Content-Type': 'application/json',
-      Authorization: 'Bearer ' + localStorage.getItem(environment.jwt.name),
+      Authorization: 'Bearer ' + localStorage.getItem(environment.jwt.local_storage_key),
     });
     const params = new HttpParams().set('userId', userId);
     return this.http.post(environment.api.resources_url + '/library/book', bookDTO, {params, headers, responseType: 'text'});
@@ -54,7 +54,7 @@ export class ResourcesApiService {
   removeBookFromLibrary(bookId: string, userId: string) {
     const headers = new HttpHeaders({
       'Content-Type': 'application/json',
-      Authorization: 'Bearer ' + localStorage.getItem(environment.jwt.name)
+      Authorization: 'Bearer ' + localStorage.getItem(environment.jwt.local_storage_key)
     });
     const params = new HttpParams().set('bookId', bookId).set('userId', userId);
     return this.http.delete(environment.api.resources_url + '/library/book', {params, headers, responseType: 'text'});

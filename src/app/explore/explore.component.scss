@@ -2,7 +2,6 @@ $theme-color: #f5dd00;
 $theme-secondary: #373737;
 
 .explore-content {
-  margin-top: 64px;
 
   .left-sidenav {
     background-color: $theme-secondary;
@@ -19,10 +18,6 @@ $theme-secondary: #373737;
     min-height: 25em;
     height: 80vh;
   }
-}
-
-.explore-content.xs {
-  margin-top: 112px;
 }
 
 .sample-user-img-border {

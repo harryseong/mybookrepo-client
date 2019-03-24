@@ -11,10 +11,10 @@ export class NavbarComponent implements OnInit {
   constructor(public userService: UserService) { }
 
   ngOnInit() {
+    this.userService.checkAccessToken();
   }
 
   logout() {
     this.userService.logout();
   }
-
 }

@@ -15,12 +15,19 @@ export class UserService {
   accessToken: string = null; // Use presence of accessToken as flag for whether user is logged in or not.
   isAdmin: false;
   username: string;
-  userDisplayName: string;    // Use as display name on navbar and sidnav.
+  userDisplayName: string;    // Use as display local_storage_key on navbar and sidnav.
   userDTO: UserDTO;
   gravatarProfileImg: string;
   jwtHelperService = new JwtHelperService();
 
   constructor(private http: HttpClient, private router: Router, private authApiService: AuthApiService) {}
+
+  checkAccessToken() {
+    const accessToken = localStorage.getItem(environment.jwt.local_storage_key);
+    if (accessToken !== null && accessToken !== undefined) {
+      this.processAccessToken(accessToken);
+    }
+  }
 
   /**
    * Method to request access token with user-inputted username and password. If the credentials are valid, the auth server will return
@@ -35,23 +42,28 @@ export class UserService {
     this.isLoading = true;
     this.authApiService.getAccessToken(username, password).subscribe(
       rsp => {
-        this.accessToken = rsp.access_token;
-        const decodedToken = this.jwtHelperService.decodeToken(this.accessToken);
-        this.isAdmin = decodedToken.authorities.some(el => el === 'admin');
-        this.username = decodedToken.user_name;
-        this.gravatarProfileImg = 'https://www.gravatar.com/avatar/' + crypto.MD5(this.username).toString();
-        this.getUserByUsername(this.username).subscribe(
-          (userDTO: UserDTO) => {
-            this.userDTO = userDTO;
-            this.userDisplayName = userDTO.firstName + ' ' + userDTO.lastName;
-            this.isLoading = false;
-          }
-        );
-        // Save access token to local storage until logout.
-        localStorage.setItem(environment.jwt.name, this.accessToken);
-        this.router.navigate(['user']);
+        this.processAccessToken(rsp.access_token);
       }
     );
+  }
+
+  processAccessToken(accessToken: string) {
+    this.accessToken = accessToken;
+    const decodedToken = this.jwtHelperService.decodeToken(this.accessToken);
+    console.log('Decoded Token: ' + JSON.stringify(decodedToken));
+    this.isAdmin = decodedToken.authorities.some(el => el === 'admin');
+    this.username = decodedToken.user_name;
+    this.gravatarProfileImg = 'https://www.gravatar.com/avatar/' + crypto.MD5(this.username).toString();
+    this.getUserByUsername(this.username).subscribe(
+      (userDTO: UserDTO) => {
+        this.userDTO = userDTO;
+        this.userDisplayName = userDTO.firstName + ' ' + userDTO.lastName;
+        this.isLoading = false;
+      }
+    );
+    // Save access token to local storage until logout.
+    localStorage.setItem(environment.jwt.local_storage_key, this.accessToken);
+    this.router.navigate(['user']);
   }
 
   /**
@@ -70,7 +82,7 @@ export class UserService {
     this.isAdmin = false;
     this.username = null;
     this.userDisplayName = null;
-    localStorage.removeItem(environment.jwt.name);
+    localStorage.removeItem(environment.jwt.local_storage_key);
   }
 
   isAdminUser(): boolean {
