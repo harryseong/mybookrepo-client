@@ -6,11 +6,20 @@ import {AuthApiService} from '../../shared/services/api/auth/auth-api.service';
 import {UserDTO} from '../../shared/dto/dto.module';
 import {UserService} from '../../shared/services/user/user.service';
 import {SnackBarService} from '../../shared/services/snackBar/snack-bar.service';
+import {animate, style, transition, trigger} from '@angular/animations';
 
 @Component({
   selector: 'app-signup',
   templateUrl: './signup.component.html',
-  styleUrls: ['./signup.component.scss']
+  styleUrls: ['./signup.component.scss'],
+  animations: [
+    trigger('contentAnimations', [
+      transition(':enter', [
+        style({ opacity: 0, transform: 'translateY(0.5em)'}),
+        animate('1s ease', style({ opacity: 1, transform: 'translateY(0)'})),
+      ])
+    ])
+  ]
 })
 export class SignupComponent implements OnInit {
   matcher: SubscribeErrorStateMatcher; // For form error matching.
