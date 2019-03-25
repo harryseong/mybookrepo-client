@@ -5,6 +5,7 @@ import {Router} from '@angular/router';
 import {AuthApiService} from '../../shared/services/api/auth/auth-api.service';
 import {UserDTO} from '../../shared/dto/dto.module';
 import {UserService} from '../../shared/services/user/user.service';
+import {SnackBarService} from '../../shared/services/snackBar/snack-bar.service';
 
 @Component({
   selector: 'app-signup',
@@ -22,7 +23,8 @@ export class SignupComponent implements OnInit {
     passwordConfirm: new FormControl('', [Validators.required]),
   });
 
-  constructor(private router: Router, private authApiService: AuthApiService, private userService: UserService) { }
+  constructor(private router: Router, private authApiService: AuthApiService, private userService: UserService,
+              private snackBarService: SnackBarService) { }
 
   ngOnInit() {}
 
@@ -96,6 +98,7 @@ export class SignupComponent implements OnInit {
         console.log(rsp);
         this.signupForm.reset();
         this.userService.login(userDTO.username, userDTO.password);
+        this.snackBarService.openSnackBar('Welcome to My Book Repo!', 'Sweet!');
       },
       error1 => console.error(error1));
   }
