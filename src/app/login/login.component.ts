@@ -3,11 +3,20 @@ import {SubscribeErrorStateMatcher} from '../../shared/SubscriberErrorStateMatch
 import {FormControl, FormGroup, Validators} from '@angular/forms';
 import {Router} from '@angular/router';
 import {UserService} from '../../shared/services/user/user.service';
+import {animate, query, sequence, stagger, style, transition, trigger} from '@angular/animations';
 
 @Component({
   selector: 'app-login',
   templateUrl: './login.component.html',
-  styleUrls: ['./login.component.scss']
+  styleUrls: ['./login.component.scss'],
+  animations: [
+    trigger('errorMessageAnimations', [
+      transition(':enter', [
+        style({ opacity: 0}),
+        animate('0.3s ease', style({ opacity: 1})),
+      ])
+    ])
+  ]
 })
 export class LoginComponent implements OnInit {
   matcher: SubscribeErrorStateMatcher; // For form error matching.
@@ -18,14 +27,18 @@ export class LoginComponent implements OnInit {
 
   constructor(private router: Router, private userService: UserService) { }
 
-  ngOnInit() {
-  }
+  ngOnInit() {}
 
   @HostListener('window:keyup', ['$event'])
   keyEvent(event: KeyboardEvent) {
     if (event.key === 'Escape') {
-      this.router.navigate(['']);
+      this.leaveLogin();
     }
+  }
+
+  leaveLogin() {
+    this.userService.resetLoginStatus();
+    this.router.navigate(['']);
   }
 
   login() {

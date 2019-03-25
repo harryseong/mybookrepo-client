@@ -12,6 +12,7 @@ import {UserDTO} from '../../dto/dto.module';
 })
 export class UserService {
   isLoading = false;
+  loginStatus = {error: false, message: ''};
   accessToken: string = null; // Use presence of accessToken as flag for whether user is logged in or not.
   isAdmin: false;
   username: string;
@@ -43,14 +44,30 @@ export class UserService {
     this.authApiService.getAccessToken(username, password).subscribe(
       rsp => {
         this.processAccessToken(rsp.access_token);
+      },
+      error => {
+        console.warn(JSON.stringify(error));
+        if (error.error.error === 'invalid_grant') {
+          this.loginStatus.error = true;
+          this.loginStatus.message = 'Invalid credentials entered. Please enter valid credentials.';
+          console.warn('Incorrect credentials.');
+        } else {
+          this.loginStatus.error = true;
+          this.loginStatus.message = 'There was a server error that prevented login. Please refresh the page and try again.';
+          console.error('There was a server error that prevented authentication.');
+        }
       }
     );
+  }
+
+  resetLoginStatus() {
+    this.loginStatus.error = false;
+    this.loginStatus.message = '';
   }
 
   processAccessToken(accessToken: string) {
     this.accessToken = accessToken;
     const decodedToken = this.jwtHelperService.decodeToken(this.accessToken);
-    console.log('Decoded Token: ' + JSON.stringify(decodedToken));
     this.isAdmin = decodedToken.authorities.some(el => el === 'admin');
     this.username = decodedToken.user_name;
     this.gravatarProfileImg = 'https://www.gravatar.com/avatar/' + crypto.MD5(this.username).toString();

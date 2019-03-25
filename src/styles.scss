@@ -49,3 +49,31 @@ app-root {
 .spacer {
   flex: 1 1 auto;
 }
+
+%message {
+  border: 1pt solid;
+  border-radius: 0.2em;
+  padding: 0.5em 1em;
+
+  .message-header {
+    font-size: 1em;
+    font-weight: 600;
+  }
+
+  .message-text {
+    font-size: 0.8em;
+  }
+}
+
+.warning-message {
+  @extend %message;
+  border-color: #dbc800;
+  background-color: rgba(245, 221, 0, 0.2);
+}
+
+.error-message {
+  @extend %message;
+  border-color: #f44336;
+  color: #f44336;
+  background-color: rgba(255, 235, 239, 0);
+}

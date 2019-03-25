@@ -2,7 +2,7 @@
   <div class="content">
 
     <div fxLayout="row" fxLayoutAlign="end start">
-      <button mat-icon-button routerLinkActive="true" routerLink="">
+      <button mat-icon-button (click)="leaveLogin()">
         <i class="fas fa-times"></i>
       </button>
     </div>
@@ -12,6 +12,13 @@
         <div class="page-header">Log In</div>
         <form [formGroup]="loginForm" fxLayout="column" fxLayoutGap="1em">
           <div fxLayout="column" fxLayout.xs="column" fxLayoutGap="0.7em">
+
+            <div fxLayout="row" fxLayoutAlign="center" *ngIf="userService.loginStatus.error==true" [@errorMessageAnimations]>
+              <div class="error-message" fxFlex="60" fxFlex.sm="100" fxFlex.xs="100">
+                <div class="message-header"><i class="far fa-times-circle"></i> Login Error</div>
+                <div class="message-text">{{userService.loginStatus.message}}</div>
+              </div>
+            </div>
 
             <mat-form-field>
               <mat-label>Username</mat-label>
