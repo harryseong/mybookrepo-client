@@ -4,6 +4,14 @@
   <div class="content">
     <div>Logged in</div>
     <div>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Asperiores commodi consequuntur debitis dignissimos,
-      dolorem ex id inventore magnam magni maiores nam, nemo odit praesentium quia temporibus! Cumque eos exercitationem quae!</div>
+      dolorem ex id inventore magnam magni maiores nam, nemo odit praesentium quia temporibus! Cumque eos exercitationem quae!
+    </div>
+
+    <div *ngIf="userService.userDTO">
+      <div>{{userService.userDTO.username}}</div>
+      <div>{{userService.userDTO.firstName + ' ' + userService.userDTO.lastName}}</div>
+      <div>{{userService.userDTO.email}}</div>
+    </div>
+
   </div>
 </div>

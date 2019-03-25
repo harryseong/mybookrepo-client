@@ -18,7 +18,7 @@
   </div>
 
   <div fxLayout="row wrap" fxLayout.xs="column" fxLayoutAlign="center" *ngIf="!isLoading && bookDTOArray.length > 0" [@bookCardAnimations] class="view-books-div">
-    <app-book-card fxLayout.xs="row" *ngFor="let bookDTO of bookDTOArray" [bookDTO]="bookDTO" (click)="openDialog(bookDTO)" cdkDrag></app-book-card>
+    <app-book-card fxLayout.xs="row" *ngFor="let bookDTO of bookDTOArray" [bookDTO]="bookDTO" (click)="openDialog(bookDTO)"></app-book-card>
   </div>
 
 </div>

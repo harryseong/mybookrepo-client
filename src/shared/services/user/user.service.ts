@@ -44,6 +44,7 @@ export class UserService {
     this.authApiService.getAccessToken(username, password).subscribe(
       rsp => {
         this.processAccessToken(rsp.access_token);
+        this.resetLoginStatus();
       },
       error => {
         console.warn(JSON.stringify(error));
