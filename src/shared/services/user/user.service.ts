@@ -16,7 +16,7 @@ export class UserService {
   accessToken: string = null; // Use presence of accessToken as flag for whether user is logged in or not.
   isAdmin: false;
   username: string;
-  userDisplayName: string;    // Use as display local_storage_key on navbar and sidnav.
+  userFullName: string;    // Use as display name on navbar and sidnav.
   userDTO: UserDTO;
   gravatarProfileImg: string;
   jwtHelperService = new JwtHelperService();
@@ -75,7 +75,7 @@ export class UserService {
     this.getUserByUsername(this.username).subscribe(
       (userDTO: UserDTO) => {
         this.userDTO = userDTO;
-        this.userDisplayName = userDTO.firstName + ' ' + userDTO.lastName;
+        this.userFullName = userDTO.firstName + ' ' + userDTO.lastName;
         this.isLoading = false;
       }
     );
@@ -99,7 +99,7 @@ export class UserService {
     this.accessToken = null;
     this.isAdmin = false;
     this.username = null;
-    this.userDisplayName = null;
+    this.userFullName = null;
     localStorage.removeItem(environment.jwt.local_storage_key);
   }
 

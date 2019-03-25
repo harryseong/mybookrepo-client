@@ -35,7 +35,7 @@
       <span class="bold">Genre:</span>&nbsp;
       <span *ngFor="let category of data.book.categories; let last = last;">
         <span *ngIf="category!=undefined && category!=null">
-          <span *ngIf="category.local_storage_key!=undefined">{{category.local_storage_key}}</span>
+          <span *ngIf="category.name!=undefined">{{category.name}}</span>
           <span *ngIf="!last">, </span>
         </span>
       </span>
