@@ -1,5 +1,5 @@
 $theme-color: #f5dd00;
-$theme-secondary: rgba(55, 55, 55, 0.75);
+$theme-secondary: #373737;
 
 .explore-search-content {
   .search-form-div {
@@ -14,12 +14,10 @@ $theme-secondary: rgba(55, 55, 55, 0.75);
       margin-bottom: 20px;
 
       .search-btn {
-        border-radius: 0.1em;
+        background-color: $theme-secondary;
+        color: $theme-color;
       }
     }
-  }
-
-  .search-results-div {
   }
 }
 
