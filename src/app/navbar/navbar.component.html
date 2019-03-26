@@ -33,8 +33,13 @@
 
       <span class="spacer"></span>
 
-      <button mat-button [matMenuTriggerFor]="appExploreMenu" fxLayout="row" fxLayoutAlign="center center">
-        <img src="/assets/images/sample-user.jpg" class="gravatar-profile-img" alt="">John Doe
+      <button mat-button [matMenuTriggerFor]="appExploreMenu">
+        <div fxLayout="row" fxLayoutAlign="center center">
+          <div class="user-img-border" fxLayout="row" fxLayoutAlign="center">
+            <img src="/assets/images/sample-user.jpg" class="user-img" alt="user-profile-img">
+          </div>
+          <div>John Doe</div>
+        </div>
       </button>
 
       <mat-menu #appExploreMenu="matMenu" yPosition="below" xPosition="before">

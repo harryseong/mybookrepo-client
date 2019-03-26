@@ -1,7 +1,16 @@
 $theme-color: #f5dd00;
 $theme-secondary: #373737;
 
+app-navbar {
+  width: 100%;
+  z-index: 100;
+  position: fixed;
+  top: 0;
+}
+
 .explore-content {
+  margin-top: 64px;
+  height: calc(100% - 64px);
 
   .left-sidenav {
     background-color: $theme-secondary;
@@ -13,19 +22,19 @@ $theme-secondary: #373737;
       }
     }
   }
-
-  .main-content {
-    min-height: 25em;
-    height: 100vh;
-  }
 }
 
-.sample-user-img-border {
+.explore-content.xs {
+  margin-top: 56px;
+  height: calc(100% - 56px);
+}
+
+.user-img-border {
   border: 1pt solid $theme-color;
   border-radius: 50%;
   padding: 0.1em;
 
-  .sample-user-img {
+  .user-img {
     height: 2em;
     width: 2em;
     background-color: $theme-secondary;
@@ -45,4 +54,8 @@ $theme-secondary: #373737;
   width: 100%;
   position: fixed;
   bottom: 0;
+
+  .mobile-nav-label {
+    padding: 0;
+  }
 }

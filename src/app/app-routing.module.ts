@@ -28,7 +28,7 @@ const routes: Routes = [
   {path: 'explore', component: ExploreComponent,
     children: [
       {path: '', component: ExploreMyLibraryComponent},
-      {path: 'profile', component: ExploreProfileComponent},
+      {path: 'account', component: ExploreProfileComponent},
       {path: 'my-library', component: ExploreMyLibraryComponent},
       {path: 'search', component: ExploreSearchComponent},
       {path: 'view-by-years', component: ExploreViewByYearsComponent},
