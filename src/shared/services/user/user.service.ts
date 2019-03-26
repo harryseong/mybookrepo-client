@@ -71,10 +71,10 @@ export class UserService {
     const decodedToken = this.jwtHelperService.decodeToken(this.accessToken);
     this.isAdmin = decodedToken.authorities.some(el => el === 'admin');
     this.username = decodedToken.user_name;
-    this.gravatarProfileImg = 'https://www.gravatar.com/avatar/' + crypto.MD5(this.username).toString();
     this.getUserByUsername(this.username).subscribe(
       (userDTO: UserDTO) => {
         this.userDTO = userDTO;
+        this.gravatarProfileImg = 'https://www.gravatar.com/avatar/' + crypto.MD5(this.userDTO.email).toString();
         this.userFullName = userDTO.firstName + ' ' + userDTO.lastName;
         this.isLoading = false;
       }
