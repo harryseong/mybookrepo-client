@@ -1,4 +1,4 @@
-import {Component, OnDestroy, OnInit} from '@angular/core';
+import {AfterViewInit, Component, OnDestroy, OnInit} from '@angular/core';
 import {BookDTO} from '../../../shared/dto/dto.module';
 import {animate, query, sequence, stagger, style, transition, trigger} from '@angular/animations';
 import {DialogService} from '../../../shared/services/dialog/dialog.service';
@@ -24,7 +24,7 @@ import {ResourcesApiService} from '../../../shared/services/api/resources/resour
     ])
   ]
 })
-export class ExploreMyLibraryComponent implements OnInit, OnDestroy {
+export class ExploreMyLibraryComponent implements OnInit, OnDestroy, AfterViewInit {
   bookDTOArray: any[] = [];
   isLoading = true;
   bookRemoved$: Subscription;
@@ -32,12 +32,15 @@ export class ExploreMyLibraryComponent implements OnInit, OnDestroy {
   constructor(private dialogService: DialogService, private resourcesApiService: ResourcesApiService) { }
 
   ngOnInit() {
-    this.checkIfFirstTime();
     this.getBooks();
     this.bookRemoved$ = this.resourcesApiService.$bookRemovedEvent.subscribe(() => {
       this.bookDTOArray = [];
       this.getBooks();
     });
+  }
+
+  ngAfterViewInit(): void {
+    setTimeout(() => this.checkIfFirstTime(), 500);
   }
 
   checkIfFirstTime() {

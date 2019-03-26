@@ -29,7 +29,7 @@ export class DialogService {
 
   openExploreFirstTimeDialog() {
     const dialogRef = this.dialog.open(ExploreFirstTimeDialogComponent, {
-      width: '40em',
+      width: '25em',
       autoFocus: false,
       panelClass: 'explore-first-time-dialog',
     });
