@@ -4,12 +4,9 @@ $theme-secondary: #373737;
 app-navbar {
   width: 100%;
   z-index: 100;
-  position: fixed;
-  top: 0;
 }
 
 .explore-content {
-  margin-top: 64px;
   height: calc(100% - 64px);
 
   .left-sidenav {
@@ -25,8 +22,7 @@ app-navbar {
 }
 
 .explore-content.xs {
-  margin-top: 56px;
-  height: calc(100% - 56px);
+  height: calc(100% - 56px - 47.44px);
 }
 
 .user-img-border {
