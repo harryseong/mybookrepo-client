@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, Input, OnInit} from '@angular/core';
 import {UserService} from '../../shared/services/user/user.service';
 
 @Component({
@@ -7,6 +7,8 @@ import {UserService} from '../../shared/services/user/user.service';
   styleUrls: ['./navbar.component.scss']
 })
 export class NavbarComponent implements OnInit {
+  @Input()
+  isExplore: boolean;
 
   constructor(public userService: UserService) { }
 
