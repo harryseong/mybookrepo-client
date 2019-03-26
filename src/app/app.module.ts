@@ -17,7 +17,7 @@ import {FlexLayoutModule} from '@angular/flex-layout';
 import { FooterComponent } from './footer/footer.component';
 import { LoginComponent } from './login/login.component';
 import { SignupComponent } from './signup/signup.component';
-import {ReactiveFormsModule} from '@angular/forms';
+import {FormsModule, ReactiveFormsModule} from '@angular/forms';
 import { ExploreComponent } from './explore/explore.component';
 import { ExploreSearchComponent } from './explore/explore-search/explore-search.component';
 import { ExploreMyLibraryComponent } from './explore/explore-my-library/explore-my-library.component';
@@ -32,6 +32,7 @@ import { AboutComponent } from './about/about.component';
 import { UserHomeComponent } from './user-home/user-home.component';
 import { UserProfileComponent } from './user-home/user-profile/user-profile.component';
 import { UserLibraryComponent } from './user-home/user-library/user-library.component';
+import { ExploreFirstTimeDialogComponent } from '../shared/dialogs/explore-first-time-dialog/explore-first-time-dialog.component';
 
 @NgModule({
   declarations: [
@@ -51,13 +52,15 @@ import { UserLibraryComponent } from './user-home/user-library/user-library.comp
     AboutComponent,
     UserHomeComponent,
     UserProfileComponent,
-    UserLibraryComponent
+    UserLibraryComponent,
+    ExploreFirstTimeDialogComponent
   ],
   imports: [
     AppRoutingModule,
     BrowserModule,
     BrowserAnimationsModule,
     FlexLayoutModule,
+    FormsModule,
     HttpClientModule,
     MaterialModule,
     ReactiveFormsModule,
@@ -65,6 +68,7 @@ import { UserLibraryComponent } from './user-home/user-library/user-library.comp
   ],
   entryComponents: [
     BookDetailsDialogComponent,
+    ExploreFirstTimeDialogComponent
   ],
   exports: [
     MaterialModule,

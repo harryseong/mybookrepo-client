@@ -12,6 +12,7 @@ import {AboutComponent} from './about/about.component';
 import {UserHomeComponent} from './user-home/user-home.component';
 import {UserProfileComponent} from './user-home/user-profile/user-profile.component';
 import {UserLibraryComponent} from './user-home/user-library/user-library.component';
+import {AuthGuard} from './auth.guard';
 
 const routes: Routes = [
   {path: '', component: HomeComponent},
@@ -20,8 +21,8 @@ const routes: Routes = [
   {path: 'about', component: AboutComponent},
   {path: 'user', component: UserHomeComponent,
     children: [
-      {path: 'profile', component: UserProfileComponent},
-      {path: 'library', component: UserLibraryComponent},
+      {path: 'profile', component: UserProfileComponent, canActivate: [AuthGuard]},
+      {path: 'library', component: UserLibraryComponent, canActivate: [AuthGuard]},
     ]
   },
   {path: 'explore', component: ExploreComponent,
