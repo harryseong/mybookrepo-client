@@ -40,7 +40,7 @@ export class ExploreMyLibraryComponent implements OnInit, OnDestroy, AfterViewIn
   }
 
   ngAfterViewInit(): void {
-    setTimeout(() => this.checkIfFirstTime(), 500);
+    setTimeout(() => this.checkIfFirstTime(), 200);
   }
 
   checkIfFirstTime() {
