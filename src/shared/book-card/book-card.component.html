@@ -1,7 +1,7 @@
 <mat-card class="book-card mat-elevation-z0" ngClass.xs="xs">
   <mat-card-content>
     <div fxLayout="row" fxLayoutGap="1em" class="book-header">
-      <img src="{{bookDTO.coverImageURL}}" alt="" class="book-cover-thumbnail" *ngIf="bookDTO.coverImageURL!=null">
+      <img src="{{bookDTO.coverImageURL}}" alt="book-cover-thumbnail" class="book-cover-thumbnail" *ngIf="bookDTO.coverImageURL!=null">
       <div class="book-cover-thumbnail-blank" *ngIf="bookDTO.coverImageURL==null" fxLayoutAlign="center center">
         No Book Cover
       </div>
@@ -20,8 +20,20 @@
                 </span>
           </div>
         </div>
-        <div class="book-description" *ngIf="bookDTO.description!=undefined">
+        <div class="book-description" *ngIf="bookCardType=='new' && bookDTO.description!=undefined">
           {{abbreviateDescription(bookDTO.description)}}
+        </div>
+        <div class="book-library" *ngIf="bookCardType=='library'" fxLayout="row" fxLayoutAlign="end">
+          <div fxLayout="column" fxLayoutGap="0.5em">
+            <mat-chip-list>
+              <mat-chip *ngFor="let category of bookDTO.categories" class="category-chip">
+                {{category.name}}
+              </mat-chip>
+            </mat-chip-list>
+            <div class="label">
+              <i class="far fa-check-circle"></i>&nbsp;2018
+            </div>
+          </div>
         </div>
       </div>
     </div>

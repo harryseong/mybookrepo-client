@@ -29,7 +29,7 @@
     </mat-toolbar-row>
     <mat-toolbar-row fxHide.gt-xs fxLayout="row" fxLayoutGap="0.5em" fxLayoutAlign="center" *ngIf="userService.accessToken==null">
       <div><button mat-button routerLinkActive="true" routerLink="/about">ABOUT</button></div>
-      <div><button mat-button routerLinkActive="true" routerLink="/explore">EXPLORE</button></div>
+      <div><button mat-button routerLinkActive="true" routerLink="/explore/my-library">EXPLORE</button></div>
       <div><button mat-stroked-button routerLinkActive="true" routerLink="/login">LOG IN</button></div>
     </mat-toolbar-row>
   </mat-toolbar>

@@ -51,6 +51,18 @@
       font-weight: 400;
     }
   }
+
+  .book-library {
+
+    .category-chip {
+      font-size: 0.7em;
+    }
+
+    .label {
+      color: green;
+      font-weight: 500;
+    }
+  }
 }
 
 .book-card.xs {

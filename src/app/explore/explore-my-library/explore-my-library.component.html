@@ -1,4 +1,4 @@
-<div class="explore-my-library-content" ngClass.xs="xs" fxLayout="column" fxLayoutGap="1em">
+<div class="content" ngClass.xs="xs" fxLayout="column" fxLayoutGap="1em">
 
   <div *ngIf="bookDTOArray.length == 0" fxLayout="row" fxLayoutAlign="center">
 
@@ -11,7 +11,7 @@
   </div>
 
   <div fxLayout="row wrap" fxLayout.xs="column" fxLayoutAlign="center" *ngIf="!isLoading && bookDTOArray.length > 0" [@bookCardAnimations] class="view-books-div">
-    <app-book-card fxLayout.xs="row" *ngFor="let bookDTO of bookDTOArray" [bookDTO]="bookDTO" (click)="openDialog(bookDTO)"></app-book-card>
+    <app-book-card fxLayout.xs="row" *ngFor="let bookDTO of bookDTOArray" bookCardType="library" [bookDTO]="bookDTO" (click)="openDialog(bookDTO)"></app-book-card>
   </div>
 
   <button mat-icon-button class="add-book-btn mat-elevation-z3" routerLinkActive="true" routerLink="/explore/search"

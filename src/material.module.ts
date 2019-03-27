@@ -33,6 +33,7 @@ import {
   MatSortModule,
   MatPaginatorModule,
   MatListModule,
+  MatChipsModule
 } from '@angular/material';
 import {DragDropModule} from '@angular/cdk/drag-drop';
 
@@ -71,6 +72,7 @@ const materialModules = [
   MatSortModule,
   MatPaginatorModule,
   MatListModule,
+  MatChipsModule
 ];
 
 @NgModule({

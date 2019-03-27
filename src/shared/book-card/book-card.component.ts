@@ -1,6 +1,5 @@
 import {Component, Input, OnInit} from '@angular/core';
 import {BookDTO} from '../dto/dto.module';
-import {DialogService} from '../services/dialog/dialog.service';
 
 @Component({
   selector: 'app-book-card',
@@ -9,6 +8,7 @@ import {DialogService} from '../services/dialog/dialog.service';
 })
 export class BookCardComponent implements OnInit {
   @Input() bookDTO: BookDTO;
+  @Input() bookCardType: string;
 
   constructor() { }
 

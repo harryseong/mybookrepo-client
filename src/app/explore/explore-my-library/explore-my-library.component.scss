@@ -1,7 +1,7 @@
 $theme-color: #f5dd00;
 $theme-secondary: #373737;
 
-.explore-my-library-content {
+.content {
   padding: 1em;
 
   .no-books-header {
@@ -25,7 +25,7 @@ $theme-secondary: #373737;
   }
 }
 
-.explore-my-library-content.xs {
+.content.xs {
   .add-book-btn {
     bottom: 5em;
     right: 2em;
