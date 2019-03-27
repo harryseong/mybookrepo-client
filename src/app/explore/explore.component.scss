@@ -26,23 +26,40 @@ app-navbar {
 }
 
 .user-img-border {
-  border: 1pt solid $theme-color;
+  height: 2.4em;
+  width: 2.4em;
+  border: 1.2pt solid $theme-color;
   border-radius: 50%;
   padding: 0.1em;
 
   .user-img {
-    height: 2em;
-    width: 2em;
+    height: 1.8em;
+    width: 1.8em;
     background-color: $theme-secondary;
     border-radius: 50%;
   }
 }
 
-.action-list-btn {
+%action-list-btn {
   background-color: $theme-secondary;
   color: $theme-color;
   border-radius: 0;
   padding: 0.5em;
+  border: 2pt solid rgba(0, 0, 0, 0);
+}
+
+.action-list-btn, .action-list-btn-xs {
+  @extend %action-list-btn;
+}
+
+.action-list-btn.selected {
+  border-left: 2pt solid $theme-color;
+  transition: 0.2s;
+}
+
+.action-list-btn-xs.selected {
+  border-bottom: 2pt solid $theme-color;
+  transition: 0.2s;
 }
 
 .mobile-nav {

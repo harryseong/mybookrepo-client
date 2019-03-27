@@ -5,12 +5,12 @@ $theme-secondary: #373737;
   color: $theme-secondary;
   padding: 0.5em 1em;
 
-  .sample-user-img-border {
+  .user-img-border {
     border: 2pt solid $theme-color;
     border-radius: 50%;
     padding: 0.1em;
 
-    .sample-user-img {
+    .user-img {
       height: 8em;
       width: 8em;
       background-color: $theme-secondary;

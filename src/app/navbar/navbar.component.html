@@ -1,16 +1,23 @@
 <nav class="mat-elevation-z1">
   <mat-toolbar class="nav-toolbar" *ngIf="isExplore!=true">
-    <mat-toolbar-row fxLayout="row" fxLayoutGap="0.5em">
+    <mat-toolbar-row fxLayout="row" fxLayoutGap="0.5em" class="mat-toolbar-row" ngClass.xs="xs">
       <button mat-button class="logo-btn" ngClass.xs="xs" routerLinkActive="true" routerLink="/">MyBookRepo.com</button>
+
       <span class="spacer"></span>
+
       <ng-container *ngIf="userService.accessToken==null">
         <button mat-button routerLinkActive="true" routerLink="/about" fxHide.xs>ABOUT</button>
         <button mat-button routerLinkActive="true" routerLink="/explore" fxHide.xs>EXPLORE</button>
         <button mat-stroked-button routerLinkActive="true" routerLink="/login" fxHide.xs>LOG IN</button>
       </ng-container>
 
-      <button mat-button [matMenuTriggerFor]="appMenu" *ngIf="userService.accessToken != null" fxLayout="row" fxLayoutAlign="center center">
-        <img [src]="userService.gravatarProfileImg" class="gravatar-profile-img" alt="">{{userService.userFullName}}
+      <button mat-button [matMenuTriggerFor]="appMenu" *ngIf="userService.accessToken != null" class="user-nav-btn">
+        <div fxLayout="row" fxLayoutAlign="center center">
+          <div class="user-img-border" fxLayout="row" fxLayoutAlign="center center" fxHide.xs>
+            <img [src]="userService.gravatarProfileImg" class="user-img" alt="user-profile-img">
+          </div>
+          <div>{{userService.userFullName}}</div>
+        </div>
       </button>
 
       <mat-menu #appMenu="matMenu" yPosition="below" xPosition="before">
@@ -28,14 +35,14 @@
   </mat-toolbar>
 
   <mat-toolbar class="nav-toolbar" *ngIf="isExplore==true">
-    <mat-toolbar-row fxLayout="row" fxLayoutGap="0.5em">
+    <mat-toolbar-row fxLayout="row" fxLayoutGap="0.5em" class="mat-toolbar-row" ngClass.xs="xs">
       <button mat-button class="logo-btn" ngClass.xs="xs" routerLinkActive="true" routerLink="/">MyBookRepo.com</button>
 
       <span class="spacer"></span>
 
-      <button mat-button [matMenuTriggerFor]="appExploreMenu">
+      <button mat-button [matMenuTriggerFor]="appExploreMenu" class="user-nav-btn">
         <div fxLayout="row" fxLayoutAlign="center center">
-          <div class="user-img-border" fxLayout="row" fxLayoutAlign="center">
+          <div class="user-img-border" fxLayout="row" fxLayoutAlign="center center" fxHide.xs>
             <img src="/assets/images/sample-user.jpg" class="user-img" alt="user-profile-img">
           </div>
           <div>John Doe</div>
