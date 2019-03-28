@@ -1,7 +1,8 @@
 <div class="content" fxLayout="row" fxLayoutAlign="center">
 
-  <div fxLayout="column" fxLayoutGap="1.5em" fxFlex="50" fxFlex.sm="70" fxFlex.xs="100">
+  <div fxLayout="column" fxLayoutGap="1.5em" fxFlex="40" fxFlex.sm="50" fxFlex.xs="100">
     <div fxLayout="row" fxLayoutAlign="center">
+
       <div fxLayout="column" fxLayoutGap="0.2em">
         <div class="user-img-border  mat-elevation-z1" fxLayout="row" fxLayoutAlign="center center">
           <img src="/assets/images/sample-user.jpg" alt="user-profile-img" class="user-img">
@@ -10,27 +11,30 @@
           John Doe
         </div>
       </div>
+
+    </div>
+
+    <div>
+      <div fxLayout="row" fxLayoutGap="0.3em">
+        <div class="profile-info-header"><i class="fas fa-user fa-fw"></i></div>
+        <div>johndoe123</div>
+      </div>
+      <div fxLayout="row" fxLayoutGap="0.3em">
+        <div class="profile-info-header"><i class="fas fa-envelope fa-fw"></i></div>
+        <div>johndoe@gmail.com</div>
+      </div>
     </div>
 
     <div fxLayout="column">
-      <div fxLayout="row" fxLayoutGap="0.3em">
-        <div fxFlex="50" class="profile-info-header">Username</div>
-        <div fxFlex="50">johndoe123</div>
-      </div>
-      <div fxLayout="row" fxLayoutGap="0.3em">
-        <div fxFlex="50" class="profile-info-header">Email</div>
-        <div fxFlex="50">johndoe@gmail.com</div>
-      </div>
-    </div>
-
-    <div fxLayout="column">
+      <div class="profile-actions"><a href="javascript:void(0)">Change username</a></div>
       <div class="profile-actions"><a href="javascript:void(0)">Change password</a></div>
+      <div class="profile-actions"><a href="javascript:void(0)">Change email</a></div>
       <div class="profile-actions"><a href="javascript:void(0)">Change profile picture</a></div>
     </div>
 
     <button mat-stroked-button routerLinkActive="true" routerLink="/">LOG OUT</button>
 
-    <input type="file" accept="image/*" capture="camera" />
+<!--    <input type="file" accept="image/*" capture="camera" />-->
 
   </div>
 </div>

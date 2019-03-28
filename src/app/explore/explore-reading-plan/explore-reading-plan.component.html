@@ -14,45 +14,63 @@
   <mat-divider></mat-divider>
 
   <div fxLayout="row" fxLayout.xs="column" fxLayoutGap.xs="0.5em">
-    <div class="example-container" fxFlex="100/3" fxFlex.xs="100">
+
+    <div class="example-container" fxFlex="100/3">
       <div class="to-read-section-header">To Read</div>
 
       <div
         cdkDropList
         #toReadList="cdkDropList"
         [cdkDropListData]="toRead"
-        [cdkDropListConnectedTo]="[readingList, doneList]"
+        [cdkDropListConnectedTo]="[readingList, doneList, removeBox]"
         class="example-list"
         (cdkDropListDropped)="drop($event)">
-        <div class="example-box" *ngFor="let item of toRead" cdkDrag>{{item}}</div>
+        <div class="example-box" *ngFor="let item of toRead" cdkDrag (cdkDragStarted)="dragStarted()" (cdkDragEnded)="dragEnded()">{{item.title}}</div>
+        <div class="example-box add-book-box" routerLinkActive="true" routerLink="/explore/search">
+          <span><i class="fas fa-plus"></i>&nbsp;Add Book</span>
+        </div>
       </div>
     </div>
 
-    <div class="example-container" fxFlex="100/3" fxFlex.xs="100">
+    <div class="example-container" fxFlex="100/3">
       <div class="to-read-section-header">Reading</div>
 
       <div
         cdkDropList
         #readingList="cdkDropList"
         [cdkDropListData]="reading"
-        [cdkDropListConnectedTo]="[toReadList, doneList]"
+        [cdkDropListConnectedTo]="[toReadList, doneList, removeBox]"
         class="example-list"
         (cdkDropListDropped)="drop($event)">
-        <div class="example-box" *ngFor="let item of reading" cdkDrag>{{item}}</div>
+        <div class="example-box" *ngFor="let item of reading" cdkDrag (cdkDragStarted)="dragStarted()" (cdkDragEnded)="dragEnded()">{{item.title}}</div>
       </div>
     </div>
 
-    <div class="example-container" fxFlex="100/3" fxFlex.xs="100">
+    <div class="example-container" fxFlex="100/3">
       <div class="to-read-section-header">Done</div>
 
       <div
         cdkDropList
         #doneList="cdkDropList"
         [cdkDropListData]="done"
-        [cdkDropListConnectedTo]="[toReadList, readingList]"
+        [cdkDropListConnectedTo]="[toReadList, readingList, removeBox]"
         class="example-list"
         (cdkDropListDropped)="drop($event)">
-        <div class="example-box" *ngFor="let item of done" cdkDrag>{{item}}</div>
+        <div class="example-box" *ngFor="let item of done" cdkDrag (cdkDragStarted)="dragStarted()" (cdkDragEnded)="dragEnded()">{{item.title}}</div>
+      </div>
+    </div>
+
+    <div class="remove-container" [ngClass]="dragging ? 'show' : ''">
+      <div
+        cdkDropList
+        #removeBox="cdkDropList"
+        [cdkDropListData]="remove"
+        [cdkDropListConnectedTo]="[toReadList, readingList, doneList]"
+        class="remove-drop-zone"
+        (cdkDropListDropped)="drop($event)">
+        <div class="to-read-section-header" fxLayout="row" fxLayoutAlign="center center">
+          <span><i class="far fa-calendar-times"></i>&nbsp;REMOVE BOOK</span>
+        </div>
       </div>
     </div>
   </div>
