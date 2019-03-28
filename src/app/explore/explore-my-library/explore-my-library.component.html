@@ -1,13 +1,15 @@
-<div class="content" ngClass.xs="xs" fxLayout="column" fxLayoutGap="1em">
+<div class="content" ngClass.xs="xs" fxLayout="column" fxLayoutGap="0.5em">
+
+  <div class="page-header" ngClass.xs="xs" fxHide.gt-xs>
+    My Library
+  </div>
 
   <div *ngIf="bookDTOArray.length == 0" fxLayout="row" fxLayoutAlign="center">
-
     <div>
       <button mat-stroked-button routerLinkActive="true" routerLink="/explore/search" class="add-first-book-btn mat-elevation-z3">
         <span><i class="fas fa-plus"></i>&nbsp;ADD FIRST BOOK</span>
       </button>
     </div>
-
   </div>
 
   <div fxLayout="row wrap" fxLayout.xs="column" fxLayoutAlign="center" *ngIf="!isLoading && bookDTOArray.length > 0" [@bookCardAnimations] class="view-books-div">

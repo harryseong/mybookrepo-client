@@ -1,12 +1,13 @@
 $theme-color: #f5dd00;
 $theme-secondary: #373737;
 
-.explore-search-content {
+.content {
   .search-form-div {
     padding: 1em;
 
     .search-form-field {
-      width: 30em;
+      width: 20em;
+      max-width: 100%;
       font-size: 1em;
     }
 
@@ -21,10 +22,10 @@ $theme-secondary: #373737;
   }
 }
 
-.explore-search-content.xs {
+.content.xs {
   .search-form-div {
     .search-form-field {
-      width: 20em;
+      width: 100%;
     }
   }
 }

@@ -33,6 +33,7 @@ import { UserHomeComponent } from './user-home/user-home.component';
 import { UserProfileComponent } from './user-home/user-profile/user-profile.component';
 import { UserLibraryComponent } from './user-home/user-library/user-library.component';
 import { ExploreFirstTimeDialogComponent } from '../shared/dialogs/explore-first-time-dialog/explore-first-time-dialog.component';
+import { ExploreReadingPlanComponent } from './explore/explore-reading-plan/explore-reading-plan.component';
 
 @NgModule({
   declarations: [
@@ -53,7 +54,8 @@ import { ExploreFirstTimeDialogComponent } from '../shared/dialogs/explore-first
     UserHomeComponent,
     UserProfileComponent,
     UserLibraryComponent,
-    ExploreFirstTimeDialogComponent
+    ExploreFirstTimeDialogComponent,
+    ExploreReadingPlanComponent
   ],
   imports: [
     AppRoutingModule,

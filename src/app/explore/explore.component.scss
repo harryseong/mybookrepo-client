@@ -53,11 +53,13 @@ app-navbar {
 }
 
 .action-list-btn.selected {
+  background-color: #323232;
   border-left: 2pt solid $theme-color;
   transition: 0.2s;
 }
 
 .action-list-btn-xs.selected {
+  background-color: #323232;
   border-bottom: 2pt solid $theme-color;
   transition: 0.2s;
 }

@@ -13,6 +13,7 @@ import {UserHomeComponent} from './user-home/user-home.component';
 import {UserProfileComponent} from './user-home/user-profile/user-profile.component';
 import {UserLibraryComponent} from './user-home/user-library/user-library.component';
 import {AuthGuard} from './auth.guard';
+import {ExploreReadingPlanComponent} from './explore/explore-reading-plan/explore-reading-plan.component';
 
 const routes: Routes = [
   {path: '', component: HomeComponent},
@@ -28,6 +29,7 @@ const routes: Routes = [
   {path: 'explore', component: ExploreComponent,
     children: [
       {path: '', component: ExploreMyLibraryComponent},
+      {path: 'reading-plan', component: ExploreReadingPlanComponent},
       {path: 'account', component: ExploreProfileComponent},
       {path: 'my-library', component: ExploreMyLibraryComponent},
       {path: 'search', component: ExploreSearchComponent},
