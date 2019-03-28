@@ -4,6 +4,10 @@ $theme-secondary: #373737;
 .content {
   color: $theme-secondary;
   padding: 1em;
+
+  .year-btn-row {
+    overflow-x: scroll;
+  }
 }
 
 .content.xs {
