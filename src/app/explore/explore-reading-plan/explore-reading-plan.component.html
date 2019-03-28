@@ -60,17 +60,17 @@
       </div>
     </div>
 
-    <div class="remove-container" [ngClass]="dragging ? 'show' : ''">
+    <div class="remove-container" [ngClass]="dragging ? (inRemoveZone ? 'show hover' : 'show') : ''">
       <div
         cdkDropList
         #removeBox="cdkDropList"
         [cdkDropListData]="remove"
         [cdkDropListConnectedTo]="[toReadList, readingList, doneList]"
         class="remove-drop-zone"
-        (cdkDropListDropped)="drop($event)">
-        <div class="to-read-section-header" fxLayout="row" fxLayoutAlign="center center">
-          <span><i class="far fa-calendar-times"></i>&nbsp;REMOVE BOOK</span>
-        </div>
+        (cdkDropListDropped)="drop($event)" (cdkDropListEntered)="enteredRemoveZone()" (cdkDropListExited)="leftRemoveZone()">
+          <div class="remove-book-text-div" fxLayout="row" fxLayoutAlign="center center">
+            <i class="far fa-calendar-times"></i>&nbsp;{{inRemoveZone ? 'DROP TO REMOVE' : 'REMOVE BOOK'}}
+          </div>
       </div>
     </div>
   </div>

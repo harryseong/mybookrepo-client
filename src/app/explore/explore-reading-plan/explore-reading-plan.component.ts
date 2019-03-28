@@ -16,6 +16,7 @@ export class ExploreReadingPlanComponent implements OnInit {
   done = [];
 
   dragging = false;
+  inRemoveZone = false;
 
   constructor() { }
 
@@ -54,5 +55,14 @@ export class ExploreReadingPlanComponent implements OnInit {
 
   dragEnded() {
     this.dragging = false;
+    this.leftRemoveZone();
+  }
+
+  enteredRemoveZone() {
+    this.inRemoveZone = true;
+  }
+
+  leftRemoveZone() {
+    this.inRemoveZone = false;
   }
 }

@@ -46,12 +46,29 @@ $theme-secondary: #373737;
   position: fixed;
   bottom: 2.5em;
   right: 2.5em;
-  height: 40px;
-  width: 200px;
+  height: 50px;
+  width: 300px;
   font-size: 1em;
   opacity: 0;
   transform: rotateX(90deg);
   transition: 0.5s;
+}
+
+.remove-container.show{
+  opacity: 0.6;
+  transform: rotateX(0deg);
+  transition: 0.5s;
+}
+
+.remove-container.show.hover {
+  opacity: 1;
+  transform: scale(1.1);
+  transition: 0.2s;
+  box-shadow: 0 0 20px #aa0000;
+}
+
+.remove-book-text-div {
+  height: 100%;
 }
 
 .remove-drop-zone {
@@ -62,22 +79,12 @@ $theme-secondary: #373737;
   color: #aa0000;
   border: 1.5pt solid #aa0000;
   background-color: rgb(255, 244, 240);
+  flex-direction: row;
+  align-items: center;
 
   .to-read-section-header {
     height: 100%;
   }
-}
-
-.remove-container.show{
-  opacity: 0.6;
-  transform: rotateX(0deg);
-  transition: 0.5s;
-}
-
-.remove-container.show:hover {
-  opacity: 1;
-  transform: scale(1.1);
-  transition: 0.2s;
 }
 
 .example-list {
