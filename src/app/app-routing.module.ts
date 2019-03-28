@@ -5,7 +5,6 @@ import {LoginComponent} from './login/login.component';
 import {SignupComponent} from './signup/signup.component';
 import {ExploreComponent} from './explore/explore.component';
 import {ExploreSearchComponent} from './explore/explore-search/explore-search.component';
-import {ExploreViewByYearsComponent} from './explore/explore-view-by-years/explore-view-by-years.component';
 import {ExploreMyLibraryComponent} from './explore/explore-my-library/explore-my-library.component';
 import {ExploreProfileComponent} from './explore/explore-profile/explore-profile.component';
 import {AboutComponent} from './about/about.component';
@@ -28,12 +27,10 @@ const routes: Routes = [
   },
   {path: 'explore', component: ExploreComponent,
     children: [
-      {path: '', component: ExploreMyLibraryComponent},
-      {path: 'reading-plan', component: ExploreReadingPlanComponent},
+      {path: 'plan', component: ExploreReadingPlanComponent},
       {path: 'account', component: ExploreProfileComponent},
-      {path: 'my-library', component: ExploreMyLibraryComponent},
+      {path: 'library', component: ExploreMyLibraryComponent},
       {path: 'search', component: ExploreSearchComponent},
-      {path: 'view-by-years', component: ExploreViewByYearsComponent},
     ]
   }
 ];

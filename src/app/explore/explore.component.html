@@ -1,38 +1,33 @@
 <app-navbar [isExplore]="true"></app-navbar>
 
-<mat-drawer-container class="explore-content" ngClass.xs="xs">
+<mat-drawer-container class="content" ngClass.xs="xs">
   <mat-drawer class="left-sidenav" opened mode="side" fxHide.xs>
     <mat-action-list>
 
-      <button mat-list-item routerLinkActive="true" routerLink="/explore/reading-plan" class="action-list-btn"
-              [ngClass]="router.url=='/explore/reading-plan' ? 'selected' : ''">
+      <button mat-list-item routerLinkActive="true" routerLink="/explore/plan" class="action-list-btn"
+              [ngClass]="router.url=='/explore/plan' ? 'selected' : ''"
+              matTooltip="My Reading Plan" [matTooltipDisabled]=disableTooltip matTooltipPosition="right">
         <div fxLayout="row" fxLayoutAlign.xs="center">
           <i class="far fa-calendar-check fa-fw"></i>
-          <span fxHide.xs>&nbsp;My Reading Plan</span>
+          <span fxHide.lt-md>&nbsp;My Reading Plan</span>
         </div>
       </button>
 
-      <button mat-list-item routerLinkActive="true" routerLink="/explore/my-library" class="action-list-btn"
-              [ngClass]="router.url=='/explore/my-library' ? 'selected' : ''">
+      <button mat-list-item routerLinkActive="true" routerLink="/explore/library" class="action-list-btn"
+              [ngClass]="router.url=='/explore/library' ? 'selected' : ''"
+              matTooltip="My Library" [matTooltipDisabled]=disableTooltip matTooltipPosition="right">
         <div fxLayout="row" fxLayoutAlign.xs="center">
           <i class="fas fa-list fa-fw"></i>
-          <span fxHide.xs>&nbsp;My Library</span>
+          <span fxHide.lt-md>&nbsp;My Library</span>
         </div>
       </button>
 
-<!--      <button mat-list-item routerLinkActive="true" routerLink="/explore/view-by-years" class="action-list-btn"-->
-<!--              [ngClass]="router.url=='/explore/view-by-years' ? 'selected' : ''">-->
-<!--        <div fxLayout="row" fxLayoutAlign.xs="center">-->
-<!--          <i class="far fa-calendar-alt fa-fw"></i>-->
-<!--          <span fxHide.xs>&nbsp;View by Years</span>-->
-<!--        </div>-->
-<!--      </button>-->
-
       <button mat-list-item routerLinkActive="true" routerLink="/explore/account" class="action-list-btn"
-              [ngClass]="router.url=='/explore/account' ? 'selected' : ''">
+              [ngClass]="router.url=='/explore/account' ? 'selected' : ''"
+              matTooltip="My Account" [matTooltipDisabled]=disableTooltip matTooltipPosition="right">
         <div fxLayout="row" fxLayoutAlign.xs="center">
           <i class="fas fa-user fa-fw"></i>
-          <span fxHide.xs>&nbsp;My Account</span>
+          <span fxHide.lt-md>&nbsp;My Account</span>
         </div>
       </button>
 
@@ -45,8 +40,8 @@
 </mat-drawer-container>
 
 <div fxHide.gt-xs fxLayout="row" class="mobile-nav">
-  <button mat-button routerLinkActive="true" routerLink="/explore/reading-plan" class="action-list-btn-xs" fxFlex="100/3"
-          [ngClass]="router.url=='/explore/reading-plan' ? 'selected' : ''">
+  <button mat-button routerLinkActive="true" routerLink="/explore/plan" class="action-list-btn-xs" fxFlex="100/3"
+          [ngClass]="router.url=='/explore/plan' ? 'selected' : ''">
     <div fxLayout="row" fxLayoutAlign="center">
       <i class="far fa-calendar-check fa-fw"></i>
     </div>
@@ -61,19 +56,10 @@
     </div>
   </button>
 
-  <button mat-button routerLinkActive="true" routerLink="/explore/my-library" class="action-list-btn-xs" fxFlex="100/3"
-          [ngClass]="router.url=='/explore/my-library' ? 'selected' : ''">
+  <button mat-button routerLinkActive="true" routerLink="/explore/library" class="action-list-btn-xs" fxFlex="100/3"
+          [ngClass]="router.url=='/explore/library' ? 'selected' : ''">
     <div fxLayout="row" fxLayoutAlign="center">
         <i class="fas fa-list fa-fw"></i>
     </div>
   </button>
-
-
-
-<!--  <button mat-button routerLinkActive="true" routerLink="/explore/view-by-years" class="action-list-btn-xs" fxFlex="100/3"-->
-<!--          [ngClass]="router.url=='/explore/view-by-years' ? 'selected' : ''">-->
-<!--    <div fxLayout="row" fxLayoutAlign="center">-->
-<!--      <i class="far fa-calendar-alt fa-fw"></i>-->
-<!--    </div>-->
-<!--  </button>-->
 </div>

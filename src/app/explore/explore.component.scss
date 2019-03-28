@@ -6,7 +6,7 @@ app-navbar {
   z-index: 100;
 }
 
-.explore-content {
+.content {
   height: calc(100% - 64px);
 
   .left-sidenav {
@@ -21,7 +21,7 @@ app-navbar {
   }
 }
 
-.explore-content.xs {
+.content.xs {
   height: calc(100% - 56px - 47.44px);
 }
 

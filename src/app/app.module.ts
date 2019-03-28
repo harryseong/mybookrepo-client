@@ -21,7 +21,6 @@ import {FormsModule, ReactiveFormsModule} from '@angular/forms';
 import { ExploreComponent } from './explore/explore.component';
 import { ExploreSearchComponent } from './explore/explore-search/explore-search.component';
 import { ExploreMyLibraryComponent } from './explore/explore-my-library/explore-my-library.component';
-import { ExploreViewByYearsComponent } from './explore/explore-view-by-years/explore-view-by-years.component';
 import { ExploreProfileComponent } from './explore/explore-profile/explore-profile.component';
 import {SnackBarService} from '../shared/services/snackBar/snack-bar.service';
 import {HttpClientModule} from '@angular/common/http';
@@ -34,6 +33,7 @@ import { UserProfileComponent } from './user-home/user-profile/user-profile.comp
 import { UserLibraryComponent } from './user-home/user-library/user-library.component';
 import { ExploreFirstTimeDialogComponent } from '../shared/dialogs/explore-first-time-dialog/explore-first-time-dialog.component';
 import { ExploreReadingPlanComponent } from './explore/explore-reading-plan/explore-reading-plan.component';
+import {LayoutModule} from '@angular/cdk/layout';
 
 @NgModule({
   declarations: [
@@ -46,7 +46,6 @@ import { ExploreReadingPlanComponent } from './explore/explore-reading-plan/expl
     ExploreComponent,
     ExploreSearchComponent,
     ExploreMyLibraryComponent,
-    ExploreViewByYearsComponent,
     ExploreProfileComponent,
     BookDetailsDialogComponent,
     BookCardComponent,
@@ -64,6 +63,7 @@ import { ExploreReadingPlanComponent } from './explore/explore-reading-plan/expl
     FlexLayoutModule,
     FormsModule,
     HttpClientModule,
+    LayoutModule,
     MaterialModule,
     ReactiveFormsModule,
     ServiceWorkerModule.register('ngsw-worker.js', { enabled: environment.production })

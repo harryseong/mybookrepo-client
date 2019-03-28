@@ -7,7 +7,7 @@
 
       <ng-container *ngIf="userService.accessToken==null">
         <button mat-button routerLinkActive="true" routerLink="/about" fxHide.xs>ABOUT</button>
-        <button mat-button routerLinkActive="true" routerLink="/explore/reading-plan" fxHide.xs>EXPLORE</button>
+        <button mat-button routerLinkActive="true" routerLink="/explore/plan" fxHide.xs>EXPLORE</button>
         <button mat-stroked-button routerLinkActive="true" routerLink="/login" fxHide.xs>LOG IN</button>
       </ng-container>
 
@@ -21,9 +21,6 @@
       </button>
 
       <mat-menu #appMenu="matMenu" yPosition="below" xPosition="before">
-        <button mat-menu-item routerLinkActive="true" routerLink="library">My Library</button>
-        <button mat-menu-item routerLinkActive="true" routerLink="profile">My Profile</button>
-        <mat-divider></mat-divider>
         <button mat-menu-item (click)="logout()"><i class="fas fa-sign-out-alt fa-fw"></i>&nbsp;Log Out</button>
       </mat-menu>
     </mat-toolbar-row>
