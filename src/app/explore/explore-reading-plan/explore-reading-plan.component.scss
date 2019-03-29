@@ -43,12 +43,11 @@ $theme-secondary: #373737;
 .mobile-drop-zones {
   z-index: 100;
   position: fixed;
-  top: 25%;
-  right: 1em;
+  bottom: 50px;
+  right: 10px;
   margin: 5% auto; /* Will not center vertically and won't work in IE6/7. */
 
   .mobile-drop-zone {
-    opacity: 0;
     height: 50px;
     width: 200px;
     border-radius: 3px;
@@ -58,6 +57,7 @@ $theme-secondary: #373737;
     font-weight: 600;
     color: $theme-color;
     user-select: none;
+    z-index: 100;
     transition: 0.3s;
 
     .mobile-drop-zone-hover-icon {
@@ -70,7 +70,7 @@ $theme-secondary: #373737;
     }
   }
 
-  .mobile-drop-zone.remove-drop-zone {
+  .mobile-drop-zone.remove {
     color: #c70000;
     border-color: #c70000;
     background-color: $theme-secondary;
@@ -78,19 +78,14 @@ $theme-secondary: #373737;
 }
 
 .mobile-drop-zones.show {
-  .mobile-drop-zone {
-    opacity: 0.95;
-    transition: 0.3s;
-  }
 
   .mobile-drop-zone.hover {
     opacity: 1;
     transform: scale(1.05);
     box-shadow: 0 0 20px $theme-color;
-    transition: 0.3s;
   }
 
-  .mobile-drop-zone.remove-drop-zone.hover {
+  .remove.hover {
     box-shadow: 0 0 20px #c70000;
   }
 }

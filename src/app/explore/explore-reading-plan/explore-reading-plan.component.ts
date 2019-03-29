@@ -1,21 +1,39 @@
 import { Component, OnInit } from '@angular/core';
-import {CdkDragDrop, CdkDragStart, moveItemInArray, transferArrayItem} from '@angular/cdk/drag-drop';
+import {CdkDragDrop, moveItemInArray, transferArrayItem} from '@angular/cdk/drag-drop';
 import {BookDTO} from '../../../shared/dto/dto.module';
 import {DialogService} from '../../../shared/services/dialog/dialog.service';
-import {animate, query, sequence, stagger, style, transition, trigger} from '@angular/animations';
+import {animate, query, sequence, stagger, state, style, transition, trigger} from '@angular/animations';
 
 @Component({
   selector: 'app-explore-reading-plan',
   templateUrl: './explore-reading-plan.component.html',
   styleUrls: ['./explore-reading-plan.component.scss'],
   animations: [
+    trigger('dropZoneAnimations', [
+      state('hide', style({ opacity: 0 })),
+      state('show', style({ opacity: 0.95, transform: 'translateY(-1em)' })),
+
+      transition('hide => show', [
+        animate('0.3s ease')
+      ]),
+
+      transition('show => hide', [
+        query('.mobile-drop-zone', [
+          stagger('80ms', [
+            sequence([
+              animate('0.3s ease', style({ opacity: 0, transform: 'translateX(10em)' })),
+            ])
+          ]),
+        ])
+      ]),
+    ]),
     trigger('dropZoneIconAnimations', [
       transition(':enter', [
         style({ opacity: 0, transform: 'translateX(-1em)'}),
-        animate('0.3s ease', style({ opacity: 1, transform: 'translateX(0)' })),
+        animate('0.3s ease', style({ opacity: 1, transform: 'none' })),
       ]),
       transition(':leave', [
-        style({ opacity: 1, transform: 'translateX(0)'}),
+        style({ opacity: 1, transform: 'none'}),
         animate('0.3s ease', style({ opacity: 0, transform: 'translateX(-1em)' })),
       ])
     ])
@@ -34,6 +52,7 @@ export class ExploreReadingPlanComponent implements OnInit {
   inReadingZone = false;
   inDoneZone = false;
   inRemoveZone = false;
+  mobileDropZoneState = 'hide';
 
   constructor(private dialogService: DialogService) { }
 
@@ -68,11 +87,15 @@ export class ExploreReadingPlanComponent implements OnInit {
 
   dragStarted() {
     this.dragging = true;
+    this.mobileDropZoneState = 'show';
+    console.log('Drag started: ' + this.mobileDropZoneState);
   }
 
   dragEnded() {
     this.dragging = false;
     this.inToReadZone = this.inReadingZone = this.inDoneZone = this.inRemoveZone = false;
+    this.mobileDropZoneState = 'hide';
+    console.log('Drag ended: ' + this.mobileDropZoneState);
   }
 
   enteredToReadZone() {
