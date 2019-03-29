@@ -1,12 +1,12 @@
 import {Component, ElementRef, OnDestroy, OnInit, ViewChild} from '@angular/core';
-import {BookDTO} from '../../../shared/dto/dto.module';
+import {BookDTO} from '../../../../shared/dto/dto.module';
 import {FormControl, FormGroup} from '@angular/forms';
 import {Subscription} from 'rxjs';
-import {SnackBarService} from '../../../shared/services/snackBar/snack-bar.service';
-import {GoogleBooksApiService} from '../../../shared/services/api/google-books/google-books-api.service';
-import {ResourcesApiService} from '../../../shared/services/api/resources/resources-api.service';
+import {SnackBarService} from '../../../../shared/services/snackBar/snack-bar.service';
+import {GoogleBooksApiService} from '../../../../shared/services/api/google-books/google-books-api.service';
+import {ResourcesApiService} from '../../../../shared/services/api/resources/resources-api.service';
 import {animate, query, sequence, stagger, style, transition, trigger} from '@angular/animations';
-import {DialogService} from '../../../shared/services/dialog/dialog.service';
+import {DialogService} from '../../../../shared/services/dialog/dialog.service';
 
 @Component({
   selector: 'app-explore-search',

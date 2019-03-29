@@ -4,7 +4,7 @@ import {HomeComponent} from './home/home.component';
 import {LoginComponent} from './login/login.component';
 import {SignupComponent} from './signup/signup.component';
 import {ExploreComponent} from './explore/explore.component';
-import {ExploreSearchComponent} from './explore/explore-search/explore-search.component';
+import {ExploreSearchComponent} from './explore/explore-my-library/explore-search/explore-search.component';
 import {ExploreMyLibraryComponent} from './explore/explore-my-library/explore-my-library.component';
 import {ExploreProfileComponent} from './explore/explore-profile/explore-profile.component';
 import {AboutComponent} from './about/about.component';
@@ -13,6 +13,7 @@ import {UserProfileComponent} from './user-home/user-profile/user-profile.compon
 import {UserLibraryComponent} from './user-home/user-library/user-library.component';
 import {AuthGuard} from './auth.guard';
 import {ExploreReadingPlanComponent} from './explore/explore-reading-plan/explore-reading-plan.component';
+import {ExploreReadingPlanSearchComponent} from './explore/explore-reading-plan/explore-reading-plan-search/explore-reading-plan-search.component';
 
 const routes: Routes = [
   {path: '', component: HomeComponent},
@@ -28,9 +29,10 @@ const routes: Routes = [
   {path: 'explore', component: ExploreComponent,
     children: [
       {path: 'plan', component: ExploreReadingPlanComponent},
+      {path: 'plan/add', component: ExploreReadingPlanSearchComponent},
       {path: 'account', component: ExploreProfileComponent},
       {path: 'library', component: ExploreMyLibraryComponent},
-      {path: 'search', component: ExploreSearchComponent},
+      {path: 'library/add', component: ExploreSearchComponent},
     ]
   }
 ];

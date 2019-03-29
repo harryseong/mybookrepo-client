@@ -19,7 +19,7 @@ import { LoginComponent } from './login/login.component';
 import { SignupComponent } from './signup/signup.component';
 import {FormsModule, ReactiveFormsModule} from '@angular/forms';
 import { ExploreComponent } from './explore/explore.component';
-import { ExploreSearchComponent } from './explore/explore-search/explore-search.component';
+import { ExploreSearchComponent } from './explore/explore-my-library/explore-search/explore-search.component';
 import { ExploreMyLibraryComponent } from './explore/explore-my-library/explore-my-library.component';
 import { ExploreProfileComponent } from './explore/explore-profile/explore-profile.component';
 import {SnackBarService} from '../shared/services/snackBar/snack-bar.service';
@@ -34,6 +34,7 @@ import { UserLibraryComponent } from './user-home/user-library/user-library.comp
 import { ExploreFirstTimeDialogComponent } from '../shared/dialogs/explore-first-time-dialog/explore-first-time-dialog.component';
 import { ExploreReadingPlanComponent } from './explore/explore-reading-plan/explore-reading-plan.component';
 import {LayoutModule} from '@angular/cdk/layout';
+import { ExploreReadingPlanSearchComponent } from './explore/explore-reading-plan/explore-reading-plan-search/explore-reading-plan-search.component';
 
 @NgModule({
   declarations: [
@@ -54,7 +55,8 @@ import {LayoutModule} from '@angular/cdk/layout';
     UserProfileComponent,
     UserLibraryComponent,
     ExploreFirstTimeDialogComponent,
-    ExploreReadingPlanComponent
+    ExploreReadingPlanComponent,
+    ExploreReadingPlanSearchComponent
   ],
   imports: [
     AppRoutingModule,

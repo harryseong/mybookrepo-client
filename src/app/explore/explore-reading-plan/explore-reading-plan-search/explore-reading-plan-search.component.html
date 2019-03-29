@@ -1,0 +1,22 @@
+<div class="content" ngClass.xs="xs" fxLayout="column" fxLayoutGap="0.5em" [@contentAnimations]>
+
+  <div fxLayout="row" fxLayoutAlign="start start" class="content-element">
+    <div class="page-header" ngClass.xs="xs">Add Book to Plan</div>
+    <span class="spacer"></span>
+    <button mat-icon-button routerLinkActive="true" routerLink="/explore/plan">
+      <i class="fas fa-times"></i>
+    </button>
+  </div>
+
+  <div *ngIf="bookDTOArray.length == 0" fxLayout="row" fxLayoutAlign="center" class="content-element">
+    <div>
+      It looks like you have no books in your library yet.
+    </div>
+  </div>
+
+</div>
+
+<div fxLayout="row wrap" fxLayout.xs="column" fxLayoutAlign="center" *ngIf="!isLoading && bookDTOArray.length > 0" [@bookCardAnimations] class="view-books-div">
+  <app-book-card fxLayout.xs="row" *ngFor="let bookDTO of bookDTOArray" bookCardType="library" [bookDTO]="bookDTO" (click)="openDialog(bookDTO)"></app-book-card>
+</div>
+
