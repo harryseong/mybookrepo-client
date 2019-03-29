@@ -22,9 +22,15 @@
         #toReadList="cdkDropList" [cdkDropListData]="toRead" [cdkDropListConnectedTo]="[readingList, doneList, removeBox]"
         class="example-list"
         (cdkDropListDropped)="drop($event)">
-        <div class="example-box" *ngFor="let item of toRead" cdkDrag (cdkDragStarted)="dragStarted()" (cdkDragEnded)="dragEnded()">{{item.title}}</div>
-        <div class="example-box add-book-box" routerLinkActive="true" routerLink="/explore/search">
-          <span><i class="fas fa-plus"></i>&nbsp;Add Book</span>
+        <div class="example-box" *ngFor="let book of toRead" cdkDrag (cdkDragStarted)="dragStarted()" (cdkDragEnded)="dragEnded()"
+             fxLayout="row" fxLayoutAlign="start center" fxLayoutGap="0.7em">
+          <div cdkDragHandle fxHide.gt-xs class="cdk-drag-icon"><i class="fas fa-grip-vertical fa-fw"></i></div>
+          <div>{{book.title}}</div>
+        </div>
+        <div class="example-box add-book-box" routerLinkActive="true" routerLink="/explore/search"
+             fxLayout="row" fxLayoutAlign="start center" fxLayoutGap="0.7em">
+          <div><i class="fas fa-plus fa-fw"></i></div>
+          <div>Add Book</div>
         </div>
       </div>
     </div>
@@ -36,7 +42,11 @@
         #readingList="cdkDropList" [cdkDropListData]="reading" [cdkDropListConnectedTo]="[toReadList, doneList, removeBox]"
         class="example-list"
         (cdkDropListDropped)="drop($event)">
-        <div class="example-box" *ngFor="let item of reading" cdkDrag (cdkDragStarted)="dragStarted()" (cdkDragEnded)="dragEnded()">{{item.title}}</div>
+        <div class="example-box" *ngFor="let book of reading" cdkDrag (cdkDragStarted)="dragStarted()" (cdkDragEnded)="dragEnded()"
+             fxLayout="row" fxLayoutAlign="start center" fxLayoutGap="0.7em">
+          <div cdkDragHandle fxHide.gt-xs class="cdk-drag-icon"><i class="fas fa-grip-vertical fa-fw"></i></div>
+          <div>{{book.title}}</div>
+        </div>
       </div>
     </div>
 
@@ -47,7 +57,11 @@
         #doneList="cdkDropList" [cdkDropListData]="done" [cdkDropListConnectedTo]="[toReadList, readingList, removeBox]"
         class="example-list"
         (cdkDropListDropped)="drop($event)">
-        <div class="example-box" *ngFor="let item of done" cdkDrag (cdkDragStarted)="dragStarted()" (cdkDragEnded)="dragEnded()">{{item.title}}</div>
+        <div class="example-box" *ngFor="let book of done" cdkDrag (cdkDragStarted)="dragStarted()" (cdkDragEnded)="dragEnded()"
+             fxLayout="row" fxLayoutAlign="start center" fxLayoutGap="0.7em">
+          <div cdkDragHandle fxHide.gt-xs class="cdk-drag-icon"><i class="fas fa-grip-vertical fa-fw"></i></div>
+          <div>{{book.title}}</div>
+        </div>
       </div>
     </div>
 
