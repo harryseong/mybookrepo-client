@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import {CdkDragDrop, moveItemInArray, transferArrayItem} from '@angular/cdk/drag-drop';
+import {CdkDragDrop, CdkDragStart, moveItemInArray, transferArrayItem} from '@angular/cdk/drag-drop';
 import {BookDTO} from '../../../shared/dto/dto.module';
 
 @Component({
@@ -16,6 +16,9 @@ export class ExploreReadingPlanComponent implements OnInit {
   done = [];
 
   dragging = false;
+  inToReadZone = false;
+  inReadingZone = false;
+  inDoneZone = false;
   inRemoveZone = false;
 
   constructor() { }
@@ -55,7 +58,31 @@ export class ExploreReadingPlanComponent implements OnInit {
 
   dragEnded() {
     this.dragging = false;
-    this.leftRemoveZone();
+    this.inToReadZone = this.inReadingZone = this.inDoneZone = false;
+  }
+
+  enteredToReadZone() {
+    this.inToReadZone = true;
+  }
+
+  leftToReadZone() {
+    this.inToReadZone = false;
+  }
+
+  enteredReadingZone() {
+    this.inReadingZone = true;
+  }
+
+  leftReadingZone() {
+    this.inReadingZone = false;
+  }
+
+  enteredDoneZone() {
+    this.inDoneZone = true;
+  }
+
+  leftDoneZone() {
+    this.inDoneZone = false;
   }
 
   enteredRemoveZone() {

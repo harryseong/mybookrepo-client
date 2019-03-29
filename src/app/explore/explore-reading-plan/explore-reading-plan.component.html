@@ -18,11 +18,8 @@
     <div class="example-container" fxFlex="100/3">
       <div class="to-read-section-header">To Read</div>
 
-      <div
-        cdkDropList
-        #toReadList="cdkDropList"
-        [cdkDropListData]="toRead"
-        [cdkDropListConnectedTo]="[readingList, doneList, removeBox]"
+      <div cdkDropList
+        #toReadList="cdkDropList" [cdkDropListData]="toRead" [cdkDropListConnectedTo]="[readingList, doneList, removeBox]"
         class="example-list"
         (cdkDropListDropped)="drop($event)">
         <div class="example-box" *ngFor="let item of toRead" cdkDrag (cdkDragStarted)="dragStarted()" (cdkDragEnded)="dragEnded()">{{item.title}}</div>
@@ -35,11 +32,8 @@
     <div class="example-container" fxFlex="100/3">
       <div class="to-read-section-header">Reading</div>
 
-      <div
-        cdkDropList
-        #readingList="cdkDropList"
-        [cdkDropListData]="reading"
-        [cdkDropListConnectedTo]="[toReadList, doneList, removeBox]"
+      <div cdkDropList
+        #readingList="cdkDropList" [cdkDropListData]="reading" [cdkDropListConnectedTo]="[toReadList, doneList, removeBox]"
         class="example-list"
         (cdkDropListDropped)="drop($event)">
         <div class="example-box" *ngFor="let item of reading" cdkDrag (cdkDragStarted)="dragStarted()" (cdkDragEnded)="dragEnded()">{{item.title}}</div>
@@ -49,20 +43,16 @@
     <div class="example-container" fxFlex="100/3">
       <div class="to-read-section-header">Done</div>
 
-      <div
-        cdkDropList
-        #doneList="cdkDropList"
-        [cdkDropListData]="done"
-        [cdkDropListConnectedTo]="[toReadList, readingList, removeBox]"
+      <div cdkDropList
+        #doneList="cdkDropList" [cdkDropListData]="done" [cdkDropListConnectedTo]="[toReadList, readingList, removeBox]"
         class="example-list"
         (cdkDropListDropped)="drop($event)">
         <div class="example-box" *ngFor="let item of done" cdkDrag (cdkDragStarted)="dragStarted()" (cdkDragEnded)="dragEnded()">{{item.title}}</div>
       </div>
     </div>
 
-    <div class="remove-container" [ngClass]="dragging ? (inRemoveZone ? 'show hover' : 'show') : ''">
-      <div
-        cdkDropList
+    <div class="remove-container" fxHide.xs [ngClass]="dragging ? (inRemoveZone ? 'show hover' : 'show') : ''">
+      <div cdkDropList
         #removeBox="cdkDropList"
         [cdkDropListData]="remove"
         [cdkDropListConnectedTo]="[toReadList, readingList, doneList]"
@@ -72,6 +62,58 @@
             <i class="far fa-calendar-times"></i>&nbsp;{{inRemoveZone ? 'DROP TO REMOVE' : 'REMOVE BOOK'}}
           </div>
       </div>
+    </div>
+
+    <!--MOBILE-->
+    <div class="mobile-drop-zones" fxHide.gt-xs [ngClass]="dragging ? 'show' : ''" fxLayout="column" fxLayoutGap="1em">
+      <div
+        cdkDropList
+        #toReadList="cdkDropList"
+        [cdkDropListData]="toRead"
+        [cdkDropListConnectedTo]="[readingList, doneList, removeBox]"
+        class="mobile-drop-zone" [ngClass]="inToReadZone ? 'hover' : ''"
+        (cdkDropListDropped)="drop($event)" (cdkDropListEntered)="enteredToReadZone()" (cdkDropListExited)="leftToReadZone()">
+        <div class="mobile-drop-zone-text" fxLayout="row" fxLayoutAlign="center center">
+          <span *ngIf="inToReadZone"><i class="fas fa-arrow-right"></i>&nbsp;</span>TO READ
+        </div>
+      </div>
+
+      <div
+        cdkDropList
+        #readingList="cdkDropList"
+        [cdkDropListData]="reading"
+        [cdkDropListConnectedTo]="[toReadList, doneList, removeBox]"
+        class="mobile-drop-zone" [ngClass]="inReadingZone ? 'hover' : ''"
+        (cdkDropListDropped)="drop($event)" (cdkDropListEntered)="enteredReadingZone()" (cdkDropListExited)="leftReadingZone()">
+        <div class="mobile-drop-zone-text" fxLayout="row" fxLayoutAlign="center center">
+          <span *ngIf="inReadingZone"><i class="fas fa-arrow-right"></i>&nbsp;</span>READING
+        </div>
+      </div>
+
+      <div
+        cdkDropList
+        #doneList="cdkDropList"
+        [cdkDropListData]="done"
+        [cdkDropListConnectedTo]="[toReadList, readingList, removeBox]"
+        class="mobile-drop-zone" [ngClass]="inDoneZone ? 'hover' : ''"
+        (cdkDropListDropped)="drop($event)" (cdkDropListEntered)="enteredDoneZone()" (cdkDropListExited)="leftDoneZone()">
+        <div class="mobile-drop-zone-text" fxLayout="row" fxLayoutAlign="center center">
+          <span *ngIf="inDoneZone"><i class="fas fa-arrow-right"></i>&nbsp;</span>DONE
+        </div>
+      </div>
+
+      <div
+        cdkDropList
+        #removeBox="cdkDropList"
+        [cdkDropListData]="remove"
+        [cdkDropListConnectedTo]="[toReadList, readingList, doneList]"
+        class="mobile-drop-zone remove-drop-zone" [ngClass]="inRemoveZone ? 'hover' : ''"
+        (cdkDropListDropped)="drop($event)" (cdkDropListEntered)="enteredRemoveZone()" (cdkDropListExited)="leftRemoveZone()">
+        <div class="mobile-drop-zone-text" fxLayout="row" fxLayoutAlign="center center">
+          <span *ngIf="inRemoveZone"><i class="fas fa-minus-circle fa-fw"></i>&nbsp;</span>REMOVE BOOK
+        </div>
+      </div>
+
     </div>
   </div>
 

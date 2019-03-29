@@ -20,7 +20,7 @@ $theme-secondary: #373737;
   }
 
   .remove-container {
-    bottom: 3.5em;
+    bottom: 70px;
     margin: 5% auto; /* Will not center vertically and won't work in IE6/7. */
     left: 0;
     right: 0;
@@ -41,30 +41,85 @@ $theme-secondary: #373737;
   vertical-align: top;
 }
 
+
+
+.mobile-drop-zones {
+  z-index: 100;
+  position: fixed;
+  top: 50px;
+  right: 1em;
+  margin: 5% auto; /* Will not center vertically and won't work in IE6/7. */
+
+  .mobile-drop-zone {
+    opacity: 0;
+    height: 60px;
+    width: 150px;
+    border-radius: 3px;
+    border: 1.5pt solid #4b4b4b;
+    background-color: white;
+    flex-direction: row;
+    align-items: center;
+    font-size: 0.8em;
+    font-weight: 600;
+    color: #4b4b4b;
+    transition: 0.3s;
+
+    .mobile-drop-zone-text {
+      height: 100%;
+    }
+  }
+
+  .mobile-drop-zone.remove-drop-zone {
+    color: #aa0000;
+    border: 1.5pt solid #aa0000;
+    background-color: white;
+  }
+}
+
+.mobile-drop-zones.show {
+  .mobile-drop-zone {
+    opacity: 0.8;
+    transition: 0.3s;
+
+  }
+
+  .mobile-drop-zone.hover {
+    opacity: 1;
+    transform: scale(1.05);
+    box-shadow: 0 0 20px rgba(86, 248, 255, 0.8);
+    transition: 0.3s;
+  }
+
+  .mobile-drop-zone.remove-drop-zone.hover {
+    box-shadow: 0 0 20px rgba(170, 0, 0, 0.8);
+  }
+}
+
+
+
 .remove-container {
   z-index: 100;
   position: fixed;
   bottom: 2.5em;
   right: 2.5em;
-  height: 50px;
+  height: 40px;
   width: 300px;
-  font-size: 1em;
+  font-size: 0.8em;
   opacity: 0;
-  transform: rotateX(90deg);
   transition: 0.5s;
+  background-color: rgba(255, 244, 240, 0.51);
 }
 
 .remove-container.show{
   opacity: 0.6;
-  transform: rotateX(0deg);
   transition: 0.5s;
 }
 
 .remove-container.show.hover {
   opacity: 1;
-  transform: scale(1.1);
+  transform: scale(1.05);
   transition: 0.2s;
-  box-shadow: 0 0 20px #aa0000;
+  box-shadow: 0 0 20px rgba(170, 0, 0, 0.8);
 }
 
 .remove-book-text-div {
@@ -78,7 +133,6 @@ $theme-secondary: #373737;
   font-weight: 600;
   color: #aa0000;
   border: 1.5pt solid #aa0000;
-  background-color: rgb(255, 244, 240);
   flex-direction: row;
   align-items: center;
 
