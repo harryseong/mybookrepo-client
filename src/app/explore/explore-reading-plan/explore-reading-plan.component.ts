@@ -2,11 +2,24 @@ import { Component, OnInit } from '@angular/core';
 import {CdkDragDrop, CdkDragStart, moveItemInArray, transferArrayItem} from '@angular/cdk/drag-drop';
 import {BookDTO} from '../../../shared/dto/dto.module';
 import {DialogService} from '../../../shared/services/dialog/dialog.service';
+import {animate, query, sequence, stagger, style, transition, trigger} from '@angular/animations';
 
 @Component({
   selector: 'app-explore-reading-plan',
   templateUrl: './explore-reading-plan.component.html',
-  styleUrls: ['./explore-reading-plan.component.scss']
+  styleUrls: ['./explore-reading-plan.component.scss'],
+  animations: [
+    trigger('dropZoneIconAnimations', [
+      transition(':enter', [
+        style({ opacity: 0, transform: 'translateX(-1em)'}),
+        animate('0.3s ease', style({ opacity: 1, transform: 'translateX(0)' })),
+      ]),
+      transition(':leave', [
+        style({ opacity: 1, transform: 'translateX(0)'}),
+        animate('0.3s ease', style({ opacity: 0, transform: 'translateX(-1em)' })),
+      ])
+    ])
+  ]
 })
 export class ExploreReadingPlanComponent implements OnInit {
   bookDTOArray: any[] = [];
