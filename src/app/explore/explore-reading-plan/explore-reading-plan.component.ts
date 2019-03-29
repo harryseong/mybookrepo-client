@@ -9,6 +9,18 @@ import {animate, query, sequence, stagger, state, style, transition, trigger} fr
   templateUrl: './explore-reading-plan.component.html',
   styleUrls: ['./explore-reading-plan.component.scss'],
   animations: [
+    trigger('contentAnimations', [
+      transition(':enter', [
+        query('.content-element', [
+          style({ opacity: 0, transform: 'translateY(1em)'}),
+          stagger(100, [
+            sequence([
+              animate('0.5s ease', style({ opacity: 1, transform: 'translateY(0)' })),
+            ])
+          ])
+        ])
+      ]),
+    ]),
     trigger('dropZoneAnimations', [
       state('hide', style({ opacity: 0 })),
       state('show', style({ opacity: 0.95, transform: 'translateY(-1em)' })),

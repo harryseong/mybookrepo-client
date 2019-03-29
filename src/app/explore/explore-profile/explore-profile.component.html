@@ -1,7 +1,8 @@
 <div class="content" fxLayout="row" fxLayoutAlign="center">
 
-  <div fxLayout="column" fxLayoutGap="1.5em" fxFlex="40" fxFlex.sm="50" fxFlex.xs="100">
-    <div fxLayout="row" fxLayoutAlign="center">
+  <div fxLayout="column" fxLayoutGap="1.5em" fxFlex="40" fxFlex.sm="50" fxFlex.xs="100" [@contentAnimations]>
+
+    <div fxLayout="row" fxLayoutAlign="center" class="content-element">
 
       <div fxLayout="column" fxLayoutGap="0.2em">
         <div class="user-img-border  mat-elevation-z1" fxLayout="row" fxLayoutAlign="center center">
@@ -14,7 +15,7 @@
 
     </div>
 
-    <div>
+    <div class="content-element">
       <div fxLayout="row" fxLayoutGap="0.3em">
         <div class="profile-info-header"><i class="fas fa-user fa-fw"></i></div>
         <div>johndoe123</div>
@@ -25,16 +26,14 @@
       </div>
     </div>
 
-    <div fxLayout="column">
+    <div fxLayout="column" class="content-element">
       <div class="profile-actions"><a href="javascript:void(0)">Change username</a></div>
       <div class="profile-actions"><a href="javascript:void(0)">Change password</a></div>
       <div class="profile-actions"><a href="javascript:void(0)">Change email</a></div>
       <div class="profile-actions"><a href="javascript:void(0)">Change profile picture</a></div>
     </div>
 
-    <button mat-stroked-button routerLinkActive="true" routerLink="/">LOG OUT</button>
-
-<!--    <input type="file" accept="image/*" capture="camera" />-->
+    <button mat-stroked-button routerLinkActive="true" routerLink="/" class="content-element">LOG OUT</button>
 
   </div>
 </div>

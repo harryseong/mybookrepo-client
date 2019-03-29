@@ -1,19 +1,21 @@
-<div class="content" ngClass.xs="xs" fxLayout="column" fxLayoutGap="1em">
+<div class="content" ngClass.xs="xs" fxLayout="column" fxLayoutGap="1em" [@contentAnimations]>
 
-  <div class="page-header" ngClass.xs="xs" fxHide.gt-sm>
-    My Reading Plan
+  <div fxLayout="column" fxLayoutGap="1em" class="content-element">
+    <div class="page-header" ngClass.xs="xs" fxHide.gt-sm>
+      My Reading Plan
+    </div>
+
+    <div fxLayout="row" fxLayoutGap="0.5em" class="year-btn-row">
+      <button mat-stroked-button>2019</button>
+      <button mat-stroked-button>2018</button>
+      <button mat-stroked-button>2017</button>
+      <button mat-stroked-button>2016</button>
+    </div>
   </div>
 
-  <div fxLayout="row" fxLayoutGap="0.5em" class="year-btn-row">
-    <button mat-stroked-button>2019</button>
-    <button mat-stroked-button>2018</button>
-    <button mat-stroked-button>2017</button>
-    <button mat-stroked-button>2016</button>
-  </div>
+  <mat-divider class="content-element"></mat-divider>
 
-  <mat-divider></mat-divider>
-
-  <div fxLayout="row" fxLayout.xs="column" fxLayoutGap.xs="0.5em">
+  <div fxLayout="row" fxLayout.xs="column" fxLayoutGap.xs="0.5em" class="content-element">
 
     <!--TO READ SECTION-->
     <div class="plan-section-container" fxFlex="100/3">
