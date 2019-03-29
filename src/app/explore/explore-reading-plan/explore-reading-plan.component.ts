@@ -59,7 +59,7 @@ export class ExploreReadingPlanComponent implements OnInit {
 
   dragEnded() {
     this.dragging = false;
-    this.inToReadZone = this.inReadingZone = this.inDoneZone = false;
+    this.inToReadZone = this.inReadingZone = this.inDoneZone = this.inRemoveZone = false;
   }
 
   enteredToReadZone() {
