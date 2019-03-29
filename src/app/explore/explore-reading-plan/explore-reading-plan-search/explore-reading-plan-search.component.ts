@@ -1,4 +1,4 @@
-import {AfterViewInit, Component, OnDestroy, OnInit} from '@angular/core';
+import {Component, OnDestroy, OnInit} from '@angular/core';
 import {Subscription} from 'rxjs';
 import {DialogService} from '../../../../shared/services/dialog/dialog.service';
 import {ResourcesApiService} from '../../../../shared/services/api/resources/resources-api.service';
@@ -36,7 +36,7 @@ import {animate, query, sequence, stagger, style, transition, trigger} from '@an
     ])
   ]
 })
-export class ExploreReadingPlanSearchComponent implements OnInit, OnDestroy, AfterViewInit {
+export class ExploreReadingPlanSearchComponent implements OnInit, OnDestroy {
   bookDTOArray: any[] = [];
   isLoading = true;
   bookRemoved$: Subscription;
@@ -49,19 +49,6 @@ export class ExploreReadingPlanSearchComponent implements OnInit, OnDestroy, Aft
       this.bookDTOArray = [];
       this.getBooks();
     });
-  }
-
-  ngAfterViewInit(): void {
-    setTimeout(() => this.checkIfFirstTime(), 200);
-}
-
-  checkIfFirstTime() {
-    const dsa: string = localStorage.getItem('dontShowAgain');
-    if (dsa !== undefined && dsa !== null && dsa === 'true') {
-      console.log('User opted not to be shown explore first time dialog.');
-    } else {
-      this.openExploreFirstTimeDialog();
-    }
   }
 
   ngOnDestroy() {
@@ -84,9 +71,5 @@ export class ExploreReadingPlanSearchComponent implements OnInit, OnDestroy, Aft
 
   openDialog(bookDTO: BookDTO) {
     this.dialogService.openBookDetailsDialog(bookDTO, 'EXPLORE_VIEW');
-  }
-
-  openExploreFirstTimeDialog() {
-    this.dialogService.openExploreFirstTimeDialog();
   }
 }
