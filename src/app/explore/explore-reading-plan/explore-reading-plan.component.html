@@ -25,7 +25,7 @@
         <div class="example-box" *ngFor="let book of toRead" cdkDrag (cdkDragStarted)="dragStarted()" (cdkDragEnded)="dragEnded()"
              fxLayout="row" fxLayoutAlign="start center" fxLayoutGap="0.7em">
           <div cdkDragHandle class="cdk-drag-icon"><i class="fas fa-grip-vertical fa-fw"></i></div>
-          <div><a href="javascript:void(0)">{{book.title}}</a></div>
+          <div><a href="javascript:void(0)" (click)="openDialog(book)">{{book.title}}</a></div>
         </div>
         <div class="example-box add-book-box" routerLinkActive="true" routerLink="/explore/search"
              fxLayout="row" fxLayoutAlign="start center" fxLayoutGap="0.7em">
@@ -45,7 +45,7 @@
         <div class="example-box" *ngFor="let book of reading" cdkDrag (cdkDragStarted)="dragStarted()" (cdkDragEnded)="dragEnded()"
              fxLayout="row" fxLayoutAlign="start center" fxLayoutGap="0.7em">
           <div cdkDragHandle class="cdk-drag-icon"><i class="fas fa-grip-vertical fa-fw"></i></div>
-          <div><a href="javascript:void(0)">{{book.title}}</a></div>
+          <div><a href="javascript:void(0)" (click)="openDialog(book)">{{book.title}}</a></div>
         </div>
       </div>
     </div>
@@ -60,7 +60,7 @@
         <div class="example-box" *ngFor="let book of done" cdkDrag (cdkDragStarted)="dragStarted()" (cdkDragEnded)="dragEnded()"
              fxLayout="row" fxLayoutAlign="start center" fxLayoutGap="0.7em">
           <div cdkDragHandle class="cdk-drag-icon"><i class="fas fa-grip-vertical fa-fw"></i></div>
-          <div><a href="javascript:void(0)">{{book.title}}</a></div>
+          <div><a href="javascript:void(0)" (click)="openDialog(book)">{{book.title}}</a></div>
         </div>
       </div>
     </div>

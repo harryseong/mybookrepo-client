@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import {CdkDragDrop, CdkDragStart, moveItemInArray, transferArrayItem} from '@angular/cdk/drag-drop';
 import {BookDTO} from '../../../shared/dto/dto.module';
+import {DialogService} from '../../../shared/services/dialog/dialog.service';
 
 @Component({
   selector: 'app-explore-reading-plan',
@@ -21,7 +22,7 @@ export class ExploreReadingPlanComponent implements OnInit {
   inDoneZone = false;
   inRemoveZone = false;
 
-  constructor() { }
+  constructor(private dialogService: DialogService) { }
 
   ngOnInit() {
     this.getBooks();
@@ -91,5 +92,9 @@ export class ExploreReadingPlanComponent implements OnInit {
 
   leftRemoveZone() {
     this.inRemoveZone = false;
+  }
+
+  openDialog(bookDTO: BookDTO) {
+    this.dialogService.openBookDetailsDialog(bookDTO, 'EXPLORE_VIEW');
   }
 }
