@@ -143,6 +143,6 @@ export class ExploreReadingPlanComponent implements OnInit {
   }
 
   openDialog(bookDTO: BookDTO) {
-    this.dialogService.openBookDetailsDialog(bookDTO, 'EXPLORE_VIEW');
+    this.dialogService.openBookDetailsDialog(bookDTO, 'EXPLORE_PLAN');
   }
 }
