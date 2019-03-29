@@ -1,19 +1,17 @@
-<div class="content" ngClass.xs="xs" fxLayout="column" fxLayoutGap="0.5em">
+<div class="content" ngClass.xs="xs" fxLayout="column" fxLayoutGap="0.5em" [@contentAnimations]>
 
-  <div class="page-header" ngClass.xs="xs" fxHide.gt-sm>
-    My Library
+  <div fxLayout="column" fxLayoutGap="1em" class="content-element">
+    <div class="page-header" ngClass.xs="xs">
+      My Library
+    </div>
   </div>
 
-  <div *ngIf="bookDTOArray.length == 0" fxLayout="row" fxLayoutAlign="center">
+  <div *ngIf="bookDTOArray.length == 0" fxLayout="row" fxLayoutAlign="center" class="content-element">
     <div>
       <button mat-stroked-button routerLinkActive="true" routerLink="/explore/search" class="add-first-book-btn mat-elevation-z3">
         <span><i class="fas fa-plus"></i>&nbsp;ADD FIRST BOOK</span>
       </button>
     </div>
-  </div>
-
-  <div fxLayout="row wrap" fxLayout.xs="column" fxLayoutAlign="center" *ngIf="!isLoading && bookDTOArray.length > 0" [@bookCardAnimations] class="view-books-div">
-    <app-book-card fxLayout.xs="row" *ngFor="let bookDTO of bookDTOArray" bookCardType="library" [bookDTO]="bookDTO" (click)="openDialog(bookDTO)"></app-book-card>
   </div>
 
   <button mat-icon-button class="add-book-btn mat-elevation-z3" routerLinkActive="true" routerLink="/explore/search"
@@ -22,3 +20,8 @@
   </button>
 
 </div>
+
+<div fxLayout="row wrap" fxLayout.xs="column" fxLayoutAlign="center" *ngIf="!isLoading && bookDTOArray.length > 0" [@bookCardAnimations] class="view-books-div">
+  <app-book-card fxLayout.xs="row" *ngFor="let bookDTO of bookDTOArray" bookCardType="library" [bookDTO]="bookDTO" (click)="openDialog(bookDTO)"></app-book-card>
+</div>
+

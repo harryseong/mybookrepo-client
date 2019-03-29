@@ -10,6 +10,18 @@ import {ResourcesApiService} from '../../../shared/services/api/resources/resour
   templateUrl: './explore-my-library.component.html',
   styleUrls: ['./explore-my-library.component.scss'],
   animations: [
+    trigger('contentAnimations', [
+      transition(':enter', [
+        query('.content-element', [
+          style({ opacity: 0, transform: 'translateY(1em)'}),
+          stagger(100, [
+            sequence([
+              animate('0.5s ease', style({ opacity: 1, transform: 'translateY(0)' })),
+            ])
+          ])
+        ])
+      ]),
+    ]),
     trigger('bookCardAnimations', [
       transition(':enter', [
         query('.book-card', [

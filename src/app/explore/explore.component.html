@@ -14,7 +14,7 @@
       </button>
 
       <button mat-list-item routerLinkActive="true" routerLink="/explore/library" class="action-list-btn"
-              [ngClass]="router.url=='/explore/library' ? 'selected' : ''"
+              [ngClass]="(router.url=='/explore/library' || router.url=='/explore/search')  ? 'selected' : ''"
               matTooltip="My Library" [matTooltipDisabled]=disableTooltip matTooltipPosition="right">
         <div fxLayout="row" fxLayoutAlign.xs="center">
           <i class="fas fa-list fa-fw"></i>
@@ -57,7 +57,7 @@
   </button>
 
   <button mat-button routerLinkActive="true" routerLink="/explore/library" class="action-list-btn-xs" fxFlex="100/3"
-          [ngClass]="router.url=='/explore/library' ? 'selected' : ''" matTooltip="My Library" matTooltipPosition="above">
+          [ngClass]="(router.url=='/explore/library' || router.url=='/explore/search') ? 'selected' : ''" matTooltip="My Library" matTooltipPosition="above">
     <div fxLayout="row" fxLayoutAlign="center">
         <i class="fas fa-list fa-lg fa-fw"></i>
     </div>

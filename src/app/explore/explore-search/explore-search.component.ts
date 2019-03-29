@@ -13,6 +13,18 @@ import {DialogService} from '../../../shared/services/dialog/dialog.service';
   templateUrl: './explore-search.component.html',
   styleUrls: ['./explore-search.component.scss'],
   animations: [
+    trigger('contentAnimations', [
+      transition(':enter', [
+        query('.content-element', [
+          style({ opacity: 0, transform: 'translateY(1em)'}),
+          stagger(100, [
+            sequence([
+              animate('0.5s ease', style({ opacity: 1, transform: 'translateY(0)' })),
+            ])
+          ])
+        ])
+      ]),
+    ]),
     trigger('bookCardAnimations', [
       transition(':enter', [
         query('.book-card', [
