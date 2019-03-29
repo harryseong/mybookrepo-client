@@ -159,7 +159,6 @@ $theme-secondary: #373737;
   align-items: center;
   justify-content: space-between;
   box-sizing: border-box;
-  cursor: move;
   background: white;
   font-size: 12px;
   height: 50px;
@@ -168,6 +167,7 @@ $theme-secondary: #373737;
 
   .cdk-drag-icon {
     color: #a9a9a9;
+    cursor: move;
   }
 }
 
@@ -192,7 +192,7 @@ $theme-secondary: #373737;
 }
 
 .cdk-drag-placeholder {
-  opacity: 0;
+  opacity: 0.2;
 }
 
 .cdk-drag-animating {
