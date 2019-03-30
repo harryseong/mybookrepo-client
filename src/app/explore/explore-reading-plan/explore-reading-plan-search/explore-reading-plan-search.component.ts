@@ -70,6 +70,6 @@ export class ExploreReadingPlanSearchComponent implements OnInit, OnDestroy {
   }
 
   openDialog(bookDTO: BookDTO) {
-    this.dialogService.openBookDetailsDialog(bookDTO, 'EXPLORE_PLAN');
+    this.dialogService.openBookDetailsDialog(bookDTO, 'EXPLORE_PLAN_ADD');
   }
 }

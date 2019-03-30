@@ -61,7 +61,7 @@
   <button mat-stroked-button *ngIf="data.type=='NEW'" (click)="addBook(data.book)" class="add-btn" fxFlex.xs="49%" ngClass.xs="xs">
     <span><i class="fas fa-plus-circle fa-fw"></i>&nbsp;ADD</span>
   </button>
-  <button mat-stroked-button *ngIf="data.type=='PLAN'" (click)="addBook(data.book)" class="add-btn" fxFlex.xs="49%" ngClass.xs="xs">
+  <button mat-stroked-button *ngIf="data.type=='PLAN_ADD'" (click)="addBook(data.book)" class="add-btn" fxFlex.xs="49%" ngClass.xs="xs">
     <span><i class="fas fa-plus-circle fa-fw"></i>&nbsp;ADD TO PLAN</span>
   </button>
 
@@ -72,7 +72,7 @@
   <button mat-stroked-button *ngIf="data.type=='EXPLORE_NEW'" (click)="exploreAddBook(data.book)" class="add-btn" fxFlex.xs="49%" ngClass.xs="xs">
     <span><i class="fas fa-plus-circle fa-fw"></i>&nbsp;ADD</span>
   </button>
-  <button mat-stroked-button *ngIf="data.type=='EXPLORE_PLAN'" (click)="exploreAddBook(data.book)" class="add-btn" fxFlex.xs="49%" ngClass.xs="xs">
+  <button mat-stroked-button *ngIf="data.type=='EXPLORE_PLAN_ADD'" (click)="exploreAddBook(data.book)" class="add-btn" fxFlex.xs="49%" ngClass.xs="xs">
     <span><i class="fas fa-plus-circle fa-fw"></i>&nbsp;ADD TO PLAN</span>
   </button>
 </div>
