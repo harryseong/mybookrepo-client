@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import {ActivatedRoute} from '@angular/router';
-import {BookDTO} from '../../../../shared/dto/dto.module';
+import {BookDTO, PlanDTO} from '../../../../shared/dto/dto.module';
 import {CdkDragDrop, moveItemInArray, transferArrayItem} from '@angular/cdk/drag-drop';
 import {animate, query, sequence, stagger, state, style, transition, trigger} from '@angular/animations';
 import {DialogService} from '../../../../shared/services/dialog/dialog.service';
@@ -54,7 +54,7 @@ import {DialogService} from '../../../../shared/services/dialog/dialog.service';
 })
 export class ExploreReadingPlanTableComponent implements OnInit {
   isLoading = true;
-  currentPlan = '';
+  currentPlan: PlanDTO;
   bookDTOArray: any[] = [];
   toRead = [];
   reading = [];
@@ -72,8 +72,7 @@ export class ExploreReadingPlanTableComponent implements OnInit {
   ngOnInit() {
     this.route.params.subscribe(
       params => {
-        this.currentPlan = params.id;
-        console.log(this.currentPlan);
+        this.currentPlan = JSON.parse(localStorage.getItem('plans')).find((plan) => plan.name === params.id);
       }
     );
     this.getBooks();
@@ -115,6 +114,14 @@ export class ExploreReadingPlanTableComponent implements OnInit {
     this.inToReadZone = this.inReadingZone = this.inDoneZone = this.inRemoveZone = false;
     this.dropZoneState = 'hide';
     console.log('Drag ended: ' + this.dropZoneState);
+  }
+
+  editPlan() {
+    this.dialogService.openPlanDialog(this.currentPlan, 'EDIT');
+  }
+
+  deletePlan() {
+    this.dialogService.openPlanDialog(this.currentPlan, 'DELETE');
   }
 
   enteredToReadZone() {

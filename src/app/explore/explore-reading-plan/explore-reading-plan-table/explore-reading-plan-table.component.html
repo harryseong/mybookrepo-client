@@ -1,14 +1,14 @@
 <div class="content" ngClass.xs="xs" fxLayout="column" fxLayoutGap="1em" [@contentAnimations]>
 
   <div fxLayout="row" fxLayoutAlign="start center">
-    <div class="plan-name">{{currentPlan}}</div>
+    <div class="plan-name">{{currentPlan.name}}</div>
     <button mat-icon-button [matMenuTriggerFor]="planMenu">
       <span><i class="fas fa-ellipsis-v"></i></span>
     </button>
 
     <mat-menu #planMenu="matMenu" yPosition="below" xPosition="after">
-      <button mat-menu-item><i class="far fa-edit fa-fw"></i>&nbsp;Edit Plan Name</button>
-      <button mat-menu-item class="delete-plan-btn"><i class="far fa-trash-alt fa-fw"></i>&nbsp;Delete Plan</button>
+      <button mat-menu-item (click)="editPlan()"><i class="far fa-edit fa-fw"></i>&nbsp;Edit Plan</button>
+      <button mat-menu-item class="delete-plan-btn" (click)="deletePlan()"><i class="far fa-trash-alt fa-fw"></i>&nbsp;Delete Plan</button>
     </mat-menu>
   </div>
 

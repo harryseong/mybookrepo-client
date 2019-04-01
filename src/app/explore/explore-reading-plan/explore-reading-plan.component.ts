@@ -3,6 +3,7 @@ import {DialogService} from '../../../shared/services/dialog/dialog.service';
 import {animate, query, sequence, stagger, state, style, transition, trigger} from '@angular/animations';
 import {Subscription} from 'rxjs';
 import {ResourcesApiService} from '../../../shared/services/api/resources/resources-api.service';
+import {Router} from '@angular/router';
 
 @Component({
   selector: 'app-explore-reading-plan',
@@ -25,19 +26,38 @@ import {ResourcesApiService} from '../../../shared/services/api/resources/resour
 })
 export class ExploreReadingPlanComponent implements OnInit, OnDestroy {
   planCreated$: Subscription;
+  planUpdated$: Subscription;
+  planDeleted$: Subscription;
   planArray: any[] = [];
   isLoading = true;
   currentPlan = '';
 
-  constructor(private dialogService: DialogService, private resourcesApiService: ResourcesApiService) { }
+  constructor(
+    private dialogService: DialogService,
+    private resourcesApiService: ResourcesApiService,
+    private router: Router
+  ) { }
 
   ngOnInit() {
-    this.planCreated$ = this.resourcesApiService.$planCreatedEvent.subscribe(() => this.getPlans());
+    this.planCreated$ = this.resourcesApiService.$planCreatedEvent.subscribe((createdPlanName) => {
+      this.getPlans();
+      this.router.navigate(['/explore/johndoe123/plan/view', createdPlanName]);
+    });
+    this.planUpdated$ = this.resourcesApiService.$planUpdatedEvent.subscribe((updatedPlanName) => {
+      this.getPlans();
+      this.router.navigate(['/explore/johndoe123/plan/view', updatedPlanName]);
+    });
+    this.planDeleted$ = this.resourcesApiService.$planDeletedEvent.subscribe((deletedPlanName) => {
+      this.getPlans();
+      this.router.navigate(['/explore/johndoe123/plan']);
+    });
     this.getPlans();
   }
 
   ngOnDestroy(): void {
     this.planCreated$.unsubscribe();
+    this.planUpdated$.unsubscribe();
+    this.planDeleted$.unsubscribe();
   }
 
   getPlans() {
@@ -55,7 +75,7 @@ export class ExploreReadingPlanComponent implements OnInit, OnDestroy {
   }
 
   addPlan() {
-    this.dialogService.openPlanDialog('CREATE');
+    this.dialogService.openPlanDialog(null, 'CREATE');
   }
 
   removePlan() {

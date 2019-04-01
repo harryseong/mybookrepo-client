@@ -11,7 +11,8 @@ export class ResourcesApiService {
   $bookAddedEvent = new Subject<any>();
   $bookRemovedEvent = new Subject<any>();
   $planCreatedEvent = new Subject<any>();
-  $planRemovedEvent = new Subject<any>();
+  $planUpdatedEvent = new Subject<any>();
+  $planDeletedEvent = new Subject<any>();
 
   constructor(private http: HttpClient) { }
 

@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import {MatDialog} from '@angular/material';
-import {BookDTO} from '../../dto/dto.module';
+import {BookDTO, PlanDTO} from '../../dto/dto.module';
 import {BookDetailsDialogComponent} from '../../dialogs/book-details-dialog/book-details-dialog.component';
 import {ExploreFirstTimeDialogComponent} from '../../dialogs/explore-first-time-dialog/explore-first-time-dialog.component';
 import {PlanDialogComponent} from '../../dialogs/plan-dialog/plan-dialog.component';
@@ -40,13 +40,14 @@ export class DialogService {
     });
   }
 
-  openPlanDialog(dialogType: string) {
+  openPlanDialog(planDTO: PlanDTO, dialogType: string) {
     const dialogRef = this.dialog.open(PlanDialogComponent, {
-      width: '40em',
+      width: dialogType === 'DELETE' ? '20em' : '30em',
       autoFocus: false,
       panelClass: 'plan-dialog',
       data: {
-        type: dialogType
+        plan: planDTO,
+        type: dialogType,
       }
     });
 

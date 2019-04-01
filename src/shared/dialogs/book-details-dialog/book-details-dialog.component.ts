@@ -15,9 +15,11 @@ export class BookDetailsDialogComponent {
 
   constructor(public dialogRef: MatDialogRef<BookDetailsDialogComponent>,
               private resourcesApiService: ResourcesApiService,
-              private router: Router, public userService: UserService, private snackBarService: SnackBarService,
-              @Inject(MAT_DIALOG_DATA) public data: any) {
-  }
+              private router: Router,
+              public userService: UserService,
+              private snackBarService: SnackBarService,
+              @Inject(MAT_DIALOG_DATA) public data: any
+  ) {}
 
   closeDialog(): void {
     this.dialogRef.close();

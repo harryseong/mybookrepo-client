@@ -9,7 +9,7 @@
 
       <ng-container *ngIf="userService.accessToken==null">
         <button mat-button routerLinkActive="true" routerLink="/about" fxHide.xs>ABOUT</button>
-        <button mat-button routerLinkActive="true" routerLink="/explore/johndoe123/plan" fxHide.xs>EXPLORE</button>
+        <button mat-button routerLinkActive="true" routerLink="/explore/johndoe123/library" fxHide.xs>EXPLORE</button>
         <button mat-stroked-button routerLinkActive="true" routerLink="/login" fxHide.xs>LOG IN</button>
       </ng-container>
 
@@ -28,7 +28,7 @@
     </mat-toolbar-row>
     <mat-toolbar-row fxHide.gt-xs fxLayout="row" fxLayoutGap="0.5em" fxLayoutAlign="center" *ngIf="userService.accessToken==null">
       <div><button mat-button routerLinkActive="true" routerLink="/about">ABOUT</button></div>
-      <div><button mat-button routerLinkActive="true" routerLink="/explore/johndoe123/plan">EXPLORE</button></div>
+      <div><button mat-button routerLinkActive="true" routerLink="/explore/johndoe123/library">EXPLORE</button></div>
       <div><button mat-stroked-button routerLinkActive="true" routerLink="/login">LOG IN</button></div>
     </mat-toolbar-row>
   </mat-toolbar>
