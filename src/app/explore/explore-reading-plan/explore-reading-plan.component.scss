@@ -7,6 +7,16 @@ $theme-secondary: #373737;
 
   .year-btn-row {
     overflow-x: scroll;
+
+    button {
+      font-size: 0.7em;
+    }
+
+    .add-plan-btn {
+      color: $theme-color;
+      background-color: $theme-secondary;
+      min-width: auto;
+    }
   }
 
   // PLAN SECTION
@@ -62,27 +72,29 @@ $theme-secondary: #373737;
     background-color: rgba(255, 244, 240, 0.51);
   }
   .remove-container.show{
-    opacity: 0.6;
+    opacity: 0.95;
     transition: 0.5s;
   }
   .remove-container.show.hover {
     opacity: 1;
     transform: scale(1.05);
     transition: 0.2s;
-    box-shadow: 0 0 20px rgba(170, 0, 0, 0.8);
+    box-shadow: 0 0 20px #ff0000;
   }
   .remove-drop-zone {
     height: 100%;
     width: 100%;
     border-radius: 3px;
     font-weight: 600;
-    color: #aa0000;
-    border: 1.5pt solid #aa0000;
+    color: #ff0000;
+    border: 1.5pt solid #ff0000;
+    background-color: $theme-secondary;
     flex-direction: row;
     align-items: center;
 
-    .plan-section-label {
-      height: 100%;
+    .drop-zone-hover-icon {
+      position: absolute;
+      left: 10px;
     }
   }
 
@@ -119,8 +131,8 @@ $theme-secondary: #373737;
     }
 
     .mobile-drop-zone.remove {
-      color: #c70000;
-      border-color: #c70000;
+      color: #ff0000;
+      border-color: #ff0000;
       background-color: $theme-secondary;
     }
   }
@@ -133,7 +145,7 @@ $theme-secondary: #373737;
     }
 
     .remove.hover {
-      box-shadow: 0 0 20px #c70000;
+      box-shadow: 0 0 20px #ff0000;
     }
   }
 

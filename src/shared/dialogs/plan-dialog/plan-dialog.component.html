@@ -1,0 +1,24 @@
+<div mat-dialog-content class="plan-dialog" fxLayout="column" fxLayoutAlign="center" fxLayoutGap="1em">
+
+  <div class="page-header">
+    Create Plan
+  </div>
+
+  <form [formGroup]="planForm" fxLayout="column" fxLayoutGap="0.5em">
+    <mat-form-field>
+      <mat-label>Name</mat-label>
+      <input matInput type="text" required formControlName="name">
+    </mat-form-field>
+
+    <mat-form-field>
+      <mat-label>Description</mat-label>
+      <input matInput type="text" required formControlName="description">
+    </mat-form-field>
+  </form>
+
+</div>
+
+<div mat-dialog-actions fxLayout="row" fxLayoutAlign="end end" fxLayoutGap.xs="0.5em">
+  <button mat-stroked-button (click)="closeDialog()" class="close-btn" ngClass.xs="xs">CANCEL</button>
+  <button mat-stroked-button (click)="createPlan()" class="close-btn" ngClass.xs="xs" [disabled]="!planForm.valid">CREATE</button>
+</div>

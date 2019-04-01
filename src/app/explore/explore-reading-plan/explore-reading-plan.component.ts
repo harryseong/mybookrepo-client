@@ -53,6 +53,7 @@ import {animate, query, sequence, stagger, state, style, transition, trigger} fr
 })
 export class ExploreReadingPlanComponent implements OnInit {
   bookDTOArray: any[] = [];
+  planArray: any[] = [];
   isLoading = true;
   toRead = [];
   reading = [];
@@ -70,6 +71,7 @@ export class ExploreReadingPlanComponent implements OnInit {
 
   ngOnInit() {
     this.getBooks();
+    this.getPlans();
   }
 
   drop(event: CdkDragDrop<string[]>) {
@@ -81,6 +83,28 @@ export class ExploreReadingPlanComponent implements OnInit {
         event.previousIndex,
         event.currentIndex);
     }
+  }
+
+  getPlans() {
+    const plans: any[] = JSON.parse(localStorage.getItem('plans'));
+    if (plans !== undefined && plans !== null && plans.length > 0) {
+      this.planArray = plans;
+    } else {
+      const samplePlans = [
+        {name: '2019', description: 'My reading plan for the year 2019.'},
+        {name: '2018', description: 'My reading plan for the year 2018.'},
+      ];
+      this.planArray = samplePlans;
+      localStorage.setItem('plans', JSON.stringify(samplePlans));
+    }
+  }
+
+  addPlan() {
+    this.dialogService.openPlanDialog('CREATE');
+  }
+
+  removePlan() {
+
   }
 
   getBooks() {

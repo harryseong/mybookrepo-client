@@ -115,6 +115,16 @@ export class CategoryDTO {
   }
 }
 
+export class PlanDTO {
+  name: string;
+  description: string;
+
+  constructor(name: string, description: string) {
+    this.name = name;
+    this.description = description;
+  }
+}
+
 export class UserDTO {
   id?: string;
   firstName: string;

@@ -44,4 +44,9 @@ $theme-secondary: #373737;
     text-decoration: underline;
     transition: 0.3s;
   }
+
+  .logout-btn {
+    color: $theme-color;
+    background-color: $theme-secondary;
+  }
 }

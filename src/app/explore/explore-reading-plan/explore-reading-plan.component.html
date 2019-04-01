@@ -6,10 +6,10 @@
     </div>
 
     <div fxLayout="row" fxLayoutGap="0.5em" class="year-btn-row content-element">
-      <button mat-stroked-button>2019</button>
-      <button mat-stroked-button>2018</button>
-      <button mat-stroked-button>2017</button>
-      <button mat-stroked-button>2016</button>
+      <button mat-stroked-button (click)="addPlan()" class="add-plan-btn">
+        <span><i class="fas fa-plus"></i>&nbsp;PLAN</span>
+      </button>
+      <button mat-stroked-button *ngFor="let plan of planArray">{{plan.name}}</button>
     </div>
   </div>
 
@@ -81,9 +81,11 @@
          [cdkDropListConnectedTo]="[toReadList, readingList, doneList, mobileToReadList, mobileReadingList, mobileDoneList]"
          (cdkDropListDropped)="drop($event)" (cdkDropListEntered)="enteredRemoveZone()" (cdkDropListExited)="leftRemoveZone()">
       <div class="drop-zone-text" fxLayout="row" fxLayoutAlign="center center">
-        <i class="fas fa-minus-circle fa-fw"></i>&nbsp;{{inRemoveZone ? 'DROP TO REMOVE' : 'REMOVE FROM PLAN'}}
+        <span class="drop-zone-hover-icon" *ngIf="inRemoveZone" [@dropZoneIconAnimations]><i class="fas fa-minus-circle fa-lg fa-fw"></i></span>
+        <span>{{inRemoveZone ? 'DROP TO REMOVE' : 'REMOVE FROM PLAN'}}</span>
       </div>
     </div>
+
   </div>
 
   <!--FIXED ELEMENT: MOBILE DROP ZONES-->
