@@ -1,8 +1,10 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, OnDestroy, OnInit} from '@angular/core';
 import {CdkDragDrop, moveItemInArray, transferArrayItem} from '@angular/cdk/drag-drop';
 import {BookDTO} from '../../../shared/dto/dto.module';
 import {DialogService} from '../../../shared/services/dialog/dialog.service';
 import {animate, query, sequence, stagger, state, style, transition, trigger} from '@angular/animations';
+import {Subscription} from 'rxjs';
+import {ResourcesApiService} from '../../../shared/services/api/resources/resources-api.service';
 
 @Component({
   selector: 'app-explore-reading-plan',
@@ -51,7 +53,8 @@ import {animate, query, sequence, stagger, state, style, transition, trigger} fr
     ])
   ]
 })
-export class ExploreReadingPlanComponent implements OnInit {
+export class ExploreReadingPlanComponent implements OnInit, OnDestroy {
+  planCreated$: Subscription;
   bookDTOArray: any[] = [];
   planArray: any[] = [];
   isLoading = true;
@@ -67,11 +70,16 @@ export class ExploreReadingPlanComponent implements OnInit {
   inRemoveZone = false;
   mobileDropZoneState = 'hide';
 
-  constructor(private dialogService: DialogService) { }
+  constructor(private dialogService: DialogService, private resourcesApiService: ResourcesApiService) { }
 
   ngOnInit() {
+    this.planCreated$ = this.resourcesApiService.$planCreatedEvent.subscribe(() => this.getPlans());
     this.getBooks();
     this.getPlans();
+  }
+
+  ngOnDestroy(): void {
+    this.planCreated$.unsubscribe();
   }
 
   drop(event: CdkDragDrop<string[]>) {

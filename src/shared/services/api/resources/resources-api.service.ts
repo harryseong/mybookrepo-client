@@ -10,6 +10,8 @@ import {BookDTO} from '../../../dto/dto.module';
 export class ResourcesApiService {
   $bookAddedEvent = new Subject<any>();
   $bookRemovedEvent = new Subject<any>();
+  $planCreatedEvent = new Subject<any>();
+  $planRemovedEvent = new Subject<any>();
 
   constructor(private http: HttpClient) { }
 

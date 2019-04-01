@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import {MatDialogRef} from '@angular/material';
 import {FormControl, FormGroup, Validators} from '@angular/forms';
 import {PlanDTO} from '../../dto/dto.module';
+import {ResourcesApiService} from '../../services/api/resources/resources-api.service';
 
 @Component({
   selector: 'app-plan-dialog',
@@ -14,7 +15,7 @@ export class PlanDialogComponent implements OnInit {
     description: new FormControl('', [Validators.required]),
   });
 
-  constructor(public dialogRef: MatDialogRef<PlanDialogComponent>) { }
+  constructor(public dialogRef: MatDialogRef<PlanDialogComponent>, private resourcesApiService: ResourcesApiService) { }
 
   ngOnInit() {}
 
@@ -29,6 +30,7 @@ export class PlanDialogComponent implements OnInit {
     plans.push(newPlan);
     plans.sort((a, b) => a.name > b.name ? 1 : (a.name === b.name) ? 0 : -1);
     localStorage.setItem('plans', JSON.stringify(plans));
+    this.resourcesApiService.$planCreatedEvent.next();
     this.closeDialog();
   }
 }
