@@ -36,6 +36,7 @@ import { ExploreReadingPlanComponent } from './explore/explore-reading-plan/expl
 import {LayoutModule} from '@angular/cdk/layout';
 import { ExploreReadingPlanSearchComponent } from './explore/explore-reading-plan/explore-reading-plan-search/explore-reading-plan-search.component';
 import { PlanDialogComponent } from '../shared/dialogs/plan-dialog/plan-dialog.component';
+import { ExploreReadingPlanTableComponent } from './explore/explore-reading-plan/explore-reading-plan-table/explore-reading-plan-table.component';
 
 @NgModule({
   declarations: [
@@ -58,7 +59,8 @@ import { PlanDialogComponent } from '../shared/dialogs/plan-dialog/plan-dialog.c
     ExploreFirstTimeDialogComponent,
     ExploreReadingPlanComponent,
     ExploreReadingPlanSearchComponent,
-    PlanDialogComponent
+    PlanDialogComponent,
+    ExploreReadingPlanTableComponent
   ],
   imports: [
     AppRoutingModule,

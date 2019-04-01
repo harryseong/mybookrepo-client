@@ -18,7 +18,7 @@
 
 </div>
 
-<div mat-dialog-actions fxLayout="row" fxLayoutAlign="end end" fxLayoutGap.xs="0.5em">
-  <button mat-stroked-button (click)="closeDialog()" class="close-btn" ngClass.xs="xs">CANCEL</button>
-  <button mat-stroked-button (click)="createPlan()" class="close-btn" ngClass.xs="xs" [disabled]="!planForm.valid">CREATE</button>
+<div mat-dialog-actions fxLayout="row" fxLayoutAlign="end end" fxLayoutGap="0.5em" fxLayoutGap.xs="2%">
+  <button mat-stroked-button (click)="closeDialog()" class="dialog-btn" ngClass.xs="xs">CANCEL</button>
+  <button mat-stroked-button (click)="createPlan()" class="dialog-btn" ngClass.xs="xs" [disabled]="!planForm.valid">CREATE</button>
 </div>

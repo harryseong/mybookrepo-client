@@ -4,8 +4,8 @@
   <mat-drawer class="left-sidenav" opened mode="side" fxHide.xs>
     <mat-action-list>
 
-      <button mat-list-item routerLinkActive="true" routerLink="/explore/plan" class="action-list-btn"
-              [ngClass]="(router.url=='/explore/plan' || router.url=='/explore/plan/add')  ? 'selected' : ''"
+      <button mat-list-item routerLinkActive="true" routerLink="/explore/johndoe123/plan" class="action-list-btn"
+              [ngClass]="(router.url=='/explore/johndoe123/plan' || router.url=='/explore/johndoe123/plan/add')  ? 'selected' : ''"
               matTooltip="My Reading Plan" [matTooltipDisabled]=disableTooltip matTooltipPosition="right">
         <div fxLayout="row" fxLayoutAlign.xs="center">
           <i class="far fa-calendar-check fa-fw"></i>
@@ -13,8 +13,8 @@
         </div>
       </button>
 
-      <button mat-list-item routerLinkActive="true" routerLink="/explore/library" class="action-list-btn"
-              [ngClass]="(router.url=='/explore/library' || router.url=='/explore/library/add')  ? 'selected' : ''"
+      <button mat-list-item routerLinkActive="true" routerLink="/explore/johndoe123/library" class="action-list-btn"
+              [ngClass]="(router.url=='/explore/johndoe123/library' || router.url=='/explore/johndoe123/library/add')  ? 'selected' : ''"
               matTooltip="My Library" [matTooltipDisabled]=disableTooltip matTooltipPosition="right">
         <div fxLayout="row" fxLayoutAlign.xs="center">
           <i class="fas fa-list fa-fw"></i>
@@ -22,8 +22,8 @@
         </div>
       </button>
 
-      <button mat-list-item routerLinkActive="true" routerLink="/explore/account" class="action-list-btn"
-              [ngClass]="router.url=='/explore/account' ? 'selected' : ''"
+      <button mat-list-item routerLinkActive="true" routerLink="/explore/johndoe123/account" class="action-list-btn"
+              [ngClass]="router.url=='/explore/johndoe123/account' ? 'selected' : ''"
               matTooltip="My Account" [matTooltipDisabled]=disableTooltip matTooltipPosition="right">
         <div fxLayout="row" fxLayoutAlign.xs="center">
           <i class="fas fa-user fa-fw"></i>
@@ -40,16 +40,16 @@
 </mat-drawer-container>
 
 <div fxHide.gt-xs fxLayout="row" class="mobile-nav">
-  <button mat-button routerLinkActive="true" routerLink="/explore/plan" class="action-list-btn-xs" fxFlex="100/3"
-          [ngClass]="(router.url=='/explore/plan' || router.url=='/explore/plan/add')  ? 'selected' : ''"
+  <button mat-button routerLinkActive="true" routerLink="/explore/johndoe123/plan" class="action-list-btn-xs" fxFlex="100/3"
+          [ngClass]="(router.url=='/explore/johndoe123/plan' || router.url=='/explore/johndoe123/plan/add')  ? 'selected' : ''"
           matTooltip="My Reading Plan" matTooltipPosition="above">
     <div fxLayout="row" fxLayoutAlign="center">
       <i class="far fa-calendar-check fa-lg fa-fw"></i>
     </div>
   </button>
 
-  <button mat-button routerLinkActive="true" routerLink="/explore/account" class="action-list-btn-xs" fxFlex="100/3"
-          [ngClass]="router.url=='/explore/account' ? 'selected' : ''"
+  <button mat-button routerLinkActive="true" routerLink="/explore/johndoe123/account" class="action-list-btn-xs" fxFlex="100/3"
+          [ngClass]="router.url=='/explore/johndoe123/account' ? 'selected' : ''"
           matTooltip="My Account" matTooltipPosition="above">
     <div fxLayout="row" fxLayoutAlign="center center">
       <div class="user-img-border" fxLayout="row" fxLayoutAlign="center center">
@@ -58,8 +58,8 @@
     </div>
   </button>
 
-  <button mat-button routerLinkActive="true" routerLink="/explore/library" class="action-list-btn-xs" fxFlex="100/3"
-          [ngClass]="(router.url=='/explore/library' || router.url=='/explore/library/add')  ? 'selected' : ''"
+  <button mat-button routerLinkActive="true" routerLink="/explore/johndoe123/library" class="action-list-btn-xs" fxFlex="100/3"
+          [ngClass]="(router.url=='/explore/johndoe123/library' || router.url=='/explore/johndoe123/library/add')  ? 'selected' : ''"
           matTooltip="My Library" matTooltipPosition="above">
     <div fxLayout="row" fxLayoutAlign="center">
         <i class="fas fa-list fa-lg fa-fw"></i>

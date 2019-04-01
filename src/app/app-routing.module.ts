@@ -14,6 +14,7 @@ import {UserLibraryComponent} from './user-home/user-library/user-library.compon
 import {AuthGuard} from './auth.guard';
 import {ExploreReadingPlanComponent} from './explore/explore-reading-plan/explore-reading-plan.component';
 import {ExploreReadingPlanSearchComponent} from './explore/explore-reading-plan/explore-reading-plan-search/explore-reading-plan-search.component';
+import {ExploreReadingPlanTableComponent} from './explore/explore-reading-plan/explore-reading-plan-table/explore-reading-plan-table.component';
 
 const routes: Routes = [
   {path: '', component: HomeComponent},
@@ -26,9 +27,15 @@ const routes: Routes = [
       {path: 'library', component: UserLibraryComponent, canActivate: [AuthGuard]},
     ]
   },
-  {path: 'explore', component: ExploreComponent,
+  {path: 'explore', redirectTo: 'explore/johndoe123', pathMatch: 'full'},
+  {path: 'explore/johndoe123', component: ExploreComponent,
     children: [
-      {path: 'plan', component: ExploreReadingPlanComponent},
+      {path: '', redirectTo: 'plan', pathMatch: 'full'},
+      {path: 'plan', component: ExploreReadingPlanComponent,
+        children: [
+          {path: 'view/:id', component: ExploreReadingPlanTableComponent}
+        ]
+      },
       {path: 'plan/add', component: ExploreReadingPlanSearchComponent},
       {path: 'account', component: ExploreProfileComponent},
       {path: 'library', component: ExploreMyLibraryComponent},
