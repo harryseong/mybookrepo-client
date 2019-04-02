@@ -5,11 +5,12 @@
     <div fxLayout="row" fxLayoutAlign="center" class="content-element">
 
       <div fxLayout="column" fxLayoutGap="0.2em">
-        <div class="user-img-border  mat-elevation-z1" fxLayout="row" fxLayoutAlign="center center">
-          <img [src]="userSerivce.gravatarProfileImg500" class="user-img" alt="user-img">
+        <div class="user-img-border  mat-elevation-z1" fxLayout="row" fxLayoutAlign="center center"
+             *ngIf="userService.gravatarProfileImg40 != '' && userService.gravatarProfileImg40 != null">
+          <img [src]="userService.gravatarProfileImg500" class="user-img" alt="user-img">
         </div>
         <div class="user-name">
-          {{userSerivce.userFullName}}
+          {{userService.userFullName}}
         </div>
       </div>
 
@@ -20,13 +21,13 @@
         <div class="profile-info-header"><i class="fas fa-user fa-fw"></i>
           Username:
         </div>
-        <div>{{userSerivce.userDTO.username}}</div>
+        <div>{{userService.userDTO.username}}</div>
       </div>
       <div fxLayout="row" fxLayoutGap="0.3em">
         <div class="profile-info-header"><i class="fas fa-envelope fa-fw"></i>
           Email:
         </div>
-        <div>{{userSerivce.userDTO.email}}</div>
+        <div>{{userService.userDTO.email}}</div>
       </div>
       <div fxLayout="row" fxLayoutGap="0.3em">
         <div class="profile-info-header"><i class="fas fa-book fa-fw"></i>
@@ -40,10 +41,10 @@
       <div class="profile-actions"><a href="javascript:void(0)">Change username</a></div>
       <div class="profile-actions"><a href="javascript:void(0)">Change password</a></div>
       <div class="profile-actions"><a href="javascript:void(0)">Change email</a></div>
-      <div class="profile-actions"><a href="javascript:void(0)">Change profile picture</a></div>
+      <div class="profile-actions"><a href="https://en.gravatar.com/site/login" target="_blank">Change profile picture</a></div>
     </div>
 
-    <button mat-stroked-button (click)="userSerivce.logout()" class="content-element logout-btn">LOG OUT</button>
+    <button mat-stroked-button (click)="userService.logout()" class="content-element logout-btn">LOG OUT</button>
 
   </div>
 </div>

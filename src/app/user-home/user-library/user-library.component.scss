@@ -1,0 +1,34 @@
+$theme-color: #f5dd00;
+$theme-secondary: #373737;
+
+.content {
+  color: $theme-secondary;
+  padding: 1em;
+
+  .no-books-header {
+    font-size: 1.2em;
+    font-weight: 500;
+  }
+
+  .add-first-book-btn {
+    z-index: 10;
+    color: $theme-color;
+    background-color: $theme-secondary;
+  }
+
+  .add-book-btn {
+    z-index: 10;
+    color: $theme-color;
+    background-color: $theme-secondary;
+    position: fixed;
+    bottom: 2.5em;
+    right: 2.5em;
+  }
+}
+
+.content.xs {
+  .add-book-btn {
+    bottom: 5.5em;
+    right: 1.5em;
+  }
+}

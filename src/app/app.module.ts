@@ -38,6 +38,7 @@ import { PlanDialogComponent } from '../shared/dialogs/plan-dialog/plan-dialog.c
 import { ExploreReadingPlanTableComponent } from './explore/explore-reading-plan/explore-reading-plan-table/explore-reading-plan-table.component';
 import { UserAccountComponent } from './user-home/user-account/user-account.component';
 import { UserPlanComponent } from './user-home/user-plan/user-plan.component';
+import { UserLibraryAddComponent } from './user-home/user-library/user-library-add/user-library-add.component';
 
 @NgModule({
   declarations: [
@@ -62,7 +63,8 @@ import { UserPlanComponent } from './user-home/user-plan/user-plan.component';
     PlanDialogComponent,
     ExploreReadingPlanTableComponent,
     UserAccountComponent,
-    UserPlanComponent
+    UserPlanComponent,
+    UserLibraryAddComponent
   ],
   imports: [
     AppRoutingModule,

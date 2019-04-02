@@ -41,7 +41,7 @@
 
 <div fxHide.gt-xs fxLayout="row" class="mobile-nav">
 
-  <button mat-button routerLinkActive="true" routerLink="/explore/johndoe123/library" class="action-list-btn-xs" fxFlex="100/3"
+  <button mat-button routerLinkActive="true" [routerLink]="['/user', userService.username, 'library']" class="action-list-btn-xs" fxFlex="100/3"
           [ngClass]="(router.url=='/explore/johndoe123/library' || router.url=='/explore/johndoe123/library/add')  ? 'selected' : ''"
           matTooltip="My Library" matTooltipPosition="above">
     <div fxLayout="row" fxLayoutAlign="center">
@@ -49,18 +49,17 @@
     </div>
   </button>
 
-  <button mat-button routerLinkActive="true" routerLink="/explore/johndoe123/account" class="action-list-btn-xs" fxFlex="100/3"
+  <button mat-button routerLinkActive="true" [routerLink]="['/user', userService.username, 'account']" class="action-list-btn-xs" fxFlex="100/3"
           [ngClass]="router.url=='/explore/johndoe123/account' ? 'selected' : ''"
           matTooltip="My Account" matTooltipPosition="above">
     <div fxLayout="row" fxLayoutAlign="center center">
       <div class="user-img-border" fxLayout="row" fxLayoutAlign="center center">
-        <img src="/assets/images/sample-user.jpg" alt="user-profile-img" class="user-img">
+        <img [src]="userService.gravatarProfileImg40" alt="user-profile-img" class="user-img" *ngIf="userService.gravatarProfileImg40 != '' && userService.gravatarProfileImg40 != null">
       </div>
     </div>
   </button>
 
-
-  <button mat-button routerLinkActive="true" routerLink="/explore/johndoe123/plan" class="action-list-btn-xs" fxFlex="100/3"
+  <button mat-button routerLinkActive="true" [routerLink]="['/user', userService.username, 'plan']" class="action-list-btn-xs" fxFlex="100/3"
           [ngClass]="(router.url=='/explore/johndoe123/plan' || router.url=='/explore/johndoe123/plan/add')  ? 'selected' : ''"
           matTooltip="My Reading Plans" matTooltipPosition="above">
     <div fxLayout="row" fxLayoutAlign="center">

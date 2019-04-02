@@ -1,0 +1,34 @@
+$theme-color: #f5dd00;
+$theme-secondary: #373737;
+
+.content {
+  color: $theme-secondary;
+  padding: 1em 1em 0 1em;
+
+  .search-form-div {
+    padding: 1em;
+
+    .search-form-field {
+      width: 20em;
+      max-width: 100%;
+      font-size: 1em;
+    }
+
+    .search-btn-div {
+      margin-bottom: 20px;
+
+      .search-btn {
+        background-color: $theme-secondary;
+        color: $theme-color;
+      }
+    }
+  }
+}
+
+.content.xs {
+  .search-form-div {
+    .search-form-field {
+      width: 100%;
+    }
+  }
+}

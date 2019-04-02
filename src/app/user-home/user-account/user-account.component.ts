@@ -26,7 +26,7 @@ export class UserAccountComponent implements OnInit {
   bookDTOArray: any[] = [];
   isLoading = true;
 
-  constructor(public userSerivce: UserService) {
+  constructor(public userService: UserService) {
   }
 
   ngOnInit() {
