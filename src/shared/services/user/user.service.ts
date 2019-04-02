@@ -18,7 +18,8 @@ export class UserService {
   username: string;
   userFullName: string;    // Use as display name on navbar and sidnav.
   userDTO: UserDTO;
-  gravatarProfileImg: string;
+  gravatarProfileImg40: string;
+  gravatarProfileImg500: string;
   jwtHelperService = new JwtHelperService();
 
   constructor(private http: HttpClient, private router: Router, private authApiService: AuthApiService) {}
@@ -74,14 +75,15 @@ export class UserService {
     this.getUserByUsername(this.username).subscribe(
       (userDTO: UserDTO) => {
         this.userDTO = userDTO;
-        this.gravatarProfileImg = 'https://www.gravatar.com/avatar/' + crypto.MD5(this.userDTO.email).toString();
+        this.gravatarProfileImg40 = 'https://www.gravatar.com/avatar/' + crypto.MD5(this.userDTO.email).toString() + '?s=40';
+        this.gravatarProfileImg500 = 'https://www.gravatar.com/avatar/' + crypto.MD5(this.userDTO.email).toString() + '?s=500';
         this.userFullName = userDTO.firstName + ' ' + userDTO.lastName;
         this.isLoading = false;
       }
     );
     // Save access token to local storage until logout.
     localStorage.setItem(environment.jwt.local_storage_key, this.accessToken);
-    this.router.navigate(['user']);
+    this.router.navigate(['user', this.username]);
   }
 
   /**

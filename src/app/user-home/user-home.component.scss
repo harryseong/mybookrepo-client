@@ -1,4 +1,76 @@
+$theme-color: #f5dd00;
+$theme-secondary: #373737;
+
+app-navbar {
+  width: 100%;
+  z-index: 100;
+}
+
 .content {
-  padding: 1em 0.5em;
-  height: auto;
+  height: calc(100% - 64px);
+
+  .left-sidenav {
+    background-color: $theme-secondary;
+    color: $theme-color;
+
+    mat-action-list {
+      .action-list-btn {
+        color: $theme-color;
+      }
+    }
+  }
+}
+
+.content.xs {
+  height: calc(100% - 56px - 47.44px);
+}
+
+.user-img-border {
+  height: 2.4em;
+  width: 2.4em;
+  border: 1.2pt solid $theme-color;
+  border-radius: 50%;
+  padding: 0.1em;
+
+  .user-img {
+    height: 1.8em;
+    width: 1.8em;
+    background-color: $theme-secondary;
+    border-radius: 50%;
+  }
+}
+
+%action-list-btn {
+  background-color: $theme-secondary;
+  color: $theme-color;
+  border-radius: 0;
+  padding: 0.5em;
+  border: 2pt solid rgba(0, 0, 0, 0);
+}
+
+.action-list-btn, .action-list-btn-xs {
+  @extend %action-list-btn;
+}
+
+.action-list-btn.selected {
+  background-color: #323232;
+  border-left: 2pt solid $theme-color;
+  transition: 0.2s;
+}
+
+.action-list-btn-xs.selected {
+  background-color: #323232;
+  border-bottom: 2pt solid $theme-color;
+  transition: 0.2s;
+}
+
+.mobile-nav {
+  z-index: 100;
+  width: 100%;
+  position: fixed;
+  bottom: 0;
+
+  .mobile-nav-label {
+    padding: 0;
+  }
 }

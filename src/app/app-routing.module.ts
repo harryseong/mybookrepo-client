@@ -22,13 +22,15 @@ const routes: Routes = [
   {path: 'login', component: LoginComponent},
   {path: 'signup', component: SignupComponent},
   {path: 'about', component: AboutComponent},
-  {path: 'user', component: UserHomeComponent,
+  {path: 'user/:username', component: UserHomeComponent,
     children: [
+      {path: '', redirectTo: 'library', pathMatch: 'full', canActivate: [AuthGuard]},
       {path: 'library', component: UserLibraryComponent, canActivate: [AuthGuard]},
       {path: 'plan', component: UserPlanComponent, canActivate: [AuthGuard]},
       {path: 'account', component: UserAccountComponent, canActivate: [AuthGuard]},
     ]
   },
+  {path: '**', redirectTo: ''},
   {path: 'explore', redirectTo: 'explore/johndoe123', pathMatch: 'full'},
   {path: 'explore/johndoe123', component: ExploreComponent,
     children: [
