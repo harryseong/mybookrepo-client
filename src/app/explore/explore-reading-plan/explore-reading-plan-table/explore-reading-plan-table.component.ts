@@ -22,6 +22,36 @@ import {DialogService} from '../../../../shared/services/dialog/dialog.service';
         ])
       ]),
     ]),
+    trigger('planGearAnimations', [
+      state('default', style({ transform: 'rotate(0)'})),
+      state('turned', style({ transform: 'rotate(45deg)'})),
+
+      transition('* => *', [
+        animate('0.3s ease')
+      ])
+    ]),
+    trigger('planActionAnimations', [
+      transition(':enter', [
+        query('.plan-action-btn', [
+          style({ opacity: 0, transform: 'translateX(-3em) rotate(-90deg)'}),
+          stagger(100, [
+            sequence([
+              animate('0.2s ease', style({ opacity: 1, transform: 'translateX(0)' })),
+            ])
+          ])
+        ])
+      ]),
+      transition(':leave', [
+        query('.plan-action-btn', [
+          style({ opacity: 1}),
+          stagger(-100, [
+            sequence([
+              animate('0.2s ease', style({ opacity: 0, transform: 'translateX(-3em) rotate(-90deg)' })),
+            ])
+          ])
+        ])
+      ]),
+    ]),
     trigger('dropZoneAnimations', [
       state('hide', style({ opacity: 0 })),
       state('show', style({ opacity: 0.95, transform: 'translateY(-1em)' })),
@@ -66,6 +96,8 @@ export class ExploreReadingPlanTableComponent implements OnInit {
   inDoneZone = false;
   inRemoveZone = false;
   dropZoneState = 'hide';
+  planActionsVisible = false;
+  gearTurn = 'default';
 
   constructor(private route: ActivatedRoute, private dialogService: DialogService) { }
 
@@ -101,6 +133,11 @@ export class ExploreReadingPlanTableComponent implements OnInit {
         event.previousIndex,
         event.currentIndex);
     }
+  }
+
+  togglePlanActions() {
+    this.planActionsVisible = !this.planActionsVisible;
+    this.gearTurn = this.gearTurn === 'default' ? 'turned' : 'default';
   }
 
   dragStarted() {

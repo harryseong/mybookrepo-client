@@ -12,9 +12,15 @@ import {animate, query, sequence, stagger, style, transition, trigger} from '@an
   animations: [
     trigger('contentAnimations', [
       transition(':enter', [
-        style({ opacity: 0, transform: 'translateY(0.5em)'}),
-        animate('1s ease', style({ opacity: 1, transform: 'translateY(0)'})),
-      ])
+        query('.content-element', [
+          style({ opacity: 0, transform: 'translateY(1em)'}),
+          stagger(100, [
+            sequence([
+              animate('0.5s ease', style({ opacity: 1, transform: 'translateY(0)' })),
+            ])
+          ])
+        ])
+      ]),
     ]),
     trigger('errorMessageAnimations', [
       transition(':enter', [

@@ -9,9 +9,9 @@
 
     <div fxLayout="row" fxLayoutAlign="center center" class="signup-card-div" ngClass.xs="xs" [@contentAnimations]>
       <div class="signup-card" fxLayout="column" fxLayoutGap="0.5em" fxFlex="40" fxFlex.sm="60" fxFlex.xs="90">
-        <div class="page-header">Sign Up</div>
-        <form [formGroup]="signupForm" fxLayout="column" fxLayoutGap="1em">
-          <div fxLayout="row wrap" fxLayout.xs="column" fxLayoutGap="1em">
+        <div class="page-header content-element">Sign Up</div>
+        <form [formGroup]="signupForm" fxLayout="column" fxLayoutGap="1.5em" fxLayoutGap.xs="1em">
+          <div fxLayout="row wrap" fxLayout.xs="column" fxLayoutGap="1em" fxLayoutGap.xs="1em" class="content-element">
             <mat-form-field>
               <mat-label>Username</mat-label>
               <input type="text" matInput formControlName="username" maxlength="15" required (keyup)="checkUsernameInDB()" (keyup.enter)="signup()" [errorStateMatcher]="matcher">
@@ -38,7 +38,7 @@
             </mat-form-field>
           </div>
 
-          <div fxLayout="row wrap" fxLayout.xs="column" fxLayoutGap="1em">
+          <div fxLayout="row wrap" fxLayout.xs="column" fxLayoutGap="1em" fxLayoutGap.xs="1em" class="content-element">
             <mat-form-field>
               <mat-label>First Name</mat-label>
               <input type="text" matInput formControlName="firstName" required (keyup.enter)="signup()" [errorStateMatcher]="matcher">
@@ -56,7 +56,7 @@
             </mat-form-field>
           </div>
 
-          <div fxLayout="column" fxLayoutGap="1em">
+          <div fxLayout="column" fxLayoutGap="1em" class="content-element">
             <mat-form-field>
               <mat-label>Password</mat-label>
               <input type="password" matInput formControlName="password" required (keyup)="verifyPassword()" (keyup.enter)="signup()" [errorStateMatcher]="matcher">
@@ -80,9 +80,11 @@
             </mat-form-field>
           </div>
 
-          <button mat-stroked-button type="button" fxFlex="100" class="create-account-btn" [disabled]="!signupForm.valid" (keyup.enter)="signup()" (click)="signup()">CREATE ACCOUNT</button>
+          <button mat-stroked-button type="button" fxFlex="100" class="create-account-btn content-element" [disabled]="!signupForm.valid" (keyup.enter)="signup()" (click)="signup()">CREATE ACCOUNT</button>
 
-          <a routerLinkActive="true" routerLink="/login">I already have an account</a>
+          <div class="content-element">
+            <a routerLinkActive="true" routerLink="/login">I already have an account</a>
+          </div>
         </form>
       </div>
     </div>

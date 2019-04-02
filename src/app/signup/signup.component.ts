@@ -6,7 +6,7 @@ import {AuthApiService} from '../../shared/services/api/auth/auth-api.service';
 import {UserDTO} from '../../shared/dto/dto.module';
 import {UserService} from '../../shared/services/user/user.service';
 import {SnackBarService} from '../../shared/services/snackBar/snack-bar.service';
-import {animate, style, transition, trigger} from '@angular/animations';
+import {animate, query, sequence, stagger, style, transition, trigger} from '@angular/animations';
 
 @Component({
   selector: 'app-signup',
@@ -15,9 +15,15 @@ import {animate, style, transition, trigger} from '@angular/animations';
   animations: [
     trigger('contentAnimations', [
       transition(':enter', [
-        style({ opacity: 0, transform: 'translateY(0.5em)'}),
-        animate('1s ease', style({ opacity: 1, transform: 'translateY(0)'})),
-      ])
+        query('.content-element', [
+          style({ opacity: 0, transform: 'translateY(1em)'}),
+          stagger(100, [
+            sequence([
+              animate('0.5s ease', style({ opacity: 1, transform: 'translateY(0)' })),
+            ])
+          ])
+        ])
+      ]),
     ])
   ]
 })

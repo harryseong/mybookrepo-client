@@ -1,15 +1,22 @@
 <div class="content" ngClass.xs="xs" fxLayout="column" fxLayoutGap="1em" [@contentAnimations]>
 
-  <div fxLayout="row" fxLayoutAlign="start center">
+  <div fxLayout="row" fxLayoutAlign="start center" class="content-element">
     <div class="plan-name">{{currentPlan.name}}</div>
-    <button mat-icon-button [matMenuTriggerFor]="planMenu">
-      <span><i class="fas fa-ellipsis-v"></i></span>
+
+    <button mat-icon-button (click)="togglePlanActions()" [@planGearAnimations]="gearTurn">
+      <i class="fas fa-cog"></i>
     </button>
 
-    <mat-menu #planMenu="matMenu" yPosition="below" xPosition="after">
-      <button mat-menu-item (click)="editPlan()"><i class="far fa-edit fa-fw"></i>&nbsp;Edit Plan</button>
-      <button mat-menu-item class="delete-plan-btn" (click)="deletePlan()"><i class="far fa-trash-alt fa-fw"></i>&nbsp;Delete Plan</button>
-    </mat-menu>
+    <div [@planActionAnimations] *ngIf="planActionsVisible==true">
+      <button mat-icon-button class="edit-plan-btn plan-action-btn" (click)="editPlan()" matTooltip="Edit Plan" matTooltipPosition="above">
+        <i class="far fa-edit fa-fw"></i>
+      </button>
+
+      <button mat-icon-button class="delete-plan-btn plan-action-btn" (click)="deletePlan()" matTooltip="Delete Plan" matTooltipPosition="above">
+        <i class="far fa-trash-alt fa-fw"></i>
+      </button>
+    </div>
+
   </div>
 
   <div fxLayout="row" fxLayout.xs="column" fxLayoutGap.xs="0.5em">

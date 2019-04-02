@@ -10,7 +10,8 @@
         <span><i class="fas fa-plus"></i>&nbsp;PLAN</span>
       </button>
       <button mat-stroked-button *ngFor="let plan of planArray" [ngClass]="currentPlan===plan.name ? 'plan-btn selected' : 'plan-btn'"
-              routerLinkActive="true" routerLink="/explore/johndoe123/plan/view/{{plan.name}}">{{plan.name}}</button>
+              routerLinkActive="true" routerLink="/explore/johndoe123/plan/view/{{plan.name}}">{{plan.name}}
+      </button>
     </div>
   </div>
 

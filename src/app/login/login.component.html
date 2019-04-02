@@ -9,7 +9,7 @@
 
     <div fxLayout="row" fxLayoutAlign="center center" class="login-card-div" ngClass.xs="xs" [@contentAnimations]>
       <div class="login-card" fxLayout="column" fxLayoutGap="0.5em" fxFlex="25" fxFlex.sm="40" fxFlex.xs="90">
-        <div class="page-header">Log In</div>
+        <div class="page-header content-element">Log In</div>
         <form [formGroup]="loginForm" fxLayout="column" fxLayoutGap="1em">
           <div fxLayout="column" fxLayout.xs="column" fxLayoutGap="0.7em">
 
@@ -20,7 +20,7 @@
               </div>
             </div>
 
-            <mat-form-field>
+            <mat-form-field class="content-element">
               <mat-label>Username</mat-label>
               <input type="text" matInput formControlName="username" required (keyup.enter)="login()" [errorStateMatcher]="matcher">
               <mat-error *ngIf="loginForm.get('username').hasError('required')">
@@ -28,7 +28,7 @@
               </mat-error>
             </mat-form-field>
 
-            <mat-form-field>
+            <mat-form-field class="content-element">
               <mat-label>Password</mat-label>
               <input type="password" matInput formControlName="password" required (keyup.enter)="login()" [errorStateMatcher]="matcher">
               <mat-error *ngIf="loginForm.get('password').hasError('required')">
@@ -38,10 +38,13 @@
 
           </div>
 
-          <button mat-stroked-button type="button" fxFlex="100" class="create-account-btn" [disabled]="!loginForm.valid" (keyup.enter)="login()" (click)="login()">LOGIN</button>
+          <button mat-stroked-button type="button" fxFlex="100" class="create-account-btn content-element" [disabled]="!loginForm.valid" (keyup.enter)="login()" (click)="login()">LOGIN</button>
 
-          <a href="javascript:void(0)">I forgot my password</a>
-          <a routerLinkActive="true" routerLink="/signup">Create an account</a>
+          <div class="content-element" fxLayout="column">
+            <a href="javascript:void(0)">I forgot my password</a>
+            <a routerLinkActive="true" routerLink="/signup">Create an account</a>
+          </div>
+
         </form>
       </div>
     </div>

@@ -5,6 +5,11 @@ $theme-secondary: #373737;
   color: $theme-secondary;
   padding: 1em;
 
+  .add-plan-btn {
+    color: $theme-color;
+    background-color: $theme-secondary;
+  }
+
   .year-btn-row {
     overflow-x: scroll;
     padding-bottom: 1em;
@@ -16,11 +21,6 @@ $theme-secondary: #373737;
 
     .plan-btn.selected {
       background-color: #dfdfdf;
-    }
-
-    .add-plan-btn {
-      color: $theme-color;
-      background-color: $theme-secondary;
     }
   }
 }
