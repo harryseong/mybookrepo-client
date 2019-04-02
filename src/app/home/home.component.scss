@@ -52,7 +52,9 @@ app-navbar {
 
       .feature-icon-border {
         height: 1.8em;
+        min-height: 1.8em;
         width: 1.8em;
+        min-width: 1.8em;
         border: solid 1.7pt $theme-color;
         border-radius: 50%;
       }

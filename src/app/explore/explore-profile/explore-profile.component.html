@@ -17,12 +17,22 @@
 
     <div class="content-element">
       <div fxLayout="row" fxLayoutGap="0.3em">
-        <div class="profile-info-header"><i class="fas fa-user fa-fw"></i></div>
+        <div class="profile-info-header"><i class="fas fa-user fa-fw"></i>
+          Username:
+        </div>
         <div>johndoe123</div>
       </div>
       <div fxLayout="row" fxLayoutGap="0.3em">
-        <div class="profile-info-header"><i class="fas fa-envelope fa-fw"></i></div>
+        <div class="profile-info-header"><i class="fas fa-envelope fa-fw"></i>
+          Email:
+        </div>
         <div>johndoe@gmail.com</div>
+      </div>
+      <div fxLayout="row" fxLayoutGap="0.3em">
+        <div class="profile-info-header"><i class="fas fa-book fa-fw"></i>
+          Book<span *ngIf="bookDTOArray.length > 1">s</span>:
+        </div>
+        <div>{{bookDTOArray.length}}</div>
       </div>
     </div>
 

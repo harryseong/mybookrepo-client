@@ -10,11 +10,13 @@
     <div fxLayout="row" fxLayoutAlign="center center" class="login-card-div" ngClass.xs="xs" [@contentAnimations]>
       <div class="login-card" fxLayout="column" fxLayoutGap="0.5em" fxFlex="25" fxFlex.sm="40" fxFlex.xs="90">
 
-        <div fxLayout="row" fxLayoutAlign="center center" class="content-element">
-          <i class="fas fa-book-open fa-2x"></i>
-        </div>
+        <div fxLayout="column" fxLayoutGap="0">
+          <div fxLayout="row" fxLayoutAlign="center center" class="content-element">
+            <i class="fas fa-book-open fa-2x"></i>
+          </div>
 
-        <div class="page-header content-element">Log In</div>
+          <div class="page-header content-element">Log In</div>
+        </div>
 
         <form [formGroup]="loginForm" fxLayout="column" fxLayoutGap="1em">
           <div fxLayout="column" fxLayout.xs="column" fxLayoutGap="0.7em">
@@ -44,7 +46,9 @@
 
           </div>
 
-          <button mat-stroked-button type="button" fxFlex="100" class="create-account-btn content-element" [disabled]="!loginForm.valid" (keyup.enter)="login()" (click)="login()">LOGIN</button>
+          <button mat-stroked-button type="button" fxFlex="100" class="create-account-btn content-element" [disabled]="!loginForm.valid" (keyup.enter)="login()" (click)="login()">
+            LOG IN
+          </button>
 
           <div class="content-element" fxLayout="column">
             <a href="javascript:void(0)">I forgot my password</a>

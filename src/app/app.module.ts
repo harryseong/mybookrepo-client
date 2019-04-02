@@ -29,7 +29,6 @@ import {DialogService} from '../shared/services/dialog/dialog.service';
 import { BookCardComponent } from '../shared/book-card/book-card.component';
 import { AboutComponent } from './about/about.component';
 import { UserHomeComponent } from './user-home/user-home.component';
-import { UserProfileComponent } from './user-home/user-profile/user-profile.component';
 import { UserLibraryComponent } from './user-home/user-library/user-library.component';
 import { ExploreFirstTimeDialogComponent } from '../shared/dialogs/explore-first-time-dialog/explore-first-time-dialog.component';
 import { ExploreReadingPlanComponent } from './explore/explore-reading-plan/explore-reading-plan.component';
@@ -37,6 +36,8 @@ import {LayoutModule} from '@angular/cdk/layout';
 import { ExploreReadingPlanSearchComponent } from './explore/explore-reading-plan/explore-reading-plan-search/explore-reading-plan-search.component';
 import { PlanDialogComponent } from '../shared/dialogs/plan-dialog/plan-dialog.component';
 import { ExploreReadingPlanTableComponent } from './explore/explore-reading-plan/explore-reading-plan-table/explore-reading-plan-table.component';
+import { UserAccountComponent } from './user-home/user-account/user-account.component';
+import { UserPlanComponent } from './user-home/user-plan/user-plan.component';
 
 @NgModule({
   declarations: [
@@ -54,13 +55,14 @@ import { ExploreReadingPlanTableComponent } from './explore/explore-reading-plan
     BookCardComponent,
     AboutComponent,
     UserHomeComponent,
-    UserProfileComponent,
     UserLibraryComponent,
     ExploreFirstTimeDialogComponent,
     ExploreReadingPlanComponent,
     ExploreReadingPlanSearchComponent,
     PlanDialogComponent,
-    ExploreReadingPlanTableComponent
+    ExploreReadingPlanTableComponent,
+    UserAccountComponent,
+    UserPlanComponent
   ],
   imports: [
     AppRoutingModule,

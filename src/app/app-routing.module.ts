@@ -9,12 +9,13 @@ import {ExploreMyLibraryComponent} from './explore/explore-my-library/explore-my
 import {ExploreProfileComponent} from './explore/explore-profile/explore-profile.component';
 import {AboutComponent} from './about/about.component';
 import {UserHomeComponent} from './user-home/user-home.component';
-import {UserProfileComponent} from './user-home/user-profile/user-profile.component';
 import {UserLibraryComponent} from './user-home/user-library/user-library.component';
 import {AuthGuard} from './auth.guard';
 import {ExploreReadingPlanComponent} from './explore/explore-reading-plan/explore-reading-plan.component';
 import {ExploreReadingPlanSearchComponent} from './explore/explore-reading-plan/explore-reading-plan-search/explore-reading-plan-search.component';
 import {ExploreReadingPlanTableComponent} from './explore/explore-reading-plan/explore-reading-plan-table/explore-reading-plan-table.component';
+import {UserAccountComponent} from './user-home/user-account/user-account.component';
+import {UserPlanComponent} from './user-home/user-plan/user-plan.component';
 
 const routes: Routes = [
   {path: '', component: HomeComponent},
@@ -23,8 +24,9 @@ const routes: Routes = [
   {path: 'about', component: AboutComponent},
   {path: 'user', component: UserHomeComponent,
     children: [
-      {path: 'profile', component: UserProfileComponent, canActivate: [AuthGuard]},
       {path: 'library', component: UserLibraryComponent, canActivate: [AuthGuard]},
+      {path: 'plan', component: UserPlanComponent, canActivate: [AuthGuard]},
+      {path: 'account', component: UserAccountComponent, canActivate: [AuthGuard]},
     ]
   },
   {path: 'explore', redirectTo: 'explore/johndoe123', pathMatch: 'full'},

@@ -10,11 +10,13 @@
     <div fxLayout="row" fxLayoutAlign="center center" class="signup-card-div" ngClass.xs="xs" [@contentAnimations]>
       <div class="signup-card" fxLayout="column" fxLayoutGap="0.5em" fxFlex="40" fxFlex.sm="60" fxFlex.xs="90">
 
-        <div fxLayout="row" fxLayoutAlign="center center" class="content-element">
-          <i class="fas fa-book-open fa-2x"></i>
+        <div fxLayout="column" fxLayoutGap="0">
+          <div fxLayout="row" fxLayoutAlign="center center" class="content-element">
+            <i class="fas fa-book-open fa-2x"></i>
+          </div>
+
+          <div class="page-header content-element">Sign Up</div>
         </div>
-        
-        <div class="page-header content-element">Sign Up</div>
 
         <form [formGroup]="signupForm" fxLayout="column" fxLayoutGap="1.5em" fxLayoutGap.xs="1em">
           <div fxLayout="row wrap" fxLayout.xs="column" fxLayoutGap="1em" fxLayoutGap.xs="1em" class="content-element">
