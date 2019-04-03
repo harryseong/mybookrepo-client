@@ -1,5 +1,4 @@
-import { Component, OnInit } from '@angular/core';
-import {ActivatedRoute} from '@angular/router';
+import {Component, Input, OnInit} from '@angular/core';
 import {BookDTO, PlanDTO} from '../../../../shared/dto/dto.module';
 import {CdkDragDrop, moveItemInArray, transferArrayItem} from '@angular/cdk/drag-drop';
 import {animate, query, sequence, stagger, state, style, transition, trigger} from '@angular/animations';
@@ -83,8 +82,9 @@ import {DialogService} from '../../../../shared/services/dialog/dialog.service';
   ]
 })
 export class ExploreReadingPlanTableComponent implements OnInit {
-  isLoading = true;
+  @Input()
   currentPlan: PlanDTO;
+  isLoading = true;
   bookDTOArray: any[] = [];
   toRead = [];
   reading = [];
@@ -100,16 +100,10 @@ export class ExploreReadingPlanTableComponent implements OnInit {
   gearTurn = 'default';
 
   constructor(
-    private route: ActivatedRoute,
     private dialogService: DialogService
   ) { }
 
   ngOnInit() {
-    this.route.params.subscribe(
-      params => {
-        this.currentPlan = JSON.parse(localStorage.getItem('plans')).find((plan) => plan.name === params.id);
-      }
-    );
     this.getBooks();
   }
 
@@ -157,11 +151,11 @@ export class ExploreReadingPlanTableComponent implements OnInit {
   }
 
   editPlan() {
-    this.dialogService.openPlanDialog(this.currentPlan, 'EDIT');
+    this.dialogService.openPlanDialog(this.currentPlan, 'EXPLORE_EDIT');
   }
 
   deletePlan() {
-    this.dialogService.openPlanDialog(this.currentPlan, 'DELETE');
+    this.dialogService.openPlanDialog(this.currentPlan, 'EXPLORE_DELETE');
   }
 
   enteredToReadZone() {

@@ -24,7 +24,7 @@ export class PlanDialogComponent implements OnInit {
   ) { }
 
   ngOnInit() {
-    if (this.data.type === 'EDIT') {
+    if (this.data.type === 'EDIT' || this.data.type === 'EXPLORE_EDIT') {
       this.planForm.get('name').setValue(this.data.plan.name);
       this.planForm.get('description').setValue(this.data.plan.description);
     }
@@ -70,7 +70,7 @@ export class PlanDialogComponent implements OnInit {
     plans.push(newPlan);
     plans.sort((a, b) => a.name > b.name ? 1 : (a.name === b.name) ? 0 : -1);
     localStorage.setItem('plans', JSON.stringify(plans));
-    this.resourcesPlanService.planCreatedEvent$.next(newPlan.name);
+    this.resourcesPlanService.planCreatedEvent$.next(newPlan);
     this.snackBarService.openSnackBar('"' + newPlan.name + '" was created.', 'OK');
     this.closeDialog();
   }
@@ -78,13 +78,14 @@ export class PlanDialogComponent implements OnInit {
   exploreUpdatePlan(planDTO: PlanDTO) {
     const updatedPlanName = this.planForm.get('name').value;
     const updatedPlanDescription = this.planForm.get('description').value;
+    const updatedPlan: PlanDTO = new PlanDTO(updatedPlanName, updatedPlanDescription);
     const plans: PlanDTO[] = JSON.parse(localStorage.getItem('plans'));
     const planIndex = plans.findIndex(x => x.name === planDTO.name);
     plans[planIndex] = new PlanDTO(updatedPlanName, updatedPlanDescription);
     plans.sort((a, b) => a.name > b.name ? 1 : (a.name === b.name) ? 0 : -1);
     localStorage.setItem('plans', JSON.stringify(plans));
     this.snackBarService.openSnackBar('"' + updatedPlanName + '" was updated.', 'OK');
-    this.resourcesPlanService.planUpdatedEvent$.next(updatedPlanName);
+    this.resourcesPlanService.planUpdatedEvent$.next(updatedPlan);
     this.closeDialog();
   }
 
@@ -94,7 +95,7 @@ export class PlanDialogComponent implements OnInit {
     plans.splice(planIndex, 1);
     localStorage.setItem('plans', JSON.stringify(plans));
     this.snackBarService.openSnackBar('"' + planDTO.name + '" was deleted.', 'OK');
-    this.resourcesPlanService.planDeletedEvent$.next();
+    this.resourcesPlanService.planDeletedEvent$.next(planDTO);
     this.closeDialog();
   }
 }

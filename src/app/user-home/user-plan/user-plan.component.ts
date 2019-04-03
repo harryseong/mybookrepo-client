@@ -84,7 +84,7 @@ export class UserPlanComponent implements OnInit, OnDestroy {
     this.currentPlan = planDTO;
   }
 
-  addPlan() {
+  createPlan() {
     this.dialogService.openPlanDialog(null, 'CREATE');
   }
 

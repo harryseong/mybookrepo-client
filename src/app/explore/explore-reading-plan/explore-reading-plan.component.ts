@@ -1,10 +1,9 @@
 import {Component, OnDestroy, OnInit} from '@angular/core';
 import {DialogService} from '../../../shared/services/dialog/dialog.service';
-import {animate, query, sequence, stagger, state, style, transition, trigger} from '@angular/animations';
+import {animate, query, sequence, stagger, style, transition, trigger} from '@angular/animations';
 import {Subscription} from 'rxjs';
-import {Router} from '@angular/router';
-import {ResourcesLibraryService} from '../../../shared/services/api/resources/library/resources-library.service';
 import {ResourcesPlanService} from '../../../shared/services/api/resources/plan/resources-plan.service';
+import {PlanDTO} from '../../../shared/dto/dto.module';
 
 @Component({
   selector: 'app-explore-reading-plan',
@@ -31,26 +30,25 @@ export class ExploreReadingPlanComponent implements OnInit, OnDestroy {
   planDeleted$: Subscription;
   planArray: any[] = [];
   isLoading = true;
-  currentPlan = '';
+  currentPlan: PlanDTO = null;
 
   constructor(
     private dialogService: DialogService,
     private resourcesPlanService: ResourcesPlanService,
-    private router: Router
   ) { }
 
   ngOnInit() {
-    this.planCreated$ = this.resourcesPlanService.planCreatedEvent$.subscribe((createdPlanName) => {
+    this.planCreated$ = this.resourcesPlanService.planCreatedEvent$.subscribe((planDTO: PlanDTO) => {
+      this.currentPlan = planDTO;
       this.getPlans();
-      this.router.navigate(['/explore/johndoe123/plan/view', createdPlanName]);
     });
-    this.planUpdated$ = this.resourcesPlanService.planUpdatedEvent$.subscribe((updatedPlanName) => {
+    this.planUpdated$ = this.resourcesPlanService.planUpdatedEvent$.subscribe((planDTO: PlanDTO) => {
+      this.currentPlan = planDTO;
       this.getPlans();
-      this.router.navigate(['/explore/johndoe123/plan/view', updatedPlanName]);
     });
-    this.planDeleted$ = this.resourcesPlanService.planDeletedEvent$.subscribe((deletedPlanName) => {
+    this.planDeleted$ = this.resourcesPlanService.planDeletedEvent$.subscribe((planDTO: PlanDTO) => {
+      this.currentPlan = null;
       this.getPlans();
-      this.router.navigate(['/explore/johndoe123/plan']);
     });
     this.getPlans();
   }
@@ -75,12 +73,13 @@ export class ExploreReadingPlanComponent implements OnInit, OnDestroy {
     }
   }
 
-  addPlan() {
-    this.dialogService.openPlanDialog(null, 'CREATE');
+  viewPlan(planDTO: PlanDTO) {
+    this.currentPlan = planDTO;
   }
 
-  removePlan() {
-
+  createPlan() {
+    this.dialogService.openPlanDialog(null, 'EXPLORE_CREATE');
   }
 
+  removePlan() {}
 }

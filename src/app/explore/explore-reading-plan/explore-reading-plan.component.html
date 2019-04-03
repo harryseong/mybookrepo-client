@@ -6,17 +6,20 @@
     </div>
 
     <div fxLayout="row" fxLayoutGap="0.5em" class="year-btn-row content-element">
-      <button mat-stroked-button (click)="addPlan()" class="add-plan-btn">
+      <button mat-stroked-button (click)="createPlan()" class="add-plan-btn">
         <span><i class="fas fa-plus"></i>&nbsp;PLAN</span>
       </button>
-      <button mat-stroked-button *ngFor="let plan of planArray" [ngClass]="currentPlan===plan.name ? 'plan-btn selected' : 'plan-btn'"
-              routerLinkActive="true" routerLink="/explore/johndoe123/plan/view/{{plan.name}}">{{plan.name}}
+      <button mat-stroked-button *ngFor="let plan of planArray" (click)="viewPlan(plan)"
+              [ngClass]="currentPlan != null ? (currentPlan.name===plan.name ? 'plan-btn selected' : 'plan-btn') : 'plan-btn'">
+        {{plan.name}}
       </button>
     </div>
   </div>
 
   <mat-divider class="content-element"></mat-divider>
 
-  <router-outlet></router-outlet>
+  <div *ngIf="currentPlan != null">
+    <app-explore-reading-plan-table [currentPlan]="currentPlan"></app-explore-reading-plan-table>
+  </div>
 
 </div>
