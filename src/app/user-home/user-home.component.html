@@ -4,8 +4,7 @@
   <mat-drawer class="left-sidenav" opened mode="side" fxHide.xs>
     <mat-action-list>
 
-      <button mat-list-item routerLinkActive="true" [routerLink]="['/user', userService.username, 'library']" class="action-list-btn"
-              [ngClass]="(router.url=='/explore/johndoe123/library' || router.url=='/explore/johndoe123/library/add')  ? 'selected' : ''"
+      <button mat-list-item routerLinkActive="selected" [routerLink]="['/user', userService.username, 'library']" class="action-list-btn"
               matTooltip="My Library" [matTooltipDisabled]=disableTooltip matTooltipPosition="right">
         <div fxLayout="row" fxLayoutAlign.xs="center">
           <i class="fas fa-list fa-fw"></i>
@@ -13,8 +12,7 @@
         </div>
       </button>
 
-      <button mat-list-item routerLinkActive="true" [routerLink]="['/user', userService.username, 'plan']" class="action-list-btn"
-              [ngClass]="(router.url=='/user/plan' || router.url=='/explore/johndoe123/plan/add')  ? 'selected' : ''"
+      <button mat-list-item routerLinkActive="selected" [routerLink]="['/user', userService.username, 'plan']" class="action-list-btn"
               matTooltip="My Reading Plans" [matTooltipDisabled]=disableTooltip matTooltipPosition="right">
         <div fxLayout="row" fxLayoutAlign.xs="center">
           <i class="far fa-calendar-check fa-fw"></i>
@@ -22,8 +20,7 @@
         </div>
       </button>
 
-      <button mat-list-item routerLinkActive="true" [routerLink]="['/user', userService.username, 'account']" class="action-list-btn"
-              [ngClass]="router.url=='/explore/johndoe123/account' ? 'selected' : ''"
+      <button mat-list-item routerLinkActive="selected" [routerLink]="['/user', userService.username, 'account']" class="action-list-btn"
               matTooltip="My Account" [matTooltipDisabled]=disableTooltip matTooltipPosition="right">
         <div fxLayout="row" fxLayoutAlign.xs="center">
           <i class="fas fa-user fa-fw"></i>
@@ -41,16 +38,14 @@
 
 <div fxHide.gt-xs fxLayout="row" class="mobile-nav">
 
-  <button mat-button routerLinkActive="true" [routerLink]="['/user', userService.username, 'library']" class="action-list-btn-xs" fxFlex="100/3"
-          [ngClass]="(router.url=='/explore/johndoe123/library' || router.url=='/explore/johndoe123/library/add')  ? 'selected' : ''"
+  <button mat-button routerLinkActive="selected" [routerLink]="['/user', userService.username, 'library']" class="action-list-btn-xs" fxFlex="100/3"
           matTooltip="My Library" matTooltipPosition="above">
     <div fxLayout="row" fxLayoutAlign="center">
       <i class="fas fa-list fa-lg fa-fw"></i>
     </div>
   </button>
 
-  <button mat-button routerLinkActive="true" [routerLink]="['/user', userService.username, 'account']" class="action-list-btn-xs" fxFlex="100/3"
-          [ngClass]="router.url=='/explore/johndoe123/account' ? 'selected' : ''"
+  <button mat-button routerLinkActive="selected" [routerLink]="['/user', userService.username, 'account']" class="action-list-btn-xs" fxFlex="100/3"
           matTooltip="My Account" matTooltipPosition="above">
     <div fxLayout="row" fxLayoutAlign="center center">
       <div class="user-img-border" fxLayout="row" fxLayoutAlign="center center">
@@ -59,8 +54,7 @@
     </div>
   </button>
 
-  <button mat-button routerLinkActive="true" [routerLink]="['/user', userService.username, 'plan']" class="action-list-btn-xs" fxFlex="100/3"
-          [ngClass]="(router.url=='/explore/johndoe123/plan' || router.url=='/explore/johndoe123/plan/add')  ? 'selected' : ''"
+  <button mat-button routerLinkActive="selected" [routerLink]="['/user', userService.username, 'plan']" class="action-list-btn-xs" fxFlex="100/3"
           matTooltip="My Reading Plans" matTooltipPosition="above">
     <div fxLayout="row" fxLayoutAlign="center">
       <i class="far fa-calendar-check fa-lg fa-fw"></i>
