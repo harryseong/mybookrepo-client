@@ -5,6 +5,9 @@ import {Subscription} from 'rxjs';
 import {ResourcesApiService} from '../../../shared/services/api/resources/resources-api.service';
 import {animate, query, sequence, stagger, style, transition, trigger} from '@angular/animations';
 import {UserService} from '../../../shared/services/user/user.service';
+import {ResourcesPlanService} from '../../../shared/services/api/resources/plan/resources-plan.service';
+import {SnackBarService} from '../../../shared/services/snackBar/snack-bar.service';
+import {PlanDTO} from '../../../shared/dto/dto.module';
 
 @Component({
   selector: 'app-user-plan',
@@ -31,27 +34,30 @@ export class UserPlanComponent implements OnInit, OnDestroy {
   planDeleted$: Subscription;
   planArray: any[] = [];
   isLoading = true;
-  currentPlan = '';
+  currentPlan: PlanDTO = null;
 
   constructor(
     private dialogService: DialogService,
     private resourcesApiService: ResourcesApiService,
+    private resourcesPlanService: ResourcesPlanService,
     private router: Router,
+    private snackBarService: SnackBarService,
     private userService: UserService
   ) { }
 
   ngOnInit() {
-    this.planCreated$ = this.resourcesApiService.$planCreatedEvent.subscribe((createdPlanName) => {
+    this.planCreated$ = this.resourcesPlanService.planCreatedEvent$.subscribe((createdPlan) => {
+      this.snackBarService.openSnackBar('"' + createdPlan.name + '" was created.', 'OK');
       this.getPlans();
-      this.router.navigate(['/explore/johndoe123/plan/view', createdPlanName]);
+      this.router.navigate(['/user', this.userService.username, 'plan', createdPlan.name]);
     });
-    this.planUpdated$ = this.resourcesApiService.$planUpdatedEvent.subscribe((updatedPlanName) => {
+    this.planUpdated$ = this.resourcesPlanService.planUpdatedEvent$.subscribe((updatedPlanName) => {
       this.getPlans();
-      this.router.navigate(['/explore/johndoe123/plan/view', updatedPlanName]);
+      this.router.navigate(['/user', this.userService.username, 'plan', updatedPlanName]);
     });
-    this.planDeleted$ = this.resourcesApiService.$planDeletedEvent.subscribe((deletedPlanName) => {
+    this.planDeleted$ = this.resourcesPlanService.planDeletedEvent$.subscribe((deletedPlanName) => {
       this.getPlans();
-      this.router.navigate(['/explore/johndoe123/plan']);
+      this.router.navigate(['/user', this.userService.username, 'plan']);
     });
     this.getPlans();
   }
@@ -63,17 +69,16 @@ export class UserPlanComponent implements OnInit, OnDestroy {
   }
 
   getPlans() {
-    const plans: any[] = JSON.parse(localStorage.getItem('plans'));
-    if (plans !== undefined && plans !== null && plans.length > 0) {
-      this.planArray = plans;
-    } else {
-      const samplePlans = [
-        {name: '2019', description: 'My reading plan for the year 2019.'},
-        {name: '2018', description: 'My reading plan for the year 2018.'},
-      ];
-      this.planArray = samplePlans;
-      localStorage.setItem('plans', JSON.stringify(samplePlans));
-    }
+    this.resourcesPlanService.getAllPlans().subscribe(
+      rsp => {
+        this.planArray = rsp.sort((a, b) => a.name > b.name ? 1 : (a.name === b.name) ? 0 : -1);
+      }
+    );
+  }
+
+  viewPlan(planDTO: PlanDTO) {
+    this.currentPlan = null;
+    this.currentPlan = planDTO;
   }
 
   addPlan() {

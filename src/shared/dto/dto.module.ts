@@ -1,4 +1,5 @@
 export class AuthorDTO {
+  id?: string;
   firstName: string;
   middleName: string;
   lastName: string;
@@ -116,6 +117,7 @@ export class CategoryDTO {
 }
 
 export class PlanDTO {
+  id?: string;
   name: string;
   description: string;
 

@@ -5,6 +5,7 @@ import {UserService} from '../../services/user/user.service';
 import {Router} from '@angular/router';
 import {ResourcesApiService} from '../../services/api/resources/resources-api.service';
 import {SnackBarService} from '../../services/snackBar/snack-bar.service';
+import {ResourcesLibraryService} from '../../services/api/resources/library/resources-library.service';
 
 @Component({
   selector: 'app-book-details-dialog',
@@ -15,6 +16,7 @@ export class BookDetailsDialogComponent {
 
   constructor(public dialogRef: MatDialogRef<BookDetailsDialogComponent>,
               private resourcesApiService: ResourcesApiService,
+              private resourcesLibraryService: ResourcesLibraryService,
               private router: Router,
               public userService: UserService,
               private snackBarService: SnackBarService,
@@ -26,9 +28,9 @@ export class BookDetailsDialogComponent {
   }
 
   addBook(bookDTO: BookDTO) {
-    this.resourcesApiService.addBookToLibrary(bookDTO).subscribe(rsp => {
+    this.resourcesLibraryService.addBookToLibrary(bookDTO).subscribe(rsp => {
       console.log(rsp);
-      this.resourcesApiService.bookAddedToLibrary(bookDTO);
+      this.resourcesLibraryService.bookAddedToLibrary(bookDTO);
       this.closeDialog();
     }, error1 => {
       console.error(error1);
@@ -36,7 +38,7 @@ export class BookDetailsDialogComponent {
   }
 
   removeBook(bookDTO: BookDTO) {
-    this.resourcesApiService.removeBookFromLibrary(bookDTO).subscribe(
+    this.resourcesLibraryService.removeBookFromLibrary(bookDTO).subscribe(
       rsp => {
         console.log(rsp);
         this.resourcesApiService.bookRemovedFromLibrary(bookDTO);
@@ -58,7 +60,7 @@ export class BookDetailsDialogComponent {
       localStorage.setItem('books', JSON.stringify(books));
     }
     this.snackBarService.openSnackBar('"' + bookDTO.title + '" was added to the library.', 'OK');
-    this.resourcesApiService.$bookAddedEvent.next();
+    this.resourcesApiService.bookAddedEvent$.next();
     this.closeDialog();
   }
 
@@ -68,7 +70,7 @@ export class BookDetailsDialogComponent {
     books.splice(bookIndex, 1);
     localStorage.setItem('books', JSON.stringify(books));
     this.snackBarService.openSnackBar('"' + bookDTO.title + '" was removed from the library.', 'OK');
-    this.resourcesApiService.$bookRemovedEvent.next();
+    this.resourcesApiService.bookRemovedEvent$.next();
     this.closeDialog();
   }
 

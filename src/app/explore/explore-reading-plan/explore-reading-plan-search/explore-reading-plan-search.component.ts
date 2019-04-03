@@ -45,7 +45,7 @@ export class ExploreReadingPlanSearchComponent implements OnInit, OnDestroy {
 
   ngOnInit() {
     this.getBooks();
-    this.bookRemoved$ = this.resourcesApiService.$bookRemovedEvent.subscribe(() => {
+    this.bookRemoved$ = this.resourcesApiService.bookRemovedEvent$.subscribe(() => {
       this.bookDTOArray = [];
       this.getBooks();
     });

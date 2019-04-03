@@ -29,10 +29,7 @@ const routes: Routes = [
       {path: '', redirectTo: 'library', pathMatch: 'full', canActivate: [AuthGuard]},
       {path: 'library', component: UserLibraryComponent, canActivate: [AuthGuard]},
       {path: 'library/add', component: UserLibraryAddComponent, canActivate: [AuthGuard]},
-      {path: 'plan', component: UserPlanComponent, canActivate: [AuthGuard],
-        children: [
-          {path: ':planName', component: UserPlanBoardComponent}
-        ]},
+      {path: 'plan', component: UserPlanComponent, canActivate: [AuthGuard]},
       {path: 'account', component: UserAccountComponent, canActivate: [AuthGuard]},
     ]
   },

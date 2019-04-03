@@ -41,6 +41,8 @@ import { UserPlanComponent } from './user-home/user-plan/user-plan.component';
 import { UserLibraryAddComponent } from './user-home/user-library/user-library-add/user-library-add.component';
 import {ProgressSpinnerComponent} from '../shared/progress-spinner/progress-spinner.component';
 import { UserPlanBoardComponent } from './user-home/user-plan/user-plan-board/user-plan-board.component';
+import {ResourcesLibraryService} from '../shared/services/api/resources/library/resources-library.service';
+import {ResourcesPlanService} from '../shared/services/api/resources/plan/resources-plan.service';
 
 @NgModule({
   declarations: [
@@ -95,6 +97,8 @@ import { UserPlanBoardComponent } from './user-home/user-plan/user-plan-board/us
     DialogService,
     GoogleBooksApiService,
     ResourcesApiService,
+    ResourcesLibraryService,
+    ResourcesPlanService,
     SnackBarService,
     UserService
   ],

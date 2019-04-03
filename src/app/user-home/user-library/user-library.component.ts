@@ -5,6 +5,7 @@ import {DialogService} from '../../../shared/services/dialog/dialog.service';
 import {ResourcesApiService} from '../../../shared/services/api/resources/resources-api.service';
 import {BookDTO} from '../../../shared/dto/dto.module';
 import {UserService} from '../../../shared/services/user/user.service';
+import {ResourcesLibraryService} from '../../../shared/services/api/resources/library/resources-library.service';
 
 @Component({
   selector: 'app-user-library',
@@ -40,28 +41,36 @@ import {UserService} from '../../../shared/services/user/user.service';
 export class UserLibraryComponent implements OnInit, OnDestroy {
   bookDTOArray: any[] = [];
   isLoading = true;
+  bookAdded$: Subscription;
   bookRemoved$: Subscription;
 
   constructor(
     private dialogService: DialogService,
-    private resourcesApiService: ResourcesApiService,
-    public userService: UserService
+    public userService: UserService,
+    private resourcesLibraryService: ResourcesLibraryService
   ) { }
 
   ngOnInit() {
     this.getBooks();
-    this.bookRemoved$ = this.resourcesApiService.$bookRemovedEvent.subscribe(() => {
+
+    this.bookAdded$ = this.resourcesLibraryService.bookAddedEvent$.subscribe(() => {
+      this.bookDTOArray = [];
+      this.getBooks();
+    });
+
+    this.bookRemoved$ = this.resourcesLibraryService.bookRemovedEvent$.subscribe(() => {
       this.bookDTOArray = [];
       this.getBooks();
     });
   }
 
   ngOnDestroy() {
+    this.bookAdded$.unsubscribe();
     this.bookRemoved$.unsubscribe();
   }
 
   getBooks() {
-    this.resourcesApiService.getAllBooks().subscribe(
+    this.resourcesLibraryService.getAllBooks().subscribe(
       rsp => {
         this.bookDTOArray = rsp;
         this.isLoading = false;

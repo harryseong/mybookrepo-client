@@ -28,6 +28,8 @@
   <button mat-stroked-button (click)="closeDialog()" class="dialog-btn" ngClass.xs="xs">
     CANCEL
   </button>
+
+  <!--REAL ACCOUNT BUTTONS-->
   <button mat-stroked-button (click)="updatePlan(data.plan)" class="dialog-btn" ngClass.xs="xs" *ngIf="data.type=='EDIT'">
     SAVE
   </button>
@@ -35,6 +37,17 @@
     DELETE
   </button>
   <button mat-stroked-button (click)="createPlan()" class="dialog-btn" ngClass.xs="xs" [disabled]="!planForm.valid" *ngIf="data.type=='CREATE'">
+    CREATE
+  </button>
+
+  <!--EXPLORE BUTTONS-->
+  <button mat-stroked-button (click)="exploreUpdatePlan(data.plan)" class="dialog-btn" ngClass.xs="xs" *ngIf="data.type=='EXPLORE_EDIT'">
+    SAVE
+  </button>
+  <button mat-stroked-button (click)="exploreDeletePlan(data.plan)" class="dialog-btn delete-btn" ngClass.xs="xs" *ngIf="data.type=='EXPLORE_DELETE'">
+    DELETE
+  </button>
+  <button mat-stroked-button (click)="exploreCreatePlan()" class="dialog-btn" ngClass.xs="xs" [disabled]="!planForm.valid" *ngIf="data.type=='EXPLORE_CREATE'">
     CREATE
   </button>
 </div>

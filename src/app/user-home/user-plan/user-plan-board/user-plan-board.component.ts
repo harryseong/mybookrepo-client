@@ -1,6 +1,5 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, Input, OnInit} from '@angular/core';
 import {BookDTO, PlanDTO} from '../../../../shared/dto/dto.module';
-import {ActivatedRoute} from '@angular/router';
 import {DialogService} from '../../../../shared/services/dialog/dialog.service';
 import {CdkDragDrop, moveItemInArray, transferArrayItem} from '@angular/cdk/drag-drop';
 import {animate, query, sequence, stagger, state, style, transition, trigger} from '@angular/animations';
@@ -83,8 +82,9 @@ import {animate, query, sequence, stagger, state, style, transition, trigger} fr
   ]
 })
 export class UserPlanBoardComponent implements OnInit {
-  isLoading = true;
+  @Input()
   currentPlan: PlanDTO;
+  isLoading = true;
   bookDTOArray: any[] = [];
   toRead = [];
   reading = [];
@@ -99,14 +99,9 @@ export class UserPlanBoardComponent implements OnInit {
   planActionsVisible = false;
   gearTurn = 'default';
 
-  constructor(private route: ActivatedRoute, private dialogService: DialogService) { }
+  constructor(private dialogService: DialogService) { }
 
   ngOnInit() {
-    this.route.params.subscribe(
-      params => {
-        this.currentPlan = JSON.parse(localStorage.getItem('plans')).find((plan) => plan.name === params.planName);
-      }
-    );
     this.getBooks();
   }
 

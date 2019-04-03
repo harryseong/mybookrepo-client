@@ -39,15 +39,15 @@ export class ExploreReadingPlanComponent implements OnInit, OnDestroy {
   ) { }
 
   ngOnInit() {
-    this.planCreated$ = this.resourcesApiService.$planCreatedEvent.subscribe((createdPlanName) => {
+    this.planCreated$ = this.resourcesApiService.planCreatedEvent$.subscribe((createdPlanName) => {
       this.getPlans();
       this.router.navigate(['/explore/johndoe123/plan/view', createdPlanName]);
     });
-    this.planUpdated$ = this.resourcesApiService.$planUpdatedEvent.subscribe((updatedPlanName) => {
+    this.planUpdated$ = this.resourcesApiService.planUpdatedEvent$.subscribe((updatedPlanName) => {
       this.getPlans();
       this.router.navigate(['/explore/johndoe123/plan/view', updatedPlanName]);
     });
-    this.planDeleted$ = this.resourcesApiService.$planDeletedEvent.subscribe((deletedPlanName) => {
+    this.planDeleted$ = this.resourcesApiService.planDeletedEvent$.subscribe((deletedPlanName) => {
       this.getPlans();
       this.router.navigate(['/explore/johndoe123/plan']);
     });

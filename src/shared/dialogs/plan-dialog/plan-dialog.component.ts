@@ -2,8 +2,8 @@ import {Component, Inject, OnInit} from '@angular/core';
 import {MAT_DIALOG_DATA, MatDialogRef} from '@angular/material';
 import {FormControl, FormGroup, Validators} from '@angular/forms';
 import {PlanDTO} from '../../dto/dto.module';
-import {ResourcesApiService} from '../../services/api/resources/resources-api.service';
 import {SnackBarService} from '../../services/snackBar/snack-bar.service';
+import {ResourcesPlanService} from '../../services/api/resources/plan/resources-plan.service';
 
 @Component({
   selector: 'app-plan-dialog',
@@ -18,7 +18,7 @@ export class PlanDialogComponent implements OnInit {
 
   constructor(
     public dialogRef: MatDialogRef<PlanDialogComponent>,
-    private resourcesApiService: ResourcesApiService,
+    private resourcesPlanService: ResourcesPlanService,
     private snackBarService: SnackBarService,
     @Inject(MAT_DIALOG_DATA) public data: any
   ) { }
@@ -36,17 +36,27 @@ export class PlanDialogComponent implements OnInit {
   }
 
   createPlan() {
+    const newPlan: PlanDTO = new PlanDTO(this.planForm.get('name').value, this.planForm.get('description').value);
+    this.resourcesPlanService.createPlan(newPlan).subscribe(
+      rsp => {
+        this.resourcesPlanService.planCreatedEvent$.next(newPlan);
+        this.closeDialog();
+      }
+    );
+  }
+
+  exploreCreatePlan() {
     const plans: PlanDTO[] = JSON.parse(localStorage.getItem('plans'));
     const newPlan: PlanDTO = new PlanDTO(this.planForm.get('name').value, this.planForm.get('description').value);
     plans.push(newPlan);
     plans.sort((a, b) => a.name > b.name ? 1 : (a.name === b.name) ? 0 : -1);
     localStorage.setItem('plans', JSON.stringify(plans));
-    this.resourcesApiService.$planCreatedEvent.next(newPlan.name);
+    this.resourcesPlanService.planCreatedEvent$.next(newPlan.name);
     this.snackBarService.openSnackBar('"' + newPlan.name + '" was created.', 'OK');
     this.closeDialog();
   }
 
-  updatePlan(planDTO: PlanDTO) {
+  exploreUpdatePlan(planDTO: PlanDTO) {
     const updatedPlanName = this.planForm.get('name').value;
     const updatedPlanDescription = this.planForm.get('description').value;
     const plans: PlanDTO[] = JSON.parse(localStorage.getItem('plans'));
@@ -55,17 +65,17 @@ export class PlanDialogComponent implements OnInit {
     plans.sort((a, b) => a.name > b.name ? 1 : (a.name === b.name) ? 0 : -1);
     localStorage.setItem('plans', JSON.stringify(plans));
     this.snackBarService.openSnackBar('"' + updatedPlanName + '" was updated.', 'OK');
-    this.resourcesApiService.$planUpdatedEvent.next(updatedPlanName);
+    this.resourcesPlanService.planUpdatedEvent$.next(updatedPlanName);
     this.closeDialog();
   }
 
-  deletePlan(planDTO: PlanDTO) {
+  exploreDeletePlan(planDTO: PlanDTO) {
     const plans: PlanDTO[] = JSON.parse(localStorage.getItem('plans'));
     const planIndex = plans.findIndex(x => x.name === planDTO.name);
     plans.splice(planIndex, 1);
     localStorage.setItem('plans', JSON.stringify(plans));
     this.snackBarService.openSnackBar('"' + planDTO.name + '" was deleted.', 'OK');
-    this.resourcesApiService.$planDeletedEvent.next();
+    this.resourcesPlanService.planDeletedEvent$.next();
     this.closeDialog();
   }
 }

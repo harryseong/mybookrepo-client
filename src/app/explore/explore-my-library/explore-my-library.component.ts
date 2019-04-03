@@ -45,7 +45,7 @@ export class ExploreMyLibraryComponent implements OnInit, OnDestroy, AfterViewIn
 
   ngOnInit() {
     this.getBooks();
-    this.bookRemoved$ = this.resourcesApiService.$bookRemovedEvent.subscribe(() => {
+    this.bookRemoved$ = this.resourcesApiService.bookRemovedEvent$.subscribe(() => {
       this.bookDTOArray = [];
       this.getBooks();
     });
