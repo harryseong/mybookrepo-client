@@ -102,6 +102,7 @@ export class UserPlanBoardComponent implements OnInit {
   constructor(private dialogService: DialogService) { }
 
   ngOnInit() {
+    console.log(this.currentPlan.name);
     this.getBooks();
   }
 

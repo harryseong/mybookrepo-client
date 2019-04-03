@@ -18,6 +18,8 @@
 
   <mat-divider class="content-element"></mat-divider>
 
-  <app-user-plan-board [currentPlan]="currentPlan" *ngIf="currentPlan != null"></app-user-plan-board>
+  <div *ngIf="currentPlan != null">
+    <app-user-plan-board [currentPlan]="currentPlan"></app-user-plan-board>
+  </div>
 
 </div>

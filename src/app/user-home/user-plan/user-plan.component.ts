@@ -4,7 +4,6 @@ import {DialogService} from '../../../shared/services/dialog/dialog.service';
 import {Subscription} from 'rxjs';
 import {ResourcesApiService} from '../../../shared/services/api/resources/resources-api.service';
 import {animate, query, sequence, stagger, style, transition, trigger} from '@angular/animations';
-import {UserService} from '../../../shared/services/user/user.service';
 import {ResourcesPlanService} from '../../../shared/services/api/resources/plan/resources-plan.service';
 import {SnackBarService} from '../../../shared/services/snackBar/snack-bar.service';
 import {PlanDTO} from '../../../shared/dto/dto.module';
@@ -42,13 +41,11 @@ export class UserPlanComponent implements OnInit, OnDestroy {
     private resourcesPlanService: ResourcesPlanService,
     private router: Router,
     private snackBarService: SnackBarService,
-    private userService: UserService
   ) { }
 
   ngOnInit() {
     this.planCreated$ = this.resourcesPlanService.planCreatedEvent$.subscribe((planDTO: PlanDTO) => {
-      this.getPlans();
-      this.currentPlan = planDTO;
+      this.getPlans(planDTO);
       this.snackBarService.openSnackBar('"' + planDTO.name + '" was created.', 'OK');
     });
     this.planUpdated$ = this.resourcesPlanService.planUpdatedEvent$.subscribe((planDTO: PlanDTO) => {
@@ -57,6 +54,7 @@ export class UserPlanComponent implements OnInit, OnDestroy {
       this.snackBarService.openSnackBar('"' + planDTO.name + '" was updated.', 'OK');
     });
     this.planDeleted$ = this.resourcesPlanService.planDeletedEvent$.subscribe((planDTO: PlanDTO) => {
+      this.currentPlan = null;
       this.getPlans();
       this.snackBarService.openSnackBar('"' + planDTO.name + '" was deleted.', 'OK');
     });
@@ -69,10 +67,17 @@ export class UserPlanComponent implements OnInit, OnDestroy {
     this.planDeleted$.unsubscribe();
   }
 
-  getPlans() {
+  getPlans(planDTO?: PlanDTO) {
     this.resourcesPlanService.getAllPlans().subscribe(
       rsp => {
         this.planArray = rsp.sort((a, b) => a.name > b.name ? 1 : (a.name === b.name) ? 0 : -1);
+
+        // If planDTO parameter has been specified for "planCreated$", set the current plan accordingly.
+        // This is because a new plan's planDTO's id remains null.
+        if (planDTO !== undefined) {
+          const newPlanIndex = this.planArray.findIndex(plan => plan.name === planDTO.name);
+          this.currentPlan = this.planArray[newPlanIndex];
+        }
       }
     );
   }
