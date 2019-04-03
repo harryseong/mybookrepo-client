@@ -3,17 +3,36 @@
 
   <div class="content" ngClass.xs="xs" fxLayout="row" fxLayoutAlign="center" [@contentAnimations]>
 
-    <div fxLayout="column" fxLayoutGap="0.75em" fxLayoutGap.xs="0.5em" fxFlex="40" fxFlex.sm="60" fxFlex.xs="90">
-      <div class="page-header">About</div>
+    <div fxLayout="column" fxLayoutGap="1em" fxLayoutGap.xs="0.5em" fxFlex="40" fxFlex.sm="60" fxFlex.xs="90">
+      <div class="page-header content-element">About</div>
 
-      <div>
-        The development of this app started in February 2019 when I wanted a free, easy way of keeping track of
-        the books in my home. App development is a hobby of mine, so this project gave me something to work on when I was bored.
-        It also serves as a proof-of-concept app where I can freely test new ideas.
+      <div class="content-element">
+        <div class="page-subheader">Important Note</div>
+        <div>
+          This app is being actively developed, meaning you will not be able to sign up for a new account for now. But
+          feel free to browse the "Explore" section of this app which should simulate a regular account for the most part.
+          The app is expected to be completed in the coming weeks.
+        </div>
       </div>
 
-      <div>
-        I hope this app can eventually be enjoyed my many bibliophiles out there.
+      <div class="content-element">
+        <div class="page-subheader">Why</div>
+        <div>
+          The development of this app started in February 2019 when I wanted a free, easy way of keeping track of
+          the books in my home. App development is a hobby of mine, so this project gave me something to work on when
+          I was bored. It also serves as a proof-of-concept app where I can freely test new ideas. I hope this app can
+          eventually be enjoyed my many bibliophiles out there.
+        </div>
+      </div>
+
+      <div class="content-element">
+        <div class="page-subheader">How</div>
+        <div>
+          The front end of this application is being developed in Angular. The backend consists of two Dockerized Java
+          Spring Boot API applications; one handles authentication via oAuth2 and the other handles authorized
+          resource requests via JWT. Data is stored and retrieved in a MySQL database. Everything is hosted on Microsoft
+          Azure.
+        </div>
       </div>
     </div>
   </div>

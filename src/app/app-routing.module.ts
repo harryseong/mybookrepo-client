@@ -32,7 +32,6 @@ const routes: Routes = [
       {path: 'account', component: UserAccountComponent, canActivate: [AuthGuard]},
     ]
   },
-  {path: '**', redirectTo: ''},
   {path: 'explore', redirectTo: 'explore/johndoe123', pathMatch: 'full'},
   {path: 'explore/johndoe123', component: ExploreComponent,
     children: [
@@ -47,7 +46,8 @@ const routes: Routes = [
       {path: 'library', component: ExploreMyLibraryComponent},
       {path: 'library/add', component: ExploreSearchComponent},
     ]
-  }
+  },
+  {path: '**', redirectTo: ''},
 ];
 
 @NgModule({

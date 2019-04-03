@@ -8,7 +8,7 @@ import {animate, query, sequence, stagger, style, transition, trigger} from '@an
   animations: [
     trigger('contentAnimations', [
       transition(':enter', [
-        query('div', [
+        query('.content-element', [
           style({ opacity: 0, transform: 'translateY(0.5em)'}),
           stagger(200, [
             sequence([
