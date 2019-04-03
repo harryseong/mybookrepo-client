@@ -26,7 +26,7 @@ export class BookDetailsDialogComponent {
   }
 
   addBook(bookDTO: BookDTO) {
-    this.resourcesApiService.addBookToLibrary(bookDTO, this.userService.userDTO.id).subscribe(rsp => {
+    this.resourcesApiService.addBookToLibrary(bookDTO).subscribe(rsp => {
       console.log(rsp);
       this.resourcesApiService.bookAddedToLibrary(bookDTO);
       this.closeDialog();
@@ -36,11 +36,11 @@ export class BookDetailsDialogComponent {
   }
 
   removeBook(bookDTO: BookDTO) {
-    this.resourcesApiService.removeBookFromLibrary(bookDTO.id, this.userService.userDTO.id).subscribe(
+    this.resourcesApiService.removeBookFromLibrary(bookDTO).subscribe(
       rsp => {
         console.log(rsp);
         this.resourcesApiService.bookRemovedFromLibrary(bookDTO);
-        this.router.navigate(['/library/books']);
+        this.router.navigate(['/user', this.userService.username, 'library']);
         this.closeDialog();
       },
       err => console.error(err)

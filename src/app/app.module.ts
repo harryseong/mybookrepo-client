@@ -39,6 +39,7 @@ import { ExploreReadingPlanTableComponent } from './explore/explore-reading-plan
 import { UserAccountComponent } from './user-home/user-account/user-account.component';
 import { UserPlanComponent } from './user-home/user-plan/user-plan.component';
 import { UserLibraryAddComponent } from './user-home/user-library/user-library-add/user-library-add.component';
+import {ProgressSpinnerComponent} from '../shared/progress-spinner/progress-spinner.component';
 
 @NgModule({
   declarations: [
@@ -64,7 +65,8 @@ import { UserLibraryAddComponent } from './user-home/user-library/user-library-a
     ExploreReadingPlanTableComponent,
     UserAccountComponent,
     UserPlanComponent,
-    UserLibraryAddComponent
+    UserLibraryAddComponent,
+    ProgressSpinnerComponent,
   ],
   imports: [
     AppRoutingModule,

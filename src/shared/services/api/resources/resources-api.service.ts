@@ -51,23 +51,20 @@ export class ResourcesApiService {
   /**
    * Adds book to user's library. Saves book, author, category to db as new entries if they do not yet exist in db.
    * @param bookDTO: BookDTO
-   * @param userId
    */
-  addBookToLibrary(bookDTO: BookDTO, userId: string) {
+  addBookToLibrary(bookDTO: BookDTO) {
     const headers = new HttpHeaders({
       'Content-Type': 'application/json',
       Authorization: 'Bearer ' + localStorage.getItem(environment.jwt.local_storage_key),
     });
-    const params = new HttpParams().set('userId', userId);
-    return this.http.post(environment.api.resources_url + '/library/book', bookDTO, {params, headers, responseType: 'text'});
+    return this.http.post(environment.api.resources_url + '/library/book', bookDTO, {headers, responseType: 'text'});
   }
 
-  removeBookFromLibrary(bookId: string, userId: string) {
+  removeBookFromLibrary(bookDTO: BookDTO) {
     const headers = new HttpHeaders({
       'Content-Type': 'application/json',
       Authorization: 'Bearer ' + localStorage.getItem(environment.jwt.local_storage_key)
     });
-    const params = new HttpParams().set('bookId', bookId).set('userId', userId);
-    return this.http.delete(environment.api.resources_url + '/library/book', {params, headers, responseType: 'text'});
+    return this.http.delete(environment.api.resources_url + '/library/book/' + bookDTO.id, {headers, responseType: 'text'});
   }
 }

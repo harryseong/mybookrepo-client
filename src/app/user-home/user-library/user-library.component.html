@@ -6,7 +6,11 @@
     </div>
   </div>
 
-  <div *ngIf="bookDTOArray.length == 0" fxLayout="row" fxLayoutAlign="center" class="content-element">
+  <div *ngIf="isLoading" fxLayout="row" fxLayoutAlign="center center">
+    <app-progress-spinner></app-progress-spinner>
+  </div>
+
+  <div *ngIf="bookDTOArray.length == 0 && !isLoading" fxLayout="row" fxLayoutAlign="center" class="content-element">
     <div>
       <button mat-stroked-button routerLinkActive="true" [routerLink]="['/user', userService.username, 'library', 'add']" class="add-first-book-btn mat-elevation-z3">
         <span><i class="fas fa-plus"></i>&nbsp;ADD FIRST BOOK</span>
