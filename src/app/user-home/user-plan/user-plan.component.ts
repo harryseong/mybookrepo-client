@@ -46,18 +46,19 @@ export class UserPlanComponent implements OnInit, OnDestroy {
   ) { }
 
   ngOnInit() {
-    this.planCreated$ = this.resourcesPlanService.planCreatedEvent$.subscribe((createdPlan) => {
-      this.snackBarService.openSnackBar('"' + createdPlan.name + '" was created.', 'OK');
+    this.planCreated$ = this.resourcesPlanService.planCreatedEvent$.subscribe((planDTO: PlanDTO) => {
       this.getPlans();
-      this.router.navigate(['/user', this.userService.username, 'plan', createdPlan.name]);
+      this.currentPlan = planDTO;
+      this.snackBarService.openSnackBar('"' + planDTO.name + '" was created.', 'OK');
     });
-    this.planUpdated$ = this.resourcesPlanService.planUpdatedEvent$.subscribe((updatedPlanName) => {
+    this.planUpdated$ = this.resourcesPlanService.planUpdatedEvent$.subscribe((planDTO: PlanDTO) => {
       this.getPlans();
-      this.router.navigate(['/user', this.userService.username, 'plan', updatedPlanName]);
+      this.currentPlan = planDTO;
+      this.snackBarService.openSnackBar('"' + planDTO.name + '" was updated.', 'OK');
     });
-    this.planDeleted$ = this.resourcesPlanService.planDeletedEvent$.subscribe((deletedPlanName) => {
+    this.planDeleted$ = this.resourcesPlanService.planDeletedEvent$.subscribe((planDTO: PlanDTO) => {
       this.getPlans();
-      this.router.navigate(['/user', this.userService.username, 'plan']);
+      this.snackBarService.openSnackBar('"' + planDTO.name + '" was deleted.', 'OK');
     });
     this.getPlans();
   }
@@ -77,7 +78,6 @@ export class UserPlanComponent implements OnInit, OnDestroy {
   }
 
   viewPlan(planDTO: PlanDTO) {
-    this.currentPlan = null;
     this.currentPlan = planDTO;
   }
 

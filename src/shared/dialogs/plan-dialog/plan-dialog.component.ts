@@ -45,6 +45,25 @@ export class PlanDialogComponent implements OnInit {
     );
   }
 
+  updatePlan(planDTO: PlanDTO) {
+    const updatedPlan: PlanDTO = new PlanDTO(this.planForm.get('name').value, this.planForm.get('description').value, planDTO.id);
+    this.resourcesPlanService.updatePlan(updatedPlan).subscribe(
+      rsp => {
+        this.resourcesPlanService.planUpdatedEvent$.next(updatedPlan);
+        this.closeDialog();
+      }
+    );
+  }
+
+  deletePlan(planDTO: PlanDTO) {
+    this.resourcesPlanService.deletePlan(planDTO).subscribe(
+      rsp => {
+        this.resourcesPlanService.planDeletedEvent$.next(planDTO);
+        this.closeDialog();
+      }
+    );
+  }
+
   exploreCreatePlan() {
     const plans: PlanDTO[] = JSON.parse(localStorage.getItem('plans'));
     const newPlan: PlanDTO = new PlanDTO(this.planForm.get('name').value, this.planForm.get('description').value);

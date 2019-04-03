@@ -48,7 +48,7 @@ export class ResourcesPlanService {
       'Content-Type': 'application/json',
       Authorization: 'Bearer ' + localStorage.getItem(environment.jwt.local_storage_key),
     });
-    return this.http.post(environment.api.resources_url + '/plan', planDTO, {headers, responseType: 'text'});
+    return this.http.put(environment.api.resources_url + '/plan/' + planDTO.id, planDTO, {headers, responseType: 'text'});
   }
 
   deletePlan(planDTO: PlanDTO): Observable<any> {
@@ -56,6 +56,6 @@ export class ResourcesPlanService {
       'Content-Type': 'application/json',
       Authorization: 'Bearer ' + localStorage.getItem(environment.jwt.local_storage_key)
     });
-    return this.http.delete(environment.api.resources_url + '/plan' + planDTO.id, {headers, responseType: 'text'});
+    return this.http.delete(environment.api.resources_url + '/plan/' + planDTO.id, {headers, responseType: 'text'});
   }
 }
