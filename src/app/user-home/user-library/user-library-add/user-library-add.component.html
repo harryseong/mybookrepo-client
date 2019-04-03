@@ -3,7 +3,7 @@
   <div fxLayout="row" fxLayoutAlign="start start" class="content-element">
     <div class="page-header" ngClass.xs="xs">Add New Book</div>
     <span class="spacer"></span>
-    <button mat-icon-button routerLinkActive="true" [routerLink]="['/user', userService.username, 'library']">
+    <button mat-icon-button (click)="leaveAddBook()">
       <i class="fas fa-times"></i>
     </button>
   </div>

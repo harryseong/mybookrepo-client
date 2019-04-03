@@ -14,7 +14,16 @@ export class ResourcesApiService {
   $planUpdatedEvent = new Subject<any>();
   $planDeletedEvent = new Subject<any>();
 
-  constructor(private http: HttpClient) { }
+  constructor(
+    private http: HttpClient
+  ) { }
+
+  getUser() {
+    const headers = new HttpHeaders({
+      Authorization: 'Bearer ' + localStorage.getItem(environment.jwt.local_storage_key)
+    });
+    return this.http.get(environment.api.resources_url + '/user', {headers});
+  }
 
   /**
    * Notify subscribers that book has been added to the library.
@@ -32,12 +41,11 @@ export class ResourcesApiService {
     this.$bookRemovedEvent.next(bookDTO);
   }
 
-  getAllBooks(userId: string): Observable<any> {
+  getAllBooks(): Observable<any> {
     const headers = new HttpHeaders({
       Authorization: 'Bearer ' + localStorage.getItem(environment.jwt.local_storage_key)
     });
-    const params = new HttpParams().set('userId', userId);
-    return this.http.get(environment.api.resources_url + '/library/books', {params, headers});
+    return this.http.get(environment.api.resources_url + '/library/books', {headers});
   }
 
   /**

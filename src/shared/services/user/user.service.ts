@@ -6,6 +6,7 @@ import * as crypto from 'crypto-js';
 import {Router} from '@angular/router';
 import {AuthApiService} from '../api/auth/auth-api.service';
 import {UserDTO} from '../../dto/dto.module';
+import {ResourcesApiService} from '../api/resources/resources-api.service';
 
 @Injectable({
   providedIn: 'root'
@@ -22,7 +23,12 @@ export class UserService {
   gravatarProfileImg500: string;
   jwtHelperService = new JwtHelperService();
 
-  constructor(private http: HttpClient, private router: Router, private authApiService: AuthApiService) {}
+  constructor(
+    private http: HttpClient,
+    private router: Router,
+    private authApiService: AuthApiService,
+    private resourcesApiService: ResourcesApiService
+  ) {}
 
   checkAccessToken() {
     const accessToken = localStorage.getItem(environment.jwt.local_storage_key);
@@ -72,7 +78,7 @@ export class UserService {
     const decodedToken = this.jwtHelperService.decodeToken(this.accessToken);
     this.isAdmin = decodedToken.authorities.some(el => el === 'admin');
     this.username = decodedToken.user_name;
-    this.getUserByUsername(this.username).subscribe(
+    this.resourcesApiService.getUser().subscribe(
       (userDTO: UserDTO) => {
         this.userDTO = userDTO;
         this.gravatarProfileImg40 = 'https://www.gravatar.com/avatar/' + crypto.MD5(this.userDTO.email).toString() + '?s=40';
@@ -111,13 +117,5 @@ export class UserService {
 
   isUser(): boolean {
     return this.accessToken && !this.isAdmin;
-  }
-
-  getUserByEmail(email: string) {
-    return this.http.get(environment.api.resources_url + '/user/email/' + email);
-  }
-
-  getUserByUsername(username: string) {
-    return this.http.get(environment.api.resources_url + '/user/username/' + username);
   }
 }

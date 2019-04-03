@@ -1,4 +1,4 @@
-import {Component, ElementRef, OnDestroy, OnInit, ViewChild} from '@angular/core';
+import {Component, ElementRef, HostListener, OnDestroy, OnInit, ViewChild} from '@angular/core';
 import {Subscription} from 'rxjs';
 import {FormControl, FormGroup} from '@angular/forms';
 import {BookDTO} from '../../../../shared/dto/dto.module';
@@ -8,6 +8,7 @@ import {ResourcesApiService} from '../../../../shared/services/api/resources/res
 import {DialogService} from '../../../../shared/services/dialog/dialog.service';
 import {animate, query, sequence, stagger, style, transition, trigger} from '@angular/animations';
 import {UserService} from '../../../../shared/services/user/user.service';
+import {Router} from '@angular/router';
 
 @Component({
   selector: 'app-user-library-add',
@@ -56,6 +57,7 @@ export class UserLibraryAddComponent implements OnInit, OnDestroy {
               private googleBooksApiService: GoogleBooksApiService,
               private resourcesApiService: ResourcesApiService,
               private dialogService: DialogService,
+              private router: Router,
               public userService: UserService
   ) { }
 
@@ -68,6 +70,13 @@ export class UserLibraryAddComponent implements OnInit, OnDestroy {
 
     if (this.bookAddedToLibrary$ != null) {
       this.bookAddedToLibrary$.unsubscribe();
+    }
+  }
+
+  @HostListener('window:keyup', ['$event'])
+  keyEvent(event: KeyboardEvent) {
+    if (event.key === 'Escape') {
+      this.leaveAddBook();
     }
   }
 
@@ -143,5 +152,9 @@ export class UserLibraryAddComponent implements OnInit, OnDestroy {
 
   openDialog(bookDTO: BookDTO) {
     this.dialogService.openBookDetailsDialog(bookDTO, 'NEW');
+  }
+
+  leaveAddBook() {
+    this.router.navigate(['/user', this.userService.username, 'library']);
   }
 }

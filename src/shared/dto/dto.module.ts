@@ -50,11 +50,11 @@ export class BookDTO {
   formatIdentifier(industryIdentifiers, idType: string): string {
     let identifier = null;
     industryIdentifiers.map(industryIdentifier => {
-      if (industryIdentifier.type === 'ISBN13' && idType === 'isbn13') {
+      if (industryIdentifier.type === 'ISBN_13' && idType === 'isbn13') {
         identifier = industryIdentifier.identifier;
         console.log('ISBN 13 number found: ' + identifier);
       }
-      if (industryIdentifier.type === 'ISBN10' && idType === 'isbn10') {
+      if (industryIdentifier.type === 'ISBN_10' && idType === 'isbn10') {
         identifier = industryIdentifier.identifier;
         console.log('ISBN 10 number found: ' + identifier);
       }
@@ -132,6 +132,7 @@ export class UserDTO {
   email: string;
   username: string;
   password: string;
+  createdDate?: string;
 
   constructor(firstName: string,
               lastName: string,
