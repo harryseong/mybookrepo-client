@@ -61,7 +61,6 @@ a:hover, a:visited {
 
 .page-header.xs {
   font-size: 1.2em;
-  font-weight: 600;
 }
 
 .page-subheader {
@@ -102,7 +101,7 @@ a:hover, a:visited {
   background-color: rgba(255, 235, 239, 0);
 }
 
-.dialog-btn {
+button.dialog-btn {
   font-size: 0.7em;
+  margin: 1em 0;
 }
-
