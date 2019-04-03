@@ -1,3 +1,22 @@
-<p>
-  user-plan works!
-</p>
+<div class="content" ngClass.xs="xs" fxLayout="column" fxLayoutGap="0" [@contentAnimations]>
+
+  <div fxLayout="column" fxLayoutGap="0.5em">
+    <div class="page-header content-element" ngClass.xs="xs">
+      My Reading Plan<span *ngIf="planArray!=null && planArray.length > 1">s</span>
+    </div>
+
+    <div fxLayout="row" fxLayoutGap="0.5em" class="year-btn-row content-element">
+      <button mat-stroked-button (click)="addPlan()" class="add-plan-btn">
+        <span><i class="fas fa-plus"></i>&nbsp;PLAN</span>
+      </button>
+      <button mat-stroked-button *ngFor="let plan of planArray" [ngClass]="currentPlan===plan.name ? 'plan-btn selected' : 'plan-btn'"
+              routerLinkActive="true" [routerLink]="['/user', userService.username, 'plan', plan.name]">{{plan.name}}
+      </button>
+    </div>
+  </div>
+
+  <mat-divider class="content-element"></mat-divider>
+
+  <router-outlet></router-outlet>
+
+</div>

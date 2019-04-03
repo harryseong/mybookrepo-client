@@ -40,6 +40,7 @@ import { UserAccountComponent } from './user-home/user-account/user-account.comp
 import { UserPlanComponent } from './user-home/user-plan/user-plan.component';
 import { UserLibraryAddComponent } from './user-home/user-library/user-library-add/user-library-add.component';
 import {ProgressSpinnerComponent} from '../shared/progress-spinner/progress-spinner.component';
+import { UserPlanBoardComponent } from './user-home/user-plan/user-plan-board/user-plan-board.component';
 
 @NgModule({
   declarations: [
@@ -67,6 +68,7 @@ import {ProgressSpinnerComponent} from '../shared/progress-spinner/progress-spin
     UserPlanComponent,
     UserLibraryAddComponent,
     ProgressSpinnerComponent,
+    UserPlanBoardComponent,
   ],
   imports: [
     AppRoutingModule,

@@ -1,0 +1,26 @@
+$theme-color: #f5dd00;
+$theme-secondary: #373737;
+
+.content {
+  color: $theme-secondary;
+  padding: 1em;
+
+  .add-plan-btn {
+    color: $theme-color;
+    background-color: $theme-secondary;
+  }
+
+  .year-btn-row {
+    overflow-x: scroll;
+    padding-bottom: 1em;
+
+    button {
+      font-size: 0.7em;
+      min-width: auto;
+    }
+
+    .plan-btn.selected {
+      background-color: #dfdfdf;
+    }
+  }
+}
