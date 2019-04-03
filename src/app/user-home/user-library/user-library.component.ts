@@ -2,7 +2,6 @@ import {Component, OnDestroy, OnInit} from '@angular/core';
 import {animate, query, sequence, stagger, style, transition, trigger} from '@angular/animations';
 import {Subscription} from 'rxjs';
 import {DialogService} from '../../../shared/services/dialog/dialog.service';
-import {ResourcesApiService} from '../../../shared/services/api/resources/resources-api.service';
 import {BookDTO} from '../../../shared/dto/dto.module';
 import {UserService} from '../../../shared/services/user/user.service';
 import {ResourcesLibraryService} from '../../../shared/services/api/resources/library/resources-library.service';

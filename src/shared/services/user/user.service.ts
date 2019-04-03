@@ -6,7 +6,6 @@ import * as crypto from 'crypto-js';
 import {Router} from '@angular/router';
 import {AuthApiService} from '../api/auth/auth-api.service';
 import {UserDTO} from '../../dto/dto.module';
-import {ResourcesApiService} from '../api/resources/resources-api.service';
 
 @Injectable({
   providedIn: 'root'
@@ -27,7 +26,6 @@ export class UserService {
     private http: HttpClient,
     private router: Router,
     private authApiService: AuthApiService,
-    private resourcesApiService: ResourcesApiService
   ) {}
 
   checkAccessToken() {
@@ -78,7 +76,7 @@ export class UserService {
     const decodedToken = this.jwtHelperService.decodeToken(this.accessToken);
     this.isAdmin = decodedToken.authorities.some(el => el === 'admin');
     this.username = decodedToken.user_name;
-    this.resourcesApiService.getUser().subscribe(
+    this.getUser().subscribe(
       (userDTO: UserDTO) => {
         this.userDTO = userDTO;
         this.gravatarProfileImg40 = 'https://www.gravatar.com/avatar/' + crypto.MD5(this.userDTO.email).toString() + '?s=40';
@@ -109,6 +107,13 @@ export class UserService {
     this.username = null;
     this.userFullName = null;
     localStorage.removeItem(environment.jwt.local_storage_key);
+  }
+
+  getUser() {
+    const headers = new HttpHeaders({
+      Authorization: 'Bearer ' + localStorage.getItem(environment.jwt.local_storage_key)
+    });
+    return this.http.get(environment.api.resources_url + '/user', {headers});
   }
 
   isAdminUser(): boolean {

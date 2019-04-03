@@ -2,7 +2,6 @@ import {Component, OnDestroy, OnInit} from '@angular/core';
 import {Router} from '@angular/router';
 import {DialogService} from '../../../shared/services/dialog/dialog.service';
 import {Subscription} from 'rxjs';
-import {ResourcesApiService} from '../../../shared/services/api/resources/resources-api.service';
 import {animate, query, sequence, stagger, style, transition, trigger} from '@angular/animations';
 import {ResourcesPlanService} from '../../../shared/services/api/resources/plan/resources-plan.service';
 import {SnackBarService} from '../../../shared/services/snackBar/snack-bar.service';
@@ -37,7 +36,6 @@ export class UserPlanComponent implements OnInit, OnDestroy {
 
   constructor(
     private dialogService: DialogService,
-    private resourcesApiService: ResourcesApiService,
     private resourcesPlanService: ResourcesPlanService,
     private router: Router,
     private snackBarService: SnackBarService,

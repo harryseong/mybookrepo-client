@@ -4,7 +4,6 @@ import {FormControl, FormGroup} from '@angular/forms';
 import {Subscription} from 'rxjs';
 import {SnackBarService} from '../../../../shared/services/snackBar/snack-bar.service';
 import {GoogleBooksApiService} from '../../../../shared/services/api/google-books/google-books-api.service';
-import {ResourcesApiService} from '../../../../shared/services/api/resources/resources-api.service';
 import {animate, query, sequence, stagger, style, transition, trigger} from '@angular/animations';
 import {DialogService} from '../../../../shared/services/dialog/dialog.service';
 
@@ -51,8 +50,11 @@ export class ExploreSearchComponent implements OnInit, OnDestroy {
   isLoading = true;
   @ViewChild('searchField') searchFieldRef: ElementRef;
 
-  constructor(private snackBarService: SnackBarService, private googleBooksApiService: GoogleBooksApiService,
-              private resourcesApiService: ResourcesApiService, private dialogService: DialogService) { }
+  constructor(
+    private snackBarService: SnackBarService,
+    private googleBooksApiService: GoogleBooksApiService,
+    private dialogService: DialogService
+  ) { }
 
   ngOnInit() {}
 

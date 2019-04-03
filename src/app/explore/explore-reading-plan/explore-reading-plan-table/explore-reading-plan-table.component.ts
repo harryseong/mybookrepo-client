@@ -99,7 +99,10 @@ export class ExploreReadingPlanTableComponent implements OnInit {
   planActionsVisible = false;
   gearTurn = 'default';
 
-  constructor(private route: ActivatedRoute, private dialogService: DialogService) { }
+  constructor(
+    private route: ActivatedRoute,
+    private dialogService: DialogService
+  ) { }
 
   ngOnInit() {
     this.route.params.subscribe(

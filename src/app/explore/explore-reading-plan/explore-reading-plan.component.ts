@@ -2,8 +2,9 @@ import {Component, OnDestroy, OnInit} from '@angular/core';
 import {DialogService} from '../../../shared/services/dialog/dialog.service';
 import {animate, query, sequence, stagger, state, style, transition, trigger} from '@angular/animations';
 import {Subscription} from 'rxjs';
-import {ResourcesApiService} from '../../../shared/services/api/resources/resources-api.service';
 import {Router} from '@angular/router';
+import {ResourcesLibraryService} from '../../../shared/services/api/resources/library/resources-library.service';
+import {ResourcesPlanService} from '../../../shared/services/api/resources/plan/resources-plan.service';
 
 @Component({
   selector: 'app-explore-reading-plan',
@@ -34,20 +35,20 @@ export class ExploreReadingPlanComponent implements OnInit, OnDestroy {
 
   constructor(
     private dialogService: DialogService,
-    private resourcesApiService: ResourcesApiService,
+    private resourcesPlanService: ResourcesPlanService,
     private router: Router
   ) { }
 
   ngOnInit() {
-    this.planCreated$ = this.resourcesApiService.planCreatedEvent$.subscribe((createdPlanName) => {
+    this.planCreated$ = this.resourcesPlanService.planCreatedEvent$.subscribe((createdPlanName) => {
       this.getPlans();
       this.router.navigate(['/explore/johndoe123/plan/view', createdPlanName]);
     });
-    this.planUpdated$ = this.resourcesApiService.planUpdatedEvent$.subscribe((updatedPlanName) => {
+    this.planUpdated$ = this.resourcesPlanService.planUpdatedEvent$.subscribe((updatedPlanName) => {
       this.getPlans();
       this.router.navigate(['/explore/johndoe123/plan/view', updatedPlanName]);
     });
-    this.planDeleted$ = this.resourcesApiService.planDeletedEvent$.subscribe((deletedPlanName) => {
+    this.planDeleted$ = this.resourcesPlanService.planDeletedEvent$.subscribe((deletedPlanName) => {
       this.getPlans();
       this.router.navigate(['/explore/johndoe123/plan']);
     });

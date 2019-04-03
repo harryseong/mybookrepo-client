@@ -1,9 +1,8 @@
-import {Component, Inject, OnInit} from '@angular/core';
+import {Component, Inject} from '@angular/core';
 import {BookDTO} from '../../dto/dto.module';
 import {MAT_DIALOG_DATA, MatDialogRef} from '@angular/material';
 import {UserService} from '../../services/user/user.service';
 import {Router} from '@angular/router';
-import {ResourcesApiService} from '../../services/api/resources/resources-api.service';
 import {SnackBarService} from '../../services/snackBar/snack-bar.service';
 import {ResourcesLibraryService} from '../../services/api/resources/library/resources-library.service';
 
@@ -15,7 +14,6 @@ import {ResourcesLibraryService} from '../../services/api/resources/library/reso
 export class BookDetailsDialogComponent {
 
   constructor(public dialogRef: MatDialogRef<BookDetailsDialogComponent>,
-              private resourcesApiService: ResourcesApiService,
               private resourcesLibraryService: ResourcesLibraryService,
               private router: Router,
               public userService: UserService,
@@ -57,7 +55,7 @@ export class BookDetailsDialogComponent {
       localStorage.setItem('books', JSON.stringify(books));
     }
     this.snackBarService.openSnackBar('"' + bookDTO.title + '" was added to the library.', 'OK');
-    this.resourcesApiService.bookAddedEvent$.next();
+    this.resourcesLibraryService.bookAddedEvent$.next();
     this.closeDialog();
   }
 
@@ -67,7 +65,7 @@ export class BookDetailsDialogComponent {
     books.splice(bookIndex, 1);
     localStorage.setItem('books', JSON.stringify(books));
     this.snackBarService.openSnackBar('"' + bookDTO.title + '" was removed from the library.', 'OK');
-    this.resourcesApiService.bookRemovedEvent$.next();
+    this.resourcesLibraryService.bookRemovedEvent$.next();
     this.closeDialog();
   }
 

@@ -9,7 +9,6 @@ import { environment } from '../environments/environment';
 import {MaterialModule} from '../material.module';
 import {AuthApiService} from '../shared/services/api/auth/auth-api.service';
 import {GoogleBooksApiService} from '../shared/services/api/google-books/google-books-api.service';
-import {ResourcesApiService} from '../shared/services/api/resources/resources-api.service';
 import {UserService} from '../shared/services/user/user.service';
 import {HomeComponent} from './home/home.component';
 import {NavbarComponent} from './navbar/navbar.component';
@@ -96,7 +95,6 @@ import {ResourcesPlanService} from '../shared/services/api/resources/plan/resour
     AuthApiService,
     DialogService,
     GoogleBooksApiService,
-    ResourcesApiService,
     ResourcesLibraryService,
     ResourcesPlanService,
     SnackBarService,

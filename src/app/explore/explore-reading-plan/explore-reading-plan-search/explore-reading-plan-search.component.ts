@@ -1,9 +1,9 @@
 import {Component, OnDestroy, OnInit} from '@angular/core';
 import {Subscription} from 'rxjs';
 import {DialogService} from '../../../../shared/services/dialog/dialog.service';
-import {ResourcesApiService} from '../../../../shared/services/api/resources/resources-api.service';
 import {BookDTO} from '../../../../shared/dto/dto.module';
 import {animate, query, sequence, stagger, style, transition, trigger} from '@angular/animations';
+import {ResourcesLibraryService} from '../../../../shared/services/api/resources/library/resources-library.service';
 
 @Component({
   selector: 'app-explore-reading-plan-search',
@@ -41,11 +41,14 @@ export class ExploreReadingPlanSearchComponent implements OnInit, OnDestroy {
   isLoading = true;
   bookRemoved$: Subscription;
 
-  constructor(private dialogService: DialogService, private resourcesApiService: ResourcesApiService) { }
+  constructor(
+    private dialogService: DialogService,
+    private resourcesLibraryService: ResourcesLibraryService
+  ) { }
 
   ngOnInit() {
     this.getBooks();
-    this.bookRemoved$ = this.resourcesApiService.bookRemovedEvent$.subscribe(() => {
+    this.bookRemoved$ = this.resourcesLibraryService.bookRemovedEvent$.subscribe(() => {
       this.bookDTOArray = [];
       this.getBooks();
     });

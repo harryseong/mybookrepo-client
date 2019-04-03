@@ -1,5 +1,4 @@
 import { Component, OnInit } from '@angular/core';
-import {UserService} from '../../../shared/services/user/user.service';
 import {animate, query, sequence, stagger, style, transition, trigger} from '@angular/animations';
 import {BookDTO} from '../../../shared/dto/dto.module';
 
@@ -26,7 +25,7 @@ export class ExploreProfileComponent implements OnInit {
   bookDTOArray: any[] = [];
   isLoading = true;
 
-  constructor(public userSerivce: UserService) { }
+  constructor() { }
 
   ngOnInit() {
     this.getBooks();
