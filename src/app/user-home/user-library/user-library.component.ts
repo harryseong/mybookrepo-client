@@ -6,6 +6,7 @@ import {ResourcesApiService} from '../../../shared/services/api/resources/resour
 import {BookDTO} from '../../../shared/dto/dto.module';
 import {UserService} from '../../../shared/services/user/user.service';
 import {ResourcesLibraryService} from '../../../shared/services/api/resources/library/resources-library.service';
+import {SnackBarService} from '../../../shared/services/snackBar/snack-bar.service';
 
 @Component({
   selector: 'app-user-library',
@@ -47,7 +48,8 @@ export class UserLibraryComponent implements OnInit, OnDestroy {
   constructor(
     private dialogService: DialogService,
     public userService: UserService,
-    private resourcesLibraryService: ResourcesLibraryService
+    private resourcesLibraryService: ResourcesLibraryService,
+    private snackBarService: SnackBarService
   ) { }
 
   ngOnInit() {
@@ -58,9 +60,10 @@ export class UserLibraryComponent implements OnInit, OnDestroy {
       this.getBooks();
     });
 
-    this.bookRemoved$ = this.resourcesLibraryService.bookRemovedEvent$.subscribe(() => {
+    this.bookRemoved$ = this.resourcesLibraryService.bookRemovedEvent$.subscribe((bookDTO) => {
       this.bookDTOArray = [];
       this.getBooks();
+      this.snackBarService.openSnackBar('"' + bookDTO.title + '" was removed from the library.', 'OK');
     });
   }
 

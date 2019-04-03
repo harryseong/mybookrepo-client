@@ -9,6 +9,7 @@ import {DialogService} from '../../../../shared/services/dialog/dialog.service';
 import {animate, query, sequence, stagger, style, transition, trigger} from '@angular/animations';
 import {UserService} from '../../../../shared/services/user/user.service';
 import {Router} from '@angular/router';
+import {ResourcesLibraryService} from '../../../../shared/services/api/resources/library/resources-library.service';
 
 @Component({
   selector: 'app-user-library-add',
@@ -56,12 +57,17 @@ export class UserLibraryAddComponent implements OnInit, OnDestroy {
   constructor(private snackBarService: SnackBarService,
               private googleBooksApiService: GoogleBooksApiService,
               private resourcesApiService: ResourcesApiService,
+              private resourcesLibraryService: ResourcesLibraryService,
               private dialogService: DialogService,
               private router: Router,
               public userService: UserService
   ) { }
 
-  ngOnInit() {}
+  ngOnInit() {
+    this.bookAddedToLibrary$ = this.resourcesLibraryService.bookAddedEvent$.subscribe(
+      (bookDTO: BookDTO) => this.snackBarService.openSnackBar('"' + bookDTO.title + '" was added to the library.', 'OK')
+  );
+  }
 
   ngOnDestroy(): void {
     if (this.searchBooks$ != null) {

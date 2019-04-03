@@ -29,20 +29,17 @@ export class BookDetailsDialogComponent {
 
   addBook(bookDTO: BookDTO) {
     this.resourcesLibraryService.addBookToLibrary(bookDTO).subscribe(rsp => {
-      console.log(rsp);
       this.resourcesLibraryService.bookAddedToLibrary(bookDTO);
       this.closeDialog();
-    }, error1 => {
-      console.error(error1);
-    });
+    },
+      err => console.error(err)
+    );
   }
 
   removeBook(bookDTO: BookDTO) {
     this.resourcesLibraryService.removeBookFromLibrary(bookDTO).subscribe(
       rsp => {
-        console.log(rsp);
-        this.resourcesApiService.bookRemovedFromLibrary(bookDTO);
-        this.router.navigate(['/user', this.userService.username, 'library']);
+        this.resourcesLibraryService.bookRemovedFromLibrary(bookDTO);
         this.closeDialog();
       },
       err => console.error(err)
