@@ -65,9 +65,8 @@ $danger-color: #ff0000;
   //DROP ZONES
   .drop-zones {
     position: fixed;
-    left: 50%;
+    right: 0.5em;
     bottom: 120px;
-    margin-left: -115px;
 
     .drop-zone {
       height: 50px;
@@ -115,8 +114,6 @@ $danger-color: #ff0000;
   }
 
   .drop-zones.desktop {
-    left: auto;
-    margin-left: auto;
     bottom: 2.5em;
     right: 2.5em;
   }
