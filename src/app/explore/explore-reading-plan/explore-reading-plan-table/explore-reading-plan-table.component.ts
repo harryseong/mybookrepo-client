@@ -98,10 +98,11 @@ export class ExploreReadingPlanTableComponent implements OnInit {
   dropZoneState = 'hide';
   planActionsVisible = false;
   gearTurn = 'default';
+  mobileView = false;
 
   constructor(
-    private dialogService: DialogService
-  ) { }
+    private dialogService: DialogService,
+  ) {}
 
   ngOnInit() {
     this.getBooks();

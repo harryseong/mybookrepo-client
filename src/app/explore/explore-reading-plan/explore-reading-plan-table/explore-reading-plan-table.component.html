@@ -23,7 +23,10 @@
 
     <!--TO READ SECTION-->
     <div class="plan-section-container content-element" fxFlex="100/3">
-      <div class="plan-section-label">To Read</div>
+      <div class="plan-section-label" fxLayout="row" fxLayoutGap="0.2em">
+        <div>To Read</div>
+        <span [matBadge]="toRead.length.toString()" matBadgeOverlap="false" matBadgeColor="accent"></span>
+      </div>
       <div class="book-list"
            cdkDropList #toReadList="cdkDropList" [cdkDropListData]="toRead"
            [cdkDropListConnectedTo]="[readingList, doneList, removeBox, mobileReadingList, mobileDoneList, mobileRemoveBox]"
@@ -46,7 +49,10 @@
 
     <!--READING SECTION-->
     <div class="plan-section-container content-element" fxFlex="100/3">
-      <div class="plan-section-label">Reading</div>
+      <div class="plan-section-label" fxLayout="row" fxLayoutGap="0.2em">
+        <div>Reading</div>
+        <span [matBadge]="reading.length.toString()" matBadgeOverlap="false" matBadgeColor="accent"></span>
+      </div>
       <div class="book-list"
            cdkDropList #readingList="cdkDropList" [cdkDropListData]="reading"
            [cdkDropListConnectedTo]="[toReadList, doneList, removeBox, mobileToReadList, mobileDoneList, mobileRemoveBox]"
@@ -61,7 +67,10 @@
 
     <!--DONE SECTION-->
     <div class="plan-section-container content-element" fxFlex="100/3">
-      <div class="plan-section-label">Done</div>
+      <div class="plan-section-label" fxLayout="row" fxLayoutGap="0.2em">
+        <div>Done</div>
+        <span [matBadge]="done.length.toString()" matBadgeOverlap="false" matBadgeColor="accent"></span>
+      </div>
       <div class="book-list"
            cdkDropList #doneList="cdkDropList" [cdkDropListData]="done"
            [cdkDropListConnectedTo]="[toReadList, readingList, removeBox, mobileToReadList, mobileReadingList, mobileRemoveBox]"
