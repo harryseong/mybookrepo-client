@@ -4,7 +4,7 @@ $danger-color: #ff0000;
 
 .content {
   color: $theme-secondary;
-  padding: 1em;
+  padding: 0.5em;
 
   .plan-name {
     font-size: 1.3em;
@@ -52,6 +52,14 @@ $danger-color: #ff0000;
         border: none;
       }
     }
+  }
+
+  .plan-section-container.left {
+    margin: 0 5px 0 0;
+  }
+
+  .plan-section-container.right {
+    margin: 0 0 0 5px;
   }
 
   //DROP ZONES
@@ -115,6 +123,8 @@ $danger-color: #ff0000;
 }
 
 .content.xs {
+  padding: 0.5em 0 0 0;
+
   .plan-section-container {
     width: 100%;
   }

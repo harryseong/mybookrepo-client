@@ -18,10 +18,10 @@
     </div>
   </div>
 
-  <div fxLayout="row" fxLayout.xs="column" fxLayoutGap.xs="0.5em">
+  <div fxLayout="row" fxLayout.xs="column" fxLayoutGap.xs="1em">
 
     <!--TO READ SECTION-->
-    <div class="plan-section-container content-element" fxFlex="100/3">
+    <div class="plan-section-container left content-element" fxFlex="100/3">
       <div class="plan-section-label" fxLayout="row" fxLayoutGap="0.2em">
         <div>To Read</div>
         <span [matBadge]="toRead.length.toString()" matBadgeOverlap="false" matBadgeColor="accent"></span>
@@ -65,7 +65,7 @@
     </div>
 
     <!--DONE SECTION-->
-    <div class="plan-section-container content-element" fxFlex="100/3">
+    <div class="plan-section-container right content-element" fxFlex="100/3">
       <div class="plan-section-label" fxLayout="row" fxLayoutGap="0.2em">
         <div>Done</div>
         <span [matBadge]="done.length.toString()" matBadgeOverlap="false" matBadgeColor="accent"></span>
