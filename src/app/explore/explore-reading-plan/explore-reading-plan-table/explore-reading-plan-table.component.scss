@@ -13,7 +13,7 @@ $danger-color: #ff0000;
 
   // PLAN SECTION
   .plan-section-container {
-    width: 300px;
+    width: auto;
     max-width: 100/3;
     margin: 0 5px;
     display: inline-block;
@@ -64,15 +64,14 @@ $danger-color: #ff0000;
 
   //DROP ZONES
   .drop-zones {
-    z-index: 100;
     position: fixed;
     left: 50%;
     bottom: 120px;
-    margin-left: -175px;
+    margin-left: -115px;
 
     .drop-zone {
       height: 50px;
-      width: 350px;
+      width: 230px;
       border-radius: 5px;
       border: 1.5pt solid $theme-color;
       background-color: $theme-secondary;
@@ -101,6 +100,9 @@ $danger-color: #ff0000;
   }
 
   .drop-zones.show {
+    z-index: 100;
+    transition: 0.5s;
+
     .drop-zone.hover {
       opacity: 1;
       transform: scale(1.05);
@@ -113,12 +115,10 @@ $danger-color: #ff0000;
   }
 
   .drop-zones.desktop {
+    left: auto;
+    margin-left: auto;
     bottom: 2.5em;
     right: 2.5em;
-
-    .drop-zone.remove {
-      width: 300px;
-    }
   }
 }
 
