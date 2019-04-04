@@ -31,6 +31,6 @@
 
 </div>
 
-<div fxLayout="row wrap" fxLayout.xs="column" fxLayoutAlign="center" *ngIf="!isLoading" [@bookCardAnimations] class="search-results-div">
+<div fxLayout="row wrap" fxLayout.xs="column" fxLayoutAlign="center" *ngIf="!isLoading" [@bookCardAnimations] class="search-results-div" ngClass.xs="xs">
   <app-book-card fxLayout.xs="row" *ngFor="let bookDTO of bookDTOArray; let last = last;" [bookDTO]="bookDTO" bookCardType="new" (click)="openDialog(bookDTO)"></app-book-card>
 </div>
