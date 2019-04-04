@@ -99,9 +99,6 @@ $danger-color: #ff0000;
   }
 
   .drop-zones.show {
-    z-index: 100;
-    transition: 0.5s;
-
     .drop-zone.hover {
       opacity: 1;
       transform: scale(1.05);
