@@ -32,6 +32,9 @@ export class UserPlanComponent implements OnInit, OnDestroy {
   planUpdated$: Subscription;
   planDeleted$: Subscription;
   planArray: any[] = [];
+  toRead = [];
+  reading = [];
+  done = [];
   isLoading = true;
   currentPlan: PlanDTO = null;
   currentPlanId: string;
@@ -96,10 +99,38 @@ export class UserPlanComponent implements OnInit, OnDestroy {
     );
   }
 
+  getBooks() {
+    this.clearBookBoard();
+    this.resourcesPlanService.getAllPlanBooks(this.currentPlan.id).subscribe(
+      rsp => {
+        rsp.map(
+          planBook => {
+            if (planBook.status === 0) {
+              this.toRead.push(planBook.book);
+            } else if (planBook.status === 1) {
+              this.reading.push(planBook.book);
+            } else if (planBook.status === 2) {
+              this.done.push(planBook.book);
+            }
+          }
+        );
+        this.isLoading = false;
+      }
+    );
+  }
+
+  clearBookBoard() {
+    this.isLoading = true;
+    this.toRead = [];
+    this.reading = [];
+    this.done = [];
+  }
+
   viewPlan(planDTO: PlanDTO) {
     this.router.navigate(['/user', this.userService.username, 'plan', planDTO.id]);
     this.currentPlan = planDTO;
     this.currentPlanId = planDTO.id;
+    this.getBooks();
   }
 
   createPlan() {

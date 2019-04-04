@@ -18,8 +18,12 @@
 
   <mat-divider class="content-element"></mat-divider>
 
-  <div *ngIf="currentPlan != null">
-    <app-user-plan-board [currentPlan]="currentPlan"></app-user-plan-board>
+  <div fxLayout="row" fxLayoutAlign="center center" *ngIf="currentPlan != null && isLoading == true">
+    <app-progress-spinner></app-progress-spinner>
+  </div>
+
+  <div *ngIf="currentPlan != null && isLoading == false">
+    <app-user-plan-board [currentPlan]="currentPlan" [toRead]="toRead" [reading]="reading" [done]="done"></app-user-plan-board>
   </div>
 
 </div>

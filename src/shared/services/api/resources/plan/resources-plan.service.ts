@@ -69,6 +69,13 @@ export class ResourcesPlanService {
       'Content-Type': 'application/json',
       Authorization: 'Bearer ' + localStorage.getItem(environment.jwt.local_storage_key),
     });
-    return this.http.post(environment.api.resources_url + '/plan/book/' + planId, bookDTO, {headers, responseType: 'text'});
+    return this.http.post(environment.api.resources_url + '/plan/' + planId + '/book', bookDTO, {headers, responseType: 'text'});
+  }
+
+  getAllPlanBooks(planId: string): Observable<any> {
+    const headers = new HttpHeaders({
+      Authorization: 'Bearer ' + localStorage.getItem(environment.jwt.local_storage_key)
+    });
+    return this.http.get(environment.api.resources_url + '/plan/' + planId + '/book', {headers});
   }
 }

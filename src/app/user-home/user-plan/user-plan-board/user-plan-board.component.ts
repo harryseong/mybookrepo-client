@@ -4,6 +4,7 @@ import {DialogService} from '../../../../shared/services/dialog/dialog.service';
 import {CdkDragDrop, moveItemInArray, transferArrayItem} from '@angular/cdk/drag-drop';
 import {animate, query, sequence, stagger, state, style, transition, trigger} from '@angular/animations';
 import {UserService} from '../../../../shared/services/user/user.service';
+import {ResourcesPlanService} from '../../../../shared/services/api/resources/plan/resources-plan.service';
 
 @Component({
   selector: 'app-user-plan-board',
@@ -83,14 +84,13 @@ import {UserService} from '../../../../shared/services/user/user.service';
   ]
 })
 export class UserPlanBoardComponent implements OnInit {
-  @Input()
-  currentPlan: PlanDTO;
-  isLoading = true;
-  bookDTOArray: any[] = [];
-  toRead = [];
-  reading = [];
+  @Input() currentPlan: PlanDTO;
+  @Input() toRead = [];
+  @Input() reading = [];
+  @Input() done = [];
   remove = [];
-  done = [];
+
+  isLoading = true;
   dragging = false;
   inToReadZone = false;
   inReadingZone = false;
@@ -102,16 +102,11 @@ export class UserPlanBoardComponent implements OnInit {
 
   constructor(
     private dialogService: DialogService,
-    public userService: UserService
+    public userService: UserService,
+    private resourcesPlanService: ResourcesPlanService
   ) { }
 
-  ngOnInit() {
-    this.getBooks();
-  }
-
-  getBooks() {
-
-  }
+  ngOnInit() {}
 
   drop(event: CdkDragDrop<string[]>) {
     if (event.previousContainer === event.container) {

@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import {UserService} from '../../../shared/services/user/user.service';
 import {BookDTO} from '../../../shared/dto/dto.module';
 import {animate, query, sequence, stagger, style, transition, trigger} from '@angular/animations';
+import {ResourcesLibraryService} from '../../../shared/services/api/resources/library/resources-library.service';
 
 @Component({
   selector: 'app-user-account',
@@ -23,15 +24,24 @@ import {animate, query, sequence, stagger, style, transition, trigger} from '@an
 ]
 })
 export class UserAccountComponent implements OnInit {
-  bookDTOArray: any[] = [];
+  libraryBookCount: number;
   isLoading = true;
 
-  constructor(public userService: UserService) {
-  }
+  constructor(
+    public userService: UserService,
+    private resourcesLibraryService: ResourcesLibraryService
+  ) {}
 
   ngOnInit() {
     this.getBooks();
   }
 
-  getBooks() {}
+  getBooks() {
+    this.resourcesLibraryService.getAllBooks().subscribe(
+      rsp => {
+        this.libraryBookCount = rsp.length;
+        this.isLoading = false;
+      }
+    );
+  }
 }
