@@ -16,7 +16,6 @@
         <i class="far fa-trash-alt fa-fw"></i>
       </button>
     </div>
-
   </div>
 
   <div fxLayout="row" fxLayout.xs="column" fxLayoutGap.xs="0.5em">
@@ -30,7 +29,7 @@
            (cdkDropListDropped)="drop($event)">
 
         <!--ADD BOOK TO PLAN-->
-        <div class="book-box add-book-box" routerLinkActive="true" routerLink="/explore/johndoe123/plan/add"
+        <div class="book-box add-book-box" routerLinkActive="true" [routerLink]="['/user', userService.username, 'plan', currentPlan.id, 'add']"
              fxLayout="row" fxLayoutAlign="start center" fxLayoutGap="0.7em">
           <div><i class="fas fa-plus fa-fw"></i></div>
           <div>ADD BOOK TO PLAN</div>

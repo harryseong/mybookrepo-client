@@ -13,11 +13,10 @@ import {UserLibraryComponent} from './user-home/user-library/user-library.compon
 import {AuthGuard} from './auth.guard';
 import {ExploreReadingPlanComponent} from './explore/explore-reading-plan/explore-reading-plan.component';
 import {ExploreReadingPlanSearchComponent} from './explore/explore-reading-plan/explore-reading-plan-search/explore-reading-plan-search.component';
-import {ExploreReadingPlanTableComponent} from './explore/explore-reading-plan/explore-reading-plan-table/explore-reading-plan-table.component';
 import {UserAccountComponent} from './user-home/user-account/user-account.component';
 import {UserPlanComponent} from './user-home/user-plan/user-plan.component';
 import {UserLibraryAddComponent} from './user-home/user-library/user-library-add/user-library-add.component';
-import {UserPlanBoardComponent} from './user-home/user-plan/user-plan-board/user-plan-board.component';
+import {UserPlanAddComponent} from './user-home/user-plan/user-plan-add/user-plan-add.component';
 
 const routes: Routes = [
   {path: '', component: HomeComponent},
@@ -29,7 +28,12 @@ const routes: Routes = [
       {path: '', redirectTo: 'library', pathMatch: 'full', canActivate: [AuthGuard]},
       {path: 'library', component: UserLibraryComponent, canActivate: [AuthGuard]},
       {path: 'library/add', component: UserLibraryAddComponent, canActivate: [AuthGuard]},
-      {path: 'plan', component: UserPlanComponent, canActivate: [AuthGuard]},
+      {path: 'plan', component: UserPlanComponent, canActivate: [AuthGuard],
+        children: [
+          {path: ':planId', component: UserPlanComponent, canActivate: [AuthGuard]}
+        ]
+      },
+      {path: 'plan/:planId/add', component: UserPlanAddComponent},
       {path: 'account', component: UserAccountComponent, canActivate: [AuthGuard]},
     ]
   },
@@ -37,11 +41,7 @@ const routes: Routes = [
   {path: 'explore/johndoe123', component: ExploreComponent,
     children: [
       {path: '', redirectTo: 'plan', pathMatch: 'full'},
-      {path: 'plan', component: ExploreReadingPlanComponent,
-        children: [
-          {path: 'view/:id', component: ExploreReadingPlanTableComponent}
-        ]
-      },
+      {path: 'plan', component: ExploreReadingPlanComponent},
       {path: 'plan/add', component: ExploreReadingPlanSearchComponent},
       {path: 'account', component: ExploreProfileComponent},
       {path: 'library', component: ExploreMyLibraryComponent},

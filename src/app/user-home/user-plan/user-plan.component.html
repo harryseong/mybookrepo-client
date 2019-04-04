@@ -10,7 +10,7 @@
         <span><i class="fas fa-plus"></i>&nbsp;PLAN</span>
       </button>
       <button mat-stroked-button *ngFor="let plan of planArray" (click)="viewPlan(plan)"
-              [ngClass]="currentPlan != null ? (currentPlan.name===plan.name ? 'plan-btn selected' : 'plan-btn') : 'plan-btn'">
+              [ngClass]="currentPlan != null ? (currentPlanId===plan.id ? 'plan-btn selected' : 'plan-btn') : 'plan-btn'">
         {{plan.name}}
       </button>
     </div>

@@ -11,6 +11,7 @@ export class ResourcesPlanService {
   planCreatedEvent$ = new Subject<any>();
   planUpdatedEvent$ = new Subject<any>();
   planDeletedEvent$ = new Subject<any>();
+  bookAddedToPlanEvent$ = new Subject<any>();
 
   constructor(
     private http: HttpClient
@@ -26,6 +27,10 @@ export class ResourcesPlanService {
 
   planDeleted(planDTO: PlanDTO) {
     this.planDeletedEvent$.next(planDTO);
+  }
+
+  bookAddedToPlan(planId: string, bookDTO: BookDTO) {
+    this.bookAddedToPlanEvent$.next({planId, bookDTO});
   }
 
   getAllPlans(): Observable<any> {
@@ -57,5 +62,13 @@ export class ResourcesPlanService {
       Authorization: 'Bearer ' + localStorage.getItem(environment.jwt.local_storage_key)
     });
     return this.http.delete(environment.api.resources_url + '/plan/' + planDTO.id, {headers, responseType: 'text'});
+  }
+
+  addBookToPlan(planId: string, bookDTO: BookDTO): Observable<any> {
+    const headers = new HttpHeaders({
+      'Content-Type': 'application/json',
+      Authorization: 'Bearer ' + localStorage.getItem(environment.jwt.local_storage_key),
+    });
+    return this.http.post(environment.api.resources_url + '/plan/book/' + planId, bookDTO, {headers, responseType: 'text'});
   }
 }

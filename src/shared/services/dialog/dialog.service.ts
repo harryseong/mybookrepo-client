@@ -12,13 +12,14 @@ export class DialogService {
 
   constructor(public dialog: MatDialog) {}
 
-  openBookDetailsDialog(bookDTO: BookDTO, dialogType: string) {
+  openBookDetailsDialog(bookDTO: BookDTO, dialogType: string, planId?: string) {
     const dialogRef = this.dialog.open(BookDetailsDialogComponent, {
       width: '40em',
       autoFocus: false,
       panelClass: 'book-details-dialog',
       data: {
         book: bookDTO,
+        planId: planId !== undefined ? planId : null,
         type: dialogType
       },
     });

@@ -118,6 +118,7 @@ export class CategoryDTO {
 
 export class PlanDTO {
   id?: string;
+  books?: any[];
   name: string;
   description: string;
 

@@ -20,10 +20,10 @@
                 </span>
           </div>
         </div>
-        <div class="book-description" *ngIf="bookCardType=='new' && bookDTO.description!=undefined">
+        <div class="book-description" *ngIf="bookCardType=='NEW' && bookDTO.description!=undefined">
           {{abbreviateDescription(bookDTO.description)}}
         </div>
-        <div class="book-library" *ngIf="bookCardType=='library'" fxLayout="row" fxLayoutAlign="end">
+        <div class="book-library" *ngIf="bookCardType=='LIBRARY' || bookCardType=='PLAN_ADD'" fxLayout="row" fxLayoutAlign="end">
           <div fxLayout="column" fxLayoutGap="0.5em">
             <mat-chip-list>
               <mat-chip *ngFor="let category of bookDTO.categories" class="category-chip">

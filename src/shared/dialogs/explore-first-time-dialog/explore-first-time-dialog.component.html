@@ -2,17 +2,19 @@
   <div fxLayout="row" fxLayoutAlign="center">
     <div class="warning-message" fxLayout="column" fxLayoutGap="0.5em">
       <div class="message-header"><i class="fas fa-exclamation-triangle"></i> Keep in mind!</div>
-      <div class="message-text">This library is temporary and exists for exploration purposes. Books added here will disappear when you clear your browser's cookies.</div>
+      <div class="message-text">This explore account is temporary and exists for demo purposes. Books added here will disappear when you clear your browser's cookies.</div>
     </div>
   </div>
 </div>
 
-<div mat-dialog-actions fxLayout="row" fxLayout.xs="column" fxLayoutGap.xs="0.5em">
-  <div fxLayout="column" fxLayoutAlign="start" fxFlex="50" fxFlex.xs="100">
+<div mat-dialog-actions fxLayout="row" fxLayout.xs="column">
+  <div fxLayout="column" fxLayoutAlign="start start"  fxFlex="50" fxFlex.xs="100">
     <mat-checkbox [(ngModel)]="dontShowAgain" class="dont-show-me-again">Don't show me again</mat-checkbox>
   </div>
 
-  <div fxLayout="row" fxLayoutAlign="end" fxFlex="50" fxFlex.xs="100">
+  <span class="spacer" fxHide.xs></span>
+
+  <div fxLayout="column" fxLayoutAlign="end end" fxFlex="50" fxFlex.xs="100">
     <button mat-stroked-button (click)="closeDialog()" class="dialog-btn" ngClass.xs="xs">OKAY</button>
   </div>
 </div>

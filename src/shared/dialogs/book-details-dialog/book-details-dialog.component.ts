@@ -5,6 +5,7 @@ import {UserService} from '../../services/user/user.service';
 import {Router} from '@angular/router';
 import {SnackBarService} from '../../services/snackBar/snack-bar.service';
 import {ResourcesLibraryService} from '../../services/api/resources/library/resources-library.service';
+import {ResourcesPlanService} from '../../services/api/resources/plan/resources-plan.service';
 
 @Component({
   selector: 'app-book-details-dialog',
@@ -15,6 +16,7 @@ export class BookDetailsDialogComponent {
 
   constructor(public dialogRef: MatDialogRef<BookDetailsDialogComponent>,
               private resourcesLibraryService: ResourcesLibraryService,
+              private resourcesPlanService: ResourcesPlanService,
               private router: Router,
               public userService: UserService,
               private snackBarService: SnackBarService,
@@ -38,6 +40,15 @@ export class BookDetailsDialogComponent {
     this.resourcesLibraryService.removeBookFromLibrary(bookDTO).subscribe(
       rsp => {
         this.resourcesLibraryService.bookRemovedFromLibrary(bookDTO);
+        this.closeDialog();
+      },
+      err => console.error(err)
+    );
+  }
+
+  addBookToPlan(planId: string, bookDTO: BookDTO) {
+    this.resourcesPlanService.addBookToPlan(planId, bookDTO).subscribe(rsp => {
+        this.resourcesPlanService.bookAddedToPlan(planId, bookDTO);
         this.closeDialog();
       },
       err => console.error(err)

@@ -42,6 +42,7 @@ import {ProgressSpinnerComponent} from '../shared/progress-spinner/progress-spin
 import { UserPlanBoardComponent } from './user-home/user-plan/user-plan-board/user-plan-board.component';
 import {ResourcesLibraryService} from '../shared/services/api/resources/library/resources-library.service';
 import {ResourcesPlanService} from '../shared/services/api/resources/plan/resources-plan.service';
+import { UserPlanAddComponent } from './user-home/user-plan/user-plan-add/user-plan-add.component';
 
 @NgModule({
   declarations: [
@@ -70,6 +71,7 @@ import {ResourcesPlanService} from '../shared/services/api/resources/plan/resour
     UserLibraryAddComponent,
     ProgressSpinnerComponent,
     UserPlanBoardComponent,
+    UserPlanAddComponent,
   ],
   imports: [
     AppRoutingModule,
