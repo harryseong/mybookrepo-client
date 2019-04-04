@@ -66,14 +66,14 @@ $danger-color: #ff0000;
   .drop-zones {
     z-index: 100;
     position: fixed;
-    bottom: 50px;
-    right: 10px;
-    margin: 5% auto; /* Will not center vertically and won't work in IE6/7. */
+    left: 50%;
+    bottom: 120px;
+    margin-left: -175px;
 
     .drop-zone {
       height: 50px;
-      width: 200px;
-      border-radius: 3px;
+      width: 350px;
+      border-radius: 5px;
       border: 1.5pt solid $theme-color;
       background-color: $theme-secondary;
       font-size: 0.75em;
