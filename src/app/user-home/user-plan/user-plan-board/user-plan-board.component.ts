@@ -108,7 +108,7 @@ export class UserPlanBoardComponent implements OnInit {
 
   ngOnInit() {}
 
-  drop(event: CdkDragDrop<string[]>) {
+  drop(event: CdkDragDrop<string[]>, droppedIn: string) {
     if (event.previousContainer === event.container) {
       moveItemInArray(event.container.data, event.previousIndex, event.currentIndex);
     } else {
@@ -116,6 +116,28 @@ export class UserPlanBoardComponent implements OnInit {
         event.container.data,
         event.previousIndex,
         event.currentIndex);
+      switch (droppedIn) {
+        case('TO_READ'): {
+          break;
+        }
+        case('READING'): {
+          break;
+        }
+        case('DONE'): {
+          break;
+        }
+        case('REMOVE'): {
+          this.resourcesPlanService.removeBookFromPlan(this.currentPlan.id, event.item.data).subscribe(
+            rsp => {
+              // TODO Booked removed from plan event.
+            }
+          );
+          break;
+        }
+        default: {
+          break;
+        }
+      }
     }
   }
 

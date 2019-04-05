@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import {Observable, Subject} from 'rxjs';
-import {HttpClient, HttpHeaders} from '@angular/common/http';
+import {HttpClient, HttpHeaders, HttpParams} from '@angular/common/http';
 import {BookDTO, PlanDTO} from '../../../../dto/dto.module';
 import {environment} from '../../../../../environments/environment';
 
@@ -70,6 +70,15 @@ export class ResourcesPlanService {
       Authorization: 'Bearer ' + localStorage.getItem(environment.jwt.local_storage_key),
     });
     return this.http.post(environment.api.resources_url + '/plan/' + planId + '/book', bookDTO, {headers, responseType: 'text'});
+  }
+
+  removeBookFromPlan(planId: string, bookDTO: BookDTO): Observable<any> {
+    const headers = new HttpHeaders({
+      'Content-Type': 'application/json',
+      Authorization: 'Bearer ' + localStorage.getItem(environment.jwt.local_storage_key),
+    });
+    const params = new HttpParams().set('bookId', bookDTO.id);
+    return this.http.delete(environment.api.resources_url + '/plan/' + planId + '/book', {params, headers, responseType: 'text'});
   }
 
   getAllPlanBooks(planId: string): Observable<any> {
