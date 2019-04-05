@@ -45,4 +45,12 @@ export class ResourcesLibraryService {
     });
     return this.http.delete(environment.api.resources_url + '/library/book/' + bookDTO.id, {headers, responseType: 'text'});
   }
+
+  getBarcodeInfo(): Observable<any> {
+    const headers = new HttpHeaders({
+      'Content-Type': 'application/json',
+      Authorization: 'Bearer ' + localStorage.getItem(environment.jwt.local_storage_key),
+    });
+    return this.http.post(environment.api.resources_url + '/library/book/barcode', null, {headers, responseType: 'text'});
+  }
 }

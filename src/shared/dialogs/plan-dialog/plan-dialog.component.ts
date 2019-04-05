@@ -35,6 +35,40 @@ export class PlanDialogComponent implements OnInit {
     this.dialogRef.close();
   }
 
+  submit() {
+    if (this.planForm.valid) {
+      switch (this.data.type) {
+        case 'CREATE': {
+          this.createPlan();
+          break;
+        }
+        case 'EDIT': {
+          this.updatePlan();
+          break;
+        }
+        case 'DELETE': {
+          this.deletePlan();
+          break;
+        }
+        case 'EXPLORE_CREATE': {
+          this.exploreCreatePlan();
+          break;
+        }
+        case 'EXPLORE_EDIT': {
+          this.exploreUpdatePlan();
+          break;
+        }
+        case 'EXPLORE_DELETE': {
+          this.exploreDeletePlan();
+          break;
+        }
+        default: {
+          break;
+        }
+      }
+    }
+  }
+
   createPlan() {
     const newPlan: PlanDTO = new PlanDTO(this.planForm.get('name').value, this.planForm.get('description').value);
     this.resourcesPlanService.createPlan(newPlan).subscribe(
@@ -45,8 +79,8 @@ export class PlanDialogComponent implements OnInit {
     );
   }
 
-  updatePlan(planDTO: PlanDTO) {
-    const updatedPlan: PlanDTO = new PlanDTO(this.planForm.get('name').value, this.planForm.get('description').value, planDTO.id);
+  updatePlan() {
+    const updatedPlan: PlanDTO = new PlanDTO(this.planForm.get('name').value, this.planForm.get('description').value, this.data.plan.id);
     this.resourcesPlanService.updatePlan(updatedPlan).subscribe(
       rsp => {
         this.resourcesPlanService.planUpdatedEvent$.next(updatedPlan);
@@ -55,10 +89,10 @@ export class PlanDialogComponent implements OnInit {
     );
   }
 
-  deletePlan(planDTO: PlanDTO) {
-    this.resourcesPlanService.deletePlan(planDTO).subscribe(
+  deletePlan() {
+    this.resourcesPlanService.deletePlan(this.data.plan).subscribe(
       rsp => {
-        this.resourcesPlanService.planDeletedEvent$.next(planDTO);
+        this.resourcesPlanService.planDeletedEvent$.next(this.data.plan);
         this.closeDialog();
       }
     );
@@ -75,12 +109,12 @@ export class PlanDialogComponent implements OnInit {
     this.closeDialog();
   }
 
-  exploreUpdatePlan(planDTO: PlanDTO) {
+  exploreUpdatePlan() {
     const updatedPlanName = this.planForm.get('name').value;
     const updatedPlanDescription = this.planForm.get('description').value;
     const updatedPlan: PlanDTO = new PlanDTO(updatedPlanName, updatedPlanDescription);
     const plans: PlanDTO[] = JSON.parse(localStorage.getItem('plans'));
-    const planIndex = plans.findIndex(x => x.name === planDTO.name);
+    const planIndex = plans.findIndex(x => x.name === this.data.plan.name);
     plans[planIndex] = new PlanDTO(updatedPlanName, updatedPlanDescription);
     plans.sort((a, b) => a.name > b.name ? 1 : (a.name === b.name) ? 0 : -1);
     localStorage.setItem('plans', JSON.stringify(plans));
@@ -89,13 +123,13 @@ export class PlanDialogComponent implements OnInit {
     this.closeDialog();
   }
 
-  exploreDeletePlan(planDTO: PlanDTO) {
+  exploreDeletePlan() {
     const plans: PlanDTO[] = JSON.parse(localStorage.getItem('plans'));
-    const planIndex = plans.findIndex(x => x.name === planDTO.name);
+    const planIndex = plans.findIndex(x => x.name === this.data.plan.name);
     plans.splice(planIndex, 1);
     localStorage.setItem('plans', JSON.stringify(plans));
-    this.snackBarService.openSnackBar('"' + planDTO.name + '" was deleted.', 'OK');
-    this.resourcesPlanService.planDeletedEvent$.next(planDTO);
+    this.snackBarService.openSnackBar('"' + this.data.plan.name + '" was deleted.', 'OK');
+    this.resourcesPlanService.planDeletedEvent$.next(this.data.plan);
     this.closeDialog();
   }
 }

@@ -9,12 +9,12 @@
   <form [formGroup]="planForm" fxLayout="column" fxLayoutGap="0.5em" *ngIf="data.type!=='DELETE' && data.type!=='EXPLORE_DELETE'">
     <mat-form-field>
       <mat-label>Name</mat-label>
-      <input matInput type="text" required formControlName="name">
+      <input matInput type="text" required formControlName="name" (keyup.enter)="submit()">
     </mat-form-field>
 
     <mat-form-field>
       <mat-label>Description</mat-label>
-      <input matInput type="text" required formControlName="description">
+      <input matInput type="text" required formControlName="description" (keyup.enter)="submit()">
     </mat-form-field>
   </form>
 
@@ -30,10 +30,10 @@
   </button>
 
   <!--REAL ACCOUNT BUTTONS-->
-  <button mat-stroked-button (click)="updatePlan(data.plan)" class="dialog-btn" ngClass.xs="xs" *ngIf="data.type=='EDIT'">
+  <button mat-stroked-button (click)="updatePlan()" class="dialog-btn" ngClass.xs="xs" [disabled]="!planForm.valid" *ngIf="data.type=='EDIT'">
     SAVE
   </button>
-  <button mat-stroked-button (click)="deletePlan(data.plan)" class="dialog-btn delete-btn" ngClass.xs="xs" *ngIf="data.type=='DELETE'">
+  <button mat-stroked-button (click)="deletePlan()" class="dialog-btn delete-btn" ngClass.xs="xs" *ngIf="data.type=='DELETE'">
     DELETE
   </button>
   <button mat-stroked-button (click)="createPlan()" class="dialog-btn" ngClass.xs="xs" [disabled]="!planForm.valid" *ngIf="data.type=='CREATE'">
@@ -41,10 +41,10 @@
   </button>
 
   <!--EXPLORE BUTTONS-->
-  <button mat-stroked-button (click)="exploreUpdatePlan(data.plan)" class="dialog-btn" ngClass.xs="xs" *ngIf="data.type=='EXPLORE_EDIT'">
+  <button mat-stroked-button (click)="exploreUpdatePlan()" class="dialog-btn" [disabled]="!planForm.valid" ngClass.xs="xs" *ngIf="data.type=='EXPLORE_EDIT'">
     SAVE
   </button>
-  <button mat-stroked-button (click)="exploreDeletePlan(data.plan)" class="dialog-btn delete-btn" ngClass.xs="xs" *ngIf="data.type=='EXPLORE_DELETE'">
+  <button mat-stroked-button (click)="exploreDeletePlan()" class="dialog-btn delete-btn" ngClass.xs="xs" *ngIf="data.type=='EXPLORE_DELETE'">
     DELETE
   </button>
   <button mat-stroked-button (click)="exploreCreatePlan()" class="dialog-btn" ngClass.xs="xs" [disabled]="!planForm.valid" *ngIf="data.type=='EXPLORE_CREATE'">

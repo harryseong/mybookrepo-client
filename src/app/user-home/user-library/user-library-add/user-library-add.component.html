@@ -29,6 +29,10 @@
     </div>
   </div>
 
+  <div fxLayout="row" fxLayoutAlign="center">
+    <button mat-stroked-button (click)="getBarcodeInfo()">Get Barcode Info</button>
+  </div>
+
 </div>
 
 <div fxLayout="row wrap" fxLayout.xs="column" fxLayoutAlign="center" *ngIf="!isLoading" [@bookCardAnimations] class="search-results-div" ngClass.xs="xs">

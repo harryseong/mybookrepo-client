@@ -84,6 +84,21 @@ export class UserLibraryAddComponent implements OnInit, OnDestroy {
     }
   }
 
+  getBarcodeInfo() {
+    this.resourcesLibraryService.getBarcodeInfo().subscribe(
+      rsp => {
+        const barcodeInfo = JSON.parse(rsp);
+        if (barcodeInfo.format !== 'ERROR') {
+          const isbn = barcodeInfo.text;
+          this.lookupBooksByISBN13(isbn);
+        } else {
+         console.warn(barcodeInfo.text);
+        }
+      },
+      error1 => console.error(error1)
+    );
+  }
+
   searchBooks() {
     this.bookDTOArray = [];
     this.bookSearched = true;
@@ -125,18 +140,16 @@ export class UserLibraryAddComponent implements OnInit, OnDestroy {
 
   processGoogleBooksApiResponse(data: any) {
     const dataObj: any = data;
+    console.log(JSON.stringify(data));
     const totalItems = dataObj.totalItems;
     if (totalItems > 0) {
-      dataObj.items.slice(0, 10).map(item => {
+      dataObj.items.slice(0, 100).map(item => {
         const bookDTO = new BookDTO(item.volumeInfo);
         console.log('BookDTO: ', bookDTO);
         this.bookDTOArray.push(bookDTO);
       });
-      console.log('BookDTOArray: ', this.bookDTOArray);
-      console.log(totalItems + ' book items returned from API call.');
-    } else {
-      console.log(totalItems + ' book items returned from API call.');
     }
+    console.log(totalItems + ' book items returned from API call.');
     this.isLoading = false;
     this.clearSubscriptions();
     this.clearLookupBookForm();
