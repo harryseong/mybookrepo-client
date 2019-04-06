@@ -1,21 +1,24 @@
 <div class="content" ngClass.xs="xs" fxLayout="column" fxLayoutGap="1em" [@contentAnimations]>
 
-  <div fxLayout="row" fxLayoutAlign="start center" class="content-element">
-    <div class="plan-name">{{currentPlan.name}}</div>
+  <div fxLayout="column" class="content-element">
+    <div fxLayout="row" fxLayoutAlign="start center">
+      <div class="plan-name">{{currentPlan.name}}</div>
 
-    <button mat-icon-button (click)="togglePlanActions()" [@planGearAnimations]="gearTurn">
-      <i class="fas fa-cog"></i>
-    </button>
-
-    <div [@planActionAnimations] *ngIf="planActionsVisible==true">
-      <button mat-icon-button class="edit-plan-btn plan-action-btn" (click)="editPlan()" matTooltip="Edit Plan" matTooltipPosition="above">
-        <i class="far fa-edit fa-fw"></i>
+      <button mat-icon-button (click)="togglePlanActions()" [@planGearAnimations]="gearTurn">
+        <i class="fas fa-cog"></i>
       </button>
 
-      <button mat-icon-button class="delete-plan-btn plan-action-btn" (click)="deletePlan()" matTooltip="Delete Plan" matTooltipPosition="above">
-        <i class="far fa-trash-alt fa-fw"></i>
-      </button>
+      <div [@planActionAnimations] *ngIf="planActionsVisible==true">
+        <button mat-icon-button class="edit-plan-btn plan-action-btn" (click)="editPlan()" matTooltip="Edit Plan" matTooltipPosition="above">
+          <i class="far fa-edit fa-fw"></i>
+        </button>
+
+        <button mat-icon-button class="delete-plan-btn plan-action-btn" (click)="deletePlan()" matTooltip="Delete Plan" matTooltipPosition="above">
+          <i class="far fa-trash-alt fa-fw"></i>
+        </button>
+      </div>
     </div>
+    <div class="plan-description">{{currentPlan.description}}</div>
   </div>
 
   <div fxLayout="row" fxLayout.xs="column" fxLayoutGap.xs="1em">

@@ -92,7 +92,6 @@ export class UserPlanBoardComponent implements OnInit, OnDestroy {
   @Input() done = [];
   remove = [];
 
-  isLoading = true;
   dragging = false;
   inToReadZone = false;
   inReadingZone = false;
@@ -133,17 +132,33 @@ export class UserPlanBoardComponent implements OnInit, OnDestroy {
 
       switch (droppedIn) {
         case('TO_READ'): {
+          this.resourcesPlanService.updateBookInPlan(this.currentPlan.id, bookDTO.id, '0').subscribe(
+            () => {
+              console.log(bookDTO.title + ' status updated to TO_READ.');
+            }
+          );
           break;
         }
         case('READING'): {
+          this.resourcesPlanService.updateBookInPlan(this.currentPlan.id, bookDTO.id, '1').subscribe(
+            () => {
+              console.log(bookDTO.title + ' status updated to READING.');
+            }
+          );
           break;
         }
         case('DONE'): {
+          this.resourcesPlanService.updateBookInPlan(this.currentPlan.id, bookDTO.id, '2').subscribe(
+            () => {
+              console.log(bookDTO.title + ' status updated to DONE.');
+            }
+          );
           break;
         }
         case('REMOVE'): {
           this.resourcesPlanService.removeBookFromPlan(this.currentPlan.id, bookDTO.id).subscribe(
             () => {
+              console.log(bookDTO.title + 'removed from plan.');
               this.resourcesPlanService.bookRemovedFromPlan(bookDTO);
             }
           );
