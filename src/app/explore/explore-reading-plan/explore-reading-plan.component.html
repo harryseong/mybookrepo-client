@@ -7,7 +7,7 @@
 
     <div fxLayout="row" fxLayoutGap="0.5em" class="year-btn-row content-element">
       <button mat-stroked-button (click)="createPlan()" class="add-plan-btn">
-        <span><i class="fas fa-plus"></i>&nbsp;PLAN</span>
+        <span><i class="fas fa-plus"></i>&nbsp;NEW PLAN</span>
       </button>
       <button mat-stroked-button *ngFor="let plan of planArray" (click)="viewPlan(plan)"
               [ngClass]="currentPlan != null ? (currentPlan.name===plan.name ? 'plan-btn selected' : 'plan-btn') : 'plan-btn'">

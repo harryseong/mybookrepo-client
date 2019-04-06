@@ -7,6 +7,7 @@ import {UserService} from '../../../shared/services/user/user.service';
 import {ResourcesLibraryService} from '../../../shared/services/api/resources/library/resources-library.service';
 import {SnackBarService} from '../../../shared/services/snackBar/snack-bar.service';
 import {FormControl, FormGroup} from '@angular/forms';
+import {BookService} from '../../../shared/services/book/book.service';
 
 @Component({
   selector: 'app-user-library',
@@ -55,7 +56,8 @@ export class UserLibraryComponent implements OnInit, OnDestroy {
     private dialogService: DialogService,
     public userService: UserService,
     private resourcesLibraryService: ResourcesLibraryService,
-    private snackBarService: SnackBarService
+    private snackBarService: SnackBarService,
+    private bookService: BookService
   ) { }
 
   ngOnInit() {
@@ -86,36 +88,12 @@ export class UserLibraryComponent implements OnInit, OnDestroy {
     if (searchTerm !== '') {
       this.filteredBookDTOArray = this.bookDTOArray.filter(bookDTO =>
         bookDTO.title.trim().toLowerCase().includes(searchTerm) ||
-        this.authorsContain(bookDTO.authors, searchTerm) ||
-        this.categoriesContain(bookDTO.categories, searchTerm)
+        this.bookService.authorsContain(bookDTO.authors, searchTerm) ||
+        this.bookService.categoriesContain(bookDTO.categories, searchTerm)
       );
     } else {
       this.filteredBookDTOArray = this.bookDTOArray;
     }
-  }
-
-  authorsContain(authors: AuthorDTO[], searchTerm: string) {
-    let foundAuthors = false;
-    authors.map(author => {
-      const authorFullName =
-        (author.firstName !== null ? author.firstName + ' ' : '') +
-        (author.middleName !== null ? author.middleName + ' ' : '') +
-        (author.lastName !== null ? author.lastName : '');
-      if (authorFullName.toLowerCase().trim().includes(searchTerm)) {
-        foundAuthors = true;
-      }
-    });
-    return foundAuthors;
-  }
-
-  categoriesContain(categories: CategoryDTO[], searchTerm: string) {
-    let foundCategories = false;
-    categories.map(category => {
-      if (category.name.toLowerCase().trim().includes(searchTerm)) {
-        foundCategories = true;
-      }
-    });
-    return foundCategories;
   }
 
   getBooks() {

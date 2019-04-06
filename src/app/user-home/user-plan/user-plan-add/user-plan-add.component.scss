@@ -5,6 +5,12 @@ $theme-secondary: #373737;
   color: $theme-secondary;
   padding: 1em;
 
+  .search-form-field {
+    width: 15em;
+    max-width: 100%;
+    font-size: 1em;
+  }
+
   .no-books-header {
     font-size: 1.2em;
     font-weight: 500;
