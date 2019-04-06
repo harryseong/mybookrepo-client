@@ -43,6 +43,7 @@ import { UserPlanBoardComponent } from './user-home/user-plan/user-plan-board/us
 import {ResourcesLibraryService} from '../shared/services/api/resources/library/resources-library.service';
 import {ResourcesPlanService} from '../shared/services/api/resources/plan/resources-plan.service';
 import { UserPlanAddComponent } from './user-home/user-plan/user-plan-add/user-plan-add.component';
+import {BookService} from '../shared/services/book/book.service';
 
 @NgModule({
   declarations: [
@@ -100,7 +101,8 @@ import { UserPlanAddComponent } from './user-home/user-plan/user-plan-add/user-p
     ResourcesLibraryService,
     ResourcesPlanService,
     SnackBarService,
-    UserService
+    UserService,
+    BookService
   ],
   bootstrap: [AppComponent]
 })
