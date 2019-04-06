@@ -24,6 +24,9 @@ import {SnackBarService} from '../../../../shared/services/snackBar/snack-bar.se
           ])
         ])
       ]),
+      transition(':leave', [
+        style({opacity: 0})
+      ]),
     ]),
     trigger('planGearAnimations', [
       state('default', style({ transform: 'rotate(0)'})),

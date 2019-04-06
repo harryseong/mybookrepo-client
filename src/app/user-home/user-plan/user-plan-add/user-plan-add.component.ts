@@ -64,7 +64,6 @@ export class UserPlanAddComponent implements OnInit, OnDestroy {
     this.bookAddedToPlan$ = this.resourcesPlanService.bookAddedToPlanEvent$.subscribe(
     (bookDTO: BookDTO) => {
         this.snackBarService.openSnackBar('"' + bookDTO.title + '" was added to the plan.', 'OK');
-        this.router.navigate(['/user', this.userService.username, 'plan', this.currentPlanId]);
       }
     );
 

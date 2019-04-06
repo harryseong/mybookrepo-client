@@ -103,8 +103,9 @@ export class UserPlanComponent implements OnInit, OnDestroy {
    * @param planDTO: Plan to set as current view and to view.
    */
   viewPlan(planDTO: PlanDTO) {
-    this.currentPlan = planDTO;
     this.router.navigate(['/user', this.userService.username, 'plan', planDTO.id]);
+    this.isLoading = true;
+    this.currentPlan = planDTO;
     this.getBooks();
   }
 
@@ -115,6 +116,7 @@ export class UserPlanComponent implements OnInit, OnDestroy {
     this.clearBookBoard();
     this.resourcesPlanService.getAllPlanBooks(this.currentPlan.id).subscribe(
       rsp => {
+        console.log(JSON.stringify(rsp));
         rsp.map(
           planBook => {
             if (planBook.status === 0) {

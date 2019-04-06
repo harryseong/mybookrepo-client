@@ -1,4 +1,4 @@
-import {Component, ElementRef, OnDestroy, OnInit, ViewChild} from '@angular/core';
+import {Component, ElementRef, HostListener, OnDestroy, OnInit, ViewChild} from '@angular/core';
 import {BookDTO} from '../../../../shared/dto/dto.module';
 import {FormControl, FormGroup} from '@angular/forms';
 import {Subscription} from 'rxjs';
@@ -6,6 +6,7 @@ import {SnackBarService} from '../../../../shared/services/snackBar/snack-bar.se
 import {GoogleBooksApiService} from '../../../../shared/services/api/google-books/google-books-api.service';
 import {animate, query, sequence, stagger, style, transition, trigger} from '@angular/animations';
 import {DialogService} from '../../../../shared/services/dialog/dialog.service';
+import {Router} from '@angular/router';
 
 @Component({
   selector: 'app-explore-search',
@@ -47,14 +48,22 @@ export class ExploreSearchComponent implements OnInit, OnDestroy {
   prevSearchTerm = '';
   bookSearched = false;
   bookDTOArray: BookDTO[] = [];
-  isLoading = true;
+  isLoading = false;
   @ViewChild('searchField') searchFieldRef: ElementRef;
 
   constructor(
     private snackBarService: SnackBarService,
     private googleBooksApiService: GoogleBooksApiService,
-    private dialogService: DialogService
+    private dialogService: DialogService,
+    private router: Router
   ) { }
+
+  @HostListener('window:keyup', ['$event'])
+  keyEvent(event: KeyboardEvent) {
+    if (event.key === 'Escape') {
+      this.leaveAddBook();
+    }
+  }
 
   ngOnInit() {}
 
@@ -140,5 +149,9 @@ export class ExploreSearchComponent implements OnInit, OnDestroy {
 
   openDialog(bookDTO: BookDTO) {
     this.dialogService.openBookDetailsDialog(bookDTO, 'EXPLORE_NEW');
+  }
+
+  leaveAddBook() {
+    this.router.navigate(['/explore/johndoe123/library']);
   }
 }

@@ -1,22 +1,28 @@
 <div class="content" ngClass.xs="xs" fxLayout="column" fxLayoutGap="0.5em" [@contentAnimations]>
 
-  <div fxLayout="column" class="content-element">
-    <div class="page-header" ngClass.xs="xs">
-      My Library
-    </div>
+  <div class="page-header content-element" ngClass.xs="xs">
+    My Library
   </div>
 
-  <div fxLayout="row">
+  <div fxLayout="row" class="content-element">
 
     <form [formGroup]="searchBookForm">
       <mat-form-field class="search-form-field">
         <mat-label>
-          <span><i class="fas fa-search"></i> Search</span>
+          <span><i class="fas fa-search"></i> Search library</span>
         </mat-label>
         <input type="text" matInput formControlName="searchField" class="search-field" #searchField (keyup)="search()">
         <mat-hint>Search by title, author, genre</mat-hint>
       </mat-form-field>
     </form>
+
+    <span class="spacer"></span>
+
+    <div fxLayout="row" fxLayoutAlign="end center">
+      <button mat-stroked-button [routerLink]="['/user', userService.username, 'library', 'add']" class="add-book-btn desktop" fxHide.xs>
+        <span><i class="fas fa-plus"></i>&nbsp;NEW BOOK</span>
+      </button>
+    </div>
 
   </div>
 
@@ -33,7 +39,8 @@
   </div>
 
   <!--FIXED ELEMENT: ADD BOOK TO LIBRARY BUTTON-->
-  <button mat-icon-button class="add-book-btn mat-elevation-z3" routerLinkActive="true" [routerLink]="['/user', userService.username, 'library', 'add']"
+  <button mat-icon-button class="add-book-btn mobile mat-elevation-z3" fxHide.gt-xs
+          routerLinkActive="true" [routerLink]="['/user', userService.username, 'library', 'add']"
           *ngIf="!isLoading && bookDTOArray.length > 0" matTooltip="Add book" matTooltipPosition="left">
     <i class="fas fa-plus"></i>
   </button>

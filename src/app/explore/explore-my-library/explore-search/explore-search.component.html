@@ -15,9 +15,10 @@
 
         <mat-form-field class="search-form-field">
           <mat-label>
-            Search by ISBN, Title, Author
+            Search for new books
           </mat-label>
           <input type="text" matInput formControlName="searchField" class="search-field" #searchField>
+          <mat-hint>Search by title, author, ISBN number</mat-hint>
         </mat-form-field>
 
         <div fxLayoutAlign="end" class="search-btn-div">
@@ -29,6 +30,10 @@
     </div>
   </div>
 
+</div>
+
+<div fxLayout="row" fxLayoutAlign="center center" *ngIf="isLoading==true">
+  <app-progress-spinner></app-progress-spinner>
 </div>
 
 <div fxLayout="row wrap" fxLayout.xs="column" fxLayoutAlign="center" *ngIf="!isLoading" [@bookCardAnimations] class="search-results-div" ngClass.xs="xs">

@@ -1,9 +1,14 @@
 $theme-color: #f5dd00;
 $theme-secondary: #373737;
 
+%add-book-btn {
+  color: $theme-color;
+  background-color: $theme-secondary;
+}
+
 .content {
   color: $theme-secondary;
-  padding: 1em 1em 0 1em;
+  padding: 1em;
 
   .search-form-field {
     width: 15em;
@@ -17,26 +22,25 @@ $theme-secondary: #373737;
   }
 
   .add-first-book-btn {
+    @extend %add-book-btn;
     z-index: 10;
-    color: $theme-color;
-    background-color: $theme-secondary;
   }
 
-  .add-book-btn {
+  .add-book-btn.desktop {
+    @extend %add-book-btn;
+    font-size: 0.7em;
+  }
+
+  .add-book-btn.mobile {
+    @extend %add-book-btn;
     z-index: 10;
-    color: $theme-color;
-    background-color: $theme-secondary;
     position: fixed;
-    bottom: 2.5em;
+    bottom: 6.5em;
     right: 2.5em;
   }
 }
 
 .content.xs {
-  .add-book-btn {
-    bottom: 5.5em;
-    right: 1.5em;
-  }
 }
 
 .view-books-div {
