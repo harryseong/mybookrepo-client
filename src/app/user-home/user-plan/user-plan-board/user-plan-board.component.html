@@ -32,7 +32,7 @@
       <div class="book-list"
            cdkDropList #toReadList="cdkDropList" [cdkDropListData]="toRead"
            [cdkDropListConnectedTo]="[readingList, doneList, removeBox, mobileReadingList, mobileDoneList, mobileRemoveBox]"
-           (cdkDropListDropped)="drop($event, 'READ')">
+           (cdkDropListDropped)="drop($event, 'TO_READ')">
 
         <!--ADD BOOK TO PLAN-->
         <div class="book-box add-book-box" routerLinkActive="true" [routerLink]="['/user', userService.username, 'plan', currentPlan.id, 'add']"

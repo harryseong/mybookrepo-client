@@ -130,6 +130,8 @@ export class UserPlanBoardComponent implements OnInit, OnDestroy {
         event.currentIndex);
       const bookDTO: BookDTO = event.item.data;
 
+      console.log('Book dropped in ' + droppedIn);
+
       switch (droppedIn) {
         case('TO_READ'): {
           this.resourcesPlanService.updateBookInPlan(this.currentPlan.id, bookDTO.id, '0').subscribe(
