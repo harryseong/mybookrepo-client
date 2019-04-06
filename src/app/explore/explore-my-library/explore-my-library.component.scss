@@ -3,7 +3,13 @@ $theme-secondary: #373737;
 
 .content {
   color: $theme-secondary;
-  padding: 1em;
+  padding: 1em 1em 0.5em 1em;
+
+  .search-form-field {
+    width: 15em;
+    max-width: 100%;
+    font-size: 1em;
+  }
 
   .no-books-header {
     font-size: 1.2em;

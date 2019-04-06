@@ -1,10 +1,12 @@
-import {Component, Input, OnInit} from '@angular/core';
+import {Component, Input, OnDestroy, OnInit} from '@angular/core';
 import {BookDTO, PlanDTO} from '../../../../shared/dto/dto.module';
 import {DialogService} from '../../../../shared/services/dialog/dialog.service';
 import {CdkDragDrop, moveItemInArray, transferArrayItem} from '@angular/cdk/drag-drop';
 import {animate, query, sequence, stagger, state, style, transition, trigger} from '@angular/animations';
 import {UserService} from '../../../../shared/services/user/user.service';
 import {ResourcesPlanService} from '../../../../shared/services/api/resources/plan/resources-plan.service';
+import {Subscription} from 'rxjs';
+import {SnackBarService} from '../../../../shared/services/snackBar/snack-bar.service';
 
 @Component({
   selector: 'app-user-plan-board',
@@ -83,7 +85,7 @@ import {ResourcesPlanService} from '../../../../shared/services/api/resources/pl
     ])
   ]
 })
-export class UserPlanBoardComponent implements OnInit {
+export class UserPlanBoardComponent implements OnInit, OnDestroy {
   @Input() currentPlan: PlanDTO;
   @Input() toRead = [];
   @Input() reading = [];
@@ -100,13 +102,24 @@ export class UserPlanBoardComponent implements OnInit {
   planActionsVisible = false;
   gearTurn = 'default';
 
+  bookRemovedFromPlan$: Subscription;
+
   constructor(
     private dialogService: DialogService,
+    private resourcesPlanService: ResourcesPlanService,
+    private snackBarService: SnackBarService,
     public userService: UserService,
-    private resourcesPlanService: ResourcesPlanService
   ) { }
 
-  ngOnInit() {}
+  ngOnInit() {
+    this.bookRemovedFromPlan$ = this.resourcesPlanService.bookRemovedFromPlanEvent$.subscribe(
+      (bookDTO: BookDTO) => this.snackBarService.openSnackBar('"' + bookDTO.title + '" was removed from the plan.', 'OK')
+    );
+  }
+
+  ngOnDestroy(): void {
+    this.bookRemovedFromPlan$.unsubscribe();
+  }
 
   drop(event: CdkDragDrop<string[]>, droppedIn: string) {
     if (event.previousContainer === event.container) {
@@ -116,6 +129,8 @@ export class UserPlanBoardComponent implements OnInit {
         event.container.data,
         event.previousIndex,
         event.currentIndex);
+      const bookDTO: BookDTO = event.item.data;
+
       switch (droppedIn) {
         case('TO_READ'): {
           break;
@@ -127,9 +142,9 @@ export class UserPlanBoardComponent implements OnInit {
           break;
         }
         case('REMOVE'): {
-          this.resourcesPlanService.removeBookFromPlan(this.currentPlan.id, event.item.data).subscribe(
-            rsp => {
-              // TODO Booked removed from plan event.
+          this.resourcesPlanService.removeBookFromPlan(this.currentPlan.id, bookDTO.id).subscribe(
+            () => {
+              this.resourcesPlanService.bookRemovedFromPlan(bookDTO);
             }
           );
           break;
@@ -199,8 +214,7 @@ export class UserPlanBoardComponent implements OnInit {
     this.inRemoveZone = false;
   }
 
-  openDialog(bookDTO: BookDTO) {
-    this.dialogService.openBookDetailsDialog(bookDTO, 'EXPLORE_PLAN');
+  openBookDetailsDialog(bookDTO: BookDTO) {
+    this.dialogService.openBookDetailsDialog(bookDTO, 'PLAN');
   }
-
 }

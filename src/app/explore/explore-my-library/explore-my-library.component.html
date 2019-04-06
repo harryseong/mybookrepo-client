@@ -6,6 +6,20 @@
     </div>
   </div>
 
+  <div fxLayout="row">
+
+    <form [formGroup]="searchBookForm">
+      <mat-form-field class="search-form-field">
+        <mat-label>
+          <span><i class="fas fa-search"></i> Search</span>
+        </mat-label>
+        <input type="text" matInput formControlName="searchField" class="search-field" #searchField (keyup)="search()">
+        <mat-hint>Search by title, author, genre</mat-hint>
+      </mat-form-field>
+    </form>
+
+  </div>
+
   <div *ngIf="bookDTOArray.length == 0" fxLayout="row" fxLayoutAlign="center" class="content-element">
     <div>
       <button mat-stroked-button routerLinkActive="true" routerLink="/explore/library/add" class="add-first-book-btn mat-elevation-z3">
@@ -23,6 +37,6 @@
 </div>
 
 <div fxLayout="row wrap" fxLayout.xs="column" fxLayoutAlign="center" *ngIf="!isLoading && bookDTOArray.length > 0" [@bookCardAnimations] class="view-books-div" ngClass.xs="xs">
-  <app-book-card fxLayout.xs="row" *ngFor="let bookDTO of bookDTOArray" bookCardType="library" [bookDTO]="bookDTO" (click)="openDialog(bookDTO)"></app-book-card>
+  <app-book-card fxLayout.xs="row" *ngFor="let bookDTO of filteredBookDTOArray" bookCardType="library" [bookDTO]="bookDTO" (click)="openDialog(bookDTO)"></app-book-card>
 </div>
 

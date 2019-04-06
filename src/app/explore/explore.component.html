@@ -1,7 +1,7 @@
 <app-navbar [isExplore]="true"></app-navbar>
 
 <mat-drawer-container class="content" ngClass.xs="xs">
-  <mat-drawer class="left-sidenav" opened mode="side" fxHide.xs>
+  <mat-drawer class="left-sidenav" opened mode="side" fxHide.xs [disableClose]="true">
     <mat-action-list>
 
       <button mat-list-item routerLinkActive="selected" routerLink="/explore/johndoe123/library" class="action-list-btn"

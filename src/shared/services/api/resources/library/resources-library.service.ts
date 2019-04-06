@@ -27,7 +27,7 @@ export class ResourcesLibraryService {
     const headers = new HttpHeaders({
       Authorization: 'Bearer ' + localStorage.getItem(environment.jwt.local_storage_key)
     });
-    return this.http.get(environment.api.resources_url + '/library/books', {headers});
+    return this.http.get(environment.api.resources_url + '/library/book', {headers});
   }
 
   addBookToLibrary(bookDTO: BookDTO): Observable<any> {

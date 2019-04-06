@@ -140,7 +140,6 @@ export class UserLibraryAddComponent implements OnInit, OnDestroy {
 
   processGoogleBooksApiResponse(data: any) {
     const dataObj: any = data;
-    console.log(JSON.stringify(data));
     const totalItems = dataObj.totalItems;
     if (totalItems > 0) {
       dataObj.items.slice(0, 100).map(item => {

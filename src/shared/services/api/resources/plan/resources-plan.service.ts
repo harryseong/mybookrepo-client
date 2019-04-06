@@ -12,6 +12,7 @@ export class ResourcesPlanService {
   planUpdatedEvent$ = new Subject<any>();
   planDeletedEvent$ = new Subject<any>();
   bookAddedToPlanEvent$ = new Subject<any>();
+  bookRemovedFromPlanEvent$ = new Subject<any>();
 
   constructor(
     private http: HttpClient
@@ -29,10 +30,15 @@ export class ResourcesPlanService {
     this.planDeletedEvent$.next(planDTO);
   }
 
-  bookAddedToPlan(planId: string, bookDTO: BookDTO) {
-    this.bookAddedToPlanEvent$.next({planId, bookDTO});
+  bookAddedToPlan(bookDTO: BookDTO) {
+    this.bookAddedToPlanEvent$.next(bookDTO);
   }
 
+  bookRemovedFromPlan(bookDTO: BookDTO) {
+    this.bookRemovedFromPlanEvent$.next(bookDTO);
+  }
+
+  // Plans
   getAllPlans(): Observable<any> {
     const headers = new HttpHeaders({
       Authorization: 'Bearer ' + localStorage.getItem(environment.jwt.local_storage_key)
@@ -53,38 +59,62 @@ export class ResourcesPlanService {
       'Content-Type': 'application/json',
       Authorization: 'Bearer ' + localStorage.getItem(environment.jwt.local_storage_key),
     });
-    return this.http.put(environment.api.resources_url + '/plan/' + planDTO.id, planDTO, {headers, responseType: 'text'});
+    const params = new HttpParams()
+      .set('planId', planDTO.id);
+    return this.http.put(environment.api.resources_url + '/plan/', planDTO, {headers, params, responseType: 'text'});
   }
 
-  deletePlan(planDTO: PlanDTO): Observable<any> {
+  deletePlan(planId: string): Observable<any> {
     const headers = new HttpHeaders({
       'Content-Type': 'application/json',
       Authorization: 'Bearer ' + localStorage.getItem(environment.jwt.local_storage_key)
     });
-    return this.http.delete(environment.api.resources_url + '/plan/' + planDTO.id, {headers, responseType: 'text'});
+    const params = new HttpParams()
+      .set('planId', planId);
+    return this.http.delete(environment.api.resources_url + '/plan/', {headers, params, responseType: 'text'});
   }
 
-  addBookToPlan(planId: string, bookDTO: BookDTO): Observable<any> {
-    const headers = new HttpHeaders({
-      'Content-Type': 'application/json',
-      Authorization: 'Bearer ' + localStorage.getItem(environment.jwt.local_storage_key),
-    });
-    return this.http.post(environment.api.resources_url + '/plan/' + planId + '/book', bookDTO, {headers, responseType: 'text'});
-  }
-
-  removeBookFromPlan(planId: string, bookDTO: BookDTO): Observable<any> {
-    const headers = new HttpHeaders({
-      'Content-Type': 'application/json',
-      Authorization: 'Bearer ' + localStorage.getItem(environment.jwt.local_storage_key),
-    });
-    const params = new HttpParams().set('bookId', bookDTO.id);
-    return this.http.delete(environment.api.resources_url + '/plan/' + planId + '/book', {params, headers, responseType: 'text'});
-  }
-
+  // Books in Plan
   getAllPlanBooks(planId: string): Observable<any> {
     const headers = new HttpHeaders({
       Authorization: 'Bearer ' + localStorage.getItem(environment.jwt.local_storage_key)
     });
-    return this.http.get(environment.api.resources_url + '/plan/' + planId + '/book', {headers});
+    const params = new HttpParams()
+      .set('planId', planId);
+    return this.http.get(environment.api.resources_url + '/plan/book', {headers, params});
+  }
+
+  addBookToPlan(planId: string, bookId: string): Observable<any> {
+    const headers = new HttpHeaders({
+      'Content-Type': 'application/json',
+      Authorization: 'Bearer ' + localStorage.getItem(environment.jwt.local_storage_key),
+    });
+    const params = new HttpParams()
+      .set('planId', planId)
+      .set('bookId', bookId);
+    return this.http.post(environment.api.resources_url + '/plan/book', null, {headers, params, responseType: 'text'});
+  }
+
+  updateBookInPlan(planId: string, bookId: string, newStatus: string): Observable<any> {
+    const headers = new HttpHeaders({
+      'Content-Type': 'application/json',
+      Authorization: 'Bearer ' + localStorage.getItem(environment.jwt.local_storage_key),
+    });
+    const params = new HttpParams()
+      .set('planId', planId)
+      .set('bookId', bookId)
+      .set('newStatus', newStatus);
+    return this.http.put(environment.api.resources_url + '/plan/book', null, {headers, params, responseType: 'text'});
+  }
+
+  removeBookFromPlan(planId: string, bookId: string): Observable<any> {
+    const headers = new HttpHeaders({
+      'Content-Type': 'application/json',
+      Authorization: 'Bearer ' + localStorage.getItem(environment.jwt.local_storage_key),
+    });
+    const params = new HttpParams()
+      .set('planId', planId)
+      .set('bookId', bookId);
+    return this.http.delete(environment.api.resources_url + '/plan/book', {headers, params, responseType: 'text'});
   }
 }

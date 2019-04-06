@@ -1,11 +1,12 @@
-import {Component, OnDestroy, OnInit} from '@angular/core';
+import {Component, ElementRef, OnDestroy, OnInit, ViewChild} from '@angular/core';
 import {animate, query, sequence, stagger, style, transition, trigger} from '@angular/animations';
 import {Subscription} from 'rxjs';
 import {DialogService} from '../../../shared/services/dialog/dialog.service';
-import {BookDTO} from '../../../shared/dto/dto.module';
+import {AuthorDTO, BookDTO, CategoryDTO} from '../../../shared/dto/dto.module';
 import {UserService} from '../../../shared/services/user/user.service';
 import {ResourcesLibraryService} from '../../../shared/services/api/resources/library/resources-library.service';
 import {SnackBarService} from '../../../shared/services/snackBar/snack-bar.service';
+import {FormControl, FormGroup} from '@angular/forms';
 
 @Component({
   selector: 'app-user-library',
@@ -40,9 +41,15 @@ import {SnackBarService} from '../../../shared/services/snackBar/snack-bar.servi
 })
 export class UserLibraryComponent implements OnInit, OnDestroy {
   bookDTOArray: any[] = [];
+  filteredBookDTOArray: any[] = [];
   isLoading = true;
   bookAdded$: Subscription;
   bookRemoved$: Subscription;
+
+  @ViewChild('searchField') searchFieldRef: ElementRef;
+  searchBookForm = new FormGroup({
+    searchField: new FormControl('')
+  });
 
   constructor(
     private dialogService: DialogService,
@@ -71,10 +78,51 @@ export class UserLibraryComponent implements OnInit, OnDestroy {
     this.bookRemoved$.unsubscribe();
   }
 
+  search() {
+    const searchTerm: string = this.searchBookForm.get('searchField').value.trim().toLowerCase();
+
+    console.log(searchTerm);
+
+    if (searchTerm !== '') {
+      this.filteredBookDTOArray = this.bookDTOArray.filter(bookDTO =>
+        bookDTO.title.trim().toLowerCase().includes(searchTerm) ||
+        this.authorsContain(bookDTO.authors, searchTerm) ||
+        this.categoriesContain(bookDTO.categories, searchTerm)
+      );
+    } else {
+      this.filteredBookDTOArray = this.bookDTOArray;
+    }
+  }
+
+  authorsContain(authors: AuthorDTO[], searchTerm: string) {
+    let foundAuthors = false;
+    authors.map(author => {
+      const authorFullName =
+        (author.firstName !== null ? author.firstName + ' ' : '') +
+        (author.middleName !== null ? author.middleName + ' ' : '') +
+        (author.lastName !== null ? author.lastName : '');
+      if (authorFullName.toLowerCase().trim().includes(searchTerm)) {
+        foundAuthors = true;
+      }
+    });
+    return foundAuthors;
+  }
+
+  categoriesContain(categories: CategoryDTO[], searchTerm: string) {
+    let foundCategories = false;
+    categories.map(category => {
+      if (category.name.toLowerCase().trim().includes(searchTerm)) {
+        foundCategories = true;
+      }
+    });
+    return foundCategories;
+  }
+
   getBooks() {
     this.resourcesLibraryService.getAllBooks().subscribe(
       rsp => {
         this.bookDTOArray = rsp;
+        this.filteredBookDTOArray = rsp;
         this.isLoading = false;
       }
     );

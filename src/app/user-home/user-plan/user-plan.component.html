@@ -2,15 +2,15 @@
 
   <div fxLayout="column" fxLayoutGap="0.5em">
     <div class="page-header content-element" ngClass.xs="xs">
-      My Reading Plan<span *ngIf="planArray!=null && planArray.length > 1">s</span>
+      My Reading Plan<span *ngIf="plans!=null && plans.length > 1">s</span>
     </div>
 
     <div fxLayout="row" fxLayoutGap="0.5em" class="year-btn-row content-element">
       <button mat-stroked-button (click)="createPlan()" class="add-plan-btn">
         <span><i class="fas fa-plus"></i>&nbsp;PLAN</span>
       </button>
-      <button mat-stroked-button *ngFor="let plan of planArray" (click)="viewPlan(plan)"
-              [ngClass]="currentPlan != null ? (currentPlanId===plan.id ? 'plan-btn selected' : 'plan-btn') : 'plan-btn'">
+      <button mat-stroked-button *ngFor="let plan of plans" (click)="viewPlan(plan)"
+              [ngClass]="currentPlan != null ? (currentPlan.id===plan.id ? 'plan-btn selected' : 'plan-btn') : 'plan-btn'">
         {{plan.name}}
       </button>
     </div>

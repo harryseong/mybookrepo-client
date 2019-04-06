@@ -7,6 +7,7 @@ import {ResourcesLibraryService} from '../../../../shared/services/api/resources
 import {DialogService} from '../../../../shared/services/dialog/dialog.service';
 import {ActivatedRoute, Router} from '@angular/router';
 import {UserService} from '../../../../shared/services/user/user.service';
+import {ResourcesPlanService} from '../../../../shared/services/api/resources/plan/resources-plan.service';
 
 @Component({
   selector: 'app-user-plan-add',
@@ -42,14 +43,14 @@ import {UserService} from '../../../../shared/services/user/user.service';
 export class UserPlanAddComponent implements OnInit, OnDestroy {
   bookDTOArray: any[] = [];
   isLoading = true;
-  bookAdded$: Subscription;
-  bookRemoved$: Subscription;
+  bookAddedToPlan$: Subscription;
   currentPlanId: string;
 
   constructor(
     private dialogService: DialogService,
     public userService: UserService,
     private resourcesLibraryService: ResourcesLibraryService,
+    private resourcesPlanService: ResourcesPlanService,
     private snackBarService: SnackBarService,
     private route: ActivatedRoute,
     private router: Router
@@ -60,23 +61,18 @@ export class UserPlanAddComponent implements OnInit, OnDestroy {
       params => this.currentPlanId = params.get('planId')
     );
 
+    this.bookAddedToPlan$ = this.resourcesPlanService.bookAddedToPlanEvent$.subscribe(
+    (bookDTO: BookDTO) => {
+        this.snackBarService.openSnackBar('"' + bookDTO.title + '" was added to the plan.', 'OK');
+        this.router.navigate(['/user', this.userService.username, 'plan', this.currentPlanId]);
+      }
+    );
+
     this.getBooks();
-
-    this.bookAdded$ = this.resourcesLibraryService.bookAddedEvent$.subscribe(() => {
-      this.bookDTOArray = [];
-      this.getBooks();
-    });
-
-    this.bookRemoved$ = this.resourcesLibraryService.bookRemovedEvent$.subscribe((bookDTO) => {
-      this.bookDTOArray = [];
-      this.getBooks();
-      this.snackBarService.openSnackBar('"' + bookDTO.title + '" was removed from the library.', 'OK');
-    });
   }
 
   ngOnDestroy() {
-    this.bookAdded$.unsubscribe();
-    this.bookRemoved$.unsubscribe();
+    this.bookAddedToPlan$.unsubscribe();
   }
 
   @HostListener('window:keyup', ['$event'])

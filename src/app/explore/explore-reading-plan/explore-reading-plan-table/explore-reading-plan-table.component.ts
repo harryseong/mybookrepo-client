@@ -191,8 +191,7 @@ export class ExploreReadingPlanTableComponent implements OnInit {
     this.inRemoveZone = false;
   }
 
-  openDialog(bookDTO: BookDTO) {
+  openBookDetailsDialog(bookDTO: BookDTO) {
     this.dialogService.openBookDetailsDialog(bookDTO, 'EXPLORE_PLAN');
   }
-
 }

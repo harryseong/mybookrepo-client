@@ -27,8 +27,8 @@ export class BookDetailsDialogComponent {
     this.dialogRef.close();
   }
 
-  addBook(bookDTO: BookDTO) {
-    this.resourcesLibraryService.addBookToLibrary(bookDTO).subscribe(rsp => {
+  addBookToLibrary(bookDTO: BookDTO) {
+    this.resourcesLibraryService.addBookToLibrary(bookDTO).subscribe(() => {
       this.resourcesLibraryService.bookAddedToLibrary(bookDTO);
       this.closeDialog();
     },
@@ -36,7 +36,7 @@ export class BookDetailsDialogComponent {
     );
   }
 
-  removeBook(bookDTO: BookDTO) {
+  removeBookFromLibrary(bookDTO: BookDTO) {
     this.resourcesLibraryService.removeBookFromLibrary(bookDTO).subscribe(
       rsp => {
         this.resourcesLibraryService.bookRemovedFromLibrary(bookDTO);
@@ -47,8 +47,8 @@ export class BookDetailsDialogComponent {
   }
 
   addBookToPlan(planId: string, bookDTO: BookDTO) {
-    this.resourcesPlanService.addBookToPlan(planId, bookDTO).subscribe(rsp => {
-        this.resourcesPlanService.bookAddedToPlan(planId, bookDTO);
+    this.resourcesPlanService.addBookToPlan(planId, bookDTO.id).subscribe(() => {
+        this.resourcesPlanService.bookAddedToPlan(bookDTO);
         this.closeDialog();
       },
       err => console.error(err)

@@ -1,7 +1,7 @@
 import {Component, OnDestroy, OnInit} from '@angular/core';
-import {ActivatedRoute, Router} from '@angular/router';
+import {ActivatedRoute, ParamMap, Router, RoutesRecognized} from '@angular/router';
 import {DialogService} from '../../../shared/services/dialog/dialog.service';
-import {Subscription} from 'rxjs';
+import { Subscription} from 'rxjs';
 import {animate, query, sequence, stagger, style, transition, trigger} from '@angular/animations';
 import {ResourcesPlanService} from '../../../shared/services/api/resources/plan/resources-plan.service';
 import {SnackBarService} from '../../../shared/services/snackBar/snack-bar.service';
@@ -31,13 +31,12 @@ export class UserPlanComponent implements OnInit, OnDestroy {
   planCreated$: Subscription;
   planUpdated$: Subscription;
   planDeleted$: Subscription;
-  planArray: any[] = [];
+  plans: any[] = [];
   toRead = [];
   reading = [];
   done = [];
   isLoading = true;
   currentPlan: PlanDTO = null;
-  currentPlanId: string;
 
   constructor(
     private dialogService: DialogService,
@@ -46,59 +45,72 @@ export class UserPlanComponent implements OnInit, OnDestroy {
     private router: Router,
     private snackBarService: SnackBarService,
     public userService: UserService
-  ) { }
+  ) {}
 
   ngOnInit() {
-    this.route.paramMap.subscribe(
-      params => {
-        this.currentPlanId = params.get('planId');
-        this.getPlans();
-      }
-    );
+    this.getAllPlans();
 
-    this.planCreated$ = this.resourcesPlanService.planCreatedEvent$.subscribe((planDTO: PlanDTO) => {
-      this.getPlans(planDTO);
-      this.snackBarService.openSnackBar('"' + planDTO.name + '" was created.', 'OK');
+    this.planCreated$ = this.resourcesPlanService.planCreatedEvent$.subscribe((newPlanDTO: PlanDTO) => {
+      this.getAllPlans(newPlanDTO);
+      this.snackBarService.openSnackBar('"' + newPlanDTO.name + '" was created.', 'OK');
     });
     this.planUpdated$ = this.resourcesPlanService.planUpdatedEvent$.subscribe((planDTO: PlanDTO) => {
-      this.getPlans();
+      this.getAllPlans();
       this.currentPlan = planDTO;
       this.snackBarService.openSnackBar('"' + planDTO.name + '" was updated.', 'OK');
     });
     this.planDeleted$ = this.resourcesPlanService.planDeletedEvent$.subscribe((planDTO: PlanDTO) => {
+      this.getAllPlans();
+      this.router.navigate(['/user', this.userService.username, 'plan']);
       this.currentPlan = null;
-      this.getPlans();
       this.snackBarService.openSnackBar('"' + planDTO.name + '" was deleted.', 'OK');
     });
   }
 
+  /**
+   * Unsubscribe from everything as component exited.
+   */
   ngOnDestroy(): void {
     this.planCreated$.unsubscribe();
     this.planUpdated$.unsubscribe();
     this.planDeleted$.unsubscribe();
   }
 
-  getPlans(planDTO?: PlanDTO) {
+  /**
+   * Gets all plans for user.
+   * @param newPlanDTO: Optional param accepted after a new plan creation in order to navigate to new plan.
+   */
+  getAllPlans(newPlanDTO?: PlanDTO) {
     this.resourcesPlanService.getAllPlans().subscribe(
       rsp => {
-        this.planArray = rsp.sort((a, b) => a.name > b.name ? 1 : (a.name === b.name) ? 0 : -1);
+        // Sort plans by name.
+        this.plans = rsp.sort((a, b) => a.name > b.name ? 1 : (a.name === b.name) ? 0 : -1);
 
-        // If current plan ID from activated route is not null, set the proper current plan.
-        if (this.currentPlanId !== null) {
-          const currentPlanIndex = this.planArray.findIndex(plan => plan.id === this.currentPlanId);
-          this.currentPlan = this.planArray[currentPlanIndex];
+        // If newly create plan exists, view new plan and set new plan as the current plan.
+        if (newPlanDTO !== null && newPlanDTO !== undefined) {
+
+          // Newly created plan should be retrieved from this fresh list of plans so that the new planDTO will contain the id number.
+          this.viewPlan(this.plans.find(plan => plan.name === newPlanDTO.name));
         }
 
-        // If planDTO parameter has been specified for "planCreated$", set the current plan accordingly.
-        // This is because a new plan's planDTO's id remains null.
-        if (planDTO !== undefined) {
-          const newPlanIndex = this.planArray.findIndex(plan => plan.name === planDTO.name);
-          this.currentPlan = this.planArray[newPlanIndex];
-        }
+        this.isLoading = false;
       }
     );
   }
 
+  /**
+   * Sets new current plan, navigates to plan route, and gets books for newly selected plan.
+   * @param planDTO: Plan to set as current view and to view.
+   */
+  viewPlan(planDTO: PlanDTO) {
+    this.currentPlan = planDTO;
+    this.router.navigate(['/user', this.userService.username, 'plan', planDTO.id]);
+    this.getBooks();
+  }
+
+  /**
+   * Gets all books for the newly selected plan.
+   */
   getBooks() {
     this.clearBookBoard();
     this.resourcesPlanService.getAllPlanBooks(this.currentPlan.id).subscribe(
@@ -119,6 +131,9 @@ export class UserPlanComponent implements OnInit, OnDestroy {
     );
   }
 
+  /**
+   * Resets the book board before getting different sets of books for newly selected plan.
+   */
   clearBookBoard() {
     this.isLoading = true;
     this.toRead = [];
@@ -126,18 +141,10 @@ export class UserPlanComponent implements OnInit, OnDestroy {
     this.done = [];
   }
 
-  viewPlan(planDTO: PlanDTO) {
-    this.router.navigate(['/user', this.userService.username, 'plan', planDTO.id]);
-    this.currentPlan = planDTO;
-    this.currentPlanId = planDTO.id;
-    this.getBooks();
-  }
-
+  /**
+   * Opens up the create plan dialog.
+   */
   createPlan() {
     this.dialogService.openPlanDialog(null, 'CREATE');
-  }
-
-  removePlan() {
-
   }
 }

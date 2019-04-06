@@ -90,7 +90,7 @@ export class PlanDialogComponent implements OnInit {
   }
 
   deletePlan() {
-    this.resourcesPlanService.deletePlan(this.data.plan).subscribe(
+    this.resourcesPlanService.deletePlan(this.data.plan.id).subscribe(
       rsp => {
         this.resourcesPlanService.planDeletedEvent$.next(this.data.plan);
         this.closeDialog();
