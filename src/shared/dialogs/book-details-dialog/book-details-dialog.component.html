@@ -66,13 +66,13 @@
   </button>
 
   <!--EXPLORE BUTTONS-->
-  <button mat-stroked-button *ngIf="data.type=='EXPLORE_VIEW'" (click)="exploreRemoveBook(data.book)" class="dialog-btn remove-btn" fxFlex.xs="49%" ngClass.xs="xs">
+  <button mat-stroked-button *ngIf="data.type=='EXPLORE_VIEW'" (click)="exploreRemoveBookFromLibrary(data.book)" class="dialog-btn remove-btn" fxFlex.xs="49%" ngClass.xs="xs">
     <span><i class="fas fa-minus-circle fa-fw"></i>&nbsp;REMOVE</span>
   </button>
-  <button mat-stroked-button *ngIf="data.type=='EXPLORE_NEW'" (click)="exploreAddBook(data.book)" class="dialog-btn add-btn" fxFlex.xs="49%" ngClass.xs="xs">
+  <button mat-stroked-button *ngIf="data.type=='EXPLORE_NEW'" (click)="exploreAddBookToLibrary(data.book)" class="dialog-btn add-btn" fxFlex.xs="49%" ngClass.xs="xs">
     <span><i class="fas fa-plus-circle fa-fw"></i>&nbsp;ADD</span>
   </button>
-  <button mat-stroked-button *ngIf="data.type=='EXPLORE_PLAN_ADD'" (click)="exploreAddBook(data.book)" class="dialog-btn add-btn" fxFlex.xs="49%" ngClass.xs="xs">
+  <button mat-stroked-button *ngIf="data.type=='EXPLORE_PLAN_ADD'" (click)="exploreAddBookToPlan(data.planId, data.book)" class="dialog-btn add-btn" fxFlex.xs="49%" ngClass.xs="xs">
     <span><i class="fas fa-plus-circle fa-fw"></i>&nbsp;ADD</span>
   </button>
 </div>

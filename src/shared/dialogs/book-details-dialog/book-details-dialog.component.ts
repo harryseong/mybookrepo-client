@@ -55,7 +55,7 @@ export class BookDetailsDialogComponent {
     );
   }
 
-  exploreAddBook(bookDTO: BookDTO) {
+  exploreAddBookToLibrary(bookDTO: BookDTO) {
     let books: BookDTO[] = JSON.parse(localStorage.getItem('books'));
     if (books === null) {
       books = [];
@@ -70,7 +70,12 @@ export class BookDetailsDialogComponent {
     this.closeDialog();
   }
 
-  exploreRemoveBook(bookDTO: BookDTO) {
+  exploreAddBookToPlan(planId: string, bookDTO: BookDTO) {
+    this.resourcesPlanService.bookAddedToPlan(bookDTO);
+    this.closeDialog();
+  }
+
+  exploreRemoveBookFromLibrary(bookDTO: BookDTO) {
     const books: BookDTO[] = JSON.parse(localStorage.getItem('books'));
     const bookIndex = books.findIndex(x => x.title === bookDTO.title);
     books.splice(bookIndex, 1);

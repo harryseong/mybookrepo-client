@@ -65,11 +65,13 @@ export class UserLibraryComponent implements OnInit, OnDestroy {
 
     this.bookAdded$ = this.resourcesLibraryService.bookAddedEvent$.subscribe(() => {
       this.bookDTOArray = [];
+      this.filteredBookDTOArray = [];
       this.getBooks();
     });
 
     this.bookRemoved$ = this.resourcesLibraryService.bookRemovedEvent$.subscribe((bookDTO) => {
       this.bookDTOArray = [];
+      this.filteredBookDTOArray = [];
       this.getBooks();
       this.snackBarService.openSnackBar('"' + bookDTO.title + '" was removed from the library.', 'OK');
     });

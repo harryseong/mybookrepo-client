@@ -116,7 +116,6 @@ export class UserPlanComponent implements OnInit, OnDestroy {
     this.clearBookBoard();
     this.resourcesPlanService.getAllPlanBooks(this.currentPlan.id).subscribe(
       rsp => {
-        console.log(JSON.stringify(rsp));
         rsp.map(
           planBook => {
             if (planBook.status === 0) {

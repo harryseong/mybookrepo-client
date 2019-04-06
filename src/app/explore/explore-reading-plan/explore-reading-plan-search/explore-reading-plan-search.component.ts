@@ -8,6 +8,8 @@ import {BookService} from '../../../../shared/services/book/book.service';
 import {exploreSampleBooks} from '../../explore.sample-data';
 import {Router} from '@angular/router';
 import {FormControl, FormGroup} from '@angular/forms';
+import {ResourcesPlanService} from '../../../../shared/services/api/resources/plan/resources-plan.service';
+import {SnackBarService} from '../../../../shared/services/snackBar/snack-bar.service';
 
 @Component({
   selector: 'app-explore-reading-plan-search',
@@ -43,6 +45,7 @@ import {FormControl, FormGroup} from '@angular/forms';
 export class ExploreReadingPlanSearchComponent implements OnInit {
   bookDTOArray: any[] = [];
   filteredBookDTOArray: any[] = [];
+  bookAddedToPlan$: Subscription;
   isLoading = true;
 
   @ViewChild('searchField') searchFieldRef: ElementRef;
@@ -53,11 +56,19 @@ export class ExploreReadingPlanSearchComponent implements OnInit {
   constructor(
     private bookService: BookService,
     private dialogService: DialogService,
-    private router: Router
+    private resourcesPlanService: ResourcesPlanService,
+    private router: Router,
+    private snackBarService: SnackBarService
   ) { }
 
   ngOnInit() {
     this.getBooks();
+
+    this.bookAddedToPlan$ = this.resourcesPlanService.bookAddedToPlanEvent$.subscribe(
+      (bookDTO: BookDTO) => {
+        this.snackBarService.openSnackBar('"' + bookDTO.title + '" was added to the plan.', 'OK');
+      }
+    );
   }
 
   @HostListener('window:keyup', ['$event'])
