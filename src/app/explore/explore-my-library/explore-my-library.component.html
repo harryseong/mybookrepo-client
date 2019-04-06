@@ -37,6 +37,6 @@
 </div>
 
 <div fxLayout="row wrap" fxLayout.xs="column" fxLayoutAlign="center" *ngIf="!isLoading && bookDTOArray.length > 0" [@bookCardAnimations] class="view-books-div" ngClass.xs="xs">
-  <app-book-card fxLayout.xs="row" *ngFor="let bookDTO of filteredBookDTOArray" bookCardType="library" [bookDTO]="bookDTO" (click)="openDialog(bookDTO)"></app-book-card>
+  <app-book-card fxLayout.xs="row" *ngFor="let bookDTO of filteredBookDTOArray" bookCardType="EXPLORE_LIBRARY" [bookDTO]="bookDTO" (click)="openDialog(bookDTO)"></app-book-card>
 </div>
 

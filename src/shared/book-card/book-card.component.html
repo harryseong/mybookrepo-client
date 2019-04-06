@@ -1,7 +1,7 @@
 <mat-card class="book-card mat-elevation-z0" ngClass.xs="xs">
   <mat-card-content>
     <div fxLayout="row" fxLayoutGap="1em" class="book-header">
-      <img src="{{bookDTO.coverImageURL}}" alt="book-cover-thumbnail" class="book-cover-thumbnail" *ngIf="bookDTO.coverImageURL!=null">
+      <img src="{{bookDTO.coverImageURL}}" alt="book-cover-thumbnail" class="book-cover-thumbnail mat-elevation-z1" *ngIf="bookDTO.coverImageURL!=null">
       <div class="book-cover-thumbnail-blank" *ngIf="bookDTO.coverImageURL==null" fxLayoutAlign="center center">
         No Book Cover
       </div>
@@ -20,10 +20,11 @@
                 </span>
           </div>
         </div>
-        <div class="book-description" *ngIf="bookCardType=='NEW' && bookDTO.description!=undefined">
+        <div class="book-description" *ngIf="(bookCardType=='NEW' || bookCardType=='EXPLORE_NEW') && bookDTO.description!=undefined">
           {{abbreviateDescription(bookDTO.description)}}
         </div>
-        <div class="book-library" *ngIf="bookCardType=='LIBRARY' || bookCardType=='PLAN_ADD'" fxLayout="row" fxLayoutAlign="end">
+        <div class="book-library" *ngIf="bookCardType=='LIBRARY' || bookCardType=='PLAN_ADD' || bookCardType=='EXPLORE_LIBRARY' || bookCardType=='EXPLORE_PLAN_ADD'"
+             fxLayout="row" fxLayoutAlign="end">
           <div fxLayout="column" fxLayoutGap="0.5em">
             <mat-chip-list>
               <mat-chip *ngFor="let category of bookDTO.categories" class="category-chip">

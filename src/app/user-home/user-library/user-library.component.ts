@@ -122,6 +122,7 @@ export class UserLibraryComponent implements OnInit, OnDestroy {
     this.resourcesLibraryService.getAllBooks().subscribe(
       rsp => {
         this.bookDTOArray = rsp;
+        console.log(JSON.stringify(rsp));
         this.filteredBookDTOArray = rsp;
         this.isLoading = false;
       }
