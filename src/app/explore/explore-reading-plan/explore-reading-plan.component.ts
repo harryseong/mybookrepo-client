@@ -65,8 +65,8 @@ export class ExploreReadingPlanComponent implements OnInit, OnDestroy {
       this.planArray = plans;
     } else {
       const samplePlans = [
-        {name: '2019', description: 'My reading plan for the year 2019.'},
-        {name: '2018', description: 'My reading plan for the year 2018.'},
+        {name: '2019 Reading Plan', description: 'My reading plan for the year 2019.'},
+        {name: 'Pro Development', description: 'My reading plan for professional development.'},
       ];
       this.planArray = samplePlans;
       localStorage.setItem('plans', JSON.stringify(samplePlans));
