@@ -2,6 +2,7 @@
 
 $font-family: 'Montserrat', sans-serif;
 $theme-color: #f5dd00;
+$theme-secondary: #373737;
 
 html, body {
   height: 100%;
@@ -79,6 +80,10 @@ a:hover, a:visited {
   flex: 1 1 auto;
 }
 
+.overflow-x-scroll {
+  overflow-x: scroll;
+}
+
 %message {
   border: 1pt solid;
   border-radius: 0.2em;
@@ -110,4 +115,14 @@ a:hover, a:visited {
 button.dialog-btn {
   font-size: 0.7em;
   margin-bottom: 1em;
+}
+
+.view-books-type-btn {
+  transition: 0.2s;
+}
+
+.view-books-type-btn.selected {
+  color: $theme-color;
+  background-color: $theme-secondary;
+  transition: 0.2s;
 }

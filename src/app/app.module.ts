@@ -25,7 +25,7 @@ import {SnackBarService} from '../shared/services/snackBar/snack-bar.service';
 import {HttpClientModule} from '@angular/common/http';
 import { BookDetailsDialogComponent } from '../shared/dialogs/book-details-dialog/book-details-dialog.component';
 import {DialogService} from '../shared/services/dialog/dialog.service';
-import { BookCardComponent } from '../shared/book-card/book-card.component';
+import { BookCardComponent } from '../shared/view-books/book-cards/book-card/book-card.component';
 import { AboutComponent } from './about/about.component';
 import { UserHomeComponent } from './user-home/user-home.component';
 import { UserLibraryComponent } from './user-home/user-library/user-library.component';
@@ -44,6 +44,9 @@ import {ResourcesLibraryService} from '../shared/services/api/resources/library/
 import {ResourcesPlanService} from '../shared/services/api/resources/plan/resources-plan.service';
 import { UserPlanAddComponent } from './user-home/user-plan/user-plan-add/user-plan-add.component';
 import {BookService} from '../shared/services/book/book.service';
+import { BookTableComponent } from '../shared/view-books/book-table/book-table.component';
+import { BookCardsComponent } from '../shared/view-books/book-cards/book-cards.component';
+import { ViewBooksComponent } from '../shared/view-books/view-books.component';
 
 @NgModule({
   declarations: [
@@ -73,6 +76,9 @@ import {BookService} from '../shared/services/book/book.service';
     ProgressSpinnerComponent,
     UserPlanBoardComponent,
     UserPlanAddComponent,
+    BookTableComponent,
+    BookCardsComponent,
+    ViewBooksComponent,
   ],
   imports: [
     AppRoutingModule,

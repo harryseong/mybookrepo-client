@@ -1,29 +1,7 @@
 <div class="content" ngClass.xs="xs" fxLayout="column" fxLayoutGap="0.5em" [@contentAnimations]>
 
-  <div class="page-header content-element" ngClass.xs="xs">
-    My Library <span class="explore-header"><i class="fas fa-exclamation-triangle"></i>&nbsp;DEMO</span>
-  </div>
-
-  <div fxLayout="row" class="content-element">
-
-    <form [formGroup]="searchBookForm">
-      <mat-form-field class="search-form-field">
-        <mat-label>
-          <span><i class="fas fa-search"></i> Search library</span>
-        </mat-label>
-        <input type="text" matInput formControlName="searchField" class="search-field" #searchField (keyup)="search()">
-        <mat-hint>Search by title, author, genre</mat-hint>
-      </mat-form-field>
-    </form>
-
-    <span class="spacer"></span>
-
-    <div fxLayout="row" fxLayoutAlign="end center">
-      <button mat-stroked-button [routerLink]="['/explore/johndoe123/library/add']" class="add-book-btn desktop" fxHide.xs>
-        <span><i class="fas fa-plus"></i>&nbsp;NEW BOOK</span>
-      </button>
-    </div>
-
+  <div class="page-header content-element" fxLayout="row" ngClass.xs="xs">
+    My Library <span class="explore-header">DEMO</span>
   </div>
 
   <div *ngIf="bookDTOArray.length == 0" fxLayout="row" fxLayoutAlign="center" class="content-element">
@@ -41,9 +19,11 @@
     <i class="fas fa-plus"></i>
   </button>
 
+  <button mat-stroked-button [routerLink]="['/explore/johndoe123/library/add']" class="add-book-btn desktop" fxHide.xs>
+    <span><i class="fas fa-plus"></i>&nbsp;NEW BOOK</span>
+  </button>
+
+  <app-view-books class="content-element" *ngIf="!isLoading && bookDTOArray.length > 0" [bookCardType]="bookCardType" [bookDTOArray]="bookDTOArray"></app-view-books>
 </div>
 
-<div fxLayout="row wrap" fxLayout.xs="column" fxLayoutAlign="center" *ngIf="!isLoading && bookDTOArray.length > 0" [@bookCardAnimations] class="view-books-div" ngClass.xs="xs">
-  <app-book-card fxLayout.xs="row" *ngFor="let bookDTO of filteredBookDTOArray" bookCardType="EXPLORE_LIBRARY" [bookDTO]="bookDTO" (click)="openDialog(bookDTO)"></app-book-card>
-</div>
 

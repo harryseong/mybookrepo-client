@@ -24,30 +24,13 @@ import {exploreSampleBooks} from '../explore.sample-data';
         ])
       ]),
     ]),
-    trigger('bookCardAnimations', [
-      transition(':enter', [
-        query('.book-card', [
-          style({ opacity: 0, transform: 'translateY(1em)'}),
-          stagger(100, [
-            sequence([
-              animate('0.5s ease', style({ opacity: 1, transform: 'translateY(0)' })),
-            ])
-          ])
-        ], {optional: true})
-      ]),
-    ])
   ]
 })
 export class ExploreMyLibraryComponent implements OnInit, OnDestroy, AfterViewInit {
   bookDTOArray: any[] = [];
-  filteredBookDTOArray: any[] = [];
   isLoading = true;
   bookRemoved$: Subscription;
-
-  @ViewChild('searchField') searchFieldRef: ElementRef;
-  searchBookForm = new FormGroup({
-    searchField: new FormControl('')
-  });
+  bookCardType = 'EXPLORE_LIBRARY';
 
   constructor(
     private dialogService: DialogService,
@@ -78,63 +61,17 @@ export class ExploreMyLibraryComponent implements OnInit, OnDestroy, AfterViewIn
     this.bookRemoved$.unsubscribe();
   }
 
-  search() {
-    const searchTerm: string = this.searchBookForm.get('searchField').value.trim().toLowerCase();
-
-    console.log(searchTerm);
-
-    if (searchTerm !== '') {
-      this.filteredBookDTOArray = this.bookDTOArray.filter(bookDTO =>
-        bookDTO.title.trim().toLowerCase().includes(searchTerm) ||
-        this.authorsContain(bookDTO.authors, searchTerm) ||
-        this.categoriesContain(bookDTO.categories, searchTerm)
-      );
-    } else {
-      this.filteredBookDTOArray = this.bookDTOArray;
-    }
-  }
-
-  authorsContain(authors: AuthorDTO[], searchTerm: string) {
-    let foundAuthors = false;
-    authors.map(author => {
-      const authorFullName =
-        (author.firstName !== null ? author.firstName + ' ' : '') +
-        (author.middleName !== null ? author.middleName + ' ' : '') +
-        (author.lastName !== null ? author.lastName : '');
-      if (authorFullName.toLowerCase().trim().includes(searchTerm)) {
-        foundAuthors = true;
-      }
-    });
-    return foundAuthors;
-  }
-
-  categoriesContain(categories: CategoryDTO[], searchTerm: string) {
-    let foundCategories = false;
-    categories.map(category => {
-      if (category.name.toLowerCase().trim().includes(searchTerm)) {
-        foundCategories = true;
-      }
-    });
-    return foundCategories;
-  }
-
   getBooks() {
     const books: BookDTO[] = JSON.parse(localStorage.getItem('books'));
     if (books !== undefined && books !== null && books.length > 0) {
       this.bookDTOArray = books;
-      this.filteredBookDTOArray = books;
       this.isLoading = false;
     } else {
       // Load default sample library.
       this.bookDTOArray = exploreSampleBooks;
-      this.filteredBookDTOArray = exploreSampleBooks;
       localStorage.setItem('books', JSON.stringify(exploreSampleBooks));
       this.isLoading = false;
     }
-  }
-
-  openDialog(bookDTO: BookDTO) {
-    this.dialogService.openBookDetailsDialog(bookDTO, 'EXPLORE_VIEW');
   }
 
   openExploreFirstTimeDialog() {

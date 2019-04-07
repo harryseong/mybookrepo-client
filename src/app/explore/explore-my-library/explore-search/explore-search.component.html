@@ -1,8 +1,21 @@
 <div class="content" ngClass.xs="xs" fxLayout="column" [@contentAnimations]>
 
   <div fxLayout="row" fxLayoutAlign="start start" class="content-element">
-    <div class="page-header" ngClass.xs="xs">Add New Book <span class="explore-header"><i class="fas fa-exclamation-triangle"></i>&nbsp;DEMO</span></div>
+    <div class="page-header" ngClass.xs="xs">Add New Book <span class="explore-header">DEMO</span></div>
+
     <span class="spacer"></span>
+
+    <div fxLayout="row" fxLayoutGap="0.1em">
+      <button mat-icon-button class="view-books-type-btn" matTooltip="Cards"
+              [ngClass]="viewBooksType=='cards' ? 'selected' : ''" (click)="viewTypeChange('cards')">
+        <span><i class="fas fa-th-large"></i></span>
+      </button>
+      <button mat-icon-button class="view-books-type-btn" matTooltip="Table"
+              [ngClass]="viewBooksType=='table' ? 'selected' : ''" (click)="viewTypeChange('table')">
+        <span><i class="fas fa-list"></i></span>
+      </button>
+    </div>
+
     <button mat-icon-button routerLinkActive="true" routerLink="/explore/johndoe123/library">
       <i class="fas fa-times"></i>
     </button>
@@ -30,12 +43,12 @@
     </div>
   </div>
 
-</div>
+  <div fxLayout="row" fxLayoutAlign="center center" *ngIf="isLoading==true">
+    <app-progress-spinner></app-progress-spinner>
+  </div>
 
-<div fxLayout="row" fxLayoutAlign="center center" *ngIf="isLoading==true">
-  <app-progress-spinner></app-progress-spinner>
-</div>
-
-<div fxLayout="row wrap" fxLayout.xs="column" fxLayoutAlign="center" *ngIf="!isLoading" [@bookCardAnimations] class="search-results-div" ngClass.xs="xs">
-  <app-book-card fxLayout.xs="row" *ngFor="let bookDTO of bookDTOArray" [bookDTO]="bookDTO" bookCardType="EXPLORE_NEW" (click)="openDialog(bookDTO)"></app-book-card>
+  <div class="content-element">
+    <app-book-table *ngIf="!isLoading && bookDTOArray.length > 0 && viewBooksType=='table'" [bookDTOArray]="bookDTOArray" [bookCardType]="bookCardType"></app-book-table>
+    <app-book-cards *ngIf="!isLoading && bookDTOArray.length > 0 && viewBooksType=='cards'" [bookDTOArray]="bookDTOArray" [bookCardType]="bookCardType"></app-book-cards>
+  </div>
 </div>

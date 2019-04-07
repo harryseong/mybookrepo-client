@@ -1,0 +1,6 @@
+<div fxLayout="column" fxLayoutGap="1em">
+  <div fxLayout="row wrap" fxLayout.xs="column" fxLayoutAlign="center center" [@bookCardAnimations] class="view-books-div">
+    <app-book-card *ngFor="let bookDTO of filteredBookDTOArray" class="book-card" ngClass.xs="xs" fxLayout="row" fxLayoutAlign="center center"
+                   bookCardType="EXPLORE_LIBRARY" [bookDTO]="bookDTO" (click)="openBookDetailsDialog(bookDTO)"></app-book-card>
+  </div>
+</div>

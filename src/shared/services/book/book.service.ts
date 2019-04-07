@@ -1,12 +1,18 @@
 import { Injectable } from '@angular/core';
 import {AuthorDTO, CategoryDTO} from '../../dto/dto.module';
+import {Subject} from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
 })
 export class BookService {
+  filterBookEvent$ = new Subject<any>();
 
   constructor() { }
+
+  filterBook(filterTerm: string) {
+    this.filterBookEvent$.next(filterTerm);
+  }
 
   authorsContain(authors: AuthorDTO[], searchTerm: string) {
     let foundAuthors = false;

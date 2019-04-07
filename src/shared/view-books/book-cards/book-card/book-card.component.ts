@@ -1,5 +1,5 @@
 import {Component, Input, OnInit} from '@angular/core';
-import {BookDTO} from '../dto/dto.module';
+import {BookDTO} from '../../../dto/dto.module';
 
 @Component({
   selector: 'app-book-card',

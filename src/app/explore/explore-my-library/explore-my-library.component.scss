@@ -10,12 +10,6 @@ $theme-secondary: #373737;
   color: $theme-secondary;
   padding: 1em;
 
-  .search-form-field {
-    width: 15em;
-    max-width: 100%;
-    font-size: 1em;
-  }
-
   .no-books-header {
     font-size: 1.2em;
     font-weight: 500;
@@ -28,7 +22,10 @@ $theme-secondary: #373737;
 
   .add-book-btn.desktop {
     @extend %add-book-btn;
-    font-size: 0.7em;
+    z-index: 10;
+    position: fixed;
+    bottom: 4em;
+    right: 4em;
   }
 
   .add-book-btn.mobile {
@@ -42,8 +39,4 @@ $theme-secondary: #373737;
 
 .content.xs {
 
-}
-
-.view-books-div {
-  padding-bottom: 1em;
 }

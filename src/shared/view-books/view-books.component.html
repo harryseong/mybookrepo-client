@@ -1,0 +1,29 @@
+<div fxLayout="column" fxLayoutGap="1em">
+  <div fxLayout="row" fxLayoutGap="0.2em">
+    <div fxLayout="column">
+      <mat-form-field class="search-form-field">
+        <mat-label>
+          <span><i class="fas fa-search"></i> Search library</span>
+        </mat-label>
+        <input matInput (keyup)="filterBooks($event.target.value)">
+        <mat-hint>Search by title, author, genre</mat-hint>
+      </mat-form-field>
+    </div>
+
+    <span class="spacer"></span>
+
+    <button mat-icon-button class="view-books-type-btn" matTooltip="Cards"
+            [ngClass]="viewBooksType=='cards' ? 'selected' : ''" (click)="viewTypeChange('cards')">
+      <span><i class="fas fa-th-large"></i></span>
+    </button>
+    <button mat-icon-button class="view-books-type-btn" matTooltip="Table"
+            [ngClass]="viewBooksType=='table' ? 'selected' : ''" (click)="viewTypeChange('table')">
+      <span><i class="fas fa-list"></i></span>
+    </button>
+  </div>
+
+  <div>
+    <app-book-table *ngIf="viewBooksType=='table'" [bookDTOArray]="bookDTOArray" [bookCardType]="bookCardType"></app-book-table>
+    <app-book-cards *ngIf="viewBooksType=='cards'" [bookDTOArray]="bookDTOArray" [bookCardType]="bookCardType"></app-book-cards>
+  </div>
+</div>

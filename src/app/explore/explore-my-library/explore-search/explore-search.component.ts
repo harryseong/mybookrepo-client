@@ -47,6 +47,8 @@ export class ExploreSearchComponent implements OnInit, OnDestroy {
   });
   prevSearchTerm = '';
   bookSearched = false;
+  viewBooksType = 'cards';
+  bookCardType = 'EXPLORE_NEW';
   bookDTOArray: BookDTO[] = [];
   isLoading = false;
   @ViewChild('searchField') searchFieldRef: ElementRef;
@@ -75,6 +77,10 @@ export class ExploreSearchComponent implements OnInit, OnDestroy {
     if (this.bookAddedToLibrary$ != null) {
       this.bookAddedToLibrary$.unsubscribe();
     }
+  }
+
+  viewTypeChange(viewType: string) {
+    this.viewBooksType = viewType === 'cards' ? 'cards' : 'table';
   }
 
   searchBooks() {
