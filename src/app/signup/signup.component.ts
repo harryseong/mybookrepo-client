@@ -34,8 +34,8 @@ export class SignupComponent implements OnInit {
     lastName: new FormControl('', [Validators.required]),
     username: new FormControl('', [Validators.required]),
     email: new FormControl('', [Validators.required, Validators.email]),
-    password: new FormControl('', [Validators.required]),
-    passwordConfirm: new FormControl('', [Validators.required]),
+    password: new FormControl('', [Validators.required, Validators.minLength(6)]),
+    passwordConfirm: new FormControl('', [Validators.required, Validators.minLength(6)]),
   });
 
   constructor(private router: Router, private authApiService: AuthApiService, private userService: UserService,
@@ -88,6 +88,9 @@ export class SignupComponent implements OnInit {
       if (form.password.length === 0) {
         this.signupForm.get('password').setErrors({required: true});
         this.signupForm.get('passwordConfirm').setErrors({required: true});
+      } else if (form.password.length > 0 && form.password.length < 6) {
+        this.signupForm.get('password').setErrors({minlength: true});
+        this.signupForm.get('passwordConfirm').setErrors({minlength: true});
       } else {
         this.signupForm.get('password').setErrors(null);
         this.signupForm.get('passwordConfirm').setErrors(null);

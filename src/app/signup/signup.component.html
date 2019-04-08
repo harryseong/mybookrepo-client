@@ -71,6 +71,9 @@
               <mat-error *ngIf="signupForm.get('password').hasError('required')">
                 Password is required.
               </mat-error>
+              <mat-error *ngIf="signupForm.get('password').hasError('minlength')">
+                Password must be at least 6 characters.
+              </mat-error>
               <mat-error *ngIf="signupForm.get('password').hasError('passwordsDoNotMatch')">
                 Passwords do not match.
               </mat-error>
@@ -81,6 +84,9 @@
               <input type="password" matInput formControlName="passwordConfirm" required (keyup)="verifyPassword()" (keyup.enter)="signup()" [errorStateMatcher]="matcher">
               <mat-error *ngIf="signupForm.get('passwordConfirm').hasError('required')">
                 Password is required.
+              </mat-error>
+              <mat-error *ngIf="signupForm.get('passwordConfirm').hasError('minlength')">
+                Password must be at least 6 characters.
               </mat-error>
               <mat-error *ngIf="signupForm.get('passwordConfirm').hasError('passwordsDoNotMatch')">
                 Passwords do not match.
