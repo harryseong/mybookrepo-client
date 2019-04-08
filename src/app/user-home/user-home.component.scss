@@ -26,15 +26,15 @@ app-navbar {
 }
 
 .user-img-border {
-  height: 2.4em;
-  width: 2.4em;
+  height: 2.5em;
+  width: 2.5em;
   border: 1.2pt solid $theme-color;
   border-radius: 50%;
   padding: 0.1em;
 
   .user-img {
-    height: 1.8em;
-    width: 1.8em;
+    height: 1.9em;
+    width: 1.9em;
     background-color: $theme-secondary;
     border-radius: 50%;
   }
@@ -49,6 +49,10 @@ app-navbar {
 
 .action-list-btn, .action-list-btn-xs {
   @extend %action-list-btn;
+}
+
+.action-list-btn-xs {
+  padding: 0.4em;
 }
 
 .action-list-btn.selected {
