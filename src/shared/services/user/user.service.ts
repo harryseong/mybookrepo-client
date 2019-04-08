@@ -34,6 +34,7 @@ export class UserService {
   checkAccessToken() {
     const accessToken = localStorage.getItem(environment.jwt.local_storage_key);
     if (accessToken !== null && accessToken !== undefined) {
+      console.log('Access token found.');
       this.processAccessToken(accessToken);
     }
   }
@@ -79,7 +80,7 @@ export class UserService {
     const decodedToken = this.jwtHelperService.decodeToken(this.accessToken);
     this.isAdmin = decodedToken.authorities.some(el => el === 'admin');
     this.username = decodedToken.user_name;
-    this.getUser().subscribe(
+    this.getUser(this.accessToken).subscribe(
       (userDTO: UserDTO) => {
         this.userDTO = userDTO;
         this.gravatarProfileImg40 = 'https://www.gravatar.com/avatar/' + crypto.MD5(this.userDTO.email).toString() + '?s=40';
@@ -112,9 +113,9 @@ export class UserService {
     localStorage.removeItem(environment.jwt.local_storage_key);
   }
 
-  getUser() {
+  getUser(accessToken) {
     const headers = new HttpHeaders({
-      Authorization: 'Bearer ' + localStorage.getItem(environment.jwt.local_storage_key)
+      Authorization: 'Bearer ' + accessToken
     });
     return this.http.get(environment.api.resources_url + '/user', {headers});
   }

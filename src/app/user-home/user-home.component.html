@@ -4,27 +4,51 @@
   <mat-drawer class="left-sidenav" opened mode="side" fxHide.xs [disableClose]="true">
     <mat-action-list>
 
-      <button mat-list-item routerLinkActive="selected" [routerLink]="['/user', userService.username, 'library']" class="action-list-btn"
-              matTooltip="My Library" [matTooltipDisabled]=disableTooltip matTooltipPosition="right">
-        <div fxLayout="row" fxLayoutAlign.xs="center">
-          <i class="fas fa-book fa-fw"></i>
-          <span fxHide.lt-md>&nbsp;My Library</span>
+      <button mat-list-item routerLinkActive="selected" [routerLink]="['/user', userService.username, 'library']" class="action-list-btn">
+        <div fxLayout="column" fxFlex="100" fxLayoutAlign="center">
+          <div fxHide.sm fxLayout="row">
+            <i class="fas fa-book fa-fw"></i>
+            <span>&nbsp;My Library</span>
+          </div>
+
+          <div fxLayout="row" fxLayoutAlign="center" fxHide.gt-sm>
+            <div fxLayout="column">
+              <span class="action-list-btn-icon"><i class="fas fa-book fa-fw"></i></span>
+              <span class="action-list-btn-text">Library</span>
+            </div>
+          </div>
         </div>
       </button>
 
-      <button mat-list-item routerLinkActive="selected" [routerLink]="['/user', userService.username, 'plan']" class="action-list-btn"
-              matTooltip="My Reading Plans" [matTooltipDisabled]=disableTooltip matTooltipPosition="right">
-        <div fxLayout="row" fxLayoutAlign.xs="center">
-          <i class="far fa-calendar-check fa-fw"></i>
-          <span fxHide.lt-md>&nbsp;My Reading Plans</span>
+      <button mat-list-item routerLinkActive="selected" [routerLink]="['/user', userService.username, 'plan']" class="action-list-btn">
+        <div fxLayout="column" fxFlex="100" fxLayoutAlign="center">
+          <div fxHide.sm fxLayout="row">
+            <i class="fas fa-calendar-check fa-fw"></i>
+            <span>&nbsp;My Reading Plans</span>
+          </div>
+
+          <div fxLayout="row" fxLayoutAlign="center" fxHide.gt-sm>
+            <div fxLayout="column">
+              <span class="action-list-btn-icon"><i class="far fa-calendar-check fa-fw"></i></span>
+              <span class="action-list-btn-text">Plans</span>
+            </div>
+          </div>
         </div>
       </button>
 
-      <button mat-list-item routerLinkActive="selected" [routerLink]="['/user', userService.username, 'account']" class="action-list-btn"
-              matTooltip="My Account" [matTooltipDisabled]=disableTooltip matTooltipPosition="right">
-        <div fxLayout="row" fxLayoutAlign.xs="center">
-          <i class="fas fa-user fa-fw"></i>
-          <span fxHide.lt-md>&nbsp;My Account</span>
+      <button mat-list-item routerLinkActive="selected" [routerLink]="['/user', userService.username, 'account']" class="action-list-btn">
+        <div fxLayout="column" fxFlex="100" fxLayoutAlign="center">
+          <div fxHide.sm fxLayout="row">
+            <i class="far fa-user fa-fw"></i>
+            <span>&nbsp;My Account</span>
+          </div>
+
+          <div fxLayout="row" fxLayoutAlign="center" fxHide.gt-sm>
+            <div fxLayout="column">
+              <span class="action-list-btn-icon"><i class="far fa-user fa-fw"></i></span>
+              <span class="action-list-btn-text">Account</span>
+            </div>
+          </div>
         </div>
       </button>
 
@@ -32,21 +56,22 @@
   </mat-drawer>
 
   <div class="main-content">
-    <router-outlet></router-outlet>
+    <router-outlet *ngIf="userService.userDTO != null"></router-outlet>
   </div>
 </mat-drawer-container>
 
 <div fxHide.gt-xs fxLayout="row" class="mobile-nav">
 
-  <button mat-button routerLinkActive="selected" [routerLink]="['/user', userService.username, 'library']" class="action-list-btn-xs" fxFlex="100/3"
-          matTooltip="My Library" matTooltipPosition="above">
+  <button mat-button routerLinkActive="selected" [routerLink]="['/user', userService.username, 'library']" class="action-list-btn-xs" class="action-list-btn-xs" fxFlex="100/3">
     <div fxLayout="row" fxLayoutAlign="center">
-      <i class="fas fa-book fa-lg fa-fw"></i>
+      <div fxLayout="column" fxLayoutGap="0.1em">
+        <span class="action-list-btn-icon"><i class="fas fa-book fa-fw"></i></span>
+        <span class="action-list-btn-text">Library</span>
+      </div>
     </div>
   </button>
 
-  <button mat-button routerLinkActive="selected" [routerLink]="['/user', userService.username, 'account']" class="action-list-btn-xs" fxFlex="100/3"
-          matTooltip="My Account" matTooltipPosition="above">
+  <button mat-button routerLinkActive="selected" [routerLink]="['/user', userService.username, 'account']" class="action-list-btn-xs" fxFlex="100/3">
     <div fxLayout="row" fxLayoutAlign="center center">
       <div class="user-img-border" fxLayout="row" fxLayoutAlign="center center">
         <img [src]="userService.gravatarProfileImg40" alt="user-profile-img" class="user-img" *ngIf="userService.gravatarProfileImg40 != '' && userService.gravatarProfileImg40 != null">
@@ -54,10 +79,12 @@
     </div>
   </button>
 
-  <button mat-button routerLinkActive="selected" [routerLink]="['/user', userService.username, 'plan']" class="action-list-btn-xs" fxFlex="100/3"
-          matTooltip="My Reading Plans" matTooltipPosition="above">
+  <button mat-button routerLinkActive="selected" [routerLink]="['/user', userService.username, 'plan']" class="action-list-btn-xs" fxFlex="100/3">
     <div fxLayout="row" fxLayoutAlign="center">
-      <i class="far fa-calendar-check fa-lg fa-fw"></i>
+      <div fxLayout="column" fxLayoutGap="0.1em">
+        <span class="action-list-btn-icon"><i class="far fa-calendar-check fa-fw"></i></span>
+        <span class="action-list-btn-text">Plans</span>
+      </div>
     </div>
   </button>
 

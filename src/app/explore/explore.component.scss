@@ -44,7 +44,6 @@ app-navbar {
   background-color: $theme-secondary;
   color: $theme-color;
   border-radius: 0;
-  padding: 0.5em;
   border: 2pt solid rgba(0, 0, 0, 0);
 }
 
@@ -56,6 +55,16 @@ app-navbar {
   background-color: #323232;
   border-left: 2pt solid $theme-color;
   transition: 0.2s;
+}
+
+.action-list-btn-icon {
+  text-align: center;
+  line-height: 1em;
+}
+
+.action-list-btn-text {
+  line-height: 1.4em;
+  font-size: 0.6em;
 }
 
 .action-list-btn-xs.selected {
