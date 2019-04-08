@@ -12,9 +12,20 @@
     <app-progress-spinner></app-progress-spinner>
   </div>
 
-  <div *ngIf="bookDTOArray.length == 0" fxLayout="row" fxLayoutAlign="center" class="content-element">
-    <div>
-      It looks like you have no books in your library yet.
+  <div *ngIf="bookDTOArray.length == 0 && !isLoading" fxLayout="row" fxLayoutAlign="center" class="no-books-div content-element">
+    <div fxLayout="column" fxLayoutGap="1em">
+      <div fxLayout="row" fxLayoutAlign="center center">
+        <i class="fas fa-book-open fa-2x"></i>
+      </div>
+
+      <div class="no-books-header">
+        Looks like you're just getting started.<br>
+        Visit your library and add some books first!
+      </div>
+
+      <button mat-stroked-button routerLinkActive="true" [routerLink]="['/explore/johndoe123/library']" class="add-first-book-btn mat-elevation-z3">
+        <span>GO TO MY LIBRARY</span>
+      </button>
     </div>
   </div>
 

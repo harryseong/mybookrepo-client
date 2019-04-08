@@ -34,6 +34,15 @@ $theme-secondary: #373737;
     bottom: 2.5em;
     right: 2.5em;
   }
+
+  .no-books-div {
+    padding-top: 2em;
+
+    .no-books-header {
+      font-size: 1.1em;
+      font-weight: 500;
+    }
+  }
 }
 
 .content.xs {

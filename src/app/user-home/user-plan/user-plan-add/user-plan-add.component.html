@@ -12,5 +12,22 @@
     <app-progress-spinner></app-progress-spinner>
   </div>
 
+  <div *ngIf="bookDTOArray.length == 0 && !isLoading" fxLayout="row" fxLayoutAlign="center" class="no-books-div content-element">
+    <div fxLayout="column" fxLayoutGap="1em">
+      <div fxLayout="row" fxLayoutAlign="center center">
+        <i class="fas fa-book-open fa-2x"></i>
+      </div>
+
+      <div class="no-books-header">
+        Looks like you're just getting started.<br>
+        Visit your library and add some books first!
+      </div>
+
+      <button mat-stroked-button routerLinkActive="true" [routerLink]="['/user', userService.username, 'library']" class="add-first-book-btn mat-elevation-z3">
+        <span>GO TO MY LIBRARY</span>
+      </button>
+    </div>
+  </div>
+
   <app-view-books class="content-element" *ngIf="!isLoading && bookDTOArray.length > 0" [planId]="currentPlanId" [bookCardType]="bookCardType" [bookDTOArray]="bookDTOArray"></app-view-books>
 </div>

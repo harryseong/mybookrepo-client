@@ -12,6 +12,10 @@
     </button>
   </div>
 
+  <div fxLayout="row" fxLayoutAlign="center center" *ngIf="isLoading==true">
+    <app-progress-spinner></app-progress-spinner>
+  </div>
+
   <div fxLayout="row" fxLayoutAlign="center" class="content-element" *ngIf="bookSearched==false">
     <div class="search-form-div" fxLayout="row" fxLayoutAlign="center" fxFlex="100">
       <form (submit)="searchBooks()" [formGroup]="searchBookForm" fxLayout="row" fxLayout.xs="column"
@@ -41,10 +45,6 @@
     <div>
       <a href="javascript:void(0)" (click)="searchSomethingElse()">Try another search</a>
     </div>
-  </div>
-
-  <div fxLayout="row" fxLayoutAlign="center center" *ngIf="isLoading==true">
-    <app-progress-spinner></app-progress-spinner>
   </div>
 
   <app-view-books class="content-element" *ngIf="!isLoading && bookDTOArray.length > 0" [bookCardType]="bookCardType" [bookDTOArray]="bookDTOArray"></app-view-books>

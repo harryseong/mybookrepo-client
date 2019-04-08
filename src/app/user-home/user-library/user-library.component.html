@@ -14,7 +14,10 @@
         <i class="fas fa-book-open fa-2x"></i>
       </div>
 
-      <div class="no-books-header">Looks like you're just getting started.</div>
+      <div class="no-books-header">
+        Looks like you're just getting started.<br>
+        Let's search for some books to add!
+      </div>
 
       <button mat-stroked-button routerLinkActive="true" [routerLink]="['/user', userService.username, 'library', 'add']" class="add-first-book-btn mat-elevation-z3">
         <span><i class="fas fa-plus"></i>&nbsp;ADD FIRST BOOK</span>
