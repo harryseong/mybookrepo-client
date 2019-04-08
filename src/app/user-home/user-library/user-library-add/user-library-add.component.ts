@@ -66,7 +66,7 @@ export class UserLibraryAddComponent implements OnInit, OnDestroy {
   ngOnInit() {
     this.bookAddedToLibrary$ = this.resourcesLibraryService.bookAddedEvent$.subscribe(
       (bookDTO: BookDTO) => this.snackBarService.openSnackBar('"' + bookDTO.title + '" was added to the library.', 'OK')
-  );
+    );
   }
 
   ngOnDestroy(): void {
@@ -74,9 +74,7 @@ export class UserLibraryAddComponent implements OnInit, OnDestroy {
       this.searchBooks$.unsubscribe();
     }
 
-    if (this.bookAddedToLibrary$ != null) {
-      this.bookAddedToLibrary$.unsubscribe();
-    }
+    this.bookAddedToLibrary$.unsubscribe();
   }
 
   @HostListener('window:keyup', ['$event'])

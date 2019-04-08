@@ -2,8 +2,6 @@ import {Component, Inject} from '@angular/core';
 import {BookDTO} from '../../dto/dto.module';
 import {MAT_DIALOG_DATA, MatDialogRef} from '@angular/material';
 import {UserService} from '../../services/user/user.service';
-import {Router} from '@angular/router';
-import {SnackBarService} from '../../services/snackBar/snack-bar.service';
 import {ResourcesLibraryService} from '../../services/api/resources/library/resources-library.service';
 import {ResourcesPlanService} from '../../services/api/resources/plan/resources-plan.service';
 
@@ -17,9 +15,7 @@ export class BookDetailsDialogComponent {
   constructor(public dialogRef: MatDialogRef<BookDetailsDialogComponent>,
               private resourcesLibraryService: ResourcesLibraryService,
               private resourcesPlanService: ResourcesPlanService,
-              private router: Router,
               public userService: UserService,
-              private snackBarService: SnackBarService,
               @Inject(MAT_DIALOG_DATA) public data: any
   ) {}
 
@@ -65,13 +61,7 @@ export class BookDetailsDialogComponent {
       books.push(bookDTO);
       localStorage.setItem('books', JSON.stringify(books));
     }
-    this.snackBarService.openSnackBar('"' + bookDTO.title + '" was added to the library.', 'OK');
-    this.resourcesLibraryService.bookAddedEvent$.next();
-    this.closeDialog();
-  }
-
-  exploreAddBookToPlan(bookDTO: BookDTO, planId: string) {
-    this.resourcesPlanService.bookAddedToPlan(bookDTO);
+    this.resourcesLibraryService.bookAddedToLibrary(bookDTO);
     this.closeDialog();
   }
 
@@ -80,8 +70,12 @@ export class BookDetailsDialogComponent {
     const bookIndex = books.findIndex(x => x.title === bookDTO.title);
     books.splice(bookIndex, 1);
     localStorage.setItem('books', JSON.stringify(books));
-    this.snackBarService.openSnackBar('"' + bookDTO.title + '" was removed from the library.', 'OK');
-    this.resourcesLibraryService.bookRemovedEvent$.next();
+    this.resourcesLibraryService.bookRemovedFromLibrary(bookDTO);
+    this.closeDialog();
+  }
+
+  exploreAddBookToPlan(bookDTO: BookDTO, planId: string) {
+    this.resourcesPlanService.bookAddedToPlan(bookDTO);
     this.closeDialog();
   }
 

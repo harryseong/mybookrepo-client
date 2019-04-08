@@ -8,13 +8,13 @@
     <app-progress-spinner></app-progress-spinner>
   </div>
 
-  <div *ngIf="bookDTOArray.length == 0" fxLayout="row" fxLayoutAlign="center" class="no-books-div content-element">
+  <div *ngIf="bookDTOArray.length == 0 && !isLoading" fxLayout="row" fxLayoutAlign="center" class="no-books-div content-element">
     <div fxLayout="column" fxLayoutGap="1em">
       <div fxLayout="row" fxLayoutAlign="center center">
         <i class="fas fa-book-open fa-2x"></i>
       </div>
 
-      <div>Looks like you're just getting started.</div>
+      <div class="no-books-header">Looks like you're just getting started.</div>
 
       <button mat-stroked-button routerLinkActive="true" routerLink="/explore/library/add" class="add-first-book-btn mat-elevation-z3">
         <span><i class="fas fa-plus"></i>&nbsp;ADD FIRST BOOK</span>
@@ -36,5 +36,3 @@
 
   <app-view-books class="content-element" *ngIf="!isLoading && bookDTOArray.length > 0" [bookCardType]="bookCardType" [bookDTOArray]="bookDTOArray"></app-view-books>
 </div>
-
-

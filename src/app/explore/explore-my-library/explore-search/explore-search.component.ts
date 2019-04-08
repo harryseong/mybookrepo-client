@@ -7,6 +7,7 @@ import {GoogleBooksApiService} from '../../../../shared/services/api/google-book
 import {animate, query, sequence, stagger, style, transition, trigger} from '@angular/animations';
 import {DialogService} from '../../../../shared/services/dialog/dialog.service';
 import {Router} from '@angular/router';
+import {ResourcesLibraryService} from '../../../../shared/services/api/resources/library/resources-library.service';
 
 @Component({
   selector: 'app-explore-search',
@@ -55,20 +56,22 @@ export class ExploreSearchComponent implements OnInit, OnDestroy {
   constructor(
     private snackBarService: SnackBarService,
     private googleBooksApiService: GoogleBooksApiService,
+    private resourcesLibraryService: ResourcesLibraryService,
     private dialogService: DialogService,
     private router: Router
   ) { }
 
-  ngOnInit() {}
+  ngOnInit() {
+    this.bookAddedToLibrary$ = this.resourcesLibraryService.bookAddedEvent$.subscribe(
+      (bookDTO: BookDTO) => this.snackBarService.openSnackBar('"' + bookDTO.title + '" was added to the library.', 'OK')
+    );
+  }
 
   ngOnDestroy(): void {
     if (this.searchBooks$ != null) {
       this.searchBooks$.unsubscribe();
     }
-
-    if (this.bookAddedToLibrary$ != null) {
-      this.bookAddedToLibrary$.unsubscribe();
-    }
+    this.bookAddedToLibrary$.unsubscribe();
   }
 
   @HostListener('window:keyup', ['$event'])

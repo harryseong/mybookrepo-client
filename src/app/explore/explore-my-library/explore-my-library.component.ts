@@ -6,6 +6,7 @@ import {Subscription} from 'rxjs';
 import {ResourcesLibraryService} from '../../../shared/services/api/resources/library/resources-library.service';
 import {FormControl, FormGroup} from '@angular/forms';
 import {exploreSampleBooks} from '../explore.sample-data';
+import {SnackBarService} from '../../../shared/services/snackBar/snack-bar.service';
 
 @Component({
   selector: 'app-explore-my-library',
@@ -34,18 +35,29 @@ export class ExploreMyLibraryComponent implements OnInit, OnDestroy, AfterViewIn
 
   constructor(
     private dialogService: DialogService,
-    private resourcesLibraryService: ResourcesLibraryService) { }
+    private resourcesLibraryService: ResourcesLibraryService,
+    private snackBarService: SnackBarService
+  ) { }
 
   ngOnInit() {
     this.getBooks();
-    this.bookRemoved$ = this.resourcesLibraryService.bookRemovedEvent$.subscribe(() => {
+
+    this.bookRemoved$ = this.resourcesLibraryService.bookRemovedEvent$.subscribe((bookDTO) => {
       this.bookDTOArray = [];
-      this.getBooks();
+      this.isLoading = true;
+      setTimeout(() => {
+        this.getBooks();
+      }, 50);
+      this.snackBarService.openSnackBar('"' + bookDTO.title + '" was removed from the library.', 'OK');
     });
   }
 
   ngAfterViewInit(): void {
-    setTimeout(() => this.checkIfFirstTime(), 200);
+    setTimeout(() => this.checkIfFirstTime(), 50);
+  }
+
+  ngOnDestroy() {
+    this.bookRemoved$.unsubscribe();
   }
 
   checkIfFirstTime() {
@@ -55,10 +67,6 @@ export class ExploreMyLibraryComponent implements OnInit, OnDestroy, AfterViewIn
     } else {
       this.openExploreFirstTimeDialog();
     }
-  }
-
-  ngOnDestroy() {
-    this.bookRemoved$.unsubscribe();
   }
 
   getBooks() {

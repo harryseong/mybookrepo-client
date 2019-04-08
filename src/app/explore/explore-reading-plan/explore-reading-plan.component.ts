@@ -74,7 +74,10 @@ export class ExploreReadingPlanComponent implements OnInit, OnDestroy {
   }
 
   viewPlan(planDTO: PlanDTO) {
-    this.currentPlan = planDTO;
+    this.currentPlan = null;
+    setTimeout(() => {
+      this.currentPlan = planDTO;
+    }, 50);
   }
 
   createPlan() {
