@@ -59,13 +59,6 @@ export class ExploreSearchComponent implements OnInit, OnDestroy {
     private router: Router
   ) { }
 
-  @HostListener('window:keyup', ['$event'])
-  keyEvent(event: KeyboardEvent) {
-    if (event.key === 'Escape') {
-      this.leaveAddBook();
-    }
-  }
-
   ngOnInit() {}
 
   ngOnDestroy(): void {
@@ -76,6 +69,20 @@ export class ExploreSearchComponent implements OnInit, OnDestroy {
     if (this.bookAddedToLibrary$ != null) {
       this.bookAddedToLibrary$.unsubscribe();
     }
+  }
+
+  @HostListener('window:keyup', ['$event'])
+  keyEvent(event: KeyboardEvent) {
+    if (event.key === 'Escape') {
+      this.leaveAddBook();
+    }
+  }
+
+  searchSomethingElse() {
+    this.prevSearchTerm = '';
+    this.bookSearched = false;
+    this.isLoading = false;
+    this.bookDTOArray = [];
   }
 
   searchBooks() {

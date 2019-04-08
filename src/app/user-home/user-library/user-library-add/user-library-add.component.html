@@ -1,4 +1,4 @@
-<div class="content" ngClass.xs="xs" fxLayout="column" [@contentAnimations]>
+<div class="content" ngClass.xs="xs" fxLayout="column" fxLayoutGap="1em" [@contentAnimations]>
 
   <div fxLayout="row" fxLayoutAlign="start start" class="content-element">
     <div class="page-header" ngClass.xs="xs">Add New Book</div>
@@ -8,7 +8,7 @@
     </button>
   </div>
 
-  <div fxLayout="row" fxLayoutAlign="center" class="content-element">
+  <div fxLayout="row" fxLayoutAlign="center" class="content-element" *ngIf="bookSearched==false">
     <div class="search-form-div" fxLayout="row" fxLayoutAlign="center" fxFlex="100">
       <form (submit)="searchBooks()" [formGroup]="searchBookForm" fxLayout="row" fxLayout.xs="column"
             fxLayoutGap="0.5em" fxLayoutGap.xs="0" fxFlex="100" fxLayoutAlign="center end">
@@ -27,6 +27,15 @@
           </button>
         </div>
       </form>
+    </div>
+  </div>
+
+  <div fxLayout="column" fxLayoutAlign="start" class="search-results-div content-element" *ngIf="bookSearched==true">
+    <div class="search-result-text">
+      Showing results for <span class="previous-search-term">"{{prevSearchTerm}}"</span>
+    </div>
+    <div>
+      <a href="javascript:void(0)" (click)="searchSomethingElse()">Try another search</a>
     </div>
   </div>
 

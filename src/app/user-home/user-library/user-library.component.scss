@@ -16,9 +16,13 @@ $theme-secondary: #373737;
     font-size: 1em;
   }
 
-  .no-books-header {
-    font-size: 1.2em;
-    font-weight: 500;
+  .no-books-div {
+    padding-top: 2em;
+
+    .no-books-header {
+      font-size: 1.1em;
+      font-weight: 500;
+    }
   }
 
   .add-first-book-btn {

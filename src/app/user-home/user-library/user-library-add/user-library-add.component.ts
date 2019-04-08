@@ -86,6 +86,13 @@ export class UserLibraryAddComponent implements OnInit, OnDestroy {
     }
   }
 
+  searchSomethingElse() {
+    this.prevSearchTerm = '';
+    this.bookSearched = false;
+    this.isLoading = false;
+    this.bookDTOArray = [];
+  }
+
   getBarcodeInfo() {
     this.resourcesLibraryService.getBarcodeInfo().subscribe(
       rsp => {

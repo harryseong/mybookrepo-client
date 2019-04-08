@@ -3,9 +3,10 @@ $theme-secondary: #373737;
 
 .content {
   color: $theme-secondary;
-  padding: 1em;
+  padding: 1em 1em 0.5em 1em;
 
   .search-form-div {
+    margin-top: 2em;
     padding: 1em;
 
     .search-form-field {
@@ -35,5 +36,9 @@ $theme-secondary: #373737;
 }
 
 .search-results-div {
-  padding-bottom: 1em;
+  font-size: 0.8em;
+
+  .previous-search-term {
+    font-weight: 600;
+  }
 }

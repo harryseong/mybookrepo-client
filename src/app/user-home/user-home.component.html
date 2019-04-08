@@ -55,9 +55,14 @@
     </mat-action-list>
   </mat-drawer>
 
+  <div *ngIf="userService.userDTO == null" fxLayout="row" fxLayoutAlign="center center">
+    <app-progress-spinner></app-progress-spinner>
+  </div>
+
   <div class="main-content">
     <router-outlet *ngIf="userService.userDTO != null"></router-outlet>
   </div>
+
 </mat-drawer-container>
 
 <div fxHide.gt-xs fxLayout="row" class="mobile-nav">

@@ -3,7 +3,10 @@
     <div fxLayout="column">
       <mat-form-field class="search-form-field">
         <mat-label>
-          <span><i class="fas fa-search"></i> Search library</span>
+          <span>
+            <i class="fas fa-search"></i> Search 
+            {{bookCardType=='LIBRARY_ADD' || bookCardType=='EXPLORE_LIBRARY_ADD' ? 'books' : 'library'}}
+          </span>
         </mat-label>
         <input matInput #filterInput (keyup)="filterBooks($event.target.value)">
         <mat-hint>Search by title, author, genre</mat-hint>
