@@ -5,7 +5,7 @@
         <mat-label>
           <span>
             <i class="fas fa-search"></i> Search 
-            {{bookCardType=='LIBRARY_ADD' || bookCardType=='EXPLORE_LIBRARY_ADD' ? 'books' : 'library'}}
+            {{bookCardType=='LIBRARY_ADD' || bookCardType=='EXPLORE_LIBRARY_ADD' ? 'results' : 'library'}}
           </span>
         </mat-label>
         <input matInput #filterInput (keyup)="filterBooks($event.target.value)">
