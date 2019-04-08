@@ -34,7 +34,7 @@
     </div>
   </div>
 
-  <div fxLayout="column" fxLayoutAlign="start" class="search-results-div content-element" *ngIf="bookSearched==true">
+  <div fxLayout="column" fxLayoutAlign="start" class="search-results-div content-element" *ngIf="!isLoading && bookSearched==true">
     <div class="search-result-text">
       Showing results for <span class="previous-search-term">"{{prevSearchTerm}}"</span>
     </div>
