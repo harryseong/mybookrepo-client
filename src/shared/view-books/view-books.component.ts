@@ -32,8 +32,8 @@ export class ViewBooksComponent implements OnInit, OnDestroy {
     this.viewBooksTypeChange$.unsubscribe();
   }
 
-  filterBooks(filterTerm: string) {
-    this.bookService.filterBook(filterTerm);
+  filterBooks(filterTerms: string) {
+    this.bookService.filterBook(filterTerms.toLowerCase().trim());
   }
 
   viewTypeChange(viewType: string) {

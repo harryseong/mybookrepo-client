@@ -10,28 +10,28 @@ export class BookService {
 
   constructor() { }
 
-  filterBook(filterTerm: string) {
-    this.filterBookEvent$.next(filterTerm);
+  filterBook(filterTerms: string) {
+    this.filterBookEvent$.next(filterTerms);
   }
 
-  authorsContain(authors: AuthorDTO[], searchTerm: string) {
+  authorsContain(authors: AuthorDTO[], filterTerms: string) {
     let foundAuthors = false;
     authors.map(author => {
       const authorFullName =
         (author.firstName !== null ? author.firstName + ' ' : '') +
         (author.middleName !== null ? author.middleName + ' ' : '') +
         (author.lastName !== null ? author.lastName : '');
-      if (authorFullName.toLowerCase().trim().includes(searchTerm)) {
+      if (authorFullName.toLowerCase().trim().includes(filterTerms)) {
         foundAuthors = true;
       }
     });
     return foundAuthors;
   }
 
-  categoriesContain(categories: CategoryDTO[], searchTerm: string) {
+  categoriesContain(categories: CategoryDTO[], filterTerms: string) {
     let foundCategories = false;
     categories.map(category => {
-      if (category.name.toLowerCase().trim().includes(searchTerm)) {
+      if (category.name.toLowerCase().trim().includes(filterTerms)) {
         foundCategories = true;
       }
     });
