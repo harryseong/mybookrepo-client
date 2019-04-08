@@ -1,6 +1,5 @@
 import {Component, ElementRef, Input, OnDestroy, OnInit, ViewChild} from '@angular/core';
-import {AuthorDTO, BookDTO, CategoryDTO} from '../../dto/dto.module';
-import {FormControl, FormGroup} from '@angular/forms';
+import {BookDTO} from '../../dto/dto.module';
 import {DialogService} from '../../services/dialog/dialog.service';
 import {animate, query, sequence, stagger, style, transition, trigger} from '@angular/animations';
 import {BookService} from '../../services/book/book.service';
@@ -54,36 +53,12 @@ export class BookCardsComponent implements OnInit, OnDestroy {
     if (filterTerms !== '') {
       this.filteredBookDTOArray = this.bookDTOArray.filter(bookDTO =>
         bookDTO.title.trim().toLowerCase().includes(filterTerms) ||
-        this.authorsContain(bookDTO.authors, filterTerms) ||
-        this.categoriesContain(bookDTO.categories, filterTerms)
+        (bookDTO.authors !== undefined && bookDTO.authors !== null ? this.bookService.authorsContain(bookDTO.authors, filterTerms) : false) ||
+        (bookDTO.categories !== undefined && bookDTO.categories !== null ? this.bookService.categoriesContain(bookDTO.categories, filterTerms) : false)
       );
     } else {
       this.filteredBookDTOArray = this.bookDTOArray;
     }
-  }
-
-  authorsContain(authors: AuthorDTO[], searchTerm: string) {
-    let foundAuthors = false;
-    authors.map(author => {
-      const authorFullName =
-        (author.firstName !== null ? author.firstName + ' ' : '') +
-        (author.middleName !== null ? author.middleName + ' ' : '') +
-        (author.lastName !== null ? author.lastName : '');
-      if (authorFullName.toLowerCase().trim().includes(searchTerm)) {
-        foundAuthors = true;
-      }
-    });
-    return foundAuthors;
-  }
-
-  categoriesContain(categories: CategoryDTO[], searchTerm: string) {
-    let foundCategories = false;
-    categories.map(category => {
-      if (category.name.toLowerCase().trim().includes(searchTerm)) {
-        foundCategories = true;
-      }
-    });
-    return foundCategories;
   }
 
   openBookDetailsDialog(bookDTO: BookDTO) {

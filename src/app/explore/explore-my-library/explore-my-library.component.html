@@ -12,14 +12,14 @@
     </div>
   </div>
 
-  <!--FIXED ELEMENT: ADD BOOK TO LIBRARY BUTTON-->
-  <button mat-icon-button class="add-book-btn mobile mat-elevation-z3" fxHide.gt-xs
-          routerLinkActive="true" routerLink="/explore/johndoe123/library/add"
+  <!--FIXED MOBILE ELEMENT: ADD BOOK TO LIBRARY BUTTON-->
+  <button mat-icon-button class="add-book-btn mobile mat-elevation-z4" fxHide.gt-xs [routerLink]="['/explore/johndoe123/library/add']"
           *ngIf="!isLoading && bookDTOArray.length > 0" matTooltip="Add book" matTooltipPosition="left">
     <i class="fas fa-plus"></i>
   </button>
 
-  <button mat-stroked-button [routerLink]="['/explore/johndoe123/library/add']" class="add-book-btn desktop" fxHide.xs>
+  <!--FIXED DESKTOP ELEMENT: ADD BOOK TO LIBRARY BUTTON-->
+  <button mat-stroked-button class="add-book-btn desktop mat-elevation-z4" fxHide.xs [routerLink]="['/explore/johndoe123/library/add']">
     <span><i class="fas fa-plus"></i>&nbsp;NEW BOOK</span>
   </button>
 

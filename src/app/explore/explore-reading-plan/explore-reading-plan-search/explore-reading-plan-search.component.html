@@ -1,4 +1,4 @@
-<div class="content" ngClass.xs="xs" fxLayout="column" fxLayoutGap="0.5em" [@contentAnimations]>
+<div class="content" ngClass.xs="xs" fxLayout="column" fxLayoutGap="1em" [@contentAnimations]>
 
   <div fxLayout="row" fxLayoutAlign="start start" class="content-element">
     <div class="page-header" ngClass.xs="xs">Add Book to Plan <span class="explore-header">DEMO</span></div>
@@ -6,20 +6,6 @@
     <button mat-icon-button routerLinkActive="true" routerLink="/explore/johndoe123/plan">
       <i class="fas fa-times"></i>
     </button>
-  </div>
-
-  <div fxLayout="row" class="content-element">
-
-    <form [formGroup]="searchBookForm">
-      <mat-form-field class="search-form-field">
-        <mat-label>
-          <span><i class="fas fa-search"></i> Search library</span>
-        </mat-label>
-        <input type="text" matInput formControlName="searchField" class="search-field" #searchField (keyup)="search()">
-        <mat-hint>Search by title, author, genre</mat-hint>
-      </mat-form-field>
-    </form>
-
   </div>
 
   <div *ngIf="isLoading" fxLayout="row" fxLayoutAlign="center center">
@@ -32,9 +18,7 @@
     </div>
   </div>
 
+  <app-view-books class="content-element" *ngIf="!isLoading && bookDTOArray.length > 0" [bookCardType]="bookCardType" [bookDTOArray]="bookDTOArray"></app-view-books>
 </div>
 
-<div fxLayout="row wrap" fxLayout.xs="column" fxLayoutAlign="center" *ngIf="!isLoading && bookDTOArray.length > 0" [@bookCardAnimations] class="view-books-div" ngClass.xs="xs">
-  <app-book-card fxLayout.xs="row" *ngFor="let bookDTO of filteredBookDTOArray" bookCardType="EXPLORE_PLAN_ADD" [bookDTO]="bookDTO" (click)="openDialog(bookDTO)"></app-book-card>
-</div>
 

@@ -44,14 +44,9 @@ import {SnackBarService} from '../../../../shared/services/snackBar/snack-bar.se
 })
 export class ExploreReadingPlanSearchComponent implements OnInit {
   bookDTOArray: any[] = [];
-  filteredBookDTOArray: any[] = [];
   bookAddedToPlan$: Subscription;
   isLoading = true;
-
-  @ViewChild('searchField') searchFieldRef: ElementRef;
-  searchBookForm = new FormGroup({
-    searchField: new FormControl('')
-  });
+  bookCardType = 'EXPLORE_PLAN_ADD';
 
   constructor(
     private bookService: BookService,
@@ -78,38 +73,20 @@ export class ExploreReadingPlanSearchComponent implements OnInit {
     }
   }
 
-  search() {
-    const searchTerm: string = this.searchBookForm.get('searchField').value.trim().toLowerCase();
-
-    console.log(searchTerm);
-
-    if (searchTerm !== '') {
-      this.filteredBookDTOArray = this.bookDTOArray.filter(bookDTO =>
-        bookDTO.title.trim().toLowerCase().includes(searchTerm) ||
-        this.bookService.authorsContain(bookDTO.authors, searchTerm) ||
-        this.bookService.categoriesContain(bookDTO.categories, searchTerm)
-      );
-    } else {
-      this.filteredBookDTOArray = this.bookDTOArray;
-    }
-  }
-
   getBooks() {
     const books: BookDTO[] = JSON.parse(localStorage.getItem('books'));
     if (books !== undefined && books !== null && books.length > 0) {
       this.bookDTOArray = books;
-      this.filteredBookDTOArray = books;
       this.isLoading = false;
     } else {
       // Load default sample library.
       this.bookDTOArray = exploreSampleBooks;
-      this.filteredBookDTOArray = exploreSampleBooks;
       localStorage.setItem('books', JSON.stringify(exploreSampleBooks));
       this.isLoading = false;
     }
   }
 
-  openDialog(bookDTO: BookDTO) {
+  openBookDetailsDialog(bookDTO: BookDTO) {
     this.dialogService.openBookDetailsDialog(bookDTO, 'EXPLORE_PLAN_ADD');
   }
 
