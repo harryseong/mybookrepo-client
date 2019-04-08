@@ -8,7 +8,7 @@
     <app-progress-spinner></app-progress-spinner>
   </div>
 
-  <div *ngIf="bookDTOArray.length == 0 && !isLoading" fxLayout="row" fxLayoutAlign="center" class="no-books-div content-element">
+  <div *ngIf="!isLoading && bookDTOArray.length == 0 && !isLoading" fxLayout="row" fxLayoutAlign="center" class="no-books-div content-element">
     <div fxLayout="column" fxLayoutGap="1em">
       <div fxLayout="row" fxLayoutAlign="center center">
         <i class="fas fa-book-open fa-2x"></i>
