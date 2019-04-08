@@ -28,7 +28,10 @@ $theme-secondary: #373737;
 
   .add-book-btn.desktop {
     @extend %add-book-btn;
-    font-size: 0.7em;
+    z-index: 10;
+    position: fixed;
+    bottom: 4em;
+    right: 4em;
   }
 
   .add-book-btn.mobile {
@@ -38,11 +41,4 @@ $theme-secondary: #373737;
     bottom: 6.5em;
     right: 2.5em;
   }
-}
-
-.content.xs {
-}
-
-.view-books-div {
-  padding-bottom: 1em;
 }

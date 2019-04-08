@@ -46,11 +46,16 @@ $danger-color: #ff0000;
       .add-book-box {
         padding-left: 10px;
         user-select: none;
+        color: $theme-color;
+        background-color: $theme-secondary;
+        font-weight: 500;
+        transition: 0.2s;
       }
 
       .add-book-box:hover {
         cursor: pointer;
-        background: #f5f5f5;
+        color: $theme-color;
+        background-color: #232323;
         transition: 0.2s;
       }
 

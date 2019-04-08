@@ -51,6 +51,8 @@ export class UserLibraryAddComponent implements OnInit, OnDestroy {
   bookSearched = false;
   bookDTOArray: BookDTO[] = [];
   isLoading = false;
+  bookCardType = 'LIBRARY_ADD';
+
   @ViewChild('searchField') searchFieldRef: ElementRef;
 
   constructor(private snackBarService: SnackBarService,

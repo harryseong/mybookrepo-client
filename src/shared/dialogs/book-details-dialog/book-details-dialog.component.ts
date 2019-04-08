@@ -46,7 +46,7 @@ export class BookDetailsDialogComponent {
     );
   }
 
-  addBookToPlan(planId: string, bookDTO: BookDTO) {
+  addBookToPlan(bookDTO: BookDTO, planId: string) {
     this.resourcesPlanService.addBookToPlan(planId, bookDTO.id).subscribe(() => {
         this.resourcesPlanService.bookAddedToPlan(bookDTO);
         this.closeDialog();
@@ -70,7 +70,7 @@ export class BookDetailsDialogComponent {
     this.closeDialog();
   }
 
-  exploreAddBookToPlan(planId: string, bookDTO: BookDTO) {
+  exploreAddBookToPlan(bookDTO: BookDTO, planId: string) {
     this.resourcesPlanService.bookAddedToPlan(bookDTO);
     this.closeDialog();
   }

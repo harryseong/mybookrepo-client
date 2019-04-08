@@ -16,16 +16,20 @@ $theme-secondary: #373737;
     font-weight: 500;
   }
 
-  .add-first-book-btn {
-    z-index: 10;
+  %btn {
     color: $theme-color;
     background-color: $theme-secondary;
   }
 
-  .add-book-btn {
+  .add-first-book-btn {
+    @extend %btn;
     z-index: 10;
-    color: $theme-color;
-    background-color: $theme-secondary;
+
+  }
+
+  .add-book-btn {
+    @extend %btn;
+    z-index: 10;
     position: fixed;
     bottom: 2.5em;
     right: 2.5em;

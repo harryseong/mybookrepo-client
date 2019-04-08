@@ -22,6 +22,7 @@ import {Subscription} from 'rxjs';
 export class BookTableComponent implements OnInit, OnDestroy {
   displayedColumns: string[] = ['cover', 'title', 'authors', 'categories'];
   dataSource: MatTableDataSource<any>;
+  @Input() planId?: string;
   @Input() bookDTOArray: BookDTO[];
   @Input() bookCardType: string;
   filterEventSubscription$: Subscription;
@@ -55,7 +56,7 @@ export class BookTableComponent implements OnInit, OnDestroy {
   }
 
   ngOnDestroy(): void {
-
+    this.filterEventSubscription$.unsubscribe();
   }
 
   sortData(sort: Sort) {
@@ -103,6 +104,6 @@ export class BookTableComponent implements OnInit, OnDestroy {
   }
 
   openBookDetailsDialog(bookDTO: BookDTO): void {
-    this.dialogService.openBookDetailsDialog(bookDTO, this.bookCardType);
+    this.dialogService.openBookDetailsDialog(bookDTO, this.bookCardType, this.planId !== undefined ? this.planId : undefined);
   }
 }

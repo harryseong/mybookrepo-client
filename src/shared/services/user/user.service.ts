@@ -6,6 +6,7 @@ import * as crypto from 'crypto-js';
 import {Router} from '@angular/router';
 import {AuthApiService} from '../api/auth/auth-api.service';
 import {UserDTO} from '../../dto/dto.module';
+import {Subject} from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
@@ -21,6 +22,8 @@ export class UserService {
   gravatarProfileImg40: string;
   gravatarProfileImg500: string;
   jwtHelperService = new JwtHelperService();
+  viewBooksTypeChangeEvent$ = new Subject<string>();
+  viewBooksType = 'cards';
 
   constructor(
     private http: HttpClient,
@@ -122,5 +125,10 @@ export class UserService {
 
   isUser(): boolean {
     return this.accessToken && !this.isAdmin;
+  }
+
+  viewTypeChange(viewType: string) {
+    this.viewBooksType = viewType === 'cards' ? 'cards' : 'table';
+    this.viewBooksTypeChangeEvent$.next(viewType);
   }
 }

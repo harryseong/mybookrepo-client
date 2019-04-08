@@ -8,25 +8,9 @@
     </button>
   </div>
 
-  <div fxLayout="row" class="content-element">
-
-    <form [formGroup]="searchBookForm">
-      <mat-form-field class="search-form-field">
-        <mat-label>
-          <span><i class="fas fa-search"></i> Search library</span>
-        </mat-label>
-        <input type="text" matInput formControlName="searchField" class="search-field" #searchField (keyup)="search()">
-        <mat-hint>Search by title, author, genre</mat-hint>
-      </mat-form-field>
-    </form>
-
-  </div>
-
   <div *ngIf="isLoading" fxLayout="row" fxLayoutAlign="center center">
     <app-progress-spinner></app-progress-spinner>
   </div>
-</div>
 
-<div fxLayout="row wrap" fxLayout.xs="column" fxLayoutAlign="center" *ngIf="!isLoading && bookDTOArray.length > 0" [@bookCardAnimations] class="view-books-div" ngClass.xs="xs">
-  <app-book-card fxLayout.xs="row" *ngFor="let bookDTO of filteredBookDTOArray" bookCardType="PLAN_ADD" [bookDTO]="bookDTO" (click)="openDialog(currentPlanId, bookDTO)"></app-book-card>
+  <app-view-books class="content-element" *ngIf="!isLoading && bookDTOArray.length > 0" [planId]="currentPlanId" [bookCardType]="bookCardType" [bookDTOArray]="bookDTOArray"></app-view-books>
 </div>

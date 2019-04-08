@@ -25,6 +25,7 @@ import {Subscription} from 'rxjs';
   ]
 })
 export class BookCardsComponent implements OnInit, OnDestroy {
+  @Input() planId?: string;
   @Input() bookDTOArray: any[];
   @Input() bookCardType: string;
   filteredBookDTOArray: any[] = [];
@@ -61,7 +62,7 @@ export class BookCardsComponent implements OnInit, OnDestroy {
     }
   }
 
-  openBookDetailsDialog(bookDTO: BookDTO) {
-    this.dialogService.openBookDetailsDialog(bookDTO, this.bookCardType);
+  openBookDetailsDialog(bookDTO: BookDTO): void {
+    this.dialogService.openBookDetailsDialog(bookDTO, this.bookCardType, this.planId !== undefined ? this.planId : undefined);
   }
 }

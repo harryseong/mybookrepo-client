@@ -7,6 +7,7 @@ import {UserService} from '../../../../shared/services/user/user.service';
 import {ResourcesPlanService} from '../../../../shared/services/api/resources/plan/resources-plan.service';
 import {Subscription} from 'rxjs';
 import {SnackBarService} from '../../../../shared/services/snackBar/snack-bar.service';
+import {ActivatedRoute} from '@angular/router';
 
 @Component({
   selector: 'app-user-plan-board',
@@ -103,17 +104,26 @@ export class UserPlanBoardComponent implements OnInit, OnDestroy {
   dropZoneState = 'hide';
   planActionsVisible = false;
   gearTurn = 'default';
+  currentPlanId = '';
 
   bookRemovedFromPlan$: Subscription;
 
   constructor(
     private dialogService: DialogService,
     private resourcesPlanService: ResourcesPlanService,
+    private route: ActivatedRoute,
     private snackBarService: SnackBarService,
     public userService: UserService,
   ) { }
 
   ngOnInit() {
+    this.route.paramMap.subscribe(
+      params => {
+        this.currentPlanId = params.get('planId');
+        console.log('Current plan id: ' + this.currentPlanId);
+      }
+    );
+
     this.bookRemovedFromPlan$ = this.resourcesPlanService.bookRemovedFromPlanEvent$.subscribe(
       (bookDTO: BookDTO) => this.snackBarService.openSnackBar('"' + bookDTO.title + '" was removed from the plan.', 'OK')
     );

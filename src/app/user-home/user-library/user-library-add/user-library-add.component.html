@@ -35,12 +35,10 @@
 <!--    <button mat-stroked-button (click)="getBarcodeInfo()">Get Barcode Info</button>-->
 <!--  </div>-->
 
+  <div fxLayout="row" fxLayoutAlign="center center" *ngIf="isLoading==true">
+    <app-progress-spinner></app-progress-spinner>
+  </div>
+
+  <app-view-books class="content-element" *ngIf="!isLoading && bookDTOArray.length > 0" [bookCardType]="bookCardType" [bookDTOArray]="bookDTOArray"></app-view-books>
 </div>
 
-<div fxLayout="row" fxLayoutAlign="center center" *ngIf="isLoading==true">
-  <app-progress-spinner></app-progress-spinner>
-</div>
-
-<div fxLayout="row wrap" fxLayout.xs="column" fxLayoutAlign="center" *ngIf="!isLoading" [@bookCardAnimations] class="search-results-div" ngClass.xs="xs">
-  <app-book-card fxLayout.xs="row" *ngFor="let bookDTO of bookDTOArray" [bookDTO]="bookDTO" bookCardType="NEW" (click)="openDialog(bookDTO)"></app-book-card>
-</div>

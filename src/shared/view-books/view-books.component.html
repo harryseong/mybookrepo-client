@@ -5,7 +5,7 @@
         <mat-label>
           <span><i class="fas fa-search"></i> Search library</span>
         </mat-label>
-        <input matInput (keyup)="filterBooks($event.target.value)">
+        <input matInput #filterInput (keyup)="filterBooks($event.target.value)">
         <mat-hint>Search by title, author, genre</mat-hint>
       </mat-form-field>
     </div>
@@ -23,7 +23,7 @@
   </div>
 
   <div>
-    <app-book-table *ngIf="viewBooksType=='table'" [bookDTOArray]="bookDTOArray" [bookCardType]="bookCardType"></app-book-table>
-    <app-book-cards *ngIf="viewBooksType=='cards'" [bookDTOArray]="bookDTOArray" [bookCardType]="bookCardType"></app-book-cards>
+    <app-book-table *ngIf="viewBooksType=='table'" [planId]="planId" [bookDTOArray]="bookDTOArray" [bookCardType]="bookCardType"></app-book-table>
+    <app-book-cards *ngIf="viewBooksType=='cards'" [planId]="planId" [bookDTOArray]="bookDTOArray" [bookCardType]="bookCardType"></app-book-cards>
   </div>
 </div>

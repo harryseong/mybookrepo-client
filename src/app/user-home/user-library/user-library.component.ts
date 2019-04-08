@@ -42,22 +42,16 @@ import {BookService} from '../../../shared/services/book/book.service';
 })
 export class UserLibraryComponent implements OnInit, OnDestroy {
   bookDTOArray: any[] = [];
-  filteredBookDTOArray: any[] = [];
   isLoading = true;
   bookAdded$: Subscription;
   bookRemoved$: Subscription;
-
-  @ViewChild('searchField') searchFieldRef: ElementRef;
-  searchBookForm = new FormGroup({
-    searchField: new FormControl('')
-  });
+  bookCardType = 'LIBRARY';
 
   constructor(
     private dialogService: DialogService,
     public userService: UserService,
     private resourcesLibraryService: ResourcesLibraryService,
     private snackBarService: SnackBarService,
-    private bookService: BookService
   ) { }
 
   ngOnInit() {
@@ -65,13 +59,11 @@ export class UserLibraryComponent implements OnInit, OnDestroy {
 
     this.bookAdded$ = this.resourcesLibraryService.bookAddedEvent$.subscribe(() => {
       this.bookDTOArray = [];
-      this.filteredBookDTOArray = [];
       this.getBooks();
     });
 
     this.bookRemoved$ = this.resourcesLibraryService.bookRemovedEvent$.subscribe((bookDTO) => {
       this.bookDTOArray = [];
-      this.filteredBookDTOArray = [];
       this.getBooks();
       this.snackBarService.openSnackBar('"' + bookDTO.title + '" was removed from the library.', 'OK');
     });
@@ -82,33 +74,16 @@ export class UserLibraryComponent implements OnInit, OnDestroy {
     this.bookRemoved$.unsubscribe();
   }
 
-  search() {
-    const searchTerm: string = this.searchBookForm.get('searchField').value.trim().toLowerCase();
-
-    console.log(searchTerm);
-
-    if (searchTerm !== '') {
-      this.filteredBookDTOArray = this.bookDTOArray.filter(bookDTO =>
-        bookDTO.title.trim().toLowerCase().includes(searchTerm) ||
-        this.bookService.authorsContain(bookDTO.authors, searchTerm) ||
-        this.bookService.categoriesContain(bookDTO.categories, searchTerm)
-      );
-    } else {
-      this.filteredBookDTOArray = this.bookDTOArray;
-    }
-  }
-
   getBooks() {
     this.resourcesLibraryService.getAllBooks().subscribe(
       rsp => {
         this.bookDTOArray = rsp;
-        this.filteredBookDTOArray = rsp;
         this.isLoading = false;
       }
     );
   }
 
-  openDialog(bookDTO: BookDTO) {
+  openBookDetailsDialog(bookDTO: BookDTO) {
     this.dialogService.openBookDetailsDialog(bookDTO, 'VIEW');
   }
 }

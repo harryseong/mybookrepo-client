@@ -47,7 +47,7 @@ export class ExploreSearchComponent implements OnInit, OnDestroy {
   });
   prevSearchTerm = '';
   bookSearched = false;
-  bookCardType = 'EXPLORE_NEW';
+  bookCardType = 'EXPLORE_LIBRARY_ADD';
   bookDTOArray: BookDTO[] = [];
   isLoading = false;
   @ViewChild('searchField') searchFieldRef: ElementRef;

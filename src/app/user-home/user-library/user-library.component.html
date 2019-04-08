@@ -4,28 +4,6 @@
     My Library
   </div>
 
-  <div fxLayout="row" class="content-element">
-
-    <form [formGroup]="searchBookForm">
-      <mat-form-field class="search-form-field">
-        <mat-label>
-          <span><i class="fas fa-search"></i> Search library</span>
-        </mat-label>
-        <input type="text" matInput formControlName="searchField" class="search-field" #searchField (keyup)="search()">
-        <mat-hint>Search by title, author, genre</mat-hint>
-      </mat-form-field>
-    </form>
-
-    <span class="spacer"></span>
-
-    <div fxLayout="row" fxLayoutAlign="end center">
-      <button mat-stroked-button [routerLink]="['/user', userService.username, 'library', 'add']" class="add-book-btn desktop" fxHide.xs>
-        <span><i class="fas fa-plus"></i>&nbsp;NEW BOOK</span>
-      </button>
-    </div>
-
-  </div>
-
   <div *ngIf="isLoading" fxLayout="row" fxLayoutAlign="center center">
     <app-progress-spinner></app-progress-spinner>
   </div>
@@ -44,8 +22,13 @@
           *ngIf="!isLoading && bookDTOArray.length > 0" matTooltip="Add book" matTooltipPosition="left">
     <i class="fas fa-plus"></i>
   </button>
+
+  <div fxLayout="row" fxLayoutAlign="end center">
+    <button mat-stroked-button [routerLink]="['/user', userService.username, 'library', 'add']" class="add-book-btn desktop" fxHide.xs>
+      <span><i class="fas fa-plus"></i>&nbsp;NEW BOOK</span>
+    </button>
+  </div>
+
+  <app-view-books class="content-element" *ngIf="!isLoading && bookDTOArray.length > 0" [bookCardType]="bookCardType" [bookDTOArray]="bookDTOArray"></app-view-books>
 </div>
 
-<div fxLayout="row wrap" fxLayout.xs="column" fxLayoutAlign="center" *ngIf="!isLoading && bookDTOArray.length > 0" [@bookCardAnimations] class="view-books-div" ngClass.xs="xs">
-  <app-book-card fxLayout.xs="row" *ngFor="let bookDTO of filteredBookDTOArray" bookCardType="LIBRARY" [bookDTO]="bookDTO" (click)="openDialog(bookDTO)"></app-book-card>
-</div>

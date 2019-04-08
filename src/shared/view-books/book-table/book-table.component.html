@@ -23,8 +23,7 @@
         <th mat-header-cell *matHeaderCellDef> Authors </th>
         <td mat-cell *matCellDef="let element">
           <span *ngFor="let author of element.authors; let last = last">
-            {{author.firstName}} {{author.middleName}} {{author.lastName}}
-            <span *ngIf="!last">, </span>
+            {{author.firstName != null ? author.firstName : ''}}{{author.middleName != null ? ' ' + author.middleName : ''}}{{author.lastName != null ? ' ' + author.lastName : ''}}<span *ngIf="!last">, </span>
           </span>
         </td>
       </ng-container>
