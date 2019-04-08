@@ -98,7 +98,7 @@
          (cdkDropListDropped)="drop($event)" (cdkDropListEntered)="enteredRemoveZone()" (cdkDropListExited)="leftRemoveZone()">
       <div class="drop-zone-text" fxLayout="row" fxLayoutAlign="center center">
         <span class="drop-zone-hover-icon" *ngIf="inRemoveZone" [@dropZoneIconAnimations]><i class="fas fa-minus-circle fa-lg fa-fw"></i></span>
-        <span>{{inRemoveZone ? 'DROP TO REMOVE' : 'REMOVE FROM PLAN'}}</span>
+        <span>{{inRemoveZone ? 'DROP TO REMOVE' : 'DROP HERE TO REMOVE'}}</span>
       </div>
     </div>
 
@@ -147,7 +147,7 @@
          (cdkDropListDropped)="drop($event)" (cdkDropListEntered)="enteredRemoveZone()" (cdkDropListExited)="leftRemoveZone()">
       <div class="drop-zone-text" fxLayout="row" fxLayoutAlign="center center">
         <span class="drop-zone-hover-icon" *ngIf="inRemoveZone" [@dropZoneIconAnimations]><i class="fas fa-minus-circle fa-lg fa-fw"></i></span>
-        <span>{{inRemoveZone ? 'DROP TO REMOVE' : 'REMOVE FROM PLAN'}}</span>
+        <span>REMOVE</span>
       </div>
     </div>
 
