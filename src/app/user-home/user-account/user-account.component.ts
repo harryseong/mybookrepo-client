@@ -3,6 +3,7 @@ import {UserService} from '../../../shared/services/user/user.service';
 import {BookDTO} from '../../../shared/dto/dto.module';
 import {animate, query, sequence, stagger, style, transition, trigger} from '@angular/animations';
 import {ResourcesLibraryService} from '../../../shared/services/api/resources/library/resources-library.service';
+import {DialogService} from '../../../shared/services/dialog/dialog.service';
 
 @Component({
   selector: 'app-user-account',
@@ -29,7 +30,8 @@ export class UserAccountComponent implements OnInit {
 
   constructor(
     public userService: UserService,
-    private resourcesLibraryService: ResourcesLibraryService
+    private resourcesLibraryService: ResourcesLibraryService,
+    private dialogService: DialogService
   ) {}
 
   ngOnInit() {
@@ -43,5 +45,9 @@ export class UserAccountComponent implements OnInit {
         this.isLoading = false;
       }
     );
+  }
+
+  openGravatarDialog() {
+    this.dialogService.openGravatarDialog();
   }
 }

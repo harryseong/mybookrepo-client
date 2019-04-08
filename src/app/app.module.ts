@@ -47,6 +47,7 @@ import {BookService} from '../shared/services/book/book.service';
 import { BookTableComponent } from '../shared/view-books/book-table/book-table.component';
 import { BookCardsComponent } from '../shared/view-books/book-cards/book-cards.component';
 import { ViewBooksComponent } from '../shared/view-books/view-books.component';
+import { GravatarDialogComponent } from '../shared/dialogs/gravatar-dialog/gravatar-dialog.component';
 
 @NgModule({
   declarations: [
@@ -79,6 +80,7 @@ import { ViewBooksComponent } from '../shared/view-books/view-books.component';
     BookTableComponent,
     BookCardsComponent,
     ViewBooksComponent,
+    GravatarDialogComponent,
   ],
   imports: [
     AppRoutingModule,
@@ -95,7 +97,8 @@ import { ViewBooksComponent } from '../shared/view-books/view-books.component';
   entryComponents: [
     BookDetailsDialogComponent,
     ExploreFirstTimeDialogComponent,
-    PlanDialogComponent
+    PlanDialogComponent,
+    GravatarDialogComponent
   ],
   exports: [
     MaterialModule,

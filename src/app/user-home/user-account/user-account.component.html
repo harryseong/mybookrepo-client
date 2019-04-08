@@ -41,10 +41,9 @@
       <div class="profile-actions"><a href="javascript:void(0)">Change username</a></div>
       <div class="profile-actions"><a href="javascript:void(0)">Change password</a></div>
       <div class="profile-actions"><a href="javascript:void(0)">Change email</a></div>
-      <div class="profile-actions"><a href="https://en.gravatar.com/site/login" target="_blank">Change profile picture</a></div>
+      <div class="profile-actions"><a href="javascript:void(0)" (click)="openGravatarDialog()">Change profile picture</a></div>
     </div>
 
     <button mat-stroked-button (click)="userService.logout()" class="content-element logout-btn">LOG OUT</button>
-
   </div>
 </div>

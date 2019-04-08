@@ -4,6 +4,7 @@ import {BookDTO, PlanDTO} from '../../dto/dto.module';
 import {BookDetailsDialogComponent} from '../../dialogs/book-details-dialog/book-details-dialog.component';
 import {ExploreFirstTimeDialogComponent} from '../../dialogs/explore-first-time-dialog/explore-first-time-dialog.component';
 import {PlanDialogComponent} from '../../dialogs/plan-dialog/plan-dialog.component';
+import {GravatarDialogComponent} from '../../dialogs/gravatar-dialog/gravatar-dialog.component';
 
 @Injectable({
   providedIn: 'root'
@@ -50,6 +51,18 @@ export class DialogService {
         plan: planDTO,
         type: dialogType,
       }
+    });
+
+    dialogRef.afterClosed().subscribe(result => {
+      console.log('The plan dialog was closed');
+    });
+  }
+
+  openGravatarDialog() {
+    const dialogRef = this.dialog.open(GravatarDialogComponent, {
+      width: '30em',
+      autoFocus: false,
+      panelClass: 'gravatar-dialog',
     });
 
     dialogRef.afterClosed().subscribe(result => {

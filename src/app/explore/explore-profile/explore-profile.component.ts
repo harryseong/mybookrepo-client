@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import {animate, query, sequence, stagger, style, transition, trigger} from '@angular/animations';
 import {BookDTO} from '../../../shared/dto/dto.module';
+import {DialogService} from '../../../shared/services/dialog/dialog.service';
 
 @Component({
   selector: 'app-explore-profile',
@@ -25,7 +26,9 @@ export class ExploreProfileComponent implements OnInit {
   bookDTOArray: any[] = [];
   isLoading = true;
 
-  constructor() { }
+  constructor(
+    private dialogService: DialogService
+  ) { }
 
   ngOnInit() {
     this.getBooks();
@@ -44,5 +47,9 @@ export class ExploreProfileComponent implements OnInit {
       localStorage.setItem('books', JSON.stringify(sampleLibraryBooks));
       this.isLoading = false;
     }
+  }
+
+  openGravatarDialog() {
+    this.dialogService.openGravatarDialog();
   }
 }
