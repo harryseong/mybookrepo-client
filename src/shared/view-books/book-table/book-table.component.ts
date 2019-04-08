@@ -37,12 +37,12 @@ export class BookTableComponent implements OnInit, OnDestroy {
 
     // Set custom filter predicate for searching nested fields of organization objects.
     this.dataSource.filterPredicate = (data, filter: string)  => {
+
       const accumulator = (currentTerm, key) => {
-        if (key in ['title', 'authors', 'categories']) {
-          return this.nestedFilterCheck(currentTerm, data, key);
-        }
+        return this.nestedFilterCheck(currentTerm, data, key);
       };
       const dataStr = Object.keys(data).reduce(accumulator, '').toLowerCase();
+
       // Transform the filter by converting it to lowercase and removing whitespace.
       const transformedFilter = filter.trim().toLowerCase();
       return dataStr.indexOf(transformedFilter) !== -1;
