@@ -87,6 +87,12 @@ export class UserService {
         this.gravatarProfileImg500 = 'https://www.gravatar.com/avatar/' + crypto.MD5(this.userDTO.email).toString() + '?s=500';
         this.userFullName = userDTO.firstName + ' ' + userDTO.lastName;
         this.isLoading = false;
+      },
+      error => {
+        if (error.error.error === 'invalid_token') {
+          console.warn('Access token expired or invalid. Logging user out.');
+          this.logout();
+        }
       }
     );
     // Save access token to local storage until logout.
