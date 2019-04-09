@@ -29,7 +29,9 @@
             </div>
 
             <mat-form-field class="content-element">
-              <mat-label>Username</mat-label>
+              <mat-label>
+                <span><i class="far fa-user fa-fw fa-sm"></i> Username</span>
+              </mat-label>
               <input type="text" matInput formControlName="username" required (keyup.enter)="login()" [errorStateMatcher]="matcher">
               <mat-error *ngIf="loginForm.get('username').hasError('required')">
                 Username is required.
@@ -37,7 +39,9 @@
             </mat-form-field>
 
             <mat-form-field class="content-element">
-              <mat-label>Password</mat-label>
+              <mat-label>
+                <span><i class="fas fa-lock fa-fw fa-sm"></i> Password</span>
+              </mat-label>
               <input type="password" matInput formControlName="password" required (keyup.enter)="login()" [errorStateMatcher]="matcher">
               <mat-error *ngIf="loginForm.get('password').hasError('required')">
                 Password is required.

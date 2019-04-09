@@ -21,7 +21,9 @@
         <form [formGroup]="signupForm" fxLayout="column" fxLayoutGap="1.5em" fxLayoutGap.xs="1em">
           <div fxLayout="row wrap" fxLayout.xs="column" fxLayoutGap="1em" fxLayoutGap.xs="1em" class="content-element">
             <mat-form-field>
-              <mat-label>Username</mat-label>
+              <mat-label>
+                <span><i class="far fa-user fa-fw fa-sm"></i> Username</span>
+              </mat-label>
               <input type="text" matInput formControlName="username" maxlength="15" required (keyup)="checkUsernameInDB()" (keyup.enter)="signup()" [errorStateMatcher]="matcher">
               <mat-error *ngIf="signupForm.get('username').hasError('required')">
                 Username is required.
@@ -32,7 +34,9 @@
             </mat-form-field>
 
             <mat-form-field>
-              <mat-label>Email</mat-label>
+              <mat-label>
+                <span><i class="far fa-envelope fa-fw fa-sm"></i> Email</span>
+              </mat-label>
               <input type="email" matInput formControlName="email" required (keyup)="checkEmailInDB()" (keyup.enter)="signup()" [errorStateMatcher]="matcher">
               <mat-error *ngIf="signupForm.get('email').hasError('required')">
                 Email is required.
@@ -66,8 +70,11 @@
 
           <div fxLayout="column" fxLayoutGap="1em" class="content-element">
             <mat-form-field>
-              <mat-label>Password</mat-label>
+              <mat-label>
+                <span><i class="fas fa-lock fa-fw fa-sm"></i> Password</span>
+              </mat-label>
               <input type="password" matInput formControlName="password" required (keyup)="verifyPassword()" (keyup.enter)="signup()" [errorStateMatcher]="matcher">
+              <mat-hint>Rest assured. Your password will be encrypted.</mat-hint>
               <mat-error *ngIf="signupForm.get('password').hasError('required')">
                 Password is required.
               </mat-error>
