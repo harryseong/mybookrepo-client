@@ -38,9 +38,9 @@
     </div>
   </div>
 
-  <div fxLayout="column" fxLayoutAlign="start" class="search-results-div content-element" *ngIf="!isLoading && bookSearched==true">
+  <div fxLayout="column" fxLayoutGap="1em" fxLayoutAlign="start" class="search-results-div content-element" *ngIf="!isLoading && bookSearched==true">
     <div class="search-result-text">
-      Showing results for <span class="previous-search-term">"{{prevSearchTerm}}."</span>
+      Showing results for <span class="previous-search-term">"{{prevSearchTerm}}".</span>
     </div>
     <a href="javascript:void(0)" (click)="searchSomethingElse()">Try another search.</a>
   </div>

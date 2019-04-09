@@ -31,7 +31,7 @@ import {ResourcesLibraryService} from '../../../../shared/services/api/resources
       transition(':enter', [
         query('.book-card', [
           style({ opacity: 0, transform: 'translateY(1em)'}),
-          stagger(100, [
+          stagger(80, [
             sequence([
               animate('0.5s ease', style({ opacity: 1, transform: 'translateY(0)' })),
             ])
@@ -118,13 +118,21 @@ export class UserLibraryAddComponent implements OnInit, OnDestroy {
       this.lookupBooksByISBN13(this.prevSearchTerm);
     } else {
       console.log('Search term not an ISBN number');
-      this.lookupBooksByTitle(this.prevSearchTerm);
-      this.lookupBooksByAuthor(this.prevSearchTerm);
+      this.lookupBooks(this.prevSearchTerm);
+      // this.lookupBooksByTitle(this.prevSearchTerm);
+      // this.lookupBooksByAuthor(this.prevSearchTerm);
     }
   }
 
   isISBN(searchTerms: string) {
     return /^(97(8|9))?\d{9}(\d|X)$/.test(searchTerms);
+  }
+
+  lookupBooks(searchTerms: string) {
+    this.searchBooks$ = this.googleBooksApiService.lookupBooks(searchTerms).subscribe(data => {
+      console.log(JSON.stringify(data));
+      this.processGoogleBooksApiResponse(data);
+    });
   }
 
   lookupBooksByTitle(searchTerms: string) {

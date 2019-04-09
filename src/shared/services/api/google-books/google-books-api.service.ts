@@ -9,6 +9,9 @@ export class GoogleBooksApiService {
 
   constructor(private http: HttpClient) { }
 
+  lookupBooks(searchTerm: string) {
+    return this.http.get(environment.api.goole_books_url + '?q=' + searchTerm + '&orderBy=relevance&maxResults=30');
+  }
   lookupBooksByTitle(title: string) {
     return this.http.get(environment.api.goole_books_url + '?q=title:' + title);
   }
