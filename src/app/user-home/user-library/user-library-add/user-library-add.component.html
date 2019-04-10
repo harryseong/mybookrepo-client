@@ -35,10 +35,10 @@
   </div>
 
   <div fxLayout="column" fxLayoutGap="1em" class="search-results-div content-element" *ngIf="!isLoading && bookSearched==true">
-    <div class="search-result-text">
-      Showing results for <span class="previous-search-term">"{{prevSearchTerm}}".</span>
+    <div class="search-results-text">
+      Showing <span class="search-results-count">{{bookDTOArray.length}}</span> results for <span class="previous-search-term">"{{prevSearchTerm}}"</span>
     </div>
-    <a href="javascript:void(0)" (click)="searchSomethingElse()">Try another search.</a>
+    <a href="javascript:void(0)" (click)="searchSomethingElse()">Try another search</a>
   </div>
 
 <!--  TODO: Add ability to upload photo of book barcode.-->

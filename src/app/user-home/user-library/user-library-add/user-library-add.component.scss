@@ -39,7 +39,12 @@ $theme-secondary: #373737;
   font-size: 1em;
   padding-bottom: 1em;
 
+  .search-results-count {
+    font-weight: 500;
+  }
+
   .previous-search-term {
-    font-weight: 600;
+    font-style: italic;
+    font-weight: 500;
   }
 }
