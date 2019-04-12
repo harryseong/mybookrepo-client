@@ -6,21 +6,24 @@ $theme-secondary: #373737;
   padding: 1em;
 
   .add-plan-btn {
-    color: $theme-color;
-    background-color: $theme-secondary;
+    font-size: 1em;
   }
 
-  .year-btn-row {
-    overflow-x: scroll;
+  .btn-row {
     padding-bottom: 1em;
 
-    button {
-      font-size: 0.7em;
-      min-width: auto;
-    }
+    .plan-btn-row {
+      overflow-x: scroll;
 
-    .plan-btn.selected {
-      background-color: #ebebeb;
+      .plan-btn {
+        font-size: 0.7em;
+        min-width: auto;
+      }
+
+      .plan-btn.selected {
+        background-color: #ebebeb;
+
+      }
     }
   }
 }

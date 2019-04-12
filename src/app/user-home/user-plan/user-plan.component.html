@@ -5,13 +5,17 @@
       My Reading Plans
     </div>
 
-    <div fxLayout="row" fxLayoutGap="0.5em" class="year-btn-row content-element">
-      <button mat-stroked-button (click)="createPlan()" class="add-plan-btn">
-        <span><i class="fas fa-plus"></i>&nbsp;NEW PLAN</span>
-      </button>
-      <button mat-stroked-button *ngFor="let plan of plans" (click)="viewPlan(plan)"
-              [ngClass]="currentPlan != null ? (currentPlan.id===plan.id ? 'plan-btn selected' : 'plan-btn') : 'plan-btn'">
-        {{plan.name}}
+    <div fxLayout="row" fxLayoutGap="0.5em" class="btn-row content-element">
+
+      <div fxLayout="row" fxLayoutGap="0.5em" class="plan-btn-row">
+        <button mat-stroked-button *ngFor="let plan of plans" (click)="viewPlan(plan)"
+                [ngClass]="currentPlan != null ? (currentPlan.id===plan.id ? 'plan-btn selected' : 'plan-btn') : 'plan-btn'">
+          {{plan.name}}
+        </button>
+      </div>
+
+      <button mat-icon-button (click)="createPlan()" class="add-plan-btn">
+        <span><i class="fas fa-plus"></i></span>
       </button>
     </div>
   </div>
