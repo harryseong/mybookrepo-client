@@ -1,22 +1,21 @@
 <div class="content" fxLayout="row" fxLayoutAlign="center">
 
-  <div fxLayout="column" fxLayoutGap="1.5em" fxFlex="40" fxFlex.sm="50" fxFlex.xs="100" [@contentAnimations]>
+  <div fxLayout="column" fxLayoutGap="0.2em" fxFlex="40" fxFlex.sm="50" fxFlex.xs="100" [@contentAnimations]>
 
     <div fxLayout="row" fxLayoutAlign="center" class="content-element">
-
-      <div fxLayout="column" fxLayoutGap="0.2em">
-        <div class="user-img-border  mat-elevation-z1" fxLayout="row" fxLayoutAlign="center center"
-             *ngIf="userService.gravatarProfileImg40 != '' && userService.gravatarProfileImg40 != null">
-          <img [src]="userService.gravatarProfileImg500" class="user-img" alt="user-img">
-        </div>
-        <div class="user-name">
-          {{userService.userFullName}}
-        </div>
+      <div class="user-img-border mat-elevation-z1" fxLayoutAlign="center center"
+           *ngIf="userService.gravatarProfileImg40 != '' && userService.gravatarProfileImg40 != null">
+        <img src="{{userService.gravatarProfileImg500}}" class="user-img" alt="user-img">
       </div>
-
     </div>
 
-    <div class="content-element">
+    <div fxLayout="row" fxLayoutAlign="center" class="content-element">
+      <div class="user-name" fxLayout="row" fxLayoutAlign="center center">
+        <div>{{userService.userFullName}}</div>
+      </div>
+    </div>
+
+    <div class="content-element" fxFlexOffset="1.5em">
       <div fxLayout="row" fxLayoutGap="0.3em">
         <div class="profile-info-header"><i class="far fa-user fa-fw"></i></div>
         <div>{{userService.userDTO.username}}</div>
@@ -31,13 +30,13 @@
       </div>
     </div>
 
-    <div fxLayout="column" class="content-element">
+    <div fxLayout="column" class="content-element" fxFlexOffset="1.5em">
       <div class="profile-actions"><a href="javascript:void(0)">Change username</a></div>
       <div class="profile-actions"><a href="javascript:void(0)">Change password</a></div>
       <div class="profile-actions"><a href="javascript:void(0)">Change email</a></div>
       <div class="profile-actions"><a href="javascript:void(0)" (click)="openGravatarDialog()">Change profile picture</a></div>
     </div>
 
-    <button mat-stroked-button (click)="userService.logout()" class="content-element logout-btn">LOG OUT</button>
+    <button mat-stroked-button fxFlexOffset="1.5em" (click)="userService.logout()" class="content-element logout-btn">LOG OUT</button>
   </div>
 </div>

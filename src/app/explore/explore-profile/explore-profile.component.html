@@ -1,21 +1,20 @@
 <div class="content" fxLayout="row" fxLayoutAlign="center">
 
-  <div fxLayout="column" fxLayoutGap="1.5em" fxFlex="40" fxFlex.sm="50" fxFlex.xs="100" [@contentAnimations]>
+  <div fxLayout="column" fxLayoutGap="0.2em" fxFlex="40" fxFlex.sm="50" fxFlex.xs="100" [@contentAnimations]>
 
-    <div fxLayout="row" fxLayoutAlign="center" class="content-element">
-
-      <div fxLayout="column" fxLayoutGap="0.2em">
-        <div class="user-img-border  mat-elevation-z1" fxLayout="row" fxLayoutAlign="center center">
-          <img src="/assets/images/sample-user.jpg" alt="user-profile-img" class="user-img">
-        </div>
-        <div class="user-name">
-          John Doe
-        </div>
+    <div fxLayout="row" fxLayoutAlign="center center" class="content-element">
+      <div class="user-img-border  mat-elevation-z1" fxLayoutAlign="center center">
+        <img src="/assets/images/sample-user.jpg" alt="user-profile-img" class="user-img">
       </div>
-
     </div>
 
-    <div class="content-element">
+    <div fxLayout="row" fxLayoutAlign="center center" class="content-element">
+      <div fxLayout="row" class="user-name" fxLayoutAlign="center center">
+        <div>John Doe</div>
+      </div>
+    </div>
+
+    <div class="content-element" fxFlexOffset="1.5em">
       <div fxLayout="row" fxLayoutGap="0.3em">
         <div class="profile-info-header"><i class="far fa-user fa-fw"></i></div>
         <div>johndoe123</div>
@@ -30,14 +29,14 @@
       </div>
     </div>
 
-    <div fxLayout="column" class="content-element">
+    <div fxLayout="column" fxFlexOffset="1.5em" class="content-element">
       <div class="profile-actions"><a href="javascript:void(0)">Change username</a></div>
       <div class="profile-actions"><a href="javascript:void(0)">Change password</a></div>
       <div class="profile-actions"><a href="javascript:void(0)">Change email</a></div>
       <div class="profile-actions"><a href="javascript:void(0)" (click)="openGravatarDialog()">Change profile picture</a></div>
     </div>
 
-    <button mat-stroked-button routerLinkActive="true" routerLink="/" class="content-element logout-btn">LOG OUT</button>
+    <button mat-stroked-button routerLinkActive="true" fxFlexOffset="1.5em" routerLink="/" class="content-element logout-btn">LOG OUT</button>
 
   </div>
 </div>
