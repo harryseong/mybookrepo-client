@@ -13,6 +13,10 @@
                 [ngClass]="currentPlan != null ? (currentPlan.name===plan.name ? 'plan-btn selected' : 'plan-btn') : 'plan-btn'">
           {{plan.name}}
         </button>
+
+        <button mat-button *ngIf="planArray.length==0" (click)="createPlan()">
+          CREATE FIRST PLAN
+        </button>
       </div>
 
       <button mat-icon-button (click)="createPlan()" class="add-plan-btn">
