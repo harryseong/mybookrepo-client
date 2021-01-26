@@ -1,6 +1,6 @@
 import {Component, Inject} from '@angular/core';
 import {BookDTO} from '../../dto/dto.module';
-import {MAT_DIALOG_DATA, MatDialogRef} from '@angular/material';
+import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material/dialog';
 import {UserService} from '../../services/user/user.service';
 import {ResourcesLibraryService} from '../../services/api/resources/library/resources-library.service';
 import {ResourcesPlanService} from '../../services/api/resources/plan/resources-plan.service';

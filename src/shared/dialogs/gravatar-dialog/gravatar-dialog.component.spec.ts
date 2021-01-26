@@ -1,4 +1,4 @@
-import { async, ComponentFixture, TestBed } from '@angular/core/testing';
+import { ComponentFixture, TestBed, waitForAsync } from '@angular/core/testing';
 
 import { GravatarDialogComponent } from './gravatar-dialog.component';
 
@@ -6,7 +6,7 @@ describe('GravatarDialogComponent', () => {
   let component: GravatarDialogComponent;
   let fixture: ComponentFixture<GravatarDialogComponent>;
 
-  beforeEach(async(() => {
+  beforeEach(waitForAsync(() => {
     TestBed.configureTestingModule({
       declarations: [ GravatarDialogComponent ]
     })

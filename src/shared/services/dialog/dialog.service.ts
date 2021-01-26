@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import {MatDialog} from '@angular/material';
+import { MatDialog } from '@angular/material/dialog';
 import {BookDTO, PlanDTO} from '../../dto/dto.module';
 import {BookDetailsDialogComponent} from '../../dialogs/book-details-dialog/book-details-dialog.component';
 import {ExploreFirstTimeDialogComponent} from '../../dialogs/explore-first-time-dialog/explore-first-time-dialog.component';

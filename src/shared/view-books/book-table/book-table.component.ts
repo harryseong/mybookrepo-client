@@ -1,6 +1,7 @@
 import {Component, Input, OnDestroy, OnInit} from '@angular/core';
 import {animate, style, transition, trigger} from '@angular/animations';
-import {MatTableDataSource, Sort} from '@angular/material';
+import { Sort } from '@angular/material/sort';
+import { MatTableDataSource } from '@angular/material/table';
 import {BookDTO} from '../../dto/dto.module';
 import {DialogService} from '../../services/dialog/dialog.service';
 import {BookService} from '../../services/book/book.service';

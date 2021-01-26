@@ -23,20 +23,20 @@ const routes: Routes = [
   {path: 'login', component: LoginComponent},
   {path: 'signup', component: SignupComponent},
   {path: 'about', component: AboutComponent},
-  {path: 'user/:username', component: UserHomeComponent,
-    children: [
-      {path: '', redirectTo: 'library', pathMatch: 'full', canActivate: [AuthGuard]},
-      {path: 'library', component: UserLibraryComponent, canActivate: [AuthGuard]},
-      {path: 'library/add', component: UserLibraryAddComponent, canActivate: [AuthGuard]},
-      {path: 'plan', component: UserPlanComponent, canActivate: [AuthGuard],
-        children: [
-          {path: ':planId', component: UserPlanComponent, canActivate: [AuthGuard]}
-        ]
-      },
-      {path: 'plan/:planId/add', component: UserPlanAddComponent},
-      {path: 'account', component: UserAccountComponent, canActivate: [AuthGuard]},
-    ]
-  },
+  // {path: 'user/:username', component: UserHomeComponent,
+  //   children: [
+  //     {path: '', redirectTo: 'library', pathMatch: 'full', canActivate: [AuthGuard]},
+  //     {path: 'library', component: UserLibraryComponent, canActivate: [AuthGuard]},
+  //     {path: 'library/add', component: UserLibraryAddComponent, canActivate: [AuthGuard]},
+  //     {path: 'plan', component: UserPlanComponent, canActivate: [AuthGuard],
+  //       children: [
+  //         {path: ':planId', component: UserPlanComponent, canActivate: [AuthGuard]}
+  //       ]
+  //     },
+  //     {path: 'plan/:planId/add', component: UserPlanAddComponent},
+  //     {path: 'account', component: UserAccountComponent, canActivate: [AuthGuard]},
+  //   ]
+  // },
   {path: 'explore', redirectTo: 'explore/johndoe123', pathMatch: 'full'},
   {path: 'explore/johndoe123', component: ExploreComponent,
     children: [
@@ -52,7 +52,7 @@ const routes: Routes = [
 ];
 
 @NgModule({
-  imports: [RouterModule.forRoot(routes)],
+  imports: [RouterModule.forRoot(routes, { relativeLinkResolution: 'legacy' })],
   exports: [RouterModule]
 })
 export class AppRoutingModule { }
